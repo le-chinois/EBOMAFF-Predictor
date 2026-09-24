@@ -17,155 +17,491 @@
 body{
   min-height:100vh;
   font-family:Arial,sans-serif;
-  color:white;
-  background:
-    radial-gradient(circle at 50% 15%,#51288d 0%,#25134d 32%,#090b19 70%);
+  color:#fff;
+  background:#070a12;
 }
 
 .app{
   max-width:500px;
-  min-height:100vh;
   margin:auto;
-  padding:18px 16px 35px;
+  padding:15px 14px 35px;
 }
 
 .header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 
 .brand{
   font-weight:900;
-  font-size:18px;
+  font-size:17px;
 }
 
 .online{
-  font-size:12px;
-  color:#53ffad;
+  color:#55ffac;
+  font-size:11px;
+  font-weight:700;
 }
 
-.game-card{
+.screen{
   position:relative;
   overflow:hidden;
-  min-height:390px;
-  padding:22px 18px;
-  border-radius:28px;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.12);
-  background:
-    radial-gradient(circle at 50% 45%,rgba(148,70,255,.38),transparent 38%),
-    linear-gradient(180deg,#23134d,#0d1025);
-  box-shadow:0 25px 60px rgba(0,0,0,.45);
+  min-height:440px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,#15172a,#080a13);
+  box-shadow:0 18px 45px rgba(0,0,0,.4);
 }
 
-.game-name{
-  font-size:28px;
-  font-weight:900;
-  margin-top:5px;
-}
-
-.subtitle{
-  color:#b7b8cb;
-  font-size:13px;
-  margin-top:7px;
-}
-
-.visual{
-  height:175px;
+.game-header{
+  padding:17px 17px 8px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+}
+
+.game-title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.robot-badge{
+  padding:6px 9px;
+  border-radius:20px;
+  background:rgba(255,255,255,.08);
+  color:#aeb4c9;
+  font-size:10px;
+}
+
+.game-area{
+  padding:8px 16px 18px;
+}
+
+.center{
+  text-align:center;
+}
+
+/* COEFFICIENT GAMES */
+
+.coefficient-stage{
+  min-height:265px;
+  border-radius:20px;
   position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(112,61,255,.35),transparent 38%),
+    linear-gradient(180deg,#121833,#080b18);
 }
 
-.planet{
+.sky-line{
   position:absolute;
-  width:145px;
-  height:145px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#b96cff,#6b2ed6 45%,#291264);
-  box-shadow:
-    0 0 35px rgba(172,84,255,.7),
-    0 0 80px rgba(105,45,210,.35);
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  opacity:.45;
+  background:
+    linear-gradient(165deg,transparent 45%,#4421a1 46%,#25165c 65%,transparent 66%);
 }
 
-.game-icon{
+.big-icon{
+  font-size:78px;
   position:relative;
   z-index:2;
-  font-size:72px;
-  filter:drop-shadow(0 12px 15px rgba(0,0,0,.4));
+  filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));
 }
 
-.result-label{
-  color:#aeb1c5;
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-.result{
+.multiplier{
+  position:relative;
+  z-index:3;
+  margin-top:5px;
   font-size:58px;
   font-weight:950;
-  margin:5px 0;
-  text-shadow:0 0 25px rgba(165,87,255,.6);
+  text-shadow:0 0 22px rgba(165,80,255,.6);
 }
 
-.waiting{
-  color:#9ca0b8;
-  font-size:13px;
-  margin-bottom:15px;
+.small-label{
+  position:relative;
+  z-index:3;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#a9aec3;
+}
+
+.status{
+  min-height:38px;
+  padding:12px 5px 4px;
+  text-align:center;
+  color:#9298ad;
+  font-size:12px;
+  line-height:1.4;
 }
 
 .predict{
   width:100%;
+  min-height:52px;
   border:0;
-  border-radius:17px;
-  padding:17px;
+  border-radius:15px;
+  color:#fff;
   font-size:16px;
   font-weight:900;
-  color:white;
-  background:linear-gradient(90deg,#7b36ff,#b548ff);
-  box-shadow:0 12px 30px rgba(126,54,255,.35);
+  background:linear-gradient(90deg,#7434ff,#a83cff);
 }
 
 .predict:active{
-  transform:scale(.98);
+  transform:scale(.985);
 }
 
+/* AVIATOR */
+
+.aviator-stage{
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(180deg,#17191f,#08090c);
+  background-size:30px 30px,30px 30px,auto;
+}
+
+.aviator-stage .multiplier{
+  color:#ff3154;
+}
+
+.flight-line{
+  position:absolute;
+  width:250px;
+  height:110px;
+  border-top:4px solid #f1274e;
+  border-radius:50%;
+  transform:rotate(-18deg);
+  bottom:45px;
+  left:-30px;
+  opacity:.8;
+}
+
+/* CRASH */
+
+.crash-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,68,76,.18),transparent 38%),
+    #090a0f;
+}
+
+.crash-stage .multiplier{
+  color:#ff4452;
+}
+
+/* ROCKET QUEEN */
+
+.queen-stage{
+  background:
+    radial-gradient(circle at 50% 45%,rgba(255,52,196,.32),transparent 35%),
+    linear-gradient(180deg,#311044,#10091b);
+}
+
+.queen-stage .multiplier{
+  color:#ff65db;
+}
+
+/* LIMBO */
+
+.limbo-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(45,230,190,.25),transparent 38%),
+    linear-gradient(180deg,#0e292a,#071313);
+}
+
+.limbo-stage .multiplier{
+  color:#57ffd5;
+}
+
+/* ROCKET X */
+
+.rocketx-stage{
+  background:
+    radial-gradient(circle at 50% 40%,rgba(52,120,255,.35),transparent 35%),
+    linear-gradient(180deg,#10235b,#090e20);
+}
+
+.rocketx-stage .multiplier{
+  color:#63a5ff;
+}
+
+/* CHICKEN */
+
+.chicken-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,177,37,.27),transparent 35%),
+    linear-gradient(180deg,#38220b,#141006);
+}
+
+.chicken-stage .multiplier{
+  color:#ffc34d;
+}
+
+.rails{
+  position:absolute;
+  left:10%;
+  right:10%;
+  bottom:18px;
+  height:60px;
+  border-left:5px solid #686868;
+  border-right:5px solid #686868;
+  transform:perspective(120px) rotateX(35deg);
+}
+
+/* MINES */
+
+.mines-screen{
+  background:linear-gradient(180deg,#1578c5,#064987);
+}
+
+.mines-area{
+  padding:10px 16px 18px;
+}
+
+.mines-title{
+  text-align:center;
+  font-weight:900;
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.mines-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  max-width:340px;
+  margin:0 auto 18px;
+}
+
+.mine-cell{
+  aspect-ratio:1/1;
+  border:0;
+  border-radius:8px;
+  background:linear-gradient(145deg,#16426e,#092c50);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.12),
+    0 4px 8px rgba(0,0,0,.25);
+}
+
+.trap-label{
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.traps{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:5px;
+  margin-bottom:15px;
+}
+
+.trap{
+  border:0;
+  min-height:38px;
+  border-radius:7px;
+  background:#062b52;
+  color:#fff;
+  font-weight:800;
+}
+
+.trap.active{
+  color:#142300;
+  background:#c5ff26;
+}
+
+.mines-predict{
+  background:linear-gradient(180deg,#d7ff31,#9cdb09);
+  color:#173300;
+}
+
+/* PENALTY */
+
+.penalty-stage{
+  min-height:285px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,#2987d7 0 43%,#39a855 44% 100%);
+}
+
+.goal{
+  position:absolute;
+  width:82%;
+  height:150px;
+  left:9%;
+  top:55px;
+  border:7px solid white;
+  border-bottom-width:9px;
+  background:
+    linear-gradient(45deg,transparent 47%,rgba(255,255,255,.25) 48%,rgba(255,255,255,.25) 52%,transparent 53%),
+    linear-gradient(-45deg,transparent 47%,rgba(255,255,255,.25) 48%,rgba(255,255,255,.25) 52%,transparent 53%);
+  background-size:25px 25px;
+}
+
+.keeper{
+  position:absolute;
+  z-index:3;
+  font-size:62px;
+  left:50%;
+  top:105px;
+  transform:translateX(-50%);
+}
+
+.ball{
+  position:absolute;
+  z-index:4;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:43px;
+}
+
+.penalty-result{
+  position:absolute;
+  z-index:5;
+  width:100%;
+  top:15px;
+  text-align:center;
+  font-size:15px;
+  font-weight:900;
+}
+
+/* SPEED & CASH */
+
+.speed-stage{
+  min-height:285px;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(16,81,255,.32),transparent 48%,rgba(255,33,62,.30)),
+    linear-gradient(180deg,#171925,#090b11);
+}
+
+.road{
+  position:absolute;
+  width:74%;
+  height:100%;
+  left:13%;
+  background:#17191e;
+  transform:perspective(300px) rotateX(8deg);
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  height:100%;
+  border-left:4px dashed rgba(255,255,255,.5);
+}
+
+.car{
+  position:absolute;
+  z-index:3;
+  font-size:67px;
+  top:105px;
+}
+
+.car-left{
+  left:18%;
+  filter:drop-shadow(0 0 12px #2372ff);
+}
+
+.car-right{
+  right:18%;
+  filter:drop-shadow(0 0 12px #ff304c);
+}
+
+.speed-title{
+  position:absolute;
+  z-index:4;
+  top:24px;
+  width:100%;
+  text-align:center;
+  font-size:26px;
+  font-weight:950;
+}
+
+.speed-result{
+  position:absolute;
+  z-index:4;
+  bottom:22px;
+  width:100%;
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* GAME SELECTOR */
+
 .games-title{
-  margin:23px 2px 12px;
-  font-size:14px;
-  color:#b6b8c9;
+  margin:22px 2px 11px;
+  color:#aeb3c6;
+  font-size:13px;
+  font-weight:700;
 }
 
 .games{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
+  gap:8px;
 }
 
 .game-btn{
+  min-height:48px;
+  padding:9px 7px;
+  border-radius:13px;
   border:1px solid rgba(255,255,255,.09);
-  border-radius:15px;
-  padding:13px 8px;
-  color:white;
-  background:#15182b;
-  font-size:13px;
+  background:#141725;
+  color:#fff;
+  font-size:12px;
   font-weight:700;
 }
 
 .game-btn.active{
-  background:linear-gradient(90deg,#5523a8,#7c35dc);
-  border-color:#9c5cff;
+  border-color:#9c60ff;
+  background:linear-gradient(90deg,#5226a0,#7534c9);
 }
 
 .footer{
   text-align:center;
-  color:#73778f;
-  font-size:11px;
+  color:#6f7488;
+  font-size:10px;
   line-height:1.5;
   margin-top:20px;
+}
+
+@media(max-width:360px){
+  .multiplier{
+    font-size:49px;
+  }
+
+  .big-icon{
+    font-size:66px;
+  }
+
+  .game-title{
+    font-size:19px;
+  }
+
+  .traps{
+    gap:3px;
+  }
+
+  .trap{
+    min-height:34px;
+  }
 }
 </style>
 </head>
@@ -179,35 +515,14 @@ body{
     <div class="online">● ONLINE</div>
   </div>
 
-  <div class="game-card">
-
-    <div id="gameName" class="game-name">LUCKY JET</div>
-    <div class="subtitle">Robot Prediction EBOMAFF</div>
-
-    <div class="visual">
-      <div class="planet"></div>
-      <div id="gameIcon" class="game-icon">🚀</div>
-    </div>
-
-    <div class="result-label">PROCHAINE PRÉDICTION</div>
-
-    <div id="result" class="result">--</div>
-
-    <div id="status" class="waiting">
-      Appuie sur le bouton pour lancer l'analyse
-    </div>
-
-    <button id="predict" class="predict">
-      🔎 LANCER L'ANALYSE
-    </button>
-
-  </div>
+  <div id="screen" class="screen"></div>
 
   <div class="games-title">🎮 CHOISIR UN JEU</div>
 
   <div class="games">
 
     <button class="game-btn active"
+      data-id="luckyjet"
       data-name="LUCKY JET"
       data-icon="🚀"
       data-type="coefficient">
@@ -215,6 +530,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="aviator"
       data-name="AVIATOR"
       data-icon="✈️"
       data-type="coefficient">
@@ -222,6 +538,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="crash"
       data-name="CRASH"
       data-icon="💥"
       data-type="coefficient">
@@ -229,6 +546,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="rocketqueen"
       data-name="ROCKET QUEEN"
       data-icon="👑"
       data-type="coefficient">
@@ -236,6 +554,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="mines"
       data-name="MINES CLASSIC"
       data-icon="💣"
       data-type="mines">
@@ -243,6 +562,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="limbo"
       data-name="LIMBO"
       data-icon="📈"
       data-type="coefficient">
@@ -250,6 +570,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="penalty"
       data-name="PENALTY"
       data-icon="⚽"
       data-type="penalty">
@@ -257,6 +578,7 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="rocketx"
       data-name="ROCKET X"
       data-icon="🚀"
       data-type="coefficient">
@@ -264,13 +586,15 @@ body{
     </button>
 
     <button class="game-btn"
+      data-id="speedcash"
       data-name="SPEED & CASH"
-      data-icon="⚡"
+      data-icon="🏎️"
       data-type="speed">
-      ⚡ Speed & Cash
+      🏎️ Speed & Cash
     </button>
 
     <button class="game-btn"
+      data-id="chickentrain"
       data-name="CHICKEN TRAIN"
       data-icon="🐔"
       data-type="coefficient">
@@ -281,7 +605,7 @@ body{
 
   <div class="footer">
     EBOMAFF Robot Prediction 🤖<br>
-    Les prédictions seront calculées par le moteur d'analyse EBOMAFF.
+    Moteur d'analyse EBOMAFF
   </div>
 
 </div>
@@ -294,17 +618,310 @@ if(tg){
   tg.expand();
 }
 
-const gameName = document.getElementById("gameName");
-const gameIcon = document.getElementById("gameIcon");
-const result = document.getElementById("result");
-const status = document.getElementById("status");
-const predict = document.getElementById("predict");
+const screen = document.getElementById("screen");
 
 let selectedGame = {
+  id:"luckyjet",
   name:"LUCKY JET",
   icon:"🚀",
   type:"coefficient"
 };
+
+let selectedTraps = 3;
+
+function getStageClass(id){
+
+  const classes = {
+    luckyjet:"",
+    aviator:"aviator-stage",
+    crash:"crash-stage",
+    rocketqueen:"queen-stage",
+    limbo:"limbo-stage",
+    rocketx:"rocketx-stage",
+    chickentrain:"chicken-stage"
+  };
+
+  return classes[id] || "";
+}
+
+function renderCoefficientGame(){
+
+  const stageClass = getStageClass(selectedGame.id);
+
+  let decoration = "";
+
+  if(selectedGame.id === "aviator"){
+    decoration = '<div class="flight-line"></div>';
+  }
+
+  if(selectedGame.id === "chickentrain"){
+    decoration = '<div class="rails"></div>';
+  }
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">${selectedGame.name}</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="coefficient-stage ${stageClass}">
+
+        ${decoration}
+
+        <div class="small-label">
+          PROCHAINE PRÉDICTION
+        </div>
+
+        <div class="big-icon">
+          ${selectedGame.icon}
+        </div>
+
+        <div id="gameResult" class="multiplier">
+          --
+        </div>
+
+        <div class="sky-line"></div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        🔎 PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function renderMines(){
+
+  screen.className = "screen mines-screen";
+
+  let cells = "";
+
+  for(let i = 0; i < 25; i++){
+    cells += `<button class="mine-cell" type="button" aria-label="Case ${i + 1}"></button>`;
+  }
+
+  let traps = "";
+
+  for(let i = 1; i <= 8; i++){
+    traps += `
+      <button
+        type="button"
+        class="trap ${i === selectedTraps ? "active" : ""}"
+        data-traps="${i}">
+        ${i}
+      </button>
+    `;
+  }
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">💣 MINES CLASSIC</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="mines-area">
+
+      <div class="mines-title">
+        MINES ⭐
+      </div>
+
+      <div class="mines-grid">
+        ${cells}
+      </div>
+
+      <div class="trap-label">
+        Sélection de pièges
+      </div>
+
+      <div class="traps">
+        ${traps}
+      </div>
+
+      <div id="gameStatus" class="status">
+        Choisis le nombre de pièges.
+      </div>
+
+      <button id="predictButton" class="predict mines-predict">
+        PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  document.querySelectorAll(".trap").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      selectedTraps = Number(button.dataset.traps);
+
+      document.querySelectorAll(".trap")
+        .forEach(b => b.classList.remove("active"));
+
+      button.classList.add("active");
+
+      document.getElementById("gameStatus").textContent =
+        `${selectedTraps} piège${selectedTraps > 1 ? "s" : ""} sélectionné${selectedTraps > 1 ? "s" : ""}.`;
+
+      tg?.HapticFeedback?.selectionChanged();
+    });
+
+  });
+
+  bindPredictionButton();
+}
+
+function renderPenalty(){
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">⚽ PENALTY</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="penalty-stage">
+
+        <div id="penaltyResult" class="penalty-result">
+          ZONE : --
+        </div>
+
+        <div class="goal"></div>
+
+        <div class="keeper">🧤</div>
+
+        <div class="ball">⚽</div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        ⚽ PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function renderSpeed(){
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">🏎️ SPEED & CASH</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="speed-stage">
+
+        <div class="road"></div>
+
+        <div class="speed-title">
+          SPEED & CASH
+        </div>
+
+        <div class="car car-left">
+          🏎️
+        </div>
+
+        <div class="car car-right">
+          🏎️
+        </div>
+
+        <div id="speedResult" class="speed-result">
+          SIGNAL : --
+        </div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        🏁 PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function bindPredictionButton(){
+
+  const button = document.getElementById("predictButton");
+
+  if(!button) return;
+
+  button.addEventListener("click", () => {
+
+    const status = document.getElementById("gameStatus");
+
+    button.disabled = true;
+
+    if(status){
+      status.textContent =
+        "🔎 Connexion au moteur d'analyse EBOMAFF...";
+    }
+
+    setTimeout(() => {
+
+      if(status){
+        status.textContent =
+          "⏳ Moteur de prédiction non connecté pour le moment.";
+      }
+
+      button.disabled = false;
+
+      tg?.HapticFeedback?.notificationOccurred("warning");
+
+    },900);
+
+  });
+}
+
+function renderGame(){
+
+  if(selectedGame.type === "mines"){
+    renderMines();
+    return;
+  }
+
+  if(selectedGame.type === "penalty"){
+    renderPenalty();
+    return;
+  }
+
+  if(selectedGame.type === "speed"){
+    renderSpeed();
+    return;
+  }
+
+  renderCoefficientGame();
+}
 
 document.querySelectorAll(".game-btn").forEach(button => {
 
@@ -316,47 +933,972 @@ document.querySelectorAll(".game-btn").forEach(button => {
     button.classList.add("active");
 
     selectedGame = {
+      id:button.dataset.id,
       name:button.dataset.name,
       icon:button.dataset.icon,
       type:button.dataset.type
     };
 
-    gameName.textContent = selectedGame.name;
-    gameIcon.textContent = selectedGame.icon;
-
-    result.textContent = "--";
-
-    status.textContent =
-      "Appuie sur le bouton pour lancer l'analyse";
+    renderGame();
 
     tg?.HapticFeedback?.selectionChanged();
   });
 
 });
 
-predict.addEventListener("click", () => {
+renderGame();
+</script>
 
-  result.textContent = "...";
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EBOMAFF Predictor</title>
 
-  status.textContent =
-    "Connexion au moteur d'analyse EBOMAFF...";
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  predict.disabled = true;
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-  setTimeout(() => {
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:#070a12;
+}
 
-    result.textContent = "EN ATTENTE";
+.app{
+  max-width:500px;
+  margin:auto;
+  padding:15px 14px 35px;
+}
 
-    status.textContent =
-      "Le moteur de prédiction sera connecté à l'étape suivante.";
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
 
-    predict.disabled = false;
+.brand{
+  font-weight:900;
+  font-size:17px;
+}
 
-    tg?.HapticFeedback?.notificationOccurred("success");
+.online{
+  color:#55ffac;
+  font-size:11px;
+  font-weight:700;
+}
 
-  },1200);
+.screen{
+  position:relative;
+  overflow:hidden;
+  min-height:440px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,#15172a,#080a13);
+  box-shadow:0 18px 45px rgba(0,0,0,.4);
+}
+
+.game-header{
+  padding:17px 17px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.game-title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.robot-badge{
+  padding:6px 9px;
+  border-radius:20px;
+  background:rgba(255,255,255,.08);
+  color:#aeb4c9;
+  font-size:10px;
+}
+
+.game-area{
+  padding:8px 16px 18px;
+}
+
+.center{
+  text-align:center;
+}
+
+/* COEFFICIENT GAMES */
+
+.coefficient-stage{
+  min-height:265px;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(112,61,255,.35),transparent 38%),
+    linear-gradient(180deg,#121833,#080b18);
+}
+
+.sky-line{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  opacity:.45;
+  background:
+    linear-gradient(165deg,transparent 45%,#4421a1 46%,#25165c 65%,transparent 66%);
+}
+
+.big-icon{
+  font-size:78px;
+  position:relative;
+  z-index:2;
+  filter:drop-shadow(0 10px 12px rgba(0,0,0,.45));
+}
+
+.multiplier{
+  position:relative;
+  z-index:3;
+  margin-top:5px;
+  font-size:58px;
+  font-weight:950;
+  text-shadow:0 0 22px rgba(165,80,255,.6);
+}
+
+.small-label{
+  position:relative;
+  z-index:3;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#a9aec3;
+}
+
+.status{
+  min-height:38px;
+  padding:12px 5px 4px;
+  text-align:center;
+  color:#9298ad;
+  font-size:12px;
+  line-height:1.4;
+}
+
+.predict{
+  width:100%;
+  min-height:52px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  background:linear-gradient(90deg,#7434ff,#a83cff);
+}
+
+.predict:active{
+  transform:scale(.985);
+}
+
+/* AVIATOR */
+
+.aviator-stage{
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(180deg,#17191f,#08090c);
+  background-size:30px 30px,30px 30px,auto;
+}
+
+.aviator-stage .multiplier{
+  color:#ff3154;
+}
+
+.flight-line{
+  position:absolute;
+  width:250px;
+  height:110px;
+  border-top:4px solid #f1274e;
+  border-radius:50%;
+  transform:rotate(-18deg);
+  bottom:45px;
+  left:-30px;
+  opacity:.8;
+}
+
+/* CRASH */
+
+.crash-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,68,76,.18),transparent 38%),
+    #090a0f;
+}
+
+.crash-stage .multiplier{
+  color:#ff4452;
+}
+
+/* ROCKET QUEEN */
+
+.queen-stage{
+  background:
+    radial-gradient(circle at 50% 45%,rgba(255,52,196,.32),transparent 35%),
+    linear-gradient(180deg,#311044,#10091b);
+}
+
+.queen-stage .multiplier{
+  color:#ff65db;
+}
+
+/* LIMBO */
+
+.limbo-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(45,230,190,.25),transparent 38%),
+    linear-gradient(180deg,#0e292a,#071313);
+}
+
+.limbo-stage .multiplier{
+  color:#57ffd5;
+}
+
+/* ROCKET X */
+
+.rocketx-stage{
+  background:
+    radial-gradient(circle at 50% 40%,rgba(52,120,255,.35),transparent 35%),
+    linear-gradient(180deg,#10235b,#090e20);
+}
+
+.rocketx-stage .multiplier{
+  color:#63a5ff;
+}
+
+/* CHICKEN */
+
+.chicken-stage{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,177,37,.27),transparent 35%),
+    linear-gradient(180deg,#38220b,#141006);
+}
+
+.chicken-stage .multiplier{
+  color:#ffc34d;
+}
+
+.rails{
+  position:absolute;
+  left:10%;
+  right:10%;
+  bottom:18px;
+  height:60px;
+  border-left:5px solid #686868;
+  border-right:5px solid #686868;
+  transform:perspective(120px) rotateX(35deg);
+}
+
+/* MINES */
+
+.mines-screen{
+  background:linear-gradient(180deg,#1578c5,#064987);
+}
+
+.mines-area{
+  padding:10px 16px 18px;
+}
+
+.mines-title{
+  text-align:center;
+  font-weight:900;
+  font-size:22px;
+  margin-bottom:12px;
+}
+
+.mines-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  max-width:340px;
+  margin:0 auto 18px;
+}
+
+.mine-cell{
+  aspect-ratio:1/1;
+  border:0;
+  border-radius:8px;
+  background:linear-gradient(145deg,#16426e,#092c50);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.12),
+    0 4px 8px rgba(0,0,0,.25);
+}
+
+.trap-label{
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.traps{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:5px;
+  margin-bottom:15px;
+}
+
+.trap{
+  border:0;
+  min-height:38px;
+  border-radius:7px;
+  background:#062b52;
+  color:#fff;
+  font-weight:800;
+}
+
+.trap.active{
+  color:#142300;
+  background:#c5ff26;
+}
+
+.mines-predict{
+  background:linear-gradient(180deg,#d7ff31,#9cdb09);
+  color:#173300;
+}
+
+/* PENALTY */
+
+.penalty-stage{
+  min-height:285px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,#2987d7 0 43%,#39a855 44% 100%);
+}
+
+.goal{
+  position:absolute;
+  width:82%;
+  height:150px;
+  left:9%;
+  top:55px;
+  border:7px solid white;
+  border-bottom-width:9px;
+  background:
+    linear-gradient(45deg,transparent 47%,rgba(255,255,255,.25) 48%,rgba(255,255,255,.25) 52%,transparent 53%),
+    linear-gradient(-45deg,transparent 47%,rgba(255,255,255,.25) 48%,rgba(255,255,255,.25) 52%,transparent 53%);
+  background-size:25px 25px;
+}
+
+.keeper{
+  position:absolute;
+  z-index:3;
+  font-size:62px;
+  left:50%;
+  top:105px;
+  transform:translateX(-50%);
+}
+
+.ball{
+  position:absolute;
+  z-index:4;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:43px;
+}
+
+.penalty-result{
+  position:absolute;
+  z-index:5;
+  width:100%;
+  top:15px;
+  text-align:center;
+  font-size:15px;
+  font-weight:900;
+}
+
+/* SPEED & CASH */
+
+.speed-stage{
+  min-height:285px;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(16,81,255,.32),transparent 48%,rgba(255,33,62,.30)),
+    linear-gradient(180deg,#171925,#090b11);
+}
+
+.road{
+  position:absolute;
+  width:74%;
+  height:100%;
+  left:13%;
+  background:#17191e;
+  transform:perspective(300px) rotateX(8deg);
+}
+
+.road:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  height:100%;
+  border-left:4px dashed rgba(255,255,255,.5);
+}
+
+.car{
+  position:absolute;
+  z-index:3;
+  font-size:67px;
+  top:105px;
+}
+
+.car-left{
+  left:18%;
+  filter:drop-shadow(0 0 12px #2372ff);
+}
+
+.car-right{
+  right:18%;
+  filter:drop-shadow(0 0 12px #ff304c);
+}
+
+.speed-title{
+  position:absolute;
+  z-index:4;
+  top:24px;
+  width:100%;
+  text-align:center;
+  font-size:26px;
+  font-weight:950;
+}
+
+.speed-result{
+  position:absolute;
+  z-index:4;
+  bottom:22px;
+  width:100%;
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* GAME SELECTOR */
+
+.games-title{
+  margin:22px 2px 11px;
+  color:#aeb3c6;
+  font-size:13px;
+  font-weight:700;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.game-btn{
+  min-height:48px;
+  padding:9px 7px;
+  border-radius:13px;
+  border:1px solid rgba(255,255,255,.09);
+  background:#141725;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+}
+
+.game-btn.active{
+  border-color:#9c60ff;
+  background:linear-gradient(90deg,#5226a0,#7534c9);
+}
+
+.footer{
+  text-align:center;
+  color:#6f7488;
+  font-size:10px;
+  line-height:1.5;
+  margin-top:20px;
+}
+
+@media(max-width:360px){
+  .multiplier{
+    font-size:49px;
+  }
+
+  .big-icon{
+    font-size:66px;
+  }
+
+  .game-title{
+    font-size:19px;
+  }
+
+  .traps{
+    gap:3px;
+  }
+
+  .trap{
+    min-height:34px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="header">
+    <div class="brand">🤖 EBOMAFF PREDICTOR</div>
+    <div class="online">● ONLINE</div>
+  </div>
+
+  <div id="screen" class="screen"></div>
+
+  <div class="games-title">🎮 CHOISIR UN JEU</div>
+
+  <div class="games">
+
+    <button class="game-btn active"
+      data-id="luckyjet"
+      data-name="LUCKY JET"
+      data-icon="🚀"
+      data-type="coefficient">
+      🚀 Lucky Jet
+    </button>
+
+    <button class="game-btn"
+      data-id="aviator"
+      data-name="AVIATOR"
+      data-icon="✈️"
+      data-type="coefficient">
+      ✈️ Aviator
+    </button>
+
+    <button class="game-btn"
+      data-id="crash"
+      data-name="CRASH"
+      data-icon="💥"
+      data-type="coefficient">
+      💥 Crash
+    </button>
+
+    <button class="game-btn"
+      data-id="rocketqueen"
+      data-name="ROCKET QUEEN"
+      data-icon="👑"
+      data-type="coefficient">
+      👑 Rocket Queen
+    </button>
+
+    <button class="game-btn"
+      data-id="mines"
+      data-name="MINES CLASSIC"
+      data-icon="💣"
+      data-type="mines">
+      💣 Mines Classic
+    </button>
+
+    <button class="game-btn"
+      data-id="limbo"
+      data-name="LIMBO"
+      data-icon="📈"
+      data-type="coefficient">
+      📈 Limbo
+    </button>
+
+    <button class="game-btn"
+      data-id="penalty"
+      data-name="PENALTY"
+      data-icon="⚽"
+      data-type="penalty">
+      ⚽ Penalty
+    </button>
+
+    <button class="game-btn"
+      data-id="rocketx"
+      data-name="ROCKET X"
+      data-icon="🚀"
+      data-type="coefficient">
+      🚀 Rocket X
+    </button>
+
+    <button class="game-btn"
+      data-id="speedcash"
+      data-name="SPEED & CASH"
+      data-icon="🏎️"
+      data-type="speed">
+      🏎️ Speed & Cash
+    </button>
+
+    <button class="game-btn"
+      data-id="chickentrain"
+      data-name="CHICKEN TRAIN"
+      data-icon="🐔"
+      data-type="coefficient">
+      🐔 Chicken Train
+    </button>
+
+  </div>
+
+  <div class="footer">
+    EBOMAFF Robot Prediction 🤖<br>
+    Moteur d'analyse EBOMAFF
+  </div>
+
+</div>
+
+<script>
+const tg = window.Telegram?.WebApp;
+
+if(tg){
+  tg.ready();
+  tg.expand();
+}
+
+const screen = document.getElementById("screen");
+
+let selectedGame = {
+  id:"luckyjet",
+  name:"LUCKY JET",
+  icon:"🚀",
+  type:"coefficient"
+};
+
+let selectedTraps = 3;
+
+function getStageClass(id){
+
+  const classes = {
+    luckyjet:"",
+    aviator:"aviator-stage",
+    crash:"crash-stage",
+    rocketqueen:"queen-stage",
+    limbo:"limbo-stage",
+    rocketx:"rocketx-stage",
+    chickentrain:"chicken-stage"
+  };
+
+  return classes[id] || "";
+}
+
+function renderCoefficientGame(){
+
+  const stageClass = getStageClass(selectedGame.id);
+
+  let decoration = "";
+
+  if(selectedGame.id === "aviator"){
+    decoration = '<div class="flight-line"></div>';
+  }
+
+  if(selectedGame.id === "chickentrain"){
+    decoration = '<div class="rails"></div>';
+  }
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">${selectedGame.name}</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="coefficient-stage ${stageClass}">
+
+        ${decoration}
+
+        <div class="small-label">
+          PROCHAINE PRÉDICTION
+        </div>
+
+        <div class="big-icon">
+          ${selectedGame.icon}
+        </div>
+
+        <div id="gameResult" class="multiplier">
+          --
+        </div>
+
+        <div class="sky-line"></div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        🔎 PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function renderMines(){
+
+  screen.className = "screen mines-screen";
+
+  let cells = "";
+
+  for(let i = 0; i < 25; i++){
+    cells += `<button class="mine-cell" type="button" aria-label="Case ${i + 1}"></button>`;
+  }
+
+  let traps = "";
+
+  for(let i = 1; i <= 8; i++){
+    traps += `
+      <button
+        type="button"
+        class="trap ${i === selectedTraps ? "active" : ""}"
+        data-traps="${i}">
+        ${i}
+      </button>
+    `;
+  }
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">💣 MINES CLASSIC</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="mines-area">
+
+      <div class="mines-title">
+        MINES ⭐
+      </div>
+
+      <div class="mines-grid">
+        ${cells}
+      </div>
+
+      <div class="trap-label">
+        Sélection de pièges
+      </div>
+
+      <div class="traps">
+        ${traps}
+      </div>
+
+      <div id="gameStatus" class="status">
+        Choisis le nombre de pièges.
+      </div>
+
+      <button id="predictButton" class="predict mines-predict">
+        PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  document.querySelectorAll(".trap").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      selectedTraps = Number(button.dataset.traps);
+
+      document.querySelectorAll(".trap")
+        .forEach(b => b.classList.remove("active"));
+
+      button.classList.add("active");
+
+      document.getElementById("gameStatus").textContent =
+        `${selectedTraps} piège${selectedTraps > 1 ? "s" : ""} sélectionné${selectedTraps > 1 ? "s" : ""}.`;
+
+      tg?.HapticFeedback?.selectionChanged();
+    });
+
+  });
+
+  bindPredictionButton();
+}
+
+function renderPenalty(){
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">⚽ PENALTY</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="penalty-stage">
+
+        <div id="penaltyResult" class="penalty-result">
+          ZONE : --
+        </div>
+
+        <div class="goal"></div>
+
+        <div class="keeper">🧤</div>
+
+        <div class="ball">⚽</div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        ⚽ PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function renderSpeed(){
+
+  screen.className = "screen";
+
+  screen.innerHTML = `
+    <div class="game-header">
+      <div class="game-title">🏎️ SPEED & CASH</div>
+      <div class="robot-badge">EBOMAFF AI</div>
+    </div>
+
+    <div class="game-area">
+
+      <div class="speed-stage">
+
+        <div class="road"></div>
+
+        <div class="speed-title">
+          SPEED & CASH
+        </div>
+
+        <div class="car car-left">
+          🏎️
+        </div>
+
+        <div class="car car-right">
+          🏎️
+        </div>
+
+        <div id="speedResult" class="speed-result">
+          SIGNAL : --
+        </div>
+
+      </div>
+
+      <div id="gameStatus" class="status">
+        Moteur d'analyse en attente de connexion.
+      </div>
+
+      <button id="predictButton" class="predict">
+        🏁 PRÉDIRE
+      </button>
+
+    </div>
+  `;
+
+  bindPredictionButton();
+}
+
+function bindPredictionButton(){
+
+  const button = document.getElementById("predictButton");
+
+  if(!button) return;
+
+  button.addEventListener("click", () => {
+
+    const status = document.getElementById("gameStatus");
+
+    button.disabled = true;
+
+    if(status){
+      status.textContent =
+        "🔎 Connexion au moteur d'analyse EBOMAFF...";
+    }
+
+    setTimeout(() => {
+
+      if(status){
+        status.textContent =
+          "⏳ Moteur de prédiction non connecté pour le moment.";
+      }
+
+      button.disabled = false;
+
+      tg?.HapticFeedback?.notificationOccurred("warning");
+
+    },900);
+
+  });
+}
+
+function renderGame(){
+
+  if(selectedGame.type === "mines"){
+    renderMines();
+    return;
+  }
+
+  if(selectedGame.type === "penalty"){
+    renderPenalty();
+    return;
+  }
+
+  if(selectedGame.type === "speed"){
+    renderSpeed();
+    return;
+  }
+
+  renderCoefficientGame();
+}
+
+document.querySelectorAll(".game-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document.querySelectorAll(".game-btn")
+      .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    selectedGame = {
+      id:button.dataset.id,
+      name:button.dataset.name,
+      icon:button.dataset.icon,
+      type:button.dataset.type
+    };
+
+    renderGame();
+
+    tg?.HapticFeedback?.selectionChanged();
+  });
 
 });
+
+renderGame();
 </script>
 
 </body>
