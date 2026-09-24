@@ -101,13 +101,54 @@ async def analyse_luckyjet(
 
     context.user_data["waiting_luckyjet"] = False
 
-    await update.message.reply_text(
+        await update.message.reply_text(
         "🚀 LUCKY JET - ANALYSE\n\n"
         f"📊 Tours analysés : {len(coefficients)}\n"
-        f"🔎 5 derniers tours : "
-        f"{' '.join(f'{x:.2f}x' for x in recents)}\n"
+        f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
         f"⬇️ Minimum récent : {minimum:.2f}x\n"
         f"⬆️ Maximum récent : {maximum:.2f}x\n"
         f"📈 Moyenne des 5 derniers : {moyenne:.2f}x\n"
         f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
-        "⚠️ Estimation calculée à partir des résultats four
+        "⚠️ Estimation calculée à partir des résultats fournis, "
+        "pas le résultat garanti du prochain tour."
+    )
+
+
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"EBOMAFF Predictor is running")
+
+    def log_message(self, format, *args):
+        pass
+
+
+def run_server():
+    port = int(os.getenv("PORT", "10000"))
+    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    server.serve_forever()
+
+
+def main():
+    if not TOKEN:
+        raise RuntimeError("BOT_TOKEN n'est pas configuré.")
+
+    threading.Thread(target=run_server, daemon=True).start()
+
+    app = Application.builder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CallbackQueryHandler(button_click))
+    app.add_handler(
+        MessageHandler(
+            filters.TEXT & ~filters.COMMAND,
+            analyse_luckyjet,
+        )
+    )
+
+    print("🤖 EBOMAFF Predictor démarré...")
+    app.run_polling()
+
+
+if __name__ == "__main__":
+    main()
