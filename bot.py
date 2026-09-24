@@ -1,17 +1,33 @@
 import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 TOKEN = os.getenv("BOT_TOKEN")
-
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    keyboard = [
+        [InlineKeyboardButton("🚀 Lucky Jet", callback_data="luckyjet"),
+         InlineKeyboardButton("✈️ Aviator", callback_data="aviator")],
+        [InlineKeyboardButton("💥 Crash", callback_data="crash"),
+         InlineKeyboardButton("👑 Rocket Queen", callback_data="rocketqueen")],
+        [InlineKeyboardButton("💣 Mines Classic", callback_data="mines"),
+         InlineKeyboardButton("📈 Limbo", callback_data="limbo")],
+        [InlineKeyboardButton("⚽ Penalty", callback_data="penalty"),
+         InlineKeyboardButton("🚀 Rocket X", callback_data="rocketx")],
+        [InlineKeyboardButton("⚡ Speed & Cash", callback_data="speedcash"),
+         InlineKeyboardButton("🐔 Chicken Train", callback_data="chickentrain")]
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
     await update.message.reply_text(
         "🤖 Bienvenue sur EBOMAFF Predictor !\n\n"
-        "🎮 Sélectionne ton jeu et lance une prédiction.\n"
-        "⚠️ Les résultats générés sont indicatifs et ne garantissent aucun gain."
+        "🎮 Sélectionne ton jeu :\n"
+        "⚠️ Les résultats générés sont indicatifs et ne garantissent aucun gain.",
+        reply_markup=reply_markup
     )
+
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
