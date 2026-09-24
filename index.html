@@ -8,16 +8,38 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
   min-height:100vh;
   font-family:Arial,sans-serif;
   color:#fff;
   background:#060912;
 }
-.app{max-width:500px;margin:auto;padding:18px 15px 35px}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.brand{font-size:18px;font-weight:900}
-.online{color:#4dffa2;font-size:12px;font-weight:800}
+
+.app{
+  max-width:500px;
+  margin:auto;
+  padding:18px 15px 35px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.brand{
+  font-size:18px;
+  font-weight:900;
+}
+
+.online{
+  color:#4dffa2;
+  font-size:12px;
+  font-weight:800;
+}
+
 .card{
   overflow:hidden;
   border:1px solid #292e43;
@@ -25,12 +47,27 @@ body{
   background:#101426;
   box-shadow:0 20px 50px #0008;
 }
+
 .card-head{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:20px 18px 14px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 18px 14px;
 }
-.game-title{font-size:24px;font-weight:900}
-.ai{padding:9px 13px;border-radius:20px;background:#ffffff0d;color:#aeb2c4;font-size:11px}
+
+.game-title{
+  font-size:24px;
+  font-weight:900;
+}
+
+.ai{
+  padding:9px 13px;
+  border-radius:20px;
+  background:#ffffff0d;
+  color:#aeb2c4;
+  font-size:11px;
+}
+
 .stage{
   min-height:390px;
   margin:0 16px;
@@ -38,374 +75,220 @@ body{
   overflow:hidden;
   position:relative;
 }
-.status{padding:15px 20px 8px;color:#9da3b7;font-size:13px}
+
+.status{
+  padding:15px 20px 8px;
+  color:#9da3b7;
+  font-size:13px;
+}
+
 .predict{
-  width:calc(100% - 32px);margin:7px 16px 20px;padding:17px;border:0;
-  border-radius:17px;color:#fff;font-size:17px;font-weight:900;
-  background:linear-gradient(90deg,#7130ff,#bd39ff)
+  width:calc(100% - 32px);
+  margin:7px 16px 20px;
+  padding:17px;
+  border:0;
+  border-radius:17px;
+  color:#fff;
+  font-size:17px;
+  font-weight:900;
+  background:linear-gradient(90deg,#7130ff,#bd39ff);
 }
-.predict:active{transform:scale(.98)}
-.section-title{margin:25px 3px 13px;color:#a9adbd;font-size:13px;font-weight:800}
-.games{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+
+.predict:active{
+  transform:scale(.98);
+}
+
+.section-title{
+  margin:25px 3px 13px;
+  color:#a9adbd;
+  font-size:13px;
+  font-weight:800;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
 .game-btn{
-  padding:15px 7px;border-radius:16px;border:1px solid #292e43;
-  background:#121625;color:#fff;font-size:13px;font-weight:800
+  padding:15px 7px;
+  border-radius:16px;
+  border:1px solid #292e43;
+  background:#121625;
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
 }
-.game-btn.active{background:linear-gradient(90deg,#5520a8,#8834e1);border-color:#9e55ff}
-.footer{text-align:center;color:#6e7488;font-size:11px;line-height:1.6;margin-top:25px}
 
-/* coefficient screens */
+.game-btn.active{
+  background:linear-gradient(90deg,#5520a8,#8834e1);
+  border-color:#9e55ff;
+}
+
+.footer{
+  text-align:center;
+  color:#6e7488;
+  font-size:11px;
+  line-height:1.6;
+  margin-top:25px;
+}
+
+/* BASE */
 .sky{
-  height:390px;position:relative;overflow:hidden;text-align:center;
-  background:linear-gradient(180deg,#15102e,#0a0c1b)
+  height:390px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  background:linear-gradient(180deg,#15102e,#0a0c1b);
 }
-.logo{padding-top:23px;font-size:24px;font-weight:950;letter-spacing:1px}
+
+.logo{
+  padding-top:23px;
+  font-size:24px;
+  font-weight:950;
+  letter-spacing:1px;
+}
+
 .big{
-  position:absolute;z-index:4;top:120px;left:0;right:0;
-  font-size:58px;font-weight:950
+  position:absolute;
+  z-index:4;
+  top:120px;
+  left:0;
+  right:0;
+  font-size:58px;
+  font-weight:950;
 }
+
 .object{
-  position:absolute;z-index:3;right:18%;top:190px;font-size:72px;
-  filter:drop-shadow(0 10px 16px #0008)
+  position:absolute;
+  z-index:3;
+  right:18%;
+  top:190px;
+  font-size:72px;
 }
+
 .curve{
-  position:absolute;width:120%;height:170px;left:-10%;bottom:-60px;
-  border-top:5px solid #7846ff;border-radius:50% 50% 0 0;
-  transform:rotate(-10deg)
-}
-.stars{position:absolute;inset:0;opacity:.45;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:45px 45px}
-
-/* Aviator */
-.aviator{background:radial-gradient(circle at bottom left,#351241,#090a0e 70%)}
-.aviator .curve{border-color:#e81049;border-width:7px}
-.aviator .object{color:#f71950}
-
-/* Crash */
-.crash{background:#0d1017}
-.crash-line{
-  position:absolute;left:8%;right:12%;bottom:80px;height:190px;
-  border-top:4px solid #1685ff;border-radius:65% 35% 0 0;
-  transform:rotate(-14deg);box-shadow:0 -20px 40px #0c69d933
-}
-.crash-dot{
-  position:absolute;right:14%;top:105px;width:28px;height:28px;
-  border-radius:50%;background:#1685ff;box-shadow:0 0 0 10px #1685ff33
+  position:absolute;
+  width:120%;
+  height:170px;
+  left:-10%;
+  bottom:-60px;
+  border-top:5px solid #7846ff;
+  border-radius:50% 50% 0 0;
+  transform:rotate(-10deg);
 }
 
-/* Rocket Queen */
-.queen{background:linear-gradient(160deg,#a42ed0,#ff8d25)}
-.queen .curve{border-color:#fff}
-.queen .object{font-size:80px}
-
-/* Rocket X */
-.rocketx{background:radial-gradient(circle,#171d35,#02030a 70%)}
-.rocketx .object{font-size:90px;right:37%;top:180px}
-.fire{
-  position:absolute;left:48%;top:260px;font-size:75px;transform:translateX(-50%)
+.stars{
+  position:absolute;
+  inset:0;
+  opacity:.45;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:45px 45px;
 }
 
-/* Speed */
-.speed{
-  background:linear-gradient(90deg,#102d7b 0,#111319 28%,#111319 72%,#7a1824 100%);
-}
-.speed-title{text-align:center;font-size:29px;font-weight:950;padding:25px 5px}
-.speed-title .red{color:#ff572d}.speed-title .blue{color:#208cff}
-.road{
-  position:absolute;left:50%;top:80px;bottom:20px;border-left:5px dashed #ddd7
-}
-.car{position:absolute;bottom:55px;font-size:90px;transform:rotate(-90deg)}
-.car.left{left:8%;filter:hue-rotate(180deg)}
-.car.right{right:8%}
-.signal{position:absolute;bottom:15px;left:0;right:0;text-align:center;font-size:23px;font-weight:900}
+/* ============================= */
+/* LUCKY JET                     */
+/* ============================= */
 
-/* Mines */
-.mines{
-  padding:20px;background:linear-gradient(180deg,#1485d3,#07579c)
-}
-.mines-title{text-align:center;font-size:27px;font-weight:900;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.cell{
-  aspect-ratio:1;border-radius:10px;background:linear-gradient(145deg,#104b78,#0a345b);
-  box-shadow:inset 0 0 12px #0005,0 4px 8px #0004
-}
-.trap-label{text-align:center;margin:25px 0 10px;font-weight:800}
-.traps{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
-.trap{
-  border:0;border-radius:9px;padding:12px 2px;background:#083b6b;color:#fff;font-weight:900
-}
-.trap.active{background:#b7ff18;color:#14200b}
-
-/* Penalty */
-.penalty{background:linear-gradient(#242733,#090b10);padding:25px 15px}
-.goal{
-  position:absolute;left:8%;right:8%;top:100px;height:190px;
-  border:8px solid #e8e8eb;border-bottom-width:5px;
+.lucky-new{
+  height:390px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
   background:
-    linear-gradient(90deg,transparent 49%,#ffffff22 50%,transparent 51%),
-    linear-gradient(transparent 49%,#ffffff22 50%,transparent 51%);
-  background-size:55px 55px
-}
-.goal-zones{position:absolute;inset:15px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px}
-.zone{border:2px dashed #ffffff22;border-radius:50%}
-.gloves{position:absolute;top:205px;left:0;right:0;text-align:center;font-size:46px}
-.ball{position:absolute;bottom:35px;left:0;right:0;text-align:center;font-size:85px}
-
-/* Limbo */
-.limbo{background:linear-gradient(180deg,#151b29,#090b11);text-align:center}
-.limbo-chart{
-  position:absolute;left:10%;right:10%;bottom:80px;height:160px;
-  border-left:3px solid #31dc87;border-bottom:3px solid #31dc87
-}
-.limbo-chart:after{
-  content:"";position:absolute;width:85%;height:100px;left:8%;bottom:0;
-  border-top:5px solid #31dc87;border-radius:100% 20% 0 0;transform:rotate(-12deg)
+    radial-gradient(circle at 50% 50%,#421675 0%,#211044 35%,#0a0919 76%);
 }
 
-/* Chicken */
-.chicken{
-  background:
-    repeating-linear-gradient(90deg,#d6a563 0 65px,#754f36 66px 75px,#d6a563 76px 145px);
-  color:#151515
-}
-.chicken-title{text-align:center;padding:20px;font-size:27px;font-weight:950;color:#ffd321;text-shadow:2px 2px #6b2c00}
-.rails{position:absolute;inset:70px 15px 15px;display:flex;justify-content:space-around}
-.rail{width:70px;border-left:8px solid #555;border-right:8px solid #555;background:repeating-linear-gradient(#9b6849 0 12px,transparent 13px 38px)}
-.egg{position:absolute;top:185px;font-size:55px}
-.egg.one{left:24%}.egg.two{right:24%}
-.chick{position:absolute;left:15px;bottom:35px;font-size:75px}
-
-/* generic */
-.generic{background:radial-gradient(circle,#382066,#0b0d19 70%)}
-</style>
-</head>
-
-<body>
-<div class="app">
-
-<div class="header">
-  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
-  <div class="online">● ONLINE</div>
-</div>
-
-<div class="card">
-  <div class="card-head">
-    <div id="gameTitle" class="game-title">🚀 LUCKY JET</div>
-    <div class="ai">EBOMAFF AI</div>
-  </div>
-
-  <div id="stage" class="stage"></div>
-  <div id="status" class="status">⌛ Moteur de prédiction non connecté pour le moment.</div>
-  <button id="predict" class="predict">🔎 PRÉDIRE</button>
-</div>
-
-<div class="section-title">🎮 CHOISIR UN JEU</div>
-
-<div class="games">
-<button class="game-btn active" data-id="lucky">🚀 Lucky Jet</button>
-<button class="game-btn" data-id="aviator">✈️ Aviator</button>
-<button class="game-btn" data-id="crash">💥 Crash</button>
-<button class="game-btn" data-id="queen">👑 Rocket Queen</button>
-<button class="game-btn" data-id="mines">💣 Mines Classic</button>
-<button class="game-btn" data-id="limbo">📈 Limbo</button>
-<button class="game-btn" data-id="penalty">⚽ Penalty</button>
-<button class="game-btn" data-id="rocketx">🚀 Rocket X</button>
-<button class="game-btn" data-id="speed">🏎️ Speed & Cash</button>
-<button class="game-btn" data-id="chicken">🐔 Chicken Train</button>
-</div>
-
-<div class="footer">
-EBOMAFF Robot Prediction 🤖<br>
-Moteur d'analyse EBOMAFF
-</div>
-
-</div>
-
-<script>
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand()}
-
-const stage=document.getElementById("stage");
-const gameTitle=document.getElementById("gameTitle");
-const status=document.getElementById("status");
-const predict=document.getElementById("predict");
-
-const games={
- lucky:{title:"🚀 LUCKY JET"},
- aviator:{title:"✈️ AVIATOR"},
- crash:{title:"💥 CRASH"},
- queen:{title:"👑 ROCKET QUEEN"},
- mines:{title:"💣 MINES CLASSIC"},
- limbo:{title:"📈 LIMBO"},
- penalty:{title:"⚽ PENALTY"},
- rocketx:{title:"🚀 ROCKET X"},
- speed:{title:"🏎️ SPEED & CASH"},
- chicken:{title:"🐔 CHICKEN TRAIN"}
-};
-
-let selected="lucky";
-let trapCount=3;
-
-function coefficient(type,name,object){
- stage.innerHTML=`
- <div class="sky ${type}">
-   <div class="stars"></div>
-   <div class="logo">${name}</div>
-   <div class="big">x --</div>
-   <div class="object">${object}</div>
-   <div class="curve"></div>
- </div>`;
+.lucky-stars{
+  position:absolute;
+  inset:0;
+  opacity:.35;
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px);
+  background-size:42px 42px;
 }
 
-function renderLucky(){
- coefficient("generic","LUCKY<span style='color:#a54cff'>JET</span>","🧑‍🚀");
+.lucky-logo{
+  position:absolute;
+  z-index:5;
+  top:25px;
+  left:0;
+  right:0;
+  font-size:31px;
+  font-weight:950;
+  font-style:italic;
+  letter-spacing:-2px;
+  color:#bc4cff;
+  text-shadow:
+    0 0 12px #a43cff,
+    0 0 30px #6b1ddf;
 }
 
-function renderAviator(){
- coefficient("aviator","<span style='color:#f51c50'>AVIATOR</span>","✈️");
+.lucky-logo strong{
+  color:#fff;
 }
 
-function renderCrash(){
- stage.innerHTML=`
- <div class="sky crash">
-  <div class="logo">CRASH</div>
-  <div class="big">x --</div>
-  <div class="crash-line"></div>
-  <div class="crash-dot"></div>
- </div>`;
+.lucky-result{
+  position:absolute;
+  z-index:7;
+  top:100px;
+  left:0;
+  right:0;
+  font-size:62px;
+  font-weight:950;
+  color:#d27aff;
+  text-shadow:
+    0 0 12px #b94cff,
+    0 0 35px #7b2cff;
 }
 
-function renderQueen(){
- stage.innerHTML=`
- <div class="sky queen">
-  <div class="logo">ROCKET QUEEN</div>
-  <div class="big">x --</div>
-  <div class="object">👩‍🚀</div>
-  <div class="curve"></div>
- </div>`;
+.lucky-result small{
+  font-size:34px;
 }
 
-function renderRocketX(){
- stage.innerHTML=`
- <div class="sky rocketx">
-  <div class="stars"></div>
-  <div class="logo">ROCKET <span style="color:#ff7b31">X</span></div>
-  <div class="big">x --</div>
-  <div class="object">🚀</div>
-  <div class="fire">🔥</div>
- </div>`;
+.lucky-glow{
+  position:absolute;
+  z-index:1;
+  width:220px;
+  height:220px;
+  top:115px;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:#7c2cff;
+  opacity:.18;
+  filter:blur(30px);
 }
 
-function renderSpeed(){
- stage.innerHTML=`
- <div class="sky speed">
-   <div class="speed-title"><span class="red">SPEED</span> & <span class="blue">CASH</span></div>
-   <div class="road"></div>
-   <div class="car left">🏎️</div>
-   <div class="car right">🏎️</div>
-   <div class="signal">SIGNAL : --</div>
- </div>`;
+.lucky-jet{
+  position:absolute;
+  z-index:5;
+  top:180px;
+  left:50%;
+  transform:translateX(-50%) rotate(-12deg);
+  font-size:100px;
+  filter:
+    drop-shadow(0 12px 12px #000)
+    drop-shadow(0 0 18px #a34cff);
 }
 
-function renderMines(){
- stage.innerHTML=`
- <div class="mines">
-  <div class="mines-title">MINES ⭐</div>
-  <div class="grid">
-   ${Array.from({length:25},()=>'<div class="cell"></div>').join("")}
-  </div>
-  <div class="trap-label">💣 Sélection de pièges</div>
-  <div class="traps">
-   ${[1,2,3,4,5,6,7,8].map(n =>
-     `<button class="trap ${n===trapCount?'active':''}" data-trap="${n}">${n}</button>`
-   ).join("")}
-  </div>
- </div>`;
-
- document.querySelectorAll(".trap").forEach(btn=>{
-   btn.onclick=()=>{
-     trapCount=Number(btn.dataset.trap);
-     renderMines();
-     status.textContent=`💣 ${trapCount} piège${trapCount>1?"s":""} sélectionné${trapCount>1?"s":""}.`;
-   };
- });
+.lucky-person{
+  position:absolute;
+  z-index:6;
+  top:184px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:55px;
 }
 
-function renderPenalty(){
- stage.innerHTML=`
- <div class="sky penalty">
-   <div class="logo">EBOMAFF × PENALTY</div>
-   <div class="goal">
-     <div class="goal-zones">
-       ${Array.from({length:6},()=>'<div class="zone"></div>').join("")}
-     </div>
-   </div>
-   <div class="gloves">🧤 🧤</div>
-   <div class="ball">⚽</div>
- </div>`;
-}
-
-function renderLimbo(){
- stage.innerHTML=`
- <div class="sky limbo">
-   <div class="logo">LIMBO</div>
-   <div class="big">x --</div>
-   <div class="limbo-chart"></div>
- </div>`;
-}
-
-function renderChicken(){
- stage.innerHTML=`
- <div class="sky chicken">
-  <div class="chicken-title">CHICKEN TRAIN</div>
-  <div class="rails">
-    <div class="rail"></div>
-    <div class="rail"></div>
-    <div class="rail"></div>
-  </div>
-  <div class="egg one">🥚</div>
-  <div class="egg two">🥚</div>
-  <div class="chick">🐔</div>
- </div>`;
-}
-
-function render(){
- gameTitle.textContent=games[selected].title;
- status.textContent="⌛ Moteur de prédiction non connecté pour le moment.";
-
- if(selected==="lucky") return renderLucky();
- if(selected==="aviator") return renderAviator();
- if(selected==="crash") return renderCrash();
- if(selected==="queen") return renderQueen();
- if(selected==="mines") return renderMines();
- if(selected==="limbo") return renderLimbo();
- if(selected==="penalty") return renderPenalty();
- if(selected==="rocketx") return renderRocketX();
- if(selected==="speed") return renderSpeed();
- if(selected==="chicken") return renderChicken();
-}
-
-document.querySelectorAll(".game-btn").forEach(btn=>{
- btn.addEventListener("click",()=>{
-   document.querySelectorAll(".game-btn").forEach(b=>b.classList.remove("active"));
-   btn.classList.add("active");
-   selected=btn.dataset.id;
-   render();
-   tg?.HapticFeedback?.selectionChanged();
- });
-});
-
-predict.addEventListener("click",()=>{
- predict.disabled=true;
- status.textContent="🔎 Connexion au moteur d'analyse EBOMAFF...";
-
- setTimeout(()=>{
-   status.textContent="⌛ Moteur de prédiction non connecté pour le moment.";
-   predict.disabled=false;
-   tg?.HapticFeedback?.notificationOccurred("warning");
- },900);
-});
-
-render();
-</script>
-</body>
-</html>
+.lucky-trail{
+  position:absolute;
+  z-index:2;
+  width:420px;
+  height:190px;
+  left:-60px;
+  bottom:-80px;
+  border-top:7px solid #8546ff;
+  border-radius:50%;
+  transform:rotate(-10deg);
