@@ -101,17 +101,17 @@ async def analyse_luckyjet(
 
     context.user_data["waiting_luckyjet"] = False
 
-        await update.message.reply_text(
-        "🚀 LUCKY JET - ANALYSE\n\n"
-        f"📊 Tours analysés : {len(coefficients)}\n"
-        f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
-        f"⬇️ Minimum récent : {minimum:.2f}x\n"
-        f"⬆️ Maximum récent : {maximum:.2f}x\n"
-        f"📈 Moyenne des 5 derniers : {moyenne:.2f}x\n"
-        f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
-        "⚠️ Estimation calculée à partir des résultats fournis, "
-        "pas le résultat garanti du prochain tour."
-    )
+    await update.message.reply_text(
+            "🚀 LUCKY JET - ANALYSE\n\n"
+            f"📊 Tours analysés : {len(coefficients)}\n"
+            f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
+            f"⬇️ Minimum récent : {minimum:.2f}x\n"
+            f"⬆️ Maximum récent : {maximum:.2f}x\n"
+            f"📈 Moyenne des 5 derniers : {moyenne:.2f}x\n"
+            f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
+            "⚠️ Estimation calculée à partir des résultats fournis, "
+            "pas le résultat garanti du prochain tour."
+        )
 
 
 class HealthHandler(BaseHTTPRequestHandler):
