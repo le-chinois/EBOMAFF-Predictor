@@ -29,13 +29,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
-
     jeu = query.data
+
+    import random
+    prediction = round(random.uniform(1.10, 3.00), 2)
 
     await query.message.reply_text(
         f"🎮 Jeu sélectionné : {jeu}\n\n"
-        "🤖 Préparation de la prédiction..."
+        f"🤖 Prédiction simulée : {prediction}x\n"
+        f"⚠️ Valeur générée aléatoirement — aucun gain garanti."
     )
+    
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
