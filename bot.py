@@ -102,23 +102,36 @@ async def analyse_luckyjet(
     context.user_data["waiting_luckyjet"] = False
 
     await update.message.reply_text(
-            "🚀 LUCKY JET - ANALYSE\n\n"
-            f"📊 Tours analysés : {len(coefficients)}\n"
-            f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
-            f"⬇️ Minimum récent : {minimum:.2f}x\n"
-            f"⬆️ Maximum récent : {maximum:.2f}x\n"
-            f"📈 Moyenne des 5 derniers : {moyenne:.2f}x\n"
-            f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
-            "⚠️ Estimation calculée à partir des résultats fournis, "
-            "pas le résultat garanti du prochain tour."
-        )
+        "🚀 LUCKY JET - ANALYSE\n\n"
+        f"📊 Tours analysés : {len(coefficients)}\n"
+        f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
+        f"⬇️ Minimum récent : {minimum:.2f}x\n"
+        f"⬆️ Maximum récent : {maximum:.2f}x\n"
+        f"📈 Moyenne des 5 derniers : {moyenne:.2f}x\n"
+        f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
+        "⚠️ Estimation calculée à partir des résultats fournis, "
+        "pas le résultat garanti du prochain tour."
+    )
 
 
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"EBOMAFF Predictor is running")
+        try:
+            with open("index.html", "rb") as file:
+                content = file.read()
+
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(content)))
+            self.end_headers()
+
+            self.wfile.write(content)
+
+        except FileNotFoundError:
+            self.send_response(404)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(b"index.html not found")
 
     def log_message(self, format, *args):
         pass
@@ -137,6 +150,7 @@ def main():
     threading.Thread(target=run_server, daemon=True).start()
 
     app = Application.builder().token(TOKEN).build()
+
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button_click))
     app.add_handler(
