@@ -63,9 +63,9 @@ minimum = min(recents)
 maximum = max(recents)
 estimation = round(moyenne, 2)
 
-    context.user_data["waiting_luckyjet"] = False
+context.user_data["waiting_luckyjet"] = False
 
-    await update.message.reply_text(
+await update.message.reply_text(
     f"🚀 LUCKY JET – ANALYSE\n\n"
     f"📊 Tours analysés : {len(coefficients)}\n"
     f"🔎 5 derniers tours : {' '.join(f'{x:.2f}x' for x in recents)}\n"
