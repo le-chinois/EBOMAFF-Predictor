@@ -1,198 +1,363 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Robot Prediction</title>
-  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
-  <style>
-    :root{
-      --bg:#07111e;
-      --card:#0d1b2b;
-      --card2:#10243a;
-      --text:#f4f8ff;
-      --muted:#93a7bf;
-      --accent:#29e0a9;
-      --accent2:#39a8ff;
-      --danger:#ff6b6b;
-      --line:rgba(255,255,255,.08);
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 50% -20%, rgba(57,168,255,.25), transparent 42%),
-        linear-gradient(180deg,#06101c,#08131f 60%,#050b12);
-      color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    }
-    .wrap{max-width:520px;margin:0 auto;padding:18px 16px 36px}
-    .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    .brand{font-weight:900;letter-spacing:.5px}
-    .online{font-size:12px;color:var(--accent);background:rgba(41,224,169,.09);
-      padding:7px 10px;border:1px solid rgba(41,224,169,.25);border-radius:99px}
-    .hero{
-      border:1px solid var(--line);
-      background:linear-gradient(180deg,rgba(18,39,62,.95),rgba(9,23,38,.95));
-      border-radius:24px;padding:24px 18px;text-align:center;
-      box-shadow:0 24px 80px rgba(0,0,0,.35)
-    }
-    .icon{font-size:56px;filter:drop-shadow(0 10px 28px rgba(57,168,255,.25))}
-    h1{font-size:25px;margin:10px 0 3px}
-    .sub{color:var(--muted);font-size:14px}
-    .screen{
-      margin-top:20px;border-radius:18px;padding:22px 16px;
-      border:1px solid var(--line);background:rgba(2,8,14,.56);min-height:190px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center
-    }
-    .status{color:var(--muted);font-size:13px;letter-spacing:1.4px;text-transform:uppercase}
-    .value{font-size:54px;font-weight:950;margin:8px 0 3px;letter-spacing:-2px}
-    .value.good{color:var(--accent)}
-    .detail{font-size:14px;color:#cbd8e6}
-    .loader{width:55px;height:55px;border-radius:50%;border:5px solid rgba(255,255,255,.08);
-      border-top-color:var(--accent2);animation:spin .8s linear infinite;margin:14px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    button{
-      width:100%;border:0;border-radius:16px;padding:16px 18px;margin-top:16px;
-      font-size:16px;font-weight:850;color:#03110d;
-      background:linear-gradient(90deg,var(--accent),#54f2c5);cursor:pointer;
-      box-shadow:0 14px 35px rgba(41,224,169,.15)
-    }
-    button:disabled{opacity:.5;cursor:default}
-    .note{margin:14px 4px 0;color:var(--muted);font-size:12px;line-height:1.5;text-align:center}
-    .grid{display:grid;grid-template-columns:repeat(5,48px);gap:7px;margin:16px 0}
-    .cell{height:48px;border-radius:10px;background:#18314b;border:1px solid rgba(255,255,255,.08);
-      display:flex;align-items:center;justify-content:center;font-size:20px}
-    .cell.pick{background:rgba(41,224,169,.18);border-color:rgba(41,224,169,.55)}
-    .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:10px}
-    .lane{padding:15px;border-radius:14px;background:#12273d;border:1px solid var(--line)}
-    .lane b{display:block;font-size:25px;margin-top:4px}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EBOMAFF Predictor</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:
+    radial-gradient(circle at 50% 15%,#51288d 0%,#25134d 32%,#090b19 70%);
+}
+
+.app{
+  max-width:500px;
+  min-height:100vh;
+  margin:auto;
+  padding:18px 16px 35px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.brand{
+  font-weight:900;
+  font-size:18px;
+}
+
+.online{
+  font-size:12px;
+  color:#53ffad;
+}
+
+.game-card{
+  position:relative;
+  overflow:hidden;
+  min-height:390px;
+  padding:22px 18px;
+  border-radius:28px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 50% 45%,rgba(148,70,255,.38),transparent 38%),
+    linear-gradient(180deg,#23134d,#0d1025);
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+.game-name{
+  font-size:28px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.subtitle{
+  color:#b7b8cb;
+  font-size:13px;
+  margin-top:7px;
+}
+
+.visual{
+  height:175px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.planet{
+  position:absolute;
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#b96cff,#6b2ed6 45%,#291264);
+  box-shadow:
+    0 0 35px rgba(172,84,255,.7),
+    0 0 80px rgba(105,45,210,.35);
+}
+
+.game-icon{
+  position:relative;
+  z-index:2;
+  font-size:72px;
+  filter:drop-shadow(0 12px 15px rgba(0,0,0,.4));
+}
+
+.result-label{
+  color:#aeb1c5;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.result{
+  font-size:58px;
+  font-weight:950;
+  margin:5px 0;
+  text-shadow:0 0 25px rgba(165,87,255,.6);
+}
+
+.waiting{
+  color:#9ca0b8;
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.predict{
+  width:100%;
+  border:0;
+  border-radius:17px;
+  padding:17px;
+  font-size:16px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(90deg,#7b36ff,#b548ff);
+  box-shadow:0 12px 30px rgba(126,54,255,.35);
+}
+
+.predict:active{
+  transform:scale(.98);
+}
+
+.games-title{
+  margin:23px 2px 12px;
+  font-size:14px;
+  color:#b6b8c9;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.game-btn{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:15px;
+  padding:13px 8px;
+  color:white;
+  background:#15182b;
+  font-size:13px;
+  font-weight:700;
+}
+
+.game-btn.active{
+  background:linear-gradient(90deg,#5523a8,#7c35dc);
+  border-color:#9c5cff;
+}
+
+.footer{
+  text-align:center;
+  color:#73778f;
+  font-size:11px;
+  line-height:1.5;
+  margin-top:20px;
+}
+</style>
 </head>
+
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="brand">🤖 ROBOT PREDICTION</div>
+
+<div class="app">
+
+  <div class="header">
+    <div class="brand">🤖 EBOMAFF PREDICTOR</div>
     <div class="online">● ONLINE</div>
   </div>
 
-  <section class="hero">
-    <div class="icon" id="icon">🚀</div>
-    <h1 id="title">Lucky Jet</h1>
-    <div class="sub" id="subtitle">Analyse de la prochaine manche</div>
+  <div class="game-card">
 
-    <div class="screen" id="screen">
-      <div class="status">PRÊT</div>
-      <div class="detail">Appuie sur le bouton pour lancer l’analyse.</div>
+    <div id="gameName" class="game-name">LUCKY JET</div>
+    <div class="subtitle">Robot Prediction EBOMAFF</div>
+
+    <div class="visual">
+      <div class="planet"></div>
+      <div id="gameIcon" class="game-icon">🚀</div>
     </div>
 
-    <button id="predict">OBTENIR UNE PRÉDICTION</button>
+    <div class="result-label">PROCHAINE PRÉDICTION</div>
 
-    <div class="note">
-      Le résultat affiché est un <b>seuil-cible</b> / signal estimé et non le
-      multiplicateur final garanti du serveur de jeu.
+    <div id="result" class="result">--</div>
+
+    <div id="status" class="waiting">
+      Appuie sur le bouton pour lancer l'analyse
     </div>
-  </section>
+
+    <button id="predict" class="predict">
+      🔎 LANCER L'ANALYSE
+    </button>
+
+  </div>
+
+  <div class="games-title">🎮 CHOISIR UN JEU</div>
+
+  <div class="games">
+
+    <button class="game-btn active"
+      data-name="LUCKY JET"
+      data-icon="🚀"
+      data-type="coefficient">
+      🚀 Lucky Jet
+    </button>
+
+    <button class="game-btn"
+      data-name="AVIATOR"
+      data-icon="✈️"
+      data-type="coefficient">
+      ✈️ Aviator
+    </button>
+
+    <button class="game-btn"
+      data-name="CRASH"
+      data-icon="💥"
+      data-type="coefficient">
+      💥 Crash
+    </button>
+
+    <button class="game-btn"
+      data-name="ROCKET QUEEN"
+      data-icon="👑"
+      data-type="coefficient">
+      👑 Rocket Queen
+    </button>
+
+    <button class="game-btn"
+      data-name="MINES CLASSIC"
+      data-icon="💣"
+      data-type="mines">
+      💣 Mines Classic
+    </button>
+
+    <button class="game-btn"
+      data-name="LIMBO"
+      data-icon="📈"
+      data-type="coefficient">
+      📈 Limbo
+    </button>
+
+    <button class="game-btn"
+      data-name="PENALTY"
+      data-icon="⚽"
+      data-type="penalty">
+      ⚽ Penalty
+    </button>
+
+    <button class="game-btn"
+      data-name="ROCKET X"
+      data-icon="🚀"
+      data-type="coefficient">
+      🚀 Rocket X
+    </button>
+
+    <button class="game-btn"
+      data-name="SPEED & CASH"
+      data-icon="⚡"
+      data-type="speed">
+      ⚡ Speed & Cash
+    </button>
+
+    <button class="game-btn"
+      data-name="CHICKEN TRAIN"
+      data-icon="🐔"
+      data-type="coefficient">
+      🐔 Chicken Train
+    </button>
+
+  </div>
+
+  <div class="footer">
+    EBOMAFF Robot Prediction 🤖<br>
+    Les prédictions seront calculées par le moteur d'analyse EBOMAFF.
+  </div>
+
 </div>
 
 <script>
 const tg = window.Telegram?.WebApp;
-if (tg) { tg.ready(); tg.expand(); }
 
-const gameKey = new URLSearchParams(location.search).get("game") || "luckyjet";
+if(tg){
+  tg.ready();
+  tg.expand();
+}
 
-const games = {
-  luckyjet:    {name:"Lucky Jet", icon:"🚀", type:"threshold", min:1.20, max:1.80},
-  aviator:     {name:"Aviator", icon:"✈️", type:"threshold", min:1.15, max:1.75},
-  crash:       {name:"Crash", icon:"💥", type:"threshold", min:1.20, max:1.90},
-  minesclassic:{name:"Mines Classic", icon:"💣", type:"mines"},
-  speedncash:  {name:"Speed Ncash", icon:"🏎️", type:"speed"},
-  rocketx:     {name:"Rocket X", icon:"🚀", type:"threshold", min:1.20, max:1.85},
-  penalty:     {name:"Penalty", icon:"⚽", type:"penalty"},
-  limbo:       {name:"Limbo", icon:"📈", type:"threshold", min:1.15, max:1.75},
-  chickentrain:{name:"Chicken Train", icon:"🐔", type:"threshold", min:1.20, max:1.80},
-  mines:       {name:"Mines", icon:"💎", type:"mines"},
+const gameName = document.getElementById("gameName");
+const gameIcon = document.getElementById("gameIcon");
+const result = document.getElementById("result");
+const status = document.getElementById("status");
+const predict = document.getElementById("predict");
+
+let selectedGame = {
+  name:"LUCKY JET",
+  icon:"🚀",
+  type:"coefficient"
 };
 
-const game = games[gameKey] || games.luckyjet;
-const title = document.getElementById("title");
-const icon = document.getElementById("icon");
-const screen = document.getElementById("screen");
-const button = document.getElementById("predict");
+document.querySelectorAll(".game-btn").forEach(button => {
 
-title.textContent = game.name;
-icon.textContent = game.icon;
+  button.addEventListener("click", () => {
 
-function rand01(){
-  const a = new Uint32Array(1);
-  crypto.getRandomValues(a);
-  return a[0] / 4294967295;
-}
-function between(min,max){ return min + (max-min)*rand01(); }
+    document.querySelectorAll(".game-btn")
+      .forEach(b => b.classList.remove("active"));
 
-function loading(){
-  screen.innerHTML = `
-    <div class="status">ANALYSE EN COURS</div>
-    <div class="loader"></div>
-    <div class="detail">Calcul du prochain signal…</div>`;
-}
+    button.classList.add("active");
 
-function thresholdResult(){
-  const x = between(game.min, game.max).toFixed(2);
-  screen.innerHTML = `
-    <div class="status">PROCHAINE PRÉDICTION</div>
-    <div class="value good">${x}x</div>
-    <div class="detail">Objectif : atteindre ou dépasser ${x}x</div>`;
-}
+    selectedGame = {
+      name:button.dataset.name,
+      icon:button.dataset.icon,
+      type:button.dataset.type
+    };
 
-function minesResult(){
-  const picks = new Set();
-  while(picks.size < 5) picks.add(Math.floor(rand01()*25));
-  let html = '<div class="status">CASES PROPOSÉES</div><div class="grid">';
-  for(let i=0;i<25;i++){
-    html += `<div class="cell ${picks.has(i)?'pick':''}">${picks.has(i)?'⭐':''}</div>`;
-  }
-  html += '</div><div class="detail">5 cases signalées pour cette manche</div>';
-  screen.innerHTML = html;
-}
+    gameName.textContent = selectedGame.name;
+    gameIcon.textContent = selectedGame.icon;
 
-function speedResult(){
-  const left = between(1.18,1.65).toFixed(2);
-  const right = between(1.18,1.65).toFixed(2);
-  const chosen = (+left <= +right) ? "BLEU" : "ROUGE";
-  screen.innerHTML = `
-    <div class="status">SIGNAL SPEED & CASH</div>
-    <div class="duo">
-      <div class="lane">🔵 BLEU<b>${left}x</b></div>
-      <div class="lane">🔴 ROUGE<b>${right}x</b></div>
-    </div>
-    <div class="detail" style="margin-top:12px">Signal principal : ${chosen}</div>`;
-}
+    result.textContent = "--";
 
-function penaltyResult(){
-  const zones = ["GAUCHE","CENTRE","DROITE"];
-  const z = zones[Math.floor(rand01()*zones.length)];
-  screen.innerHTML = `
-    <div class="status">SIGNAL PENALTY</div>
-    <div class="value good" style="font-size:38px">${z}</div>
-    <div class="detail">Zone proposée pour ce signal</div>`;
-}
+    status.textContent =
+      "Appuie sur le bouton pour lancer l'analyse";
 
-button.addEventListener("click", () => {
-  button.disabled = true;
-  loading();
+    tg?.HapticFeedback?.selectionChanged();
+  });
+
+});
+
+predict.addEventListener("click", () => {
+
+  result.textContent = "...";
+
+  status.textContent =
+    "Connexion au moteur d'analyse EBOMAFF...";
+
+  predict.disabled = true;
+
   setTimeout(() => {
-    if(game.type === "mines") minesResult();
-    else if(game.type === "speed") speedResult();
-    else if(game.type === "penalty") penaltyResult();
-    else thresholdResult();
 
-    button.textContent = "NOUVELLE PRÉDICTION";
-    button.disabled = false;
-    tg?.HapticFeedback?.notificationOccurred?.("success");
-  }, 2600);
+    result.textContent = "EN ATTENTE";
+
+    status.textContent =
+      "Le moteur de prédiction sera connecté à l'étape suivante.";
+
+    predict.disabled = false;
+
+    tg?.HapticFeedback?.notificationOccurred("success");
+
+  },1200);
+
 });
 </script>
+
 </body>
 </html>
