@@ -2,7 +2,7 @@ import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 TOKEN = os.getenv("BOT_TOKEN")
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -36,8 +36,39 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "🔎 Analyse du prochain tour en cours...\n"
             "⏳ Préparation du signal..."
         )
+        context.user_data["waiting_luckyjet"] = True
         return
-    
+async def analyse_luckyjet(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not context.user_data.get("waiting_luckyjet"):
+        return
+
+    texte = update.message.text.replace(",", ".")
+    try:
+        coefficients = [float(x) for x in texte.split()]
+    except ValueError:
+        await update.message.reply_text(
+            "❌ Format incorrect.\nExemple : 1.24 2.15 1.08 3.42 1.67"
+        )
+        return
+
+    if len(coefficients) < 5:
+        await update.message.reply_text(
+            "⚠️ Envoie au moins 5 coefficients."
+        )
+        return
+
+    moyenne = sum(coefficients) / len(coefficients)
+    estimation = round(moyenne, 2)
+
+    context.user_data["waiting_luckyjet"] = False
+
+    await update.message.reply_text(
+        f"🚀 LUCKY JET — ANALYSE\n\n"
+        f"📊 Tours analysés : {len(coefficients)}\n"
+        f"📈 Moyenne récente : {moyenne:.2f}x\n"
+        f"🎯 Estimation statistique : {estimation:.2f}x\n\n"
+        f"⚠️ Estimation basée sur les résultats fournis, pas le résultat garanti du prochain tour."
+    )
     
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -60,6 +91,7 @@ def main():
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button_click))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, analyse_luckyjet))
     print("🤖 EBOMAFF Predictor démarré...")
     app.run_polling()
 
