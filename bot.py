@@ -29,7 +29,7 @@ def run_server():
 def main():
     if not TOKEN:
         raise RuntimeError("BOT_TOKEN n'est pas configuré.")
-threading.Thread(target=run_server, daemon=True).start()
+    threading.Thread(target=run_server, daemon=True).start()
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
 
