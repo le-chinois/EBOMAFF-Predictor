@@ -2,8 +2,7 @@ import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, ContextTypes
-
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 TOKEN = os.getenv("BOT_TOKEN")
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -27,7 +26,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "⚠️ Les résultats générés sont indicatifs et ne garantissent aucun gain.",
         reply_markup=reply_markup
     )
+async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
 
+    jeu = query.data
+
+    await query.message.reply_text(
+        f"🎮 Jeu sélectionné : {jeu}\n\n"
+        "🤖 Préparation de la prédiction..."
+    )
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -48,7 +56,7 @@ def main():
     threading.Thread(target=run_server, daemon=True).start()
     app = Application.builder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
-
+app.add_handler(CallbackQueryHandler(button_click))
     print("🤖 EBOMAFF Predictor démarré...")
     app.run_polling()
 
