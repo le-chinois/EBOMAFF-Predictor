@@ -6,12 +6,16 @@
 <title>EBOMAFF Predictor</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   min-height:100vh;
   background:#060812;
-  color:white;
+  color:#fff;
   font-family:Arial,sans-serif;
 }
 
@@ -36,7 +40,7 @@ header{
 .online{
   color:#4cff9a;
   font-size:12px;
-  font-weight:bold;
+  font-weight:800;
 }
 
 .card{
@@ -65,7 +69,9 @@ header{
   border-radius:20px;
 }
 
-/* LUCKY JET */
+/* =========================
+   LUCKY JET
+========================= */
 
 .lucky{
   height:390px;
@@ -75,44 +81,57 @@ header{
   overflow:hidden;
   text-align:center;
   background:
-    radial-gradient(circle at 50% 55%,#4b197c 0%,#241145 38%,#090916 78%);
+    radial-gradient(
+      circle at 50% 53%,
+      #521988 0%,
+      #2c1255 35%,
+      #100c27 62%,
+      #070812 100%
+    );
 }
 
 .stars{
   position:absolute;
   inset:0;
-  opacity:.3;
-  background-image:radial-gradient(#fff 1px,transparent 1px);
-  background-size:40px 40px;
+  opacity:.35;
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px);
+  background-size:42px 42px;
 }
 
 .logo{
   position:absolute;
-  top:25px;
+  z-index:10;
+  top:22px;
   left:0;
   right:0;
-  z-index:5;
-  font-size:32px;
-  font-weight:900;
+  font-size:31px;
+  font-weight:950;
   font-style:italic;
-  color:#bd52ff;
-  text-shadow:0 0 18px #8c32ff;
+  letter-spacing:-2px;
+  color:#bc4cff;
+  text-shadow:
+    0 0 12px #a43cff,
+    0 0 28px #6b1ddf;
 }
 
 .logo span{
-  color:white;
+  color:#fff;
 }
 
 .value{
   position:absolute;
-  z-index:6;
-  top:92px;
+  z-index:10;
+  top:91px;
   left:0;
   right:0;
-  font-size:64px;
-  font-weight:900;
-  color:#d178ff;
-  text-shadow:0 0 25px #8c2eff;
+  font-size:63px;
+  line-height:1;
+  font-weight:950;
+  color:#d47cff;
+  text-shadow:
+    0 0 12px #bd4cff,
+    0 0 32px #7c2cff;
 }
 
 .value small{
@@ -121,89 +140,110 @@ header{
 
 .glow{
   position:absolute;
-  width:210px;
-  height:210px;
+  z-index:1;
+  width:230px;
+  height:230px;
+  top:110px;
+  left:50%;
+  transform:translateX(-50%);
   border-radius:50%;
-  background:#8a36ff;
-  opacity:.17;
-  filter:blur(30px);
-  top:120px;
-  left:50%;
-  transform:translateX(-50%);
+  background:#8336ff;
+  opacity:.20;
+  filter:blur(35px);
 }
 
-.jet{
+/* VRAIE IMAGE LUCKYJET.PNG */
+
+.lucky-character{
   position:absolute;
-  z-index:5;
-  top:185px;
+  z-index:7;
+  top:155px;
   left:50%;
-  transform:translateX(-50%) rotate(-12deg);
-  font-size:100px;
-  filter:drop-shadow(0 10px 12px #000);
+  width:185px;
+  max-height:190px;
+  height:auto;
+  transform:translateX(-50%);
+  object-fit:contain;
+  filter:
+    drop-shadow(0 13px 12px rgba(0,0,0,.65))
+    drop-shadow(0 0 17px rgba(146,66,255,.55));
 }
 
-.rider{
-  position:absolute;
-  z-index:6;
-  top:188px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:48px;
-}
+/* TRAJECTOIRE */
 
 .arc{
   position:absolute;
+  z-index:3;
   width:440px;
   height:180px;
   left:-65px;
-  bottom:-75px;
-  border-top:7px solid #7e43ee;
+  bottom:-74px;
+  border-top:7px solid #8246f5;
   border-radius:50%;
   transform:rotate(-9deg);
-  box-shadow:0 -10px 35px #7438e888;
+  box-shadow:
+    0 -7px 20px #8245ff77,
+    0 -18px 50px #6b32d955;
 }
+
+/* NUAGES */
 
 .cloud{
   position:absolute;
-  bottom:-50px;
-  height:110px;
+  z-index:4;
   border-radius:50%;
-  background:linear-gradient(#6840c7,#29195c);
+  background:
+    linear-gradient(
+      180deg,
+      #6942c9,
+      #3c257f
+    );
+  box-shadow:0 0 30px #6838d755;
 }
 
 .c1{
-  width:190px;
+  width:180px;
+  height:95px;
   left:-50px;
+  bottom:-32px;
 }
 
 .c2{
   width:230px;
+  height:115px;
   left:95px;
   bottom:-70px;
 }
 
 .c3{
   width:190px;
-  right:-55px;
+  height:100px;
+  right:-60px;
+  bottom:-30px;
 }
 
 .caption{
   position:absolute;
-  z-index:8;
-  bottom:16px;
+  z-index:12;
+  bottom:17px;
   left:0;
   right:0;
+  text-align:center;
+  color:#dacbff;
   font-size:10px;
   letter-spacing:2px;
-  color:#d8c8ff;
-  font-weight:bold;
+  font-weight:900;
 }
+
+/* STATUS */
 
 .status{
   padding:15px 18px 8px;
-  color:#a4a8ba;
+  color:#a5a8b8;
   font-size:12px;
 }
+
+/* BOUTON */
 
 .predict{
   display:block;
@@ -212,17 +252,34 @@ header{
   padding:16px;
   border:0;
   border-radius:15px;
-  color:white;
+  color:#fff;
   font-size:16px;
   font-weight:900;
-  background:linear-gradient(90deg,#7130ff,#b93eff);
+  background:
+    linear-gradient(
+      90deg,
+      #7130ff,
+      #b93eff
+    );
+  box-shadow:
+    0 10px 25px rgba(126,47,255,.25);
 }
+
+.predict:active{
+  transform:scale(.98);
+}
+
+.predict:disabled{
+  opacity:.65;
+}
+
+/* JEUX */
 
 .title{
   margin:24px 2px 12px;
   color:#a9adbd;
   font-size:12px;
-  font-weight:bold;
+  font-weight:800;
 }
 
 .games{
@@ -236,12 +293,18 @@ header{
   border-radius:14px;
   border:1px solid #292e42;
   background:#121625;
-  color:white;
-  font-weight:bold;
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
 }
 
 .game.active{
-  background:linear-gradient(90deg,#5622a8,#8435dd);
+  background:
+    linear-gradient(
+      90deg,
+      #5622a8,
+      #8435dd
+    );
   border-color:#a15cff;
 }
 
@@ -252,6 +315,25 @@ footer{
   font-size:11px;
   line-height:1.6;
 }
+
+@media(max-width:360px){
+
+  .lucky{
+    height:370px;
+  }
+
+  .logo{
+    font-size:28px;
+  }
+
+  .value{
+    font-size:57px;
+  }
+
+  .lucky-character{
+    width:165px;
+  }
+}
 </style>
 </head>
 
@@ -260,14 +342,19 @@ footer{
 <div class="app">
 
 <header>
-  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
-  <div class="online">● ONLINE</div>
+  <div class="brand">
+    🤖 EBOMAFF PREDICTOR
+  </div>
+
+  <div class="online">
+    ● ONLINE
+  </div>
 </header>
 
 <div class="card">
 
   <div class="top">
-    <h2>🚀 LUCKY JET</h2>
+    <h2>LUCKY JET</h2>
     <div class="ai">EBOMAFF AI</div>
   </div>
 
@@ -279,14 +366,18 @@ footer{
       LUCKY<span>JET</span>
     </div>
 
-    <div class="value">
+    <div id="predictionValue" class="value">
       --<small>x</small>
     </div>
 
     <div class="glow"></div>
 
-    <div class="jet">🚀</div>
-    <div class="rider">😎</div>
+    <!-- IMAGE AJOUTÉE DANS GITHUB -->
+    <img
+      class="lucky-character"
+      src="./luckyjet.png"
+      alt="Lucky Jet"
+    >
 
     <div class="arc"></div>
 
@@ -310,41 +401,88 @@ footer{
 
 </div>
 
-<div class="title">🎮 CHOISIR UN JEU</div>
+<div class="title">
+  🎮 CHOISIR UN JEU
+</div>
 
 <div class="games">
-  <button class="game active">🚀 Lucky Jet</button>
-  <button class="game">✈️ Aviator</button>
-  <button class="game">💥 Crash</button>
-  <button class="game">👑 Rocket Queen</button>
-  <button class="game">💣 Mines Classic</button>
-  <button class="game">📈 Limbo</button>
-  <button class="game">⚽ Penalty</button>
-  <button class="game">🚀 Rocket X</button>
-  <button class="game">🏎️ Speed & Cash</button>
-  <button class="game">🐔 Chicken Train</button>
+
+  <button class="game active">
+    🚀 Lucky Jet
+  </button>
+
+  <button class="game">
+    ✈️ Aviator
+  </button>
+
+  <button class="game">
+    💥 Crash
+  </button>
+
+  <button class="game">
+    👑 Rocket Queen
+  </button>
+
+  <button class="game">
+    💣 Mines Classic
+  </button>
+
+  <button class="game">
+    📈 Limbo
+  </button>
+
+  <button class="game">
+    ⚽ Penalty
+  </button>
+
+  <button class="game">
+    🚀 Rocket X
+  </button>
+
+  <button class="game">
+    🏎️ Speed & Cash
+  </button>
+
+  <button class="game">
+    🐔 Chicken Train
+  </button>
+
 </div>
 
 <footer>
-  EBOMAFF Robot Prediction 🤖<br>
+  EBOMAFF Robot Prediction 🤖
+  <br>
   Moteur d'analyse EBOMAFF
 </footer>
 
 </div>
 
 <script>
-const button=document.getElementById("predict");
-const status=document.getElementById("status");
+
+const button =
+  document.getElementById("predict");
+
+const status =
+  document.getElementById("status");
 
 button.onclick=function(){
+
   button.disabled=true;
-  status.textContent="🔎 Connexion au moteur d'analyse EBOMAFF...";
+
+  status.textContent=
+    "🔎 Connexion au moteur d'analyse EBOMAFF...";
 
   setTimeout(function(){
-    status.textContent="⌛ Moteur de prédiction non connecté.";
+
+    status.textContent=
+      "⌛ Moteur de prédiction non connecté.";
+
     button.disabled=false;
+
   },900);
+
 };
+
 </script>
 
 </body>
