@@ -68,10 +68,7 @@ async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
 
-async def analyse_luckyjet(
-    update: Update,
-    context: ContextTypes.DEFAULT_TYPE,
-):
+async def analyse_luckyjet(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.user_data.get("waiting_luckyjet"):
         return
 
@@ -116,22 +113,44 @@ async def analyse_luckyjet(
 
 class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        try:
-            with open("index.html", "rb") as file:
-                content = file.read()
 
-            self.send_response(200)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Content-Length", str(len(content)))
-            self.end_headers()
+        # PAGE PRINCIPALE
+        if self.path == "/" or self.path.startswith("/?"):
+            try:
+                with open("index.html", "rb") as file:
+                    content = file.read()
 
-            self.wfile.write(content)
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(content)))
+                self.end_headers()
+                self.wfile.write(content)
 
-        except FileNotFoundError:
-            self.send_response(404)
-            self.send_header("Content-Type", "text/plain; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(b"index.html not found")
+            except FileNotFoundError:
+                self.send_error(404, "index.html not found")
+
+            return
+
+        # IMAGE LUCKY JET
+        if self.path == "/luckyjet.png":
+            try:
+                with open("luckyjet.png", "rb") as file:
+                    content = file.read()
+
+                self.send_response(200)
+                self.send_header("Content-Type", "image/png")
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(content)
+
+            except FileNotFoundError:
+                self.send_error(404, "luckyjet.png not found")
+
+            return
+
+        # AUTRES ADRESSES
+        self.send_error(404, "Not Found")
 
     def log_message(self, format, *args):
         pass
@@ -153,6 +172,7 @@ def main():
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button_click))
+
     app.add_handler(
         MessageHandler(
             filters.TEXT & ~filters.COMMAND,
