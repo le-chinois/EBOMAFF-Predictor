@@ -2,934 +2,770 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>EBOMAFF Predictor</title>
 
 <style>
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-  min-height:100vh;
-  background:#050711;
-  color:#fff;
-  font-family:Arial,sans-serif;
+    min-height:100vh;
+    background:#050810;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 .app{
-  width:100%;
-  max-width:480px;
-  margin:auto;
-  padding:18px 15px 35px;
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:20px 15px 40px;
 }
 
+/* ============================= */
+/* EN-TÊTE                       */
+/* ============================= */
 
-/* =========================
-   HEADER
-========================= */
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:17px;
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
 }
 
 .brand{
-  font-size:17px;
-  font-weight:900;
+    font-size:20px;
+    font-weight:900;
 }
 
 .online{
-  color:#32ef8c;
-  font-size:12px;
-  font-weight:900;
+    color:#25ef88;
+    font-size:14px;
+    font-weight:800;
 }
 
+/* ============================= */
+/* CARTE PRINCIPALE              */
+/* ============================= */
 
-/* =========================
-   CARTE PRINCIPALE
-========================= */
-
-.card{
-  background:#101326;
-  border:1px solid #292d43;
-  border-radius:25px;
-  overflow:hidden;
+.game-card{
+    background:#101426;
+    border:1px solid #292e48;
+    border-radius:25px;
+    padding:16px;
+    overflow:hidden;
 }
 
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px;
+.game-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-.top h2{
-  font-size:21px;
-  font-weight:900;
+.game-title{
+    font-size:25px;
+    font-weight:900;
 }
 
-.ai{
-  font-size:10px;
-  color:#c4c6cf;
-  background:#ffffff0d;
-  padding:8px 11px;
-  border-radius:20px;
+.ai-badge{
+    background:#191e35;
+    color:#b7bac8;
+    padding:12px 16px;
+    border-radius:30px;
+    font-size:12px;
 }
+
+/* ============================= */
+/* ÉCRANS                        */
+/* ============================= */
 
 .screen{
-  display:none;
+    display:none;
 }
 
 .screen.active{
-  display:block;
+    display:block;
 }
 
+/* ============================= */
+/* IMAGES                        */
+/* ============================= */
 
-/* =========================
-   IMAGE AVIATOR / SPEED
-========================= */
-
-.reference-game{
-  margin:0 15px;
-  border-radius:22px;
-  overflow:hidden;
-  background:#030609;
+.game-image-box{
+    width:100%;
+    background:#02040a;
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
 }
 
-.reference-image{
-  display:block;
-  width:100%;
-  height:auto;
+.game-image{
+    width:100%;
+    height:auto;
+    display:block;
 }
 
+/* ============================= */
+/* LUCKY JET                     */
+/* ============================= */
 
-/* =========================
-   LUCKY JET
-========================= */
+.lucky-image{
+    border-radius:22px;
+}
 
-.lucky{
-  height:390px;
-  margin:0 15px;
-  border-radius:22px;
-  position:relative;
-  overflow:hidden;
-  text-align:center;
+.engine-status{
+    margin:18px 7px 16px;
+    color:#a8aaba;
+    font-size:14px;
+}
 
-  background:
-    radial-gradient(
-      circle at 50% 53%,
-      #521988 0%,
-      #2c1255 35%,
-      #100c27 62%,
-      #070812 100%
+.predict-btn{
+    width:100%;
+    height:58px;
+    border:0;
+    border-radius:18px;
+    color:white;
+    font-size:20px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.predict-btn:active{
+    transform:scale(.98);
+}
+
+.lucky-btn{
+    background:linear-gradient(
+        90deg,
+        #7028ff,
+        #bd34ff
     );
 }
 
-.stars{
-  position:absolute;
-  inset:0;
-  opacity:.35;
+/* ============================= */
+/* AVIATOR                       */
+/* ============================= */
 
-  background-image:
-    radial-gradient(#fff 1px,transparent 1px);
-
-  background-size:42px 42px;
+.aviator-image-box{
+    background:#020207;
 }
 
-.logo{
-  position:absolute;
-  z-index:10;
-  top:22px;
-  left:0;
-  right:0;
-
-  font-size:31px;
-  font-weight:950;
-  font-style:italic;
-  letter-spacing:-2px;
-
-  color:#bc4cff;
-
-  text-shadow:
-    0 0 12px #a43cff,
-    0 0 28px #6b1ddf;
+.aviator-next{
+    margin-top:14px;
+    border:1px solid #841735;
+    border-radius:18px;
+    padding:13px 10px;
+    text-align:center;
+    background:#0d1120;
 }
 
-.logo span{
-  color:#fff;
+.aviator-next-label{
+    color:#c8cad5;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:4px;
 }
 
-.value{
-  position:absolute;
-  z-index:10;
-  top:91px;
-  left:0;
-  right:0;
-
-  font-size:63px;
-  font-weight:950;
-
-  color:#d47cff;
-
-  text-shadow:
-    0 0 12px #bd4cff,
-    0 0 32px #7c2cff;
+.aviator-next-value{
+    color:#ff315d;
+    font-size:31px;
+    font-weight:900;
+    margin-top:5px;
+    text-shadow:
+        0 0 8px #ff174f,
+        0 0 18px #ff174f;
 }
 
-.value small{
-  font-size:34px;
-}
-
-.glow{
-  position:absolute;
-
-  width:230px;
-  height:230px;
-
-  top:110px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  border-radius:50%;
-
-  background:#8336ff;
-
-  opacity:.20;
-
-  filter:blur(35px);
-}
-
-.lucky-character{
-  position:absolute;
-  z-index:7;
-
-  top:155px;
-  left:50%;
-
-  width:185px;
-  max-height:190px;
-  height:auto;
-
-  transform:translateX(-50%);
-
-  object-fit:contain;
-
-  filter:
-    drop-shadow(0 13px 12px rgba(0,0,0,.65))
-    drop-shadow(0 0 17px rgba(146,66,255,.55));
-}
-
-.arc{
-  position:absolute;
-  z-index:3;
-
-  width:440px;
-  height:180px;
-
-  left:-65px;
-  bottom:-74px;
-
-  border-top:7px solid #8246f5;
-  border-radius:50%;
-
-  transform:rotate(-9deg);
-
-  box-shadow:
-    0 -7px 20px #8245ff77;
-}
-
-.cloud{
-  position:absolute;
-  z-index:4;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(#6942c9,#3c257f);
-}
-
-.c1{
-  width:180px;
-  height:95px;
-  left:-50px;
-  bottom:-32px;
-}
-
-.c2{
-  width:230px;
-  height:115px;
-  left:95px;
-  bottom:-70px;
-}
-
-.c3{
-  width:190px;
-  height:100px;
-  right:-60px;
-  bottom:-30px;
-}
-
-.caption{
-  position:absolute;
-  z-index:12;
-
-  bottom:17px;
-  left:0;
-  right:0;
-
-  text-align:center;
-
-  color:#dacbff;
-
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:900;
-}
-
-.status{
-  padding:15px 18px 8px;
-
-  color:#a5a8b8;
-
-  font-size:12px;
-}
-
-.predict{
-  width:calc(100% - 30px);
-
-  margin:7px 15px 18px;
-  padding:16px;
-
-  border:0;
-  border-radius:15px;
-
-  color:#fff;
-
-  font-size:16px;
-  font-weight:900;
-
-  background:
-    linear-gradient(90deg,#7130ff,#b93eff);
-}
-
-</style><style>
-
-/* =========================
-   MINES CLASSIC
-========================= */
-
-.mines{
-  position:relative;
-  margin:0 15px 18px;
-  min-height:575px;
-  overflow:hidden;
-  border-radius:22px;
-  padding:18px 14px 88px;
-
-  background:
-    radial-gradient(
-      ellipse at 50% 68%,
-      rgba(0,255,90,.55),
-      transparent 34%
-    ),
-    linear-gradient(
-      180deg,
-      #075bea,
-      #0069ef 45%,
-      #0758dc 75%,
-      #0044b9
+.aviator-btn{
+    background:linear-gradient(
+        180deg,
+        #16e85f,
+        #00bd45
     );
+
+    box-shadow:
+        0 0 16px rgba(0,255,91,.35);
 }
 
-.mines-brand{
-  text-align:center;
-  font-size:24px;
-  font-weight:950;
-  text-shadow:0 0 14px #7beeff;
+/* ============================= */
+/* SPEED & CASH                  */
+/* ============================= */
+
+.speed-image-box{
+    background:#02070d;
 }
 
-.mines-sub{
-  text-align:center;
-  font-size:12px;
-  color:#e8f7ff;
-  margin:3px 0 22px;
+.speed-btn{
+    background:linear-gradient(
+        180deg,
+        #17c4d1,
+        #0798ac
+    );
+
+    box-shadow:
+        0 0 16px rgba(0,210,225,.28);
 }
 
-.board{
-  max-width:305px;
-  margin:auto;
-  padding:8px;
+/* ============================= */
+/* MENU DES JEUX                 */
+/* ============================= */
 
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:5px;
-
-  border:4px solid #fff;
-  border-radius:15px;
-
-  background:#6b61d0;
-  box-shadow:0 0 17px #8df4ff;
+.menu-title{
+    margin:27px 3px 15px;
+    color:#a9acbb;
+    font-size:14px;
+    font-weight:900;
 }
 
-.cell{
-  aspect-ratio:1;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border:2px solid #0750a7;
-  border-radius:6px;
-
-  background:
-    linear-gradient(#0872c9,#0753a2);
+.game-menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
-.cell::after{
-  content:"";
-
-  width:12px;
-  height:12px;
-
-  border-radius:50%;
-
-  background:#15bce8;
-  box-shadow:0 0 6px #00dcff;
-}
-
-.trap-zone{
-  max-width:305px;
-  margin:22px auto 0;
-}
-
-.trap-title{
-  text-align:center;
-  font-size:15px;
-  font-weight:900;
-  margin-bottom:11px;
-}
-
-.traps{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px 11px;
-}
-
-.trap{
-  height:42px;
-
-  border:2px solid #e3f8ff;
-  border-radius:13px;
-
-  color:#fff;
-
-  background:
-    linear-gradient(#0781d2,#0754a4);
-
-  font-size:15px;
-  font-weight:900;
-}
-
-.trap.active{
-  color:#333;
-  background:#fff;
-}
-
-.mines-predict{
-  display:block;
-
-  width:72%;
-
-  margin:20px auto 0;
-  padding:14px;
-
-  border:0;
-  border-radius:14px;
-
-  color:#26304b;
-
-  font-size:17px;
-  font-weight:900;
-
-  background:
-    linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
-}
-
-.mines-note{
-  text-align:center;
-  margin-top:12px;
-
-  font-size:11px;
-  color:#e5f5ff;
-}
-
-
-/* =========================
-   MENU DES JEUX
-========================= */
-
-.title{
-  margin:25px 3px 13px;
-
-  color:#9da2b4;
-
-  font-size:12px;
-  font-weight:900;
-}
-
-.games{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
-
-  gap:9px;
-}
-
-.game{
-  min-width:0;
-  height:54px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:8px 5px;
-
-  border:1px solid #292e42;
-  border-radius:15px;
-
-  background:#121625;
-  color:#fff;
-
-  font-size:13px;
-  font-weight:900;
-
-  white-space:nowrap;
-
-  cursor:pointer;
-}
-
-.game.active{
-  background:
-    linear-gradient(90deg,#5924ba,#9135e5);
-
-  border-color:#a15cff;
-
-  box-shadow:
-    0 0 14px rgba(144,58,255,.35);
-}
-
-.game.aviator-active{
-  background:
-    linear-gradient(90deg,#790a26,#e20b3e);
-
-  border-color:#ff3158;
-
-  box-shadow:
-    0 0 15px rgba(255,24,70,.45);
-}
-
-.game.mines-active{
-  background:
-    linear-gradient(90deg,#0474d3,#00afe4);
-
-  border-color:#79edff;
-
-  box-shadow:
-    0 0 14px rgba(0,200,255,.35);
-}
-
-.game.speed-active{
-  background:
-    linear-gradient(90deg,#006f83,#00b9c7);
-
-  border-color:#2ae5e4;
-
-  box-shadow:
-    0 0 15px rgba(0,218,225,.35);
-}
-
-
-/* =========================
-   AVIATOR / SPEED PNG
-========================= */
-
-.image-screen{
-  margin:0 15px 18px;
-  overflow:hidden;
-  border-radius:22px;
-  background:#02050a;
-}
-
-.game-reference{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  margin-top:22px;
-
-  text-align:center;
-
-  color:#6e7387;
-
-  font-size:11px;
-  line-height:1.6;
-}
-
-
-/* =========================
-   PETITS ÉCRANS
-========================= */
-
-@media(max-width:380px){
-
-  .app{
-    padding-left:12px;
-    padding-right:12px;
-  }
-
-  .game{
-    height:52px;
-    font-size:12px;
-  }
-
-  .brand{
+.game-menu button{
+    min-height:58px;
+    border:1px solid #292e48;
+    border-radius:17px;
+    background:#111522;
+    color:#fff;
     font-size:15px;
-  }
+    font-weight:800;
+    padding:8px;
+}
 
+.game-menu button:active{
+    transform:scale(.98);
+}
+
+.game-menu button.active-lucky{
+    border-color:#a84aff;
+
+    background:linear-gradient(
+        90deg,
+        #6723c9,
+        #9638e8
+    );
+}
+
+.game-menu button.active-aviator{
+    border-color:#ff315d;
+
+    background:linear-gradient(
+        90deg,
+        #8f092c,
+        #ed073d
+    );
+
+    box-shadow:
+        0 0 15px rgba(255,20,70,.35);
+}
+
+.game-menu button.active-speed{
+    border-color:#22e9f2;
+
+    background:linear-gradient(
+        90deg,
+        #087f91,
+        #12bdca
+    );
+
+    box-shadow:
+        0 0 15px rgba(0,220,235,.30);
+}
+
+/* ============================= */
+/* PIED DE PAGE                  */
+/* ============================= */
+
+.footer{
+    text-align:center;
+    color:#686b7c;
+    margin-top:28px;
+    line-height:1.6;
+    font-size:13px;
 }
 
 </style>
-</head><body>
+</head>
+
+<body>
 
 <div class="app">
 
-<header>
-  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
-  <div class="online">● ONLINE</div>
-</header>
+    <div class="topbar">
 
-
-<div class="card">
-
-  <div class="top">
-    <h2 id="gameTitle">LUCKY JET</h2>
-    <div class="ai">EBOMAFF AI</div>
-  </div>
-
-
-  <!-- =====================
-       LUCKY JET
-  ====================== -->
-
-  <div id="luckyScreen" class="screen active">
-
-    <div class="lucky">
-
-      <div class="stars"></div>
-
-      <div class="logo">
-        LUCKY<span>JET</span>
-      </div>
-
-      <div class="value">
-        --<small>x</small>
-      </div>
-
-      <div class="glow"></div>
-
-      <img
-        class="lucky-character"
-        src="./luckyjet.png"
-        alt="Lucky Jet"
-      >
-
-      <div class="arc"></div>
-
-      <div class="cloud c1"></div>
-      <div class="cloud c2"></div>
-      <div class="cloud c3"></div>
-
-      <div class="caption">
-        PROCHAINE PRÉDICTION
-      </div>
-
-    </div>
-
-    <div id="luckyStatus" class="status">
-      ⌛ Moteur de prédiction non connecté.
-    </div>
-
-    <button id="luckyPredict" class="predict">
-      🔎 PRÉDIRE
-    </button>
-
-  </div>
-
-
-  <!-- =====================
-       AVIATOR
-  ====================== -->
-
-  <div id="aviatorScreen" class="screen">
-
-    <div class="image-screen">
-
-      <img
-        src="./aviator.png"
-        class="game-reference"
-        alt="Aviator"
-      >
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================
-       MINES CLASSIC
-  ====================== -->
-
-  <div id="minesScreen" class="screen">
-
-    <div class="mines">
-
-      <div class="mines-brand">
-        MINES ⭐
-      </div>
-
-      <div class="mines-sub">
-        EBOMAFF MINI-APPLICATION
-      </div>
-
-      <div id="board" class="board"></div>
-
-
-      <div class="trap-zone">
-
-        <div class="trap-title">
-          💣 SÉLECTION DE PIÈGES
+        <div class="brand">
+            🤖 EBOMAFF PREDICTOR
         </div>
 
-        <div class="traps">
+        <div class="online">
+            ● ONLINE
+        </div>
 
-          <button class="trap" data-trap="1">1</button>
-          <button class="trap" data-trap="2">2</button>
-          <button class="trap active" data-trap="3">3</button>
-          <button class="trap" data-trap="4">4</button>
+    </div>    <!-- =========================
+         CARTE DES JEUX
+    ========================== -->
 
-          <button class="trap" data-trap="5">5</button>
-          <button class="trap" data-trap="6">6</button>
-          <button class="trap" data-trap="7">7</button>
-          <button class="trap" data-trap="8">8</button>
+    <div class="game-card">
+
+        <div class="game-head">
+
+            <div
+                id="gameTitle"
+                class="game-title"
+            >
+                LUCKY JET
+            </div>
+
+            <div class="ai-badge">
+                EBOMAFF AI
+            </div>
 
         </div>
 
-      </div>
 
-      <button id="minesPredict" class="mines-predict">
-        PRÉDIRE
-      </button>
+        <!-- =====================
+             LUCKY JET
+        ====================== -->
 
-      <div id="minesNote" class="mines-note">
-        ⌛ Moteur Mines non connecté.
-      </div>
+        <div
+            id="luckyScreen"
+            class="screen active"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./luckyjet.png"
+                    class="game-image lucky-image"
+                    alt="Lucky Jet"
+                >
+
+            </div>
+
+            <div
+                id="luckyStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur de prédiction non connecté.
+            </div>
+
+            <button
+                id="luckyPredict"
+                class="predict-btn lucky-btn"
+            >
+                🔎 PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             AVIATOR
+        ====================== -->
+
+        <div
+            id="aviatorScreen"
+            class="screen"
+        >
+
+            <div
+                class="
+                    game-image-box
+                    aviator-image-box
+                "
+            >
+
+                <img
+                    src="./aviator.png"
+                    class="game-image"
+                    alt="Aviator"
+                >
+
+            </div>
+
+
+            <div class="aviator-next">
+
+                <div class="aviator-next-label">
+                    PROCHAINE PRÉDICTION
+                </div>
+
+                <div
+                    id="aviatorPrediction"
+                    class="aviator-next-value"
+                >
+                    --.--x
+                </div>
+
+            </div>
+
+
+            <div
+                id="aviatorStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Aviator non connecté.
+            </div>
+
+
+            <button
+                id="aviatorPredict"
+                class="predict-btn aviator-btn"
+            >
+                ● PRÉDIRE
+            </button>
+
+        </div>        <!-- =====================
+             MINES CLASSIC
+        ====================== -->
+
+        <div
+            id="minesScreen"
+            class="screen"
+        >
+
+            <div
+                class="game-image-box"
+                style="
+                    min-height:420px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    background:
+                    linear-gradient(
+                        180deg,
+                        #075bea,
+                        #0069ef,
+                        #0044b9
+                    );
+                "
+            >
+
+                <div
+                    style="
+                        width:90%;
+                        text-align:center;
+                    "
+                >
+
+                    <div
+                        style="
+                            font-size:25px;
+                            font-weight:900;
+                            margin-bottom:18px;
+                        "
+                    >
+                        MINES ⭐
+                    </div>
+
+
+                    <div
+                        id="minesBoard"
+                        style="
+                            display:grid;
+                            grid-template-columns:
+                            repeat(5,1fr);
+                            gap:6px;
+                            padding:10px;
+                            background:#675dcc;
+                            border:4px solid white;
+                            border-radius:16px;
+                        "
+                    >
+                    </div>
+
+
+                    <div
+                        style="
+                            margin-top:20px;
+                            font-weight:900;
+                        "
+                    >
+                        💣 SÉLECTION DE PIÈGES
+                    </div>
+
+
+                    <div
+                        id="trapButtons"
+                        style="
+                            display:grid;
+                            grid-template-columns:
+                            repeat(4,1fr);
+                            gap:8px;
+                            margin-top:12px;
+                        "
+                    >
+
+                        <button class="trap-btn" data-trap="1">
+                            1
+                        </button>
+
+                        <button class="trap-btn" data-trap="2">
+                            2
+                        </button>
+
+                        <button class="trap-btn selected" data-trap="3">
+                            3
+                        </button>
+
+                        <button class="trap-btn" data-trap="4">
+                            4
+                        </button>
+
+                        <button class="trap-btn" data-trap="5">
+                            5
+                        </button>
+
+                        <button class="trap-btn" data-trap="6">
+                            6
+                        </button>
+
+                        <button class="trap-btn" data-trap="7">
+                            7
+                        </button>
+
+                        <button class="trap-btn" data-trap="8">
+                            8
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="minesStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Mines non connecté.
+            </div>
+
+
+            <button
+                id="minesPredict"
+                class="predict-btn"
+                style="
+                    color:#26304b;
+                    background:
+                    linear-gradient(
+                        90deg,
+                        #ffffff,
+                        #fffbd4,
+                        #ffe52b
+                    );
+                "
+            >
+                PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             SPEED & CASH
+        ====================== -->
+
+        <div
+            id="speedScreen"
+            class="screen"
+        >
+
+            <div
+                class="
+                    game-image-box
+                    speed-image-box
+                "
+            >
+
+                <img
+                    src="./speedcash.png"
+                    class="game-image"
+                    alt="Speed & Cash"
+                >
+
+            </div>
+
+
+            <div
+                id="speedStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Speed &amp; Cash non connecté.
+            </div>
+
+
+            <button
+                id="speedPredict"
+                class="predict-btn speed-btn"
+            >
+                PRÉDIRE
+            </button>
+
+        </div>
+
 
     </div>
 
-  </div>
+
+    <!-- =========================
+         MENU DES 10 JEUX
+    ========================== -->
+
+    <div class="menu-title">
+        🎮 CHOISIR UN JEU
+    </div>
 
 
-  <!-- =====================
-       SPEED & CASH
-  ====================== -->
+    <div class="game-menu">
 
-  <div id="speedScreen" class="screen">
+        <button
+            id="btnLucky"
+            class="active-lucky"
+        >
+            🚀 Lucky Jet
+        </button>
 
-    <div class="image-screen">
+        <button id="btnAviator">
+            ✈️ Aviator
+        </button>
 
-      <img
-        src="./speedcash.png"
-        class="game-reference"
-        alt="Speed & Cash"
-      >
+        <button>
+            💥 Crash
+        </button>
+
+        <button>
+            👑 Rocket Queen
+        </button>
+
+        <button id="btnMines">
+            💣 Mines Classic
+        </button>
+
+        <button>
+            📈 Limbo
+        </button>
+
+        <button>
+            ⚽ Penalty
+        </button>
+
+        <button>
+            🚀 Rocket X
+        </button>
+
+        <button id="btnSpeed">
+            🏎️ Speed &amp; Cash
+        </button>
+
+        <button>
+            🐔 Chicken Train
+        </button>
 
     </div>
 
-  </div>
 
-</div>
+    <div class="footer">
+        EBOMAFF Robot Prediction 🤖
+        <br>
+        Moteur d'analyse EBOMAFF
+    </div>
 
-
-<!-- =====================
-     MENU 10 JEUX
-====================== -->
-
-<div class="title">
-  🎮 CHOISIR UN JEU
-</div>
-
-<div class="games">
-
-  <button id="btnLucky" class="game active">
-    🚀 Lucky Jet
-  </button>
-
-  <button id="btnAviator" class="game">
-    ✈️ Aviator
-  </button>
-
-  <button class="game">
-    💥 Crash
-  </button>
-
-  <button class="game">
-    👑 Rocket Queen
-  </button>
-
-  <button id="btnMines" class="game">
-    💣 Mines Classic
-  </button>
-
-  <button class="game">
-    📈 Limbo
-  </button>
-
-  <button class="game">
-    ⚽ Penalty
-  </button>
-
-  <button class="game">
-    🚀 Rocket X
-  </button>
-
-  <button id="btnSpeed" class="game">
-    🏎️ Speed &amp; Cash
-  </button>
-
-  <button class="game">
-    🐔 Chicken Train
-  </button>
-
-</div>
-
-
-<footer>
-  EBOMAFF Robot Prediction 🤖
-  <br>
-  Moteur d'analyse EBOMAFF
-</footer>
-<script>
+</div><script>
 
 /* =========================
    ÉLÉMENTS
 ========================= */
 
 const luckyScreen =
-  document.getElementById("luckyScreen");
+    document.getElementById("luckyScreen");
 
 const aviatorScreen =
-  document.getElementById("aviatorScreen");
+    document.getElementById("aviatorScreen");
 
 const minesScreen =
-  document.getElementById("minesScreen");
+    document.getElementById("minesScreen");
 
 const speedScreen =
-  document.getElementById("speedScreen");
+    document.getElementById("speedScreen");
 
 
 const btnLucky =
-  document.getElementById("btnLucky");
+    document.getElementById("btnLucky");
 
 const btnAviator =
-  document.getElementById("btnAviator");
+    document.getElementById("btnAviator");
 
 const btnMines =
-  document.getElementById("btnMines");
+    document.getElementById("btnMines");
 
 const btnSpeed =
-  document.getElementById("btnSpeed");
+    document.getElementById("btnSpeed");
 
 
 const gameTitle =
-  document.getElementById("gameTitle");
+    document.getElementById("gameTitle");
 
-const board =
-  document.getElementById("board");
 
 const luckyStatus =
-  document.getElementById("luckyStatus");
+    document.getElementById("luckyStatus");
 
-const minesNote =
-  document.getElementById("minesNote");
+const aviatorStatus =
+    document.getElementById("aviatorStatus");
+
+const minesStatus =
+    document.getElementById("minesStatus");
+
+const speedStatus =
+    document.getElementById("speedStatus");
+
 
 const luckyPredict =
-  document.getElementById("luckyPredict");
+    document.getElementById("luckyPredict");
+
+const aviatorPredict =
+    document.getElementById("aviatorPredict");
 
 const minesPredict =
-  document.getElementById("minesPredict");
+    document.getElementById("minesPredict");
 
-
-let selectedTrap = 3;
-
-
-/* =========================
-   CRÉER LES 25 CASES MINES
-========================= */
-
-for(let i = 0; i < 25; i++){
-
-  const cell =
-    document.createElement("div");
-
-  cell.className = "cell";
-
-  board.appendChild(cell);
-
-}
+const speedPredict =
+    document.getElementById("speedPredict");
 
 
 /* =========================
    CACHER LES ÉCRANS
 ========================= */
 
-function hideScreens(){
+function hideAllScreens(){
 
-  luckyScreen.classList.remove("active");
-  aviatorScreen.classList.remove("active");
-  minesScreen.classList.remove("active");
-  speedScreen.classList.remove("active");
+    luckyScreen.classList.remove("active");
+    aviatorScreen.classList.remove("active");
+    minesScreen.classList.remove("active");
+    speedScreen.classList.remove("active");
 
-  btnLucky.classList.remove("active");
 
-  btnAviator.classList.remove(
-    "aviator-active"
-  );
+    btnLucky.classList.remove(
+        "active-lucky"
+    );
 
-  btnMines.classList.remove(
-    "mines-active"
-  );
+    btnAviator.classList.remove(
+        "active-aviator"
+    );
 
-  btnSpeed.classList.remove(
-    "speed-active"
-  );
+    btnSpeed.classList.remove(
+        "active-speed"
+    );
 
 }
 
@@ -938,108 +774,193 @@ function hideScreens(){
    LUCKY JET
 ========================= */
 
-btnLucky.onclick = function(){
+btnLucky.addEventListener(
+    "click",
+    function(){
 
-  hideScreens();
+        hideAllScreens();
 
-  gameTitle.textContent =
-    "LUCKY JET";
+        luckyScreen.classList.add(
+            "active"
+        );
 
-  luckyScreen.classList.add("active");
+        btnLucky.classList.add(
+            "active-lucky"
+        );
 
-  btnLucky.classList.add("active");
+        gameTitle.textContent =
+            "LUCKY JET";
 
-};
+    }
+);
 
 
 /* =========================
    AVIATOR
 ========================= */
 
-btnAviator.onclick = function(){
+btnAviator.addEventListener(
+    "click",
+    function(){
 
-  hideScreens();
+        hideAllScreens();
 
-  gameTitle.textContent =
-    "AVIATOR";
+        aviatorScreen.classList.add(
+            "active"
+        );
 
-  aviatorScreen.classList.add("active");
+        btnAviator.classList.add(
+            "active-aviator"
+        );
 
-  btnAviator.classList.add(
-    "aviator-active"
-  );
+        gameTitle.textContent =
+            "AVIATOR";
 
-};
+    }
+);
 
 
 /* =========================
    MINES CLASSIC
 ========================= */
 
-btnMines.onclick = function(){
+btnMines.addEventListener(
+    "click",
+    function(){
 
-  hideScreens();
+        hideAllScreens();
 
-  gameTitle.textContent =
-    "MINES CLASSIC";
+        minesScreen.classList.add(
+            "active"
+        );
 
-  minesScreen.classList.add("active");
+        gameTitle.textContent =
+            "MINES CLASSIC";
 
-  btnMines.classList.add(
-    "mines-active"
-  );
-
-};
+    }
+);
 
 
 /* =========================
    SPEED & CASH
 ========================= */
 
-btnSpeed.onclick = function(){
+btnSpeed.addEventListener(
+    "click",
+    function(){
 
-  hideScreens();
+        hideAllScreens();
 
-  gameTitle.textContent =
-    "SPEED & CASH";
+        speedScreen.classList.add(
+            "active"
+        );
 
-  speedScreen.classList.add("active");
+        btnSpeed.classList.add(
+            "active-speed"
+        );
 
-  btnSpeed.classList.add(
-    "speed-active"
-  );
+        gameTitle.textContent =
+            "SPEED & CASH";
 
-};
+    }
+);
 
 
 /* =========================
-   SÉLECTION MINES
+   CRÉER LE PLATEAU MINES
+========================= */
+
+const minesBoard =
+    document.getElementById("minesBoard");
+
+
+for(let i = 0; i < 25; i++){
+
+    const cell =
+        document.createElement("div");
+
+    cell.style.aspectRatio = "1";
+
+    cell.style.borderRadius = "7px";
+
+    cell.style.border =
+        "2px solid #0750a7";
+
+    cell.style.background =
+        "linear-gradient(#0872c9,#0753a2)";
+
+    cell.style.boxShadow =
+        "inset 0 0 8px rgba(0,220,255,.25)";
+
+    minesBoard.appendChild(cell);
+
+}
+
+
+/* =========================
+   SÉLECTION DES PIÈGES
 ========================= */
 
 document
-.querySelectorAll(".trap")
+.querySelectorAll(".trap-btn")
 .forEach(function(button){
 
-  button.onclick = function(){
+    button.style.height = "42px";
+    button.style.borderRadius = "12px";
+    button.style.border =
+        "2px solid #e3f8ff";
+    button.style.fontWeight = "900";
+    button.style.fontSize = "15px";
+    button.style.color = "#fff";
+    button.style.background =
+        "linear-gradient(#0781d2,#0754a4)";
 
-    document
-    .querySelectorAll(".trap")
-    .forEach(function(item){
 
-      item.classList.remove("active");
+    if(
+        button.classList.contains(
+            "selected"
+        )
+    ){
 
-    });
+        button.style.background = "#fff";
+        button.style.color = "#333";
 
-    button.classList.add("active");
+    }
 
-    selectedTrap =
-      Number(button.dataset.trap);
 
-    minesNote.textContent =
-      "Pièges sélectionnés : "
-      + selectedTrap;
+    button.addEventListener(
+        "click",
+        function(){
 
-  };
+            document
+            .querySelectorAll(".trap-btn")
+            .forEach(function(item){
+
+                item.classList.remove(
+                    "selected"
+                );
+
+                item.style.background =
+                    "linear-gradient(#0781d2,#0754a4)";
+
+                item.style.color =
+                    "#fff";
+
+            });
+
+
+            button.classList.add(
+                "selected"
+            );
+
+            button.style.background =
+                "#fff";
+
+            button.style.color =
+                "#333";
+
+        }
+    );
 
 });
 
@@ -1048,40 +969,89 @@ document
    BOUTON LUCKY JET
 ========================= */
 
-luckyPredict.onclick = function(){
+luckyPredict.addEventListener(
+    "click",
+    function(){
 
-  luckyStatus.textContent =
-    "🔎 Connexion au moteur EBOMAFF...";
+        luckyStatus.textContent =
+            "🔎 Connexion au moteur EBOMAFF...";
 
-  setTimeout(function(){
+        setTimeout(function(){
 
-    luckyStatus.textContent =
-      "⌛ Moteur de prédiction non connecté.";
+            luckyStatus.textContent =
+                "⌛ Moteur de prédiction non connecté.";
 
-  },900);
+        },900);
 
-};
+    }
+);
+
+
+/* =========================
+   BOUTON AVIATOR
+========================= */
+
+aviatorPredict.addEventListener(
+    "click",
+    function(){
+
+        aviatorStatus.textContent =
+            "🔎 Connexion au moteur Aviator...";
+
+        setTimeout(function(){
+
+            aviatorStatus.textContent =
+                "⌛ Moteur Aviator non connecté.";
+
+        },900);
+
+    }
+);
 
 
 /* =========================
    BOUTON MINES
 ========================= */
 
-minesPredict.onclick = function(){
+minesPredict.addEventListener(
+    "click",
+    function(){
 
-  minesNote.textContent =
-    "🔎 Connexion au moteur Mines...";
+        minesStatus.textContent =
+            "🔎 Connexion au moteur Mines...";
 
-  setTimeout(function(){
+        setTimeout(function(){
 
-    minesNote.textContent =
-      "⌛ Moteur Mines non connecté.";
+            minesStatus.textContent =
+                "⌛ Moteur Mines non connecté.";
 
-  },900);
+        },900);
 
-};
+    }
+);
+
+
+/* =========================
+   BOUTON SPEED & CASH
+========================= */
+
+speedPredict.addEventListener(
+    "click",
+    function(){
+
+        speedStatus.textContent =
+            "🔎 Connexion au moteur Speed & Cash...";
+
+        setTimeout(function(){
+
+            speedStatus.textContent =
+                "⌛ Moteur Speed & Cash non connecté.";
+
+        },900);
+
+    }
+);
 
 </script>
 </body>
 </html>
-</div>
