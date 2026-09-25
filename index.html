@@ -6,7 +6,11 @@
 <title>EBOMAFF Predictor</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   min-height:100vh;
@@ -53,7 +57,9 @@ header{
   padding:18px;
 }
 
-.top h2{font-size:21px}
+.top h2{
+  font-size:21px;
+}
 
 .ai{
   font-size:10px;
@@ -63,8 +69,13 @@ header{
   border-radius:20px;
 }
 
-.screen{display:none}
-.screen.active{display:block}
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
 
 /* =========================
    LUCKY JET
@@ -78,15 +89,21 @@ header{
   overflow:hidden;
   text-align:center;
   background:
-    radial-gradient(circle at 50% 53%,
-    #521988 0%,#2c1255 35%,#100c27 62%,#070812 100%);
+    radial-gradient(
+      circle at 50% 53%,
+      #521988 0%,
+      #2c1255 35%,
+      #100c27 62%,
+      #070812 100%
+    );
 }
 
 .stars{
   position:absolute;
   inset:0;
   opacity:.35;
-  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-image:
+    radial-gradient(#fff 1px,transparent 1px);
   background-size:42px 42px;
 }
 
@@ -101,10 +118,14 @@ header{
   font-style:italic;
   letter-spacing:-2px;
   color:#bc4cff;
-  text-shadow:0 0 12px #a43cff,0 0 28px #6b1ddf;
+  text-shadow:
+    0 0 12px #a43cff,
+    0 0 28px #6b1ddf;
 }
 
-.logo span{color:#fff}
+.logo span{
+  color:#fff;
+}
 
 .value{
   position:absolute;
@@ -115,10 +136,14 @@ header{
   font-size:63px;
   font-weight:950;
   color:#d47cff;
-  text-shadow:0 0 12px #bd4cff,0 0 32px #7c2cff;
+  text-shadow:
+    0 0 12px #bd4cff,
+    0 0 32px #7c2cff;
 }
 
-.value small{font-size:34px}
+.value small{
+  font-size:34px;
+}
 
 .glow{
   position:absolute;
@@ -168,9 +193,26 @@ header{
   background:linear-gradient(#6942c9,#3c257f);
 }
 
-.c1{width:180px;height:95px;left:-50px;bottom:-32px}
-.c2{width:230px;height:115px;left:95px;bottom:-70px}
-.c3{width:190px;height:100px;right:-60px;bottom:-30px}
+.c1{
+  width:180px;
+  height:95px;
+  left:-50px;
+  bottom:-32px;
+}
+
+.c2{
+  width:230px;
+  height:115px;
+  left:95px;
+  bottom:-70px;
+}
+
+.c3{
+  width:190px;
+  height:100px;
+  right:-60px;
+  bottom:-30px;
+}
 
 .caption{
   position:absolute;
@@ -200,10 +242,9 @@ header{
   color:#fff;
   font-size:16px;
   font-weight:900;
-  background:linear-gradient(90deg,#7130ff,#b93eff);
+  background:
+    linear-gradient(90deg,#7130ff,#b93eff);
 }
-
-.predict:active{transform:scale(.98)}
 
 /* =========================
    MINES CLASSIC
@@ -217,9 +258,18 @@ header{
   border-radius:22px;
   padding:18px 14px 88px;
   background:
-    radial-gradient(ellipse at 50% 68%,rgba(0,255,90,.55),transparent 34%),
-    linear-gradient(180deg,#075bea,#0069ef 45%,#0758dc 75%,#0044b9);
-  box-shadow:inset 0 0 45px #00d9ff33;
+    radial-gradient(
+      ellipse at 50% 68%,
+      rgba(0,255,90,.55),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #075bea,
+      #0069ef 45%,
+      #0758dc 75%,
+      #0044b9
+    );
 }
 
 .mines-brand{
@@ -246,7 +296,7 @@ header{
   border:4px solid #fff;
   border-radius:15px;
   background:#6b61d0;
-  box-shadow:0 0 5px #fff,0 0 17px #8df4ff,0 0 28px #3eeaffaa;
+  box-shadow:0 0 17px #8df4ff;
 }
 
 .cell{
@@ -256,8 +306,8 @@ header{
   justify-content:center;
   border:2px solid #0750a7;
   border-radius:6px;
-  background:linear-gradient(#0872c9,#0753a2);
-  box-shadow:inset 0 2px 3px #ffffff22,0 2px 4px #0005;
+  background:
+    linear-gradient(#0872c9,#0753a2);
 }
 
 .cell::after{
@@ -269,42 +319,9 @@ header{
   box-shadow:0 0 6px #00dcff;
 }
 
-.cell.star{
-  background:linear-gradient(#ffe62d,#ffa500);
-  border-color:#fff3a3;
-  box-shadow:0 0 10px #ffdc00;
-}
-
-.cell.star::after{
-  content:"★";
-  width:auto;
-  height:auto;
-  background:none;
-  color:#fff;
-  font-size:27px;
-}
-
 .trap-zone{
-  position:relative;
   max-width:305px;
   margin:22px auto 0;
-  z-index:5;
-}
-
-.trap-zone::before{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  width:290px;
-  height:145px;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-45%);
-  border-radius:50%;
-  background:
-    radial-gradient(ellipse,rgba(0,255,89,.78),
-    rgba(0,206,81,.30) 42%,transparent 72%);
-  filter:blur(8px);
 }
 
 .trap-title{
@@ -312,7 +329,6 @@ header{
   font-size:15px;
   font-weight:900;
   margin-bottom:11px;
-  text-shadow:0 0 8px #00ff76;
 }
 
 .traps{
@@ -326,16 +342,15 @@ header{
   border:2px solid #e3f8ff;
   border-radius:13px;
   color:#fff;
-  background:linear-gradient(#0781d2,#0754a4);
+  background:
+    linear-gradient(#0781d2,#0754a4);
   font-size:15px;
   font-weight:900;
-  box-shadow:0 0 6px #69eeff88;
 }
 
 .trap.active{
   color:#333;
   background:#fff;
-  box-shadow:0 0 9px #fff;
 }
 
 .mines-predict{
@@ -348,8 +363,8 @@ header{
   color:#26304b;
   font-size:17px;
   font-weight:900;
-  background:linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
-  box-shadow:0 0 11px #fff,0 0 25px #ffe52b88;
+  background:
+    linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
 }
 
 .mines-note{
@@ -357,69 +372,19 @@ header{
   margin-top:12px;
   font-size:11px;
   color:#e5f5ff;
-}
-
-.bomb{
-  position:absolute;
-  width:112px;
-  height:112px;
-  left:8px;
-  bottom:-24px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 35% 28%,#53629d,#222c5a 30%,#0d1539 60%,#020617 100%);
-  box-shadow:
-    inset -18px -18px 24px #0008,
-    inset 12px 10px 18px #879cff33,
-    0 12px 24px #0007;
-}
-
-.bomb-cap{
-  position:absolute;
-  width:30px;
-  height:21px;
-  left:87px;
-  bottom:64px;
-  border-radius:6px;
-  transform:rotate(28deg);
-  background:linear-gradient(90deg,#111832,#8a93ad,#192142);
-}
-
-.fuse{
-  position:absolute;
-  width:54px;
-  height:50px;
-  left:95px;
-  bottom:78px;
-  border-top:6px solid #eee;
-  border-radius:55%;
-  transform:rotate(-22deg);
-}
-
-.spark{
-  position:absolute;
-  left:126px;
-  bottom:108px;
-  color:#fff342;
-  font-size:34px;
-  text-shadow:0 0 5px #fff,0 0 10px #ffd900,0 0 18px #ff7300;
-}
-
-/* =========================
-   AVIATOR - NOUVEAU DESIGN
+}/* =========================
+   AVIATOR
 ========================= */
 
 .aviator{
   margin:0 15px 18px;
-  height:575px;
+  height:565px;
   border-radius:22px;
   overflow:hidden;
   position:relative;
-  background:#020204;
-  border:1px solid #170b21;
+  background:#030306;
+  border:1px solid #481020;
 }
-
-/* Rayons violets */
 
 .av-rays{
   position:absolute;
@@ -430,78 +395,62 @@ header{
   overflow:hidden;
   background:
     conic-gradient(
-      from 272deg at 0% 100%,
-      transparent 0deg 7deg,
-      rgba(63,20,155,.24) 7deg 14deg,
-      transparent 14deg 22deg,
-      rgba(68,21,168,.28) 22deg 30deg,
-      transparent 30deg 40deg,
-      rgba(75,23,180,.23) 40deg 50deg,
-      transparent 50deg 62deg,
-      rgba(75,23,180,.17) 62deg 72deg,
-      transparent 72deg 90deg
+      from 270deg at 0% 100%,
+      #251071 0deg,
+      #070710 9deg,
+      #321387 17deg,
+      #080810 26deg,
+      #29106f 35deg,
+      #08080d 44deg,
+      #37148a 53deg,
+      #08080e 62deg,
+      #251066 71deg,
+      #07070c 80deg,
+      #30117b 89deg,
+      #060609 100deg
     );
+  opacity:.75;
 }
 
-/* Logo */
-
-.aviator-logo{
+.aviator-brand{
   position:absolute;
-  z-index:6;
-  top:17px;
+  z-index:10;
+  top:28px;
   left:0;
   right:0;
   text-align:center;
-  color:#ff003b;
-  font-size:43px;
-  line-height:1;
+  color:#ff174c;
+  font-size:42px;
   font-weight:950;
   font-style:italic;
   letter-spacing:-3px;
   text-shadow:
-    0 0 7px #ff003b,
-    0 0 17px rgba(255,0,59,.7);
+    0 0 10px #ff174c,
+    0 0 24px #d50032;
 }
-
-.aviator-logo::after{
-  content:"";
-  display:block;
-  width:132px;
-  height:5px;
-  margin:8px auto 0;
-  border-radius:20px;
-  background:#ff003b;
-  box-shadow:0 0 10px #ff003b;
-  transform:skewX(-28deg);
-}
-
-/* Multiplicateur principal */
 
 .av-value{
   position:absolute;
-  z-index:8;
-  top:125px;
+  z-index:12;
+  top:122px;
   left:0;
   right:0;
   text-align:center;
-  color:#ff315c;
+  color:#ff3158;
   font-size:58px;
   font-weight:950;
-  letter-spacing:2px;
   text-shadow:
-    0 0 8px #ff003b,
-    0 0 22px rgba(255,0,59,.75);
+    0 0 12px #ff1748,
+    0 0 30px #e0003d;
 }
-
-/* Graphique */
 
 .av-graph{
   position:absolute;
-  z-index:4;
+  z-index:5;
   left:0;
   right:0;
   top:175px;
-  height:235px;
+  height:230px;
 }
 
 .av-graph svg{
@@ -510,86 +459,73 @@ header{
   display:block;
 }
 
-/* Avion */
-
 .av-plane{
   filter:
-    drop-shadow(0 0 4px #fff)
-    drop-shadow(0 0 9px #ff003b)
-    drop-shadow(0 0 18px #ff003b);
+    drop-shadow(0 0 5px #ff214c)
+    drop-shadow(0 0 13px #ff0033);
 }
-
-/* Prédiction */
 
 .av-next{
   position:absolute;
-  z-index:10;
-  left:17px;
-  right:17px;
-  top:418px;
+  z-index:15;
+  left:25px;
+  right:25px;
+  top:420px;
   height:76px;
-  border:1px solid #a60b32;
-  border-radius:17px;
+  border:1px solid #971231;
+  border-radius:18px;
   text-align:center;
-  background:#080a12;
-  box-shadow:0 0 14px rgba(255,0,59,.17);
+  background:#090b16e8;
+  padding-top:13px;
 }
 
 .av-next-label{
-  padding-top:14px;
-  color:#d6d7e1;
-  font-size:10px;
+  color:#c7cad4;
+  font-size:11px;
   letter-spacing:3px;
   font-weight:800;
 }
 
 .av-next-value{
   margin-top:5px;
-  color:#ff315c;
-  font-size:29px;
-  line-height:30px;
+  color:#ff3158;
+  font-size:31px;
   font-weight:950;
-  text-shadow:0 0 11px #ff003b;
+  text-shadow:0 0 13px #ff1748;
 }
-
-/* Bouton Aviator */
 
 .aviator-predict{
   position:absolute;
-  z-index:11;
-  left:18px;
-  right:18px;
-  bottom:50px;
-  width:calc(100% - 36px);
-  height:57px;
+  z-index:15;
+  left:25px;
+  right:25px;
+  bottom:18px;
+  height:52px;
   border:0;
   border-radius:17px;
   color:#fff;
   font-size:18px;
   font-weight:950;
-  background:linear-gradient(180deg,#12e55b,#00bd3c);
-  box-shadow:
-    0 0 9px rgba(38,255,105,.65),
-    0 0 24px rgba(0,211,72,.38);
+  background:
+    linear-gradient(180deg,#19e962,#00bd3e);
+  box-shadow:0 0 18px #00e85055;
 }
-
-.aviator-predict:active{transform:scale(.98)}
 
 .aviator-note{
   position:absolute;
-  z-index:11;
+  z-index:16;
   left:0;
   right:0;
-  bottom:13px;
+  bottom:2px;
   text-align:center;
-  color:#bfc3d0;
-  font-size:11px;
+  color:#aeb3c0;
+  font-size:9px;
 }
 
 .game.aviator-active{
-  background:linear-gradient(90deg,#78051d,#d00036);
+  background:
+    linear-gradient(90deg,#6e071d,#d20b37);
   border-color:#ff3158;
-  box-shadow:0 0 12px #ff174866;
 }
 
 /* =========================
@@ -597,226 +533,179 @@ header{
 ========================= */
 
 .speedcash{
-  margin:0 15px 18px;
-  height:575px;
-  border-radius:22px;
-  overflow:hidden;
   position:relative;
-  background:#030406;
-  border:1px solid #181c26;
+  height:565px;
+  margin:0 15px 18px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#050608;
+  border:1px solid #1d2733;
 }
 
-/* Logo Speed & Cash */
-
-.sc-logo{
+.speed-logo{
   position:absolute;
-  z-index:8;
-  top:27px;
+  z-index:10;
+  top:36px;
   left:0;
   right:0;
   text-align:center;
-  font-style:italic;
+  font-size:29px;
   font-weight:950;
-  line-height:.9;
-  transform:skewX(-8deg);
+  font-style:italic;
 }
 
-.sc-speed{
-  display:inline-block;
-  color:#ff6b16;
-  font-size:35px;
-  text-shadow:
-    0 0 7px rgba(255,105,20,.8),
-    0 0 15px rgba(255,69,0,.45);
+.speed-word{
+  color:#ff6b17;
+  text-shadow:0 0 10px #ff5b00;
 }
 
-.sc-and{
-  display:inline-block;
-  margin:0 5px;
+.amp{
   color:#fff;
-  font-size:23px;
+  margin:0 5px;
 }
 
-.sc-cash{
-  display:inline-block;
-  color:#14aaff;
-  font-size:35px;
-  text-shadow:
-    0 0 7px rgba(20,170,255,.8),
-    0 0 15px rgba(0,119,255,.45);
+.cash-word{
+  color:#29aaff;
+  text-shadow:0 0 10px #008cff;
 }
 
-/* Ligne centrale */
-
-.sc-line{
+.speed-line{
   position:absolute;
   z-index:2;
-  top:93px;
-  bottom:78px;
+  top:95px;
+  bottom:72px;
   left:50%;
-  width:3px;
+  width:2px;
   transform:translateX(-50%);
   background:
     repeating-linear-gradient(
       to bottom,
-      #fff 0 13px,
-      transparent 13px 25px
+      #fff 0,
+      #fff 12px,
+      transparent 12px,
+      transparent 23px
     );
-  opacity:.92;
+  opacity:.85;
 }
 
-/* Valeur toujours au milieu */
-
-.sc-value{
+.speed-value{
   position:absolute;
-  z-index:12;
+  z-index:20;
   top:47%;
   left:50%;
   transform:translate(-50%,-50%);
-  min-width:108px;
-  padding:8px 11px;
-  border-radius:13px;
-  text-align:center;
+  padding:7px 13px;
+  border-radius:12px;
+  background:#050608;
   color:#fff;
-  font-size:31px;
+  font-size:34px;
   font-weight:950;
-  background:#05070bd9;
-  text-shadow:0 0 11px rgba(255,255,255,.45);
+  white-space:nowrap;
 }
 
-/* Voitures */
-
-.sc-car{
+.speed-car{
   position:absolute;
-  z-index:7;
-  top:365px;
-  width:67px;
-  height:122px;
-  border-radius:18px 18px 13px 13px;
+  z-index:12;
+  top:69%;
+  width:63px;
+  height:112px;
+  transform:translateY(-50%);
+  border-radius:30px 30px 18px 18px;
   transition:top .8s ease;
-  filter:drop-shadow(0 12px 12px #000);
 }
 
-.sc-car::before{
+.car-blue{
+  left:calc(50% - 90px);
+  background:
+    linear-gradient(
+      90deg,
+      #006fd6 0%,
+      #25bfff 20%,
+      #0875d5 50%,
+      #26c9ff 78%,
+      #0051a9 100%
+    );
+  box-shadow:0 0 20px #009cff88;
+}
+
+.car-red{
+  right:calc(50% - 90px);
+  background:
+    linear-gradient(
+      90deg,
+      #8f190b 0%,
+      #ff5a18 20%,
+      #df2b0c 50%,
+      #ff851d 78%,
+      #8b1609 100%
+    );
+  box-shadow:0 0 20px #ff4d1688;
+}
+
+.speed-car::before{
   content:"";
   position:absolute;
+  top:23px;
   left:10px;
   right:10px;
-  top:20px;
-  height:42px;
-  border-radius:9px;
-  background:linear-gradient(
-    180deg,
-    rgba(190,235,255,.85),
-    rgba(12,24,38,.95)
-  );
-  border:2px solid rgba(255,255,255,.28);
+  height:35px;
+  border-radius:13px 13px 7px 7px;
+  background:#101a24;
+  border:2px solid #ffffff44;
 }
 
-.sc-car::after{
+.speed-car::after{
   content:"";
   position:absolute;
-  left:15px;
-  right:15px;
-  bottom:13px;
-  height:13px;
-  border-radius:8px;
-  background:#07090d;
-  box-shadow:0 -55px 0 #07090d;
+  left:-6px;
+  right:-6px;
+  top:30px;
+  height:56px;
+  border-left:7px solid #151515;
+  border-right:7px solid #151515;
 }
 
-.sc-blue{
-  left:calc(50% - 105px);
-  background:
-    linear-gradient(
-      90deg,
-      #073e75,
-      #0b9aff 24%,
-      #34c8ff 50%,
-      #0b8ae6 76%,
-      #052f60
-    );
-  box-shadow:
-    0 0 12px rgba(0,160,255,.55),
-    inset 0 0 13px rgba(255,255,255,.25);
+.speedcash.running .car-blue{
+  top:32%;
 }
 
-.sc-red{
-  right:calc(50% - 105px);
-  background:
-    linear-gradient(
-      90deg,
-      #7c1707,
-      #ff431b 24%,
-      #ff8a27 50%,
-      #ef3516 76%,
-      #661006
-    );
-  box-shadow:
-    0 0 12px rgba(255,70,20,.55),
-    inset 0 0 13px rgba(255,255,255,.25);
+.speedcash.running .car-red{
+  top:25%;
 }
-
-/* Petites roues */
-
-.sc-wheel{
-  position:absolute;
-  width:8px;
-  height:24px;
-  border-radius:4px;
-  background:#050505;
-  z-index:6;
-}
-
-.sc-wheel.w1{left:-6px;top:24px}
-.sc-wheel.w2{right:-6px;top:24px}
-.sc-wheel.w3{left:-6px;bottom:20px}
-.sc-wheel.w4{right:-6px;bottom:20px}
-
-/* Bouton */
 
 .speed-predict{
   position:absolute;
-  z-index:15;
-  left:50%;
+  z-index:30;
   bottom:20px;
+  left:50%;
   transform:translateX(-50%);
-  min-width:145px;
-  height:45px;
-  padding:0 25px;
+  width:145px;
+  height:46px;
   border:0;
-  border-radius:14px;
+  border-radius:15px;
   color:#fff;
+  background:
+    linear-gradient(180deg,#24d6d1,#009da8);
   font-size:16px;
   font-weight:900;
-  background:linear-gradient(180deg,#16cbd0,#078a9b);
-  box-shadow:
-    0 0 9px rgba(25,224,228,.6),
-    0 0 19px rgba(0,181,194,.3);
-}
-
-.speed-predict:active{
-  transform:translateX(-50%) scale(.98);
+  box-shadow:0 0 18px #00d7d377;
 }
 
 .speed-note{
   position:absolute;
-  z-index:14;
-  bottom:73px;
+  z-index:20;
+  bottom:76px;
   left:0;
   right:0;
   text-align:center;
-  color:#aeb4c2;
+  color:#9da4b1;
   font-size:10px;
 }
 
-.speedcash.running .sc-blue{top:150px}
-.speedcash.running .sc-red{top:125px}
-
 .game.speed-active{
-  background:linear-gradient(90deg,#07516d,#b14313);
-  border-color:#18dce5;
-  box-shadow:0 0 12px rgba(20,206,224,.4);
+  background:
+    linear-gradient(90deg,#005e83,#00a9b7);
+  border-color:#26e6e1;
 }
 
 /* =========================
@@ -847,12 +736,14 @@ header{
 }
 
 .game.active{
-  background:linear-gradient(90deg,#5622a8,#8435dd);
+  background:
+    linear-gradient(90deg,#5622a8,#8435dd);
   border-color:#a15cff;
 }
 
 .game.mines-active{
-  background:linear-gradient(90deg,#0474d3,#00afe4);
+  background:
+    linear-gradient(90deg,#0474d3,#00afe4);
   border-color:#79edff;
 }
 
@@ -868,28 +759,11 @@ footer{
   .lucky{height:370px}
   .logo{font-size:28px}
   .value{font-size:57px}
-
-  .lucky-character{
-    width:165px;
-  }
-
-  .aviator-logo{
-    font-size:38px;
-  }
-
-  .av-value{
-    font-size:51px;
-  }
-
-  .sc-speed,.sc-cash{
-    font-size:30px;
-  }
-
-  .sc-car{
-    width:60px;
-    height:110px;
-  }
+  .lucky-character{width:165px}
+  .av-value{font-size:50px}
+  .aviator-brand{font-size:36px}
 }
+
 </style>
 </head>
 
@@ -907,11 +781,9 @@ footer{
 <div class="top">
   <h2 id="gameTitle">LUCKY JET</h2>
   <div class="ai">EBOMAFF AI</div>
-</div>
-
-<!-- =====================
+</div><!-- ======================
      LUCKY JET
-===================== -->
+====================== -->
 
 <div id="luckyScreen" class="screen active">
 
@@ -957,9 +829,10 @@ footer{
 
 </div>
 
-<!-- =====================
+
+<!-- ======================
      MINES CLASSIC
-===================== -->
+====================== -->
 
 <div id="minesScreen" class="screen">
 
@@ -982,14 +855,17 @@ footer{
       </div>
 
       <div class="traps">
+
         <button class="trap" data-trap="1">1</button>
         <button class="trap" data-trap="2">2</button>
         <button class="trap active" data-trap="3">3</button>
         <button class="trap" data-trap="4">4</button>
+
         <button class="trap" data-trap="5">5</button>
         <button class="trap" data-trap="6">6</button>
         <button class="trap" data-trap="7">7</button>
         <button class="trap" data-trap="8">8</button>
+
       </div>
 
     </div>
@@ -999,21 +875,17 @@ footer{
     </button>
 
     <div id="minesNote" class="mines-note">
-      Moteur Mines non connecté.
+      ⌛ Moteur Mines non connecté.
     </div>
-
-    <div class="bomb"></div>
-    <div class="bomb-cap"></div>
-    <div class="fuse"></div>
-    <div class="spark">✦</div>
 
   </div>
 
 </div>
 
-<!-- =====================
+
+<!-- ======================
      AVIATOR
-===================== -->
+====================== -->
 
 <div id="aviatorScreen" class="screen">
 
@@ -1021,7 +893,7 @@ footer{
 
     <div class="av-rays"></div>
 
-    <div class="aviator-logo">
+    <div class="aviator-brand">
       Aviator
     </div>
 
@@ -1032,117 +904,90 @@ footer{
     <div class="av-graph">
 
       <svg
-        viewBox="0 0 400 235"
+        viewBox="0 0 400 230"
         preserveAspectRatio="none"
       >
 
         <defs>
 
           <linearGradient
-            id="avFill"
+            id="redArea"
             x1="0"
             y1="0"
             x2="0"
             y2="1"
           >
+
             <stop
               offset="0%"
-              stop-color="#ff003b"
-              stop-opacity=".32"
+              stop-color="#ff003c"
+              stop-opacity=".48"
             />
+
             <stop
               offset="100%"
-              stop-color="#ff003b"
-              stop-opacity=".03"
+              stop-color="#ff003c"
+              stop-opacity=".05"
             />
-          </linearGradient>
 
-          <filter id="redGlow">
-            <feGaussianBlur
-              stdDeviation="2.5"
-              result="blur"
-            />
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
+          </linearGradient>
 
         </defs>
 
-        <!-- zone rouge -->
-
         <path
           d="
-          M0 225
-          C70 224 145 215 205 190
-          C275 161 325 112 356 56
-          L356 225
-          Z"
-          fill="url(#avFill)"
+            M0 220
+            C80 220 145 212 205 188
+            C265 164 315 120 355 55
+            L355 220 Z
+          "
+          fill="url(#redArea)"
         />
 
-        <!-- courbe rouge -->
-
         <path
           d="
-          M0 225
-          C70 224 145 215 205 190
-          C275 161 325 112 356 56"
+            M0 220
+            C80 220 145 212 205 188
+            C265 164 315 120 355 55
+          "
           fill="none"
           stroke="#ff174c"
-          stroke-width="3"
+          stroke-width="4"
           stroke-linecap="round"
-          filter="url(#redGlow)"
         />
-
-        <!-- ligne verticale avion -->
-
-        <line
-          x1="356"
-          y1="56"
-          x2="356"
-          y2="225"
-          stroke="#ff174c"
-          stroke-width="1.4"
-          opacity=".72"
-        />
-
-        <!-- ligne du bas -->
 
         <line
           x1="0"
-          y1="225"
+          y1="220"
           x2="400"
-          y2="225"
-          stroke="#ff174c"
-          stroke-width="1.5"
-          opacity=".65"
+          y2="220"
+          stroke="#a00b2c"
+          stroke-width="2"
         />
-
-        <!-- AVION -->
 
         <g
           class="av-plane"
-          transform="translate(325 34) rotate(-18)"
+          transform="translate(318 35) scale(1.15)"
         >
 
           <path
             d="
-            M0 31
-            L25 23
-            L47 4
-            L56 6
-            L48 24
-            L75 19
-            L84 23
-            L60 35
-            L44 37
-            L27 52
-            L20 51
-            L27 36
-            L5 39
-            Z"
+              M4 38
+              L22 31
+              L35 16
+              L42 18
+              L38 29
+              L61 20
+              L72 23
+              L57 35
+              L72 40
+              L68 45
+              L46 40
+              L27 53
+              L19 51
+              L27 40
+              L8 44 Z
+            "
             fill="#ffffff"
             stroke="#ff174c"
             stroke-width="3"
@@ -1160,4 +1005,461 @@ footer{
             d="M15 34 L-8 42"
             fill="none"
             stroke="#ff174c"
-            stro
+            stroke-width="3"
+          />
+
+        </g>
+
+      </svg>
+
+    </div>
+
+    <div class="av-next">
+
+      <div class="av-next-label">
+        PROCHAINE PRÉDICTION
+      </div>
+
+      <div class="av-next-value">
+        --.--x
+      </div>
+
+    </div>
+
+    <button
+      id="aviatorPredict"
+      class="aviator-predict"
+    >
+      ● PRÉDIRE
+    </button>
+
+    <div
+      id="aviatorNote"
+      class="aviator-note"
+    >
+      ⌛ Moteur Aviator non connecté.
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ======================
+     SPEED & CASH
+====================== -->
+
+<div id="speedScreen" class="screen">
+
+  <div id="speedGame" class="speedcash">
+
+    <div class="speed-logo">
+
+      <span class="speed-word">
+        SPEED
+      </span>
+
+      <span class="amp">
+        &
+      </span>
+
+      <span class="cash-word">
+        CASH
+      </span>
+
+    </div>
+
+    <div class="speed-line"></div>
+
+    <div
+      id="speedValue"
+      class="speed-value"
+    >
+      --.--x
+    </div>
+
+    <div class="speed-car car-blue"></div>
+
+    <div class="speed-car car-red"></div>
+
+    <div
+      id="speedNote"
+      class="speed-note"
+    >
+      ⌛ Moteur Speed & Cash non connecté.
+    </div>
+
+    <button
+      id="speedPredict"
+      class="speed-predict"
+    >
+      PRÉDIRE
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- ======================
+     MENU DES 10 JEUX
+====================== -->
+
+<div class="title">
+  🎮 CHOISIR UN JEU
+</div>
+
+<div class="games">
+
+  <button
+    id="btnLucky"
+    class="game active"
+  >
+    🚀 Lucky Jet
+  </button>
+
+  <button
+    id="btnAviator"
+    class="game"
+  >
+    ✈️ Aviator
+  </button>
+
+  <button class="game">
+    💥 Crash
+  </button>
+
+  <button class="game">
+    👑 Rocket Queen
+  </button>
+
+  <button
+    id="btnMines"
+    class="game"
+  >
+    💣 Mines Classic
+  </button>
+
+  <button class="game">
+    📈 Limbo
+  </button>
+
+  <button class="game">
+    ⚽ Penalty
+  </button>
+
+  <button class="game">
+    🚀 Rocket X
+  </button>
+
+  <button
+    id="btnSpeed"
+    class="game"
+  >
+    🏎️ Speed & Cash
+  </button>
+
+  <button class="game">
+    🐔 Chicken Train
+  </button>
+
+</div>
+
+<footer>
+  EBOMAFF Robot Prediction 🤖
+  <br>
+  Moteur d'analyse EBOMAFF
+</footer>
+
+</div><script>
+
+/* =========================
+   ÉLÉMENTS
+========================= */
+
+const luckyScreen =
+  document.getElementById("luckyScreen");
+
+const minesScreen =
+  document.getElementById("minesScreen");
+
+const aviatorScreen =
+  document.getElementById("aviatorScreen");
+
+const speedScreen =
+  document.getElementById("speedScreen");
+
+const btnLucky =
+  document.getElementById("btnLucky");
+
+const btnMines =
+  document.getElementById("btnMines");
+
+const btnAviator =
+  document.getElementById("btnAviator");
+
+const btnSpeed =
+  document.getElementById("btnSpeed");
+
+const gameTitle =
+  document.getElementById("gameTitle");
+
+const board =
+  document.getElementById("board");
+
+const luckyStatus =
+  document.getElementById("luckyStatus");
+
+const minesNote =
+  document.getElementById("minesNote");
+
+const aviatorNote =
+  document.getElementById("aviatorNote");
+
+const speedNote =
+  document.getElementById("speedNote");
+
+const luckyPredict =
+  document.getElementById("luckyPredict");
+
+const minesPredict =
+  document.getElementById("minesPredict");
+
+const aviatorPredict =
+  document.getElementById("aviatorPredict");
+
+const speedPredict =
+  document.getElementById("speedPredict");
+
+const speedGame =
+  document.getElementById("speedGame");
+
+let selectedTrap = 3;
+
+
+/* =========================
+   CRÉER LES 25 CASES MINES
+========================= */
+
+for(let i = 0; i < 25; i++){
+
+  const cell =
+    document.createElement("div");
+
+  cell.className = "cell";
+
+  board.appendChild(cell);
+
+}
+
+
+/* =========================
+   CHANGEMENT D'ÉCRAN
+========================= */
+
+function hideScreens(){
+
+  luckyScreen.classList.remove("active");
+
+  minesScreen.classList.remove("active");
+
+  aviatorScreen.classList.remove("active");
+
+  speedScreen.classList.remove("active");
+
+
+  btnLucky.classList.remove("active");
+
+  btnMines.classList.remove("mines-active");
+
+  btnAviator.classList.remove("aviator-active");
+
+  btnSpeed.classList.remove("speed-active");
+
+}
+
+
+/* =========================
+   LUCKY JET
+========================= */
+
+btnLucky.onclick = function(){
+
+  hideScreens();
+
+  gameTitle.textContent = "LUCKY JET";
+
+  luckyScreen.classList.add("active");
+
+  btnLucky.classList.add("active");
+
+};
+
+
+/* =========================
+   MINES CLASSIC
+========================= */
+
+btnMines.onclick = function(){
+
+  hideScreens();
+
+  gameTitle.textContent = "MINES CLASSIC";
+
+  minesScreen.classList.add("active");
+
+  btnMines.classList.add("mines-active");
+
+};
+
+
+/* =========================
+   AVIATOR
+========================= */
+
+btnAviator.onclick = function(){
+
+  hideScreens();
+
+  gameTitle.textContent = "AVIATOR";
+
+  aviatorScreen.classList.add("active");
+
+  btnAviator.classList.add("aviator-active");
+
+};
+
+
+/* =========================
+   SPEED & CASH
+========================= */
+
+btnSpeed.onclick = function(){
+
+  hideScreens();
+
+  gameTitle.textContent = "SPEED & CASH";
+
+  speedScreen.classList.add("active");
+
+  btnSpeed.classList.add("speed-active");
+
+};
+
+
+/* =========================
+   SÉLECTION DES PIÈGES
+========================= */
+
+document
+.querySelectorAll(".trap")
+.forEach(function(button){
+
+  button.onclick = function(){
+
+    document
+    .querySelectorAll(".trap")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+    selectedTrap =
+      Number(button.dataset.trap);
+
+    minesNote.textContent =
+      "Pièges sélectionnés : " +
+      selectedTrap;
+
+  };
+
+});
+
+
+/* =========================
+   BOUTON LUCKY JET
+========================= */
+
+luckyPredict.onclick = function(){
+
+  luckyStatus.textContent =
+    "🔎 Connexion au moteur EBOMAFF...";
+
+  setTimeout(function(){
+
+    luckyStatus.textContent =
+      "⌛ Moteur de prédiction non connecté.";
+
+  },900);
+
+};
+
+
+/* =========================
+   BOUTON MINES
+========================= */
+
+minesPredict.onclick = function(){
+
+  minesNote.textContent =
+    "🔎 Connexion au moteur Mines...";
+
+  setTimeout(function(){
+
+    minesNote.textContent =
+      "⌛ Moteur Mines non connecté.";
+
+  },900);
+
+};
+
+
+/* =========================
+   BOUTON AVIATOR
+========================= */
+
+aviatorPredict.onclick = function(){
+
+  aviatorNote.textContent =
+    "🔎 Connexion au moteur Aviator...";
+
+  setTimeout(function(){
+
+    aviatorNote.textContent =
+      "⌛ Moteur Aviator non connecté.";
+
+  },900);
+
+};
+
+
+/* =========================
+   BOUTON SPEED & CASH
+========================= */
+
+speedPredict.onclick = function(){
+
+  speedNote.textContent =
+    "🔎 Connexion au moteur Speed & Cash...";
+
+  speedGame.classList.add("running");
+
+  setTimeout(function(){
+
+    speedGame.classList.remove("running");
+
+    speedNote.textContent =
+      "⌛ Moteur Speed & Cash non connecté.";
+
+  },1200);
+
+};
+
+</script>
+</body>
+</html>
