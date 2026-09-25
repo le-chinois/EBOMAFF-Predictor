@@ -86,7 +86,7 @@ body{
     display:block;
 }
 
-/* ===== IMAGES ===== */
+/* ===== IMAGES DES JEUX ===== */
 
 .game-image-box{
     width:100%;
@@ -109,7 +109,7 @@ body{
     font-size:14px;
 }
 
-/* ===== BOUTONS ===== */
+/* ===== BOUTONS PRÉDIRE ===== */
 
 .predict-btn{
     width:100%;
@@ -126,13 +126,7 @@ body{
     transform:scale(.98);
 }
 
-/* ===== LUCKY JET ===== */
-
-.lucky-image{
-    border-radius:22px;
-}
-
-.lucky-btn{
+.purple-btn{
     background:linear-gradient(
         90deg,
         #7028ff,
@@ -140,11 +134,61 @@ body{
     );
 }
 
-/* ===== AVIATOR — NE PAS MODIFIER ===== */
+.green-btn{
+    background:linear-gradient(
+        180deg,
+        #16e85f,
+        #00bd45
+    );
 
-.aviator-image-box{
-    background:#020207;
+    box-shadow:
+        0 0 16px rgba(0,255,91,.35);
 }
+
+.blue-btn{
+    background:linear-gradient(
+        90deg,
+        #1769ff,
+        #00b7ff
+    );
+}
+
+.pink-btn{
+    background:linear-gradient(
+        90deg,
+        #a62cff,
+        #ff4b9b
+    );
+}
+
+.yellow-btn{
+    color:#20283d;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #fff8c9,
+        #ffe12e
+    );
+}
+
+.cyan-btn{
+    background:linear-gradient(
+        180deg,
+        #17c4d1,
+        #0798ac
+    );
+}
+
+.orange-btn{
+    background:linear-gradient(
+        90deg,
+        #ff8a18,
+        #ffb72e
+    );
+}
+
+/* ===== AVIATOR ===== */
 
 .aviator-next{
     margin-top:14px;
@@ -167,181 +211,48 @@ body{
     font-size:31px;
     font-weight:900;
     margin-top:5px;
+
     text-shadow:
         0 0 8px #ff174f,
         0 0 18px #ff174f;
 }
 
-.aviator-btn{
-    background:linear-gradient(
-        180deg,
-        #16e85f,
-        #00bd45
-    );
-
-    box-shadow:
-        0 0 16px rgba(0,255,91,.35);
-}
-
-/* ===== MINES ANCIEN DESIGN ===== */
-
-.mines-app{
-    position:relative;
-    min-height:760px;
-    padding:22px 12px 28px;
-    border-radius:22px;
-    overflow:hidden;
-    text-align:center;
-
-    background:
-        radial-gradient(
-            circle at 50% 68%,
-            rgba(0,255,151,.65),
-            transparent 22%
-        ),
-        linear-gradient(
-            180deg,
-            #0874f2,
-            #0864dd,
-            #0757c8
-        );
-}
-
-.mines-logo{
-    font-size:26px;
-    font-weight:900;
-}
-
-.mines-subtitle{
-    margin-top:6px;
-    font-size:13px;
-    color:#e6f4ff;
-}
-
-.mines-board-wrap{
-    width:82%;
-    margin:26px auto 25px;
-    padding:9px;
-
-    border:5px solid #fff;
-    border-radius:18px;
-
-    background:#6556bc;
-
-    box-shadow:
-        0 0 18px #fff,
-        0 0 32px rgba(0,238,255,.75);
-}
-
-.mines-board{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:6px;
-}
-
-.mine-cell{
-    aspect-ratio:1;
-    border-radius:7px;
-    border:2px solid #0750a7;
-
-    background:
-        radial-gradient(
-            circle,
-            #16c7eb 0 13%,
-            transparent 15%
-        ),
-        linear-gradient(
-            #087bc9,
-            #0753a2
-        );
-
-    box-shadow:
-        inset 0 0 8px rgba(0,220,255,.35);
-}
+/* ===== MINES ===== */
 
 .trap-title{
-    margin-top:10px;
-    font-size:17px;
+    margin-top:18px;
+    text-align:center;
+    font-size:16px;
     font-weight:900;
 }
 
 .trap-buttons{
-    width:82%;
-    margin:14px auto 0;
-
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:10px;
+    gap:9px;
+    margin-top:12px;
 }
 
 .trap-btn{
-    height:48px;
-    border:2px solid white;
-    border-radius:14px;
+    height:46px;
+    border:2px solid #159fea;
+    border-radius:13px;
 
-    color:white;
+    background:#0b579f;
+    color:#fff;
+
     font-size:16px;
     font-weight:900;
-
-    background:linear-gradient(
-        #0781d2,
-        #0754a4
-    );
 }
 
 .trap-btn.selected{
     background:#fff;
-    color:#333;
+    color:#172238;
+
+    border-color:#fff;
 
     box-shadow:
-        0 0 20px #fff,
-        0 0 35px #26ff9a;
-}
-
-.mines-predict{
-    width:72%;
-    height:58px;
-    margin-top:25px;
-
-    border:0;
-    border-radius:17px;
-
-    color:#28304c;
-    font-size:20px;
-    font-weight:900;
-
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #fffbd5,
-        #ffe936
-    );
-
-    box-shadow:
-        0 0 18px rgba(255,255,255,.7);
-}
-
-.mines-status{
-    margin-top:14px;
-    font-size:13px;
-    color:#fff;
-}
-
-/* ===== SPEED & CASH — NE PAS MODIFIER ===== */
-
-.speed-image-box{
-    background:#02070d;
-}
-
-.speed-btn{
-    background:linear-gradient(
-        180deg,
-        #17c4d1,
-        #0798ac
-    );
-
-    box-shadow:
-        0 0 16px rgba(0,210,225,.28);
+        0 0 16px rgba(0,238,255,.75);
 }
 
 /* ===== MENU ===== */
@@ -363,26 +274,28 @@ body{
     min-height:58px;
     border:1px solid #292e48;
     border-radius:17px;
+
     background:#111522;
     color:#fff;
+
     font-size:15px;
     font-weight:800;
     padding:8px;
+
+    cursor:pointer;
 }
 
-.game-menu button.active-lucky{
-    border-color:#a84aff;
-    background:linear-gradient(90deg,#6723c9,#9638e8);
-}
+.game-menu button.active-game{
+    border-color:#874cff;
 
-.game-menu button.active-aviator{
-    border-color:#ff315d;
-    background:linear-gradient(90deg,#8f092c,#ed073d);
-}
+    background:linear-gradient(
+        90deg,
+        #5920b7,
+        #8733db
+    );
 
-.game-menu button.active-speed{
-    border-color:#22e9f2;
-    background:linear-gradient(90deg,#087f91,#12bdca);
+    box-shadow:
+        0 0 15px rgba(137,70,255,.30);
 }
 
 .footer{
@@ -410,15 +323,16 @@ body{
             ● ONLINE
         </div>
 
-    </div>    <!-- =========================
-         CARTE PRINCIPALE
-    ========================== -->
+    </div>
 
     <div class="game-card">
 
         <div class="game-head">
 
-            <div id="gameTitle" class="game-title">
+            <div
+                id="gameTitle"
+                class="game-title"
+            >
                 LUCKY JET
             </div>
 
@@ -426,21 +340,20 @@ body{
                 EBOMAFF AI
             </div>
 
-        </div>
-
-
-        <!-- =====================
+        </div>        <!-- =====================
              LUCKY JET
-             ANCIEN DESIGN
         ====================== -->
 
-        <div id="luckyScreen" class="screen active">
+        <div
+            id="luckyScreen"
+            class="screen active"
+        >
 
             <div class="game-image-box">
 
                 <img
                     src="./luckyjet.png"
-                    class="game-image lucky-image"
+                    class="game-image"
                     alt="Lucky Jet"
                 >
 
@@ -450,12 +363,12 @@ body{
                 id="luckyStatus"
                 class="engine-status"
             >
-                ⌛ Moteur de prédiction non connecté.
+                ⌛ Moteur Lucky Jet non connecté.
             </div>
 
             <button
                 id="luckyPredict"
-                class="predict-btn lucky-btn"
+                class="predict-btn purple-btn"
             >
                 🔎 PRÉDIRE
             </button>
@@ -465,17 +378,14 @@ body{
 
         <!-- =====================
              AVIATOR
-             ON NE TOUCHE PLUS
         ====================== -->
 
-        <div id="aviatorScreen" class="screen">
+        <div
+            id="aviatorScreen"
+            class="screen"
+        >
 
-            <div
-                class="
-                    game-image-box
-                    aviator-image-box
-                "
-            >
+            <div class="game-image-box">
 
                 <img
                     src="./aviator.png"
@@ -484,7 +394,6 @@ body{
                 >
 
             </div>
-
 
             <div class="aviator-next">
 
@@ -501,7 +410,6 @@ body{
 
             </div>
 
-
             <div
                 id="aviatorStatus"
                 class="engine-status"
@@ -509,145 +417,311 @@ body{
                 ⌛ Moteur Aviator non connecté.
             </div>
 
-
             <button
                 id="aviatorPredict"
-                class="predict-btn aviator-btn"
+                class="predict-btn green-btn"
             >
                 ● PRÉDIRE
             </button>
 
-        </div>        <!-- =====================
-             MINES CLASSIC
-             ANCIEN DESIGN
+        </div>
+
+
+        <!-- =====================
+             CRASH
         ====================== -->
 
-        <div id="minesScreen" class="screen">
+        <div
+            id="crashScreen"
+            class="screen"
+        >
 
-            <div class="mines-app">
+            <div class="game-image-box">
 
-                <div class="mines-logo">
-                    MINES ⭐
-                </div>
-
-                <div class="mines-subtitle">
-                    EBOMAFF MINI-APPLICATION
-                </div>
-
-
-                <div class="mines-board-wrap">
-
-                    <div
-                        id="minesBoard"
-                        class="mines-board"
-                    >
-                    </div>
-
-                </div>
-
-
-                <div class="trap-title">
-                    💣 SÉLECTION DE PIÈGES
-                </div>
-
-
-                <div
-                    id="trapButtons"
-                    class="trap-buttons"
+                <img
+                    src="./crash.png"
+                    class="game-image"
+                    alt="Crash"
                 >
-
-                    <button
-                        class="trap-btn"
-                        data-trap="1"
-                    >
-                        1
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="2"
-                    >
-                        2
-                    </button>
-
-                    <button
-                        class="trap-btn selected"
-                        data-trap="3"
-                    >
-                        3
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="4"
-                    >
-                        4
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="5"
-                    >
-                        5
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="6"
-                    >
-                        6
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="7"
-                    >
-                        7
-                    </button>
-
-                    <button
-                        class="trap-btn"
-                        data-trap="8"
-                    >
-                        8
-                    </button>
-
-                </div>
-
-
-                <button
-                    id="minesPredict"
-                    class="mines-predict"
-                >
-                    ✨ PRÉDIRE
-                </button>
-
-
-                <div
-                    id="minesStatus"
-                    class="mines-status"
-                >
-                    ⌛ Moteur Mines non connecté.
-                </div>
 
             </div>
+
+            <div
+                id="crashStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Crash non connecté.
+            </div>
+
+            <button
+                id="crashPredict"
+                class="predict-btn blue-btn"
+            >
+                🔎 PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             ROCKET QUEEN
+        ====================== -->
+
+        <div
+            id="rocketQueenScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./rocketqueen.png"
+                    class="game-image"
+                    alt="Rocket Queen"
+                >
+
+            </div>
+
+            <div
+                id="rocketQueenStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Rocket Queen non connecté.
+            </div>
+
+            <button
+                id="rocketQueenPredict"
+                class="predict-btn pink-btn"
+            >
+                🔎 PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             MINES CLASSIC
+             NOUVELLE IMAGE
+        ====================== -->
+
+        <div
+            id="minesScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./mines.png"
+                    class="game-image"
+                    alt="Mines Classic"
+                >
+
+            </div>
+
+
+            <div class="trap-title">
+                💣 SÉLECTION DE PIÈGES
+            </div>
+
+
+            <div
+                id="trapButtons"
+                class="trap-buttons"
+            >
+
+                <button
+                    class="trap-btn"
+                    data-trap="1"
+                >
+                    1
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="2"
+                >
+                    2
+                </button>
+
+                <button
+                    class="trap-btn selected"
+                    data-trap="3"
+                >
+                    3
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="4"
+                >
+                    4
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="5"
+                >
+                    5
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="6"
+                >
+                    6
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="7"
+                >
+                    7
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="8"
+                >
+                    8
+                </button>
+
+            </div>
+
+
+            <div
+                id="minesStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Mines non connecté.
+            </div>
+
+
+            <button
+                id="minesPredict"
+                class="predict-btn yellow-btn"
+            >
+                ✨ PRÉDIRE
+            </button>
+
+        </div>        <!-- =====================
+             LIMBO
+        ====================== -->
+
+        <div
+            id="limboScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./limbo.png"
+                    class="game-image"
+                    alt="Limbo"
+                >
+
+            </div>
+
+            <div
+                id="limboStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Limbo non connecté.
+            </div>
+
+            <button
+                id="limboPredict"
+                class="predict-btn purple-btn"
+            >
+                🔎 PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             PENALTY
+        ====================== -->
+
+        <div
+            id="penaltyScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./penalty.png"
+                    class="game-image"
+                    alt="Penalty"
+                >
+
+            </div>
+
+            <div
+                id="penaltyStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Penalty non connecté.
+            </div>
+
+            <button
+                id="penaltyPredict"
+                class="predict-btn green-btn"
+            >
+                ⚽ PRÉDIRE
+            </button>
+
+        </div>
+
+
+        <!-- =====================
+             ROCKET X
+        ====================== -->
+
+        <div
+            id="rocketXScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./rocketx.png"
+                    class="game-image"
+                    alt="Rocket X"
+                >
+
+            </div>
+
+            <div
+                id="rocketXStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Rocket X non connecté.
+            </div>
+
+            <button
+                id="rocketXPredict"
+                class="predict-btn orange-btn"
+            >
+                🚀 PRÉDIRE
+            </button>
 
         </div>
 
 
         <!-- =====================
              SPEED & CASH
-             ON NE TOUCHE PLUS
         ====================== -->
 
-        <div id="speedScreen" class="screen">
+        <div
+            id="speedScreen"
+            class="screen"
+        >
 
-            <div
-                class="
-                    game-image-box
-                    speed-image-box
-                "
-            >
+            <div class="game-image-box">
 
                 <img
                     src="./speedcash.png"
@@ -657,7 +731,6 @@ body{
 
             </div>
 
-
             <div
                 id="speedStatus"
                 class="engine-status"
@@ -665,16 +738,50 @@ body{
                 ⌛ Moteur Speed &amp; Cash non connecté.
             </div>
 
-
             <button
                 id="speedPredict"
-                class="predict-btn speed-btn"
+                class="predict-btn cyan-btn"
             >
-                PRÉDIRE
+                🏎️ PRÉDIRE
             </button>
 
         </div>
 
+
+        <!-- =====================
+             CHICKEN TRAIN
+        ====================== -->
+
+        <div
+            id="chickenScreen"
+            class="screen"
+        >
+
+            <div class="game-image-box">
+
+                <img
+                    src="./chickentrain.png"
+                    class="game-image"
+                    alt="Chicken Train"
+                >
+
+            </div>
+
+            <div
+                id="chickenStatus"
+                class="engine-status"
+            >
+                ⌛ Moteur Chicken Train non connecté.
+            </div>
+
+            <button
+                id="chickenPredict"
+                class="predict-btn yellow-btn"
+            >
+                🐔 PRÉDIRE
+            </button>
+
+        </div>
 
     </div>
 
@@ -692,7 +799,7 @@ body{
 
         <button
             id="btnLucky"
-            class="active-lucky"
+            class="active-game"
         >
             🚀 Lucky Jet
         </button>
@@ -701,11 +808,11 @@ body{
             ✈️ Aviator
         </button>
 
-        <button>
+        <button id="btnCrash">
             💥 Crash
         </button>
 
-        <button>
+        <button id="btnRocketQueen">
             👑 Rocket Queen
         </button>
 
@@ -713,15 +820,15 @@ body{
             💣 Mines Classic
         </button>
 
-        <button>
+        <button id="btnLimbo">
             📈 Limbo
         </button>
 
-        <button>
+        <button id="btnPenalty">
             ⚽ Penalty
         </button>
 
-        <button>
+        <button id="btnRocketX">
             🚀 Rocket X
         </button>
 
@@ -729,7 +836,7 @@ body{
             🏎️ Speed &amp; Cash
         </button>
 
-        <button>
+        <button id="btnChicken">
             🐔 Chicken Train
         </button>
 
@@ -744,192 +851,301 @@ body{
 
 </div><script>
 
-/* ===== ÉCRANS ===== */
+/* =========================================
+   LES 10 ÉCRANS
+========================================= */
 
-const luckyScreen = document.getElementById("luckyScreen");
-const aviatorScreen = document.getElementById("aviatorScreen");
-const minesScreen = document.getElementById("minesScreen");
-const speedScreen = document.getElementById("speedScreen");
-
-const btnLucky = document.getElementById("btnLucky");
-const btnAviator = document.getElementById("btnAviator");
-const btnMines = document.getElementById("btnMines");
-const btnSpeed = document.getElementById("btnSpeed");
-
-const gameTitle = document.getElementById("gameTitle");
-
-const luckyStatus = document.getElementById("luckyStatus");
-const aviatorStatus = document.getElementById("aviatorStatus");
-const minesStatus = document.getElementById("minesStatus");
-const speedStatus = document.getElementById("speedStatus");
-
-const luckyPredict = document.getElementById("luckyPredict");
-const aviatorPredict = document.getElementById("aviatorPredict");
-const minesPredict = document.getElementById("minesPredict");
-const speedPredict = document.getElementById("speedPredict");
+const screens = {
+    lucky: document.getElementById("luckyScreen"),
+    aviator: document.getElementById("aviatorScreen"),
+    crash: document.getElementById("crashScreen"),
+    rocketQueen: document.getElementById("rocketQueenScreen"),
+    mines: document.getElementById("minesScreen"),
+    limbo: document.getElementById("limboScreen"),
+    penalty: document.getElementById("penaltyScreen"),
+    rocketX: document.getElementById("rocketXScreen"),
+    speed: document.getElementById("speedScreen"),
+    chicken: document.getElementById("chickenScreen")
+};
 
 
-/* ===== CHANGEMENT DE JEU ===== */
+/* =========================================
+   LES 10 BOUTONS DU MENU
+========================================= */
 
-function hideAllScreens(){
+const menuButtons = {
+    lucky: document.getElementById("btnLucky"),
+    aviator: document.getElementById("btnAviator"),
+    crash: document.getElementById("btnCrash"),
+    rocketQueen: document.getElementById("btnRocketQueen"),
+    mines: document.getElementById("btnMines"),
+    limbo: document.getElementById("btnLimbo"),
+    penalty: document.getElementById("btnPenalty"),
+    rocketX: document.getElementById("btnRocketX"),
+    speed: document.getElementById("btnSpeed"),
+    chicken: document.getElementById("btnChicken")
+};
 
-    luckyScreen.classList.remove("active");
-    aviatorScreen.classList.remove("active");
-    minesScreen.classList.remove("active");
-    speedScreen.classList.remove("active");
 
-    btnLucky.classList.remove("active-lucky");
-    btnAviator.classList.remove("active-aviator");
-    btnSpeed.classList.remove("active-speed");
+const gameTitle =
+    document.getElementById("gameTitle");
+
+
+/* =========================================
+   CHANGER DE JEU
+========================================= */
+
+function openGame(game, title){
+
+    Object.values(screens).forEach(function(screen){
+        screen.classList.remove("active");
+    });
+
+    Object.values(menuButtons).forEach(function(button){
+        button.classList.remove("active-game");
+    });
+
+    screens[game].classList.add("active");
+
+    menuButtons[game].classList.add("active-game");
+
+    gameTitle.textContent = title;
 }
 
 
-btnLucky.addEventListener("click", function(){
+/* =========================================
+   CLIC SUR LES 10 JEUX
+========================================= */
 
-    hideAllScreens();
-
-    luckyScreen.classList.add("active");
-    btnLucky.classList.add("active-lucky");
-
-    gameTitle.textContent = "LUCKY JET";
-});
-
-
-btnAviator.addEventListener("click", function(){
-
-    hideAllScreens();
-
-    aviatorScreen.classList.add("active");
-    btnAviator.classList.add("active-aviator");
-
-    gameTitle.textContent = "AVIATOR";
-});
+menuButtons.lucky.addEventListener(
+    "click",
+    function(){
+        openGame("lucky", "LUCKY JET");
+    }
+);
 
 
-btnMines.addEventListener("click", function(){
-
-    hideAllScreens();
-
-    minesScreen.classList.add("active");
-
-    gameTitle.textContent = "MINES CLASSIC";
-});
+menuButtons.aviator.addEventListener(
+    "click",
+    function(){
+        openGame("aviator", "AVIATOR");
+    }
+);
 
 
-btnSpeed.addEventListener("click", function(){
-
-    hideAllScreens();
-
-    speedScreen.classList.add("active");
-    btnSpeed.classList.add("active-speed");
-
-    gameTitle.textContent = "SPEED & CASH";
-});
+menuButtons.crash.addEventListener(
+    "click",
+    function(){
+        openGame("crash", "CRASH");
+    }
+);
 
 
-/* ===== GRILLE MINES 5 × 5 ===== */
-
-const minesBoard = document.getElementById("minesBoard");
-
-for(let i = 0; i < 25; i++){
-
-    const cell = document.createElement("div");
-
-    cell.className = "mine-cell";
-
-    minesBoard.appendChild(cell);
-}
+menuButtons.rocketQueen.addEventListener(
+    "click",
+    function(){
+        openGame(
+            "rocketQueen",
+            "ROCKET QUEEN"
+        );
+    }
+);
 
 
-/* ===== SÉLECTION DES PIÈGES ===== */
+menuButtons.mines.addEventListener(
+    "click",
+    function(){
+        openGame(
+            "mines",
+            "MINES CLASSIC"
+        );
+    }
+);
+
+
+menuButtons.limbo.addEventListener(
+    "click",
+    function(){
+        openGame("limbo", "LIMBO");
+    }
+);
+
+
+menuButtons.penalty.addEventListener(
+    "click",
+    function(){
+        openGame("penalty", "PENALTY");
+    }
+);
+
+
+menuButtons.rocketX.addEventListener(
+    "click",
+    function(){
+        openGame(
+            "rocketX",
+            "ROCKET X"
+        );
+    }
+);
+
+
+menuButtons.speed.addEventListener(
+    "click",
+    function(){
+        openGame(
+            "speed",
+            "SPEED & CASH"
+        );
+    }
+);
+
+
+menuButtons.chicken.addEventListener(
+    "click",
+    function(){
+        openGame(
+            "chicken",
+            "CHICKEN TRAIN"
+        );
+    }
+);
+
+
+/* =========================================
+   SÉLECTION DES PIÈGES MINES
+========================================= */
 
 document
 .querySelectorAll(".trap-btn")
 .forEach(function(button){
 
-    button.addEventListener("click", function(){
+    button.addEventListener(
+        "click",
+        function(){
 
-        document
-        .querySelectorAll(".trap-btn")
-        .forEach(function(item){
+            document
+            .querySelectorAll(".trap-btn")
+            .forEach(function(item){
 
-            item.classList.remove("selected");
+                item.classList.remove(
+                    "selected"
+                );
 
-        });
+            });
 
-        button.classList.add("selected");
+            button.classList.add(
+                "selected"
+            );
 
-    });
-
-});
-
-
-/* ===== LUCKY JET ===== */
-
-luckyPredict.addEventListener("click", function(){
-
-    luckyStatus.textContent =
-        "🔎 Connexion au moteur EBOMAFF...";
-
-    setTimeout(function(){
-
-        luckyStatus.textContent =
-            "⌛ Moteur de prédiction non connecté.";
-
-    },900);
+        }
+    );
 
 });
 
 
-/* ===== AVIATOR — CONSERVÉ ===== */
+/* =========================================
+   FONCTION POUR LES BOUTONS PRÉDIRE
+========================================= */
 
-aviatorPredict.addEventListener("click", function(){
+function connectEngine(
+    buttonId,
+    statusId,
+    gameName
+){
 
-    aviatorStatus.textContent =
-        "🔎 Connexion au moteur Aviator...";
+    const button =
+        document.getElementById(buttonId);
 
-    setTimeout(function(){
+    const status =
+        document.getElementById(statusId);
 
-        aviatorStatus.textContent =
-            "⌛ Moteur Aviator non connecté.";
+    button.addEventListener(
+        "click",
+        function(){
 
-    },900);
+            status.textContent =
+                "🔎 Connexion au moteur "
+                + gameName
+                + "...";
 
-});
+            setTimeout(function(){
 
+                status.textContent =
+                    "⌛ Moteur "
+                    + gameName
+                    + " non connecté.";
 
-/* ===== MINES CLASSIC ===== */
+            },900);
 
-minesPredict.addEventListener("click", function(){
-
-    minesStatus.textContent =
-        "🔎 Connexion au moteur Mines...";
-
-    setTimeout(function(){
-
-        minesStatus.textContent =
-            "⌛ Moteur Mines non connecté.";
-
-    },900);
-
-});
+        }
+    );
+}
 
 
-/* ===== SPEED & CASH — CONSERVÉ ===== */
+/* =========================================
+   BOUTONS PRÉDIRE DES 10 JEUX
+========================================= */
 
-speedPredict.addEventListener("click", function(){
+connectEngine(
+    "luckyPredict",
+    "luckyStatus",
+    "Lucky Jet"
+);
 
-    speedStatus.textContent =
-        "🔎 Connexion au moteur Speed & Cash...";
+connectEngine(
+    "aviatorPredict",
+    "aviatorStatus",
+    "Aviator"
+);
 
-    setTimeout(function(){
+connectEngine(
+    "crashPredict",
+    "crashStatus",
+    "Crash"
+);
 
-        speedStatus.textContent =
-            "⌛ Moteur Speed & Cash non connecté.";
+connectEngine(
+    "rocketQueenPredict",
+    "rocketQueenStatus",
+    "Rocket Queen"
+);
 
-    },900);
+connectEngine(
+    "minesPredict",
+    "minesStatus",
+    "Mines"
+);
 
-});
+connectEngine(
+    "limboPredict",
+    "limboStatus",
+    "Limbo"
+);
+
+connectEngine(
+    "penaltyPredict",
+    "penaltyStatus",
+    "Penalty"
+);
+
+connectEngine(
+    "rocketXPredict",
+    "rocketXStatus",
+    "Rocket X"
+);
+
+connectEngine(
+    "speedPredict",
+    "speedStatus",
+    "Speed & Cash"
+);
+
+connectEngine(
+    "chickenPredict",
+    "chickenStatus",
+    "Chicken Train"
+);
 
 </script>
 
