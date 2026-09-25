@@ -77,6 +77,7 @@ header{
   display:block;
 }
 
+
 /* =========================
    LUCKY JET
 ========================= */
@@ -242,9 +243,9 @@ header{
   color:#fff;
   font-size:16px;
   font-weight:900;
-  background:
-    linear-gradient(90deg,#7130ff,#b93eff);
+  background:linear-gradient(90deg,#7130ff,#b93eff);
 }
+
 
 /* =========================
    MINES CLASSIC
@@ -306,8 +307,7 @@ header{
   justify-content:center;
   border:2px solid #0750a7;
   border-radius:6px;
-  background:
-    linear-gradient(#0872c9,#0753a2);
+  background:linear-gradient(#0872c9,#0753a2);
 }
 
 .cell::after{
@@ -342,8 +342,7 @@ header{
   border:2px solid #e3f8ff;
   border-radius:13px;
   color:#fff;
-  background:
-    linear-gradient(#0781d2,#0754a4);
+  background:linear-gradient(#0781d2,#0754a4);
   font-size:15px;
   font-weight:900;
 }
@@ -363,8 +362,7 @@ header{
   color:#26304b;
   font-size:17px;
   font-weight:900;
-  background:
-    linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
+  background:linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
 }
 
 .mines-note{
@@ -372,67 +370,98 @@ header{
   margin-top:12px;
   font-size:11px;
   color:#e5f5ff;
-}/* =========================
-   AVIATOR
+}
+
+
+/* =========================
+   AVIATOR — NOUVEAU DESIGN
 ========================= */
 
 .aviator{
-  margin:0 15px 18px;
-  height:565px;
-  border-radius:22px;
-  overflow:hidden;
   position:relative;
-  background:#030306;
-  border:1px solid #481020;
+  height:570px;
+  margin:0 15px 18px;
+  overflow:hidden;
+  border-radius:22px;
+  background:#020205;
+  border:1px solid #38101e;
 }
 
-.av-rays{
+.av-stage{
   position:absolute;
+  top:0;
   left:0;
   right:0;
-  top:0;
   height:405px;
   overflow:hidden;
+  background:#020205;
+}
+
+/* rayons violets partant du coin inférieur gauche */
+.av-rays{
+  position:absolute;
+  inset:0;
+  opacity:.9;
+  clip-path:polygon(0 100%,100% 0,100% 100%);
   background:
-    conic-gradient(
+    repeating-conic-gradient(
       from 270deg at 0% 100%,
-      #251071 0deg,
-      #070710 9deg,
-      #321387 17deg,
-      #080810 26deg,
-      #29106f 35deg,
-      #08080d 44deg,
-      #37148a 53deg,
-      #08080e 62deg,
-      #251066 71deg,
-      #07070c 80deg,
-      #30117b 89deg,
-      #060609 100deg
+      rgba(61,24,145,.95) 0deg 7deg,
+      rgba(4,3,10,.96) 7deg 15deg
     );
-  opacity:.75;
+}
+
+/* halo rouge derrière la trajectoire */
+.av-red-glow{
+  position:absolute;
+  right:-20px;
+  bottom:-80px;
+  width:330px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,0,55,.22);
+  filter:blur(42px);
 }
 
 .aviator-brand{
   position:absolute;
-  z-index:10;
-  top:28px;
+  z-index:15;
+  top:18px;
   left:0;
   right:0;
   text-align:center;
-  color:#ff174c;
-  font-size:42px;
-  font-weight:950;
+  color:#ff1748;
+  font-size:43px;
+  line-height:1;
+  font-family:Georgia,serif;
+  font-weight:900;
   font-style:italic;
-  letter-spacing:-3px;
+  letter-spacing:-4px;
+  transform:skewX(-8deg);
   text-shadow:
-    0 0 10px #ff174c,
-    0 0 24px #d50032;
+    0 0 8px #ff1748,
+    0 0 22px #e00038;
+}
+
+.aviator-brand::after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:4px;
+  left:50%;
+  top:48px;
+  transform:translateX(-50%) skewX(-30deg);
+  background:#ff1748;
+  border-radius:20px;
+  box-shadow:
+    0 10px 0 #ff1748,
+    0 0 12px #ff1748;
 }
 
 .av-value{
   position:absolute;
-  z-index:12;
-  top:122px;
+  z-index:16;
+  top:112px;
   left:0;
   right:0;
   text-align:center;
@@ -440,17 +469,17 @@ header{
   font-size:58px;
   font-weight:950;
   text-shadow:
-    0 0 12px #ff1748,
-    0 0 30px #e0003d;
+    0 0 10px #ff1748,
+    0 0 28px #ff003c;
 }
 
 .av-graph{
   position:absolute;
-  z-index:5;
+  z-index:8;
   left:0;
   right:0;
-  top:175px;
-  height:230px;
+  bottom:0;
+  height:275px;
 }
 
 .av-graph svg{
@@ -461,29 +490,30 @@ header{
 
 .av-plane{
   filter:
-    drop-shadow(0 0 5px #ff214c)
-    drop-shadow(0 0 13px #ff0033);
+    drop-shadow(0 0 4px #ff1748)
+    drop-shadow(0 0 12px #ff003c)
+    drop-shadow(0 0 20px #ff003c);
 }
 
 .av-next{
   position:absolute;
-  z-index:15;
+  z-index:20;
   left:25px;
   right:25px;
   top:420px;
   height:76px;
-  border:1px solid #971231;
+  border:1px solid #9b1432;
   border-radius:18px;
   text-align:center;
-  background:#090b16e8;
+  background:#080a14;
   padding-top:13px;
 }
 
 .av-next-label{
-  color:#c7cad4;
+  color:#d6d8df;
   font-size:11px;
   letter-spacing:3px;
-  font-weight:800;
+  font-weight:900;
 }
 
 .av-next-value{
@@ -496,7 +526,7 @@ header{
 
 .aviator-predict{
   position:absolute;
-  z-index:15;
+  z-index:22;
   left:25px;
   right:25px;
   bottom:18px;
@@ -506,14 +536,15 @@ header{
   color:#fff;
   font-size:18px;
   font-weight:950;
-  background:
-    linear-gradient(180deg,#19e962,#00bd3e);
-  box-shadow:0 0 18px #00e85055;
+  background:linear-gradient(180deg,#16ed61,#00bd3e);
+  box-shadow:
+    0 0 15px rgba(0,235,78,.55),
+    inset 0 1px 0 rgba(255,255,255,.25);
 }
 
 .aviator-note{
   position:absolute;
-  z-index:16;
+  z-index:23;
   left:0;
   right:0;
   bottom:2px;
@@ -523,190 +554,317 @@ header{
 }
 
 .game.aviator-active{
-  background:
-    linear-gradient(90deg,#6e071d,#d20b37);
+  background:linear-gradient(90deg,#75051f,#e20b3e);
   border-color:#ff3158;
-}
-
-/* =========================
-   SPEED & CASH
+}/* =========================
+   SPEED & CASH — NOUVEAU DESIGN
 ========================= */
 
 .speedcash{
   position:relative;
-  height:565px;
+  height:570px;
   margin:0 15px 18px;
   overflow:hidden;
   border-radius:22px;
-  background:#050608;
-  border:1px solid #1d2733;
+  background:#020304;
+  border:1px solid #1b2028;
 }
 
+/* Grand logo en haut */
 .speed-logo{
   position:absolute;
-  z-index:10;
-  top:36px;
+  z-index:20;
+  top:30px;
   left:0;
   right:0;
   text-align:center;
-  font-size:29px;
+  font-size:38px;
+  line-height:.9;
   font-weight:950;
   font-style:italic;
+  letter-spacing:-3px;
+  transform:skewX(-7deg);
 }
 
 .speed-word{
-  color:#ff6b17;
-  text-shadow:0 0 10px #ff5b00;
+  color:#ff6416;
+  text-shadow:
+    0 0 5px #ff4c00,
+    3px 3px 0 #922400;
 }
 
 .amp{
   color:#fff;
-  margin:0 5px;
+  margin:0 4px;
+  font-size:30px;
+  text-shadow:0 0 7px #fff7;
 }
 
 .cash-word{
-  color:#29aaff;
-  text-shadow:0 0 10px #008cff;
+  color:#20aaff;
+  text-shadow:
+    0 0 5px #008cff,
+    3px 3px 0 #004c96;
 }
 
+/* ligne blanche centrale */
 .speed-line{
   position:absolute;
-  z-index:2;
-  top:95px;
-  bottom:72px;
+  z-index:3;
+  top:105px;
+  bottom:65px;
   left:50%;
-  width:2px;
+  width:3px;
   transform:translateX(-50%);
   background:
     repeating-linear-gradient(
       to bottom,
-      #fff 0,
-      #fff 12px,
-      transparent 12px,
-      transparent 23px
+      #f5f5f5 0px,
+      #f5f5f5 14px,
+      transparent 14px,
+      transparent 28px
     );
-  opacity:.85;
+  opacity:.9;
 }
 
+/* coefficient reste fixe au centre */
 .speed-value{
   position:absolute;
-  z-index:20;
-  top:47%;
+  z-index:30;
+  top:48%;
   left:50%;
   transform:translate(-50%,-50%);
-  padding:7px 13px;
-  border-radius:12px;
-  background:#050608;
+  padding:7px 12px;
   color:#fff;
-  font-size:34px;
+  background:#020304;
+  border-radius:8px;
+  font-size:35px;
   font-weight:950;
   white-space:nowrap;
+  text-shadow:0 0 10px #ffffff66;
 }
+
+/* =========================
+   VOITURES VUES DU DESSUS
+========================= */
 
 .speed-car{
   position:absolute;
-  z-index:12;
-  top:69%;
-  width:63px;
-  height:112px;
+  z-index:15;
+  top:72%;
+  width:72px;
+  height:132px;
   transform:translateY(-50%);
-  border-radius:30px 30px 18px 18px;
-  transition:top .8s ease;
+  transition:top .85s ease;
 }
 
+/* voiture bleue à gauche */
 .car-blue{
-  left:calc(50% - 90px);
-  background:
-    linear-gradient(
-      90deg,
-      #006fd6 0%,
-      #25bfff 20%,
-      #0875d5 50%,
-      #26c9ff 78%,
-      #0051a9 100%
-    );
-  box-shadow:0 0 20px #009cff88;
+  left:calc(50% - 105px);
 }
 
+/* voiture rouge à droite */
 .car-red{
-  right:calc(50% - 90px);
+  right:calc(50% - 105px);
+}
+
+/* carrosserie */
+.car-body{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  border-radius:
+    30px 30px
+    18px 18px;
+}
+
+.car-blue .car-body{
   background:
     linear-gradient(
       90deg,
-      #8f190b 0%,
-      #ff5a18 20%,
-      #df2b0c 50%,
-      #ff851d 78%,
-      #8b1609 100%
+      #003c85 0%,
+      #008ee8 15%,
+      #36d5ff 30%,
+      #0878cf 50%,
+      #35caff 70%,
+      #0071c9 85%,
+      #00366f 100%
     );
-  box-shadow:0 0 20px #ff4d1688;
+  box-shadow:
+    0 0 15px #009cff88,
+    inset 0 0 8px #b9f6ff99;
 }
 
-.speed-car::before{
-  content:"";
-  position:absolute;
-  top:23px;
-  left:10px;
-  right:10px;
-  height:35px;
-  border-radius:13px 13px 7px 7px;
-  background:#101a24;
-  border:2px solid #ffffff44;
+.car-red .car-body{
+  background:
+    linear-gradient(
+      90deg,
+      #741100 0%,
+      #d62c08 15%,
+      #ff7a20 30%,
+      #d92a08 50%,
+      #ff7c1e 70%,
+      #cf2707 85%,
+      #721000 100%
+    );
+  box-shadow:
+    0 0 15px #ff4b1788,
+    inset 0 0 8px #ffd0a599;
 }
 
-.speed-car::after{
-  content:"";
+/* pare-brise */
+.car-window{
   position:absolute;
+  z-index:4;
+  top:31px;
+  left:13px;
+  right:13px;
+  height:38px;
+  border-radius:12px 12px 7px 7px;
+  background:
+    linear-gradient(
+      180deg,
+      #07121c,
+      #18384b
+    );
+  border:2px solid #ffffff55;
+  box-shadow:inset 0 0 8px #000;
+}
+
+/* toit */
+.car-roof{
+  position:absolute;
+  z-index:5;
+  top:68px;
+  left:16px;
+  right:16px;
+  height:34px;
+  border-radius:7px 7px 12px 12px;
+}
+
+.car-blue .car-roof{
+  background:#0878ce;
+}
+
+.car-red .car-roof{
+  background:#d6320d;
+}
+
+/* capot */
+.car-hood{
+  position:absolute;
+  z-index:3;
+  top:5px;
+  left:15px;
+  right:15px;
+  height:25px;
+  border-radius:18px 18px 5px 5px;
+  border-top:3px solid #ffffff66;
+}
+
+/* roues */
+.wheel{
+  position:absolute;
+  z-index:1;
+  width:10px;
+  height:28px;
+  border-radius:5px;
+  background:#101010;
+}
+
+.w1{
   left:-6px;
-  right:-6px;
-  top:30px;
-  height:56px;
-  border-left:7px solid #151515;
-  border-right:7px solid #151515;
+  top:27px;
 }
 
+.w2{
+  right:-6px;
+  top:27px;
+}
+
+.w3{
+  left:-6px;
+  bottom:22px;
+}
+
+.w4{
+  right:-6px;
+  bottom:22px;
+}
+
+/* phares avant */
+.car-light{
+  position:absolute;
+  z-index:8;
+  top:8px;
+  width:12px;
+  height:8px;
+  border-radius:50%;
+  background:#fffbe1;
+  box-shadow:0 0 8px #fff;
+}
+
+.light-left{
+  left:12px;
+}
+
+.light-right{
+  right:12px;
+}
+
+/* mouvement des voitures */
 .speedcash.running .car-blue{
-  top:32%;
+  top:34%;
 }
 
 .speedcash.running .car-red{
-  top:25%;
+  top:27%;
 }
 
+/* bouton */
 .speed-predict{
   position:absolute;
-  z-index:30;
-  bottom:20px;
+  z-index:40;
+  bottom:17px;
   left:50%;
   transform:translateX(-50%);
-  width:145px;
-  height:46px;
+  width:150px;
+  height:47px;
   border:0;
-  border-radius:15px;
+  border-radius:14px;
   color:#fff;
   background:
-    linear-gradient(180deg,#24d6d1,#009da8);
+    linear-gradient(
+      180deg,
+      #27ddd5,
+      #0098a6
+    );
   font-size:16px;
-  font-weight:900;
-  box-shadow:0 0 18px #00d7d377;
+  font-weight:950;
+  box-shadow:0 0 15px #00cfc977;
 }
 
 .speed-note{
   position:absolute;
-  z-index:20;
-  bottom:76px;
+  z-index:35;
+  bottom:71px;
   left:0;
   right:0;
   text-align:center;
-  color:#9da4b1;
+  color:#969eaa;
   font-size:10px;
 }
 
 .game.speed-active{
   background:
-    linear-gradient(90deg,#005e83,#00a9b7);
+    linear-gradient(
+      90deg,
+      #005a80,
+      #00a7b5
+    );
   border-color:#26e6e1;
 }
+
 
 /* =========================
    MENU
@@ -737,13 +895,21 @@ header{
 
 .game.active{
   background:
-    linear-gradient(90deg,#5622a8,#8435dd);
+    linear-gradient(
+      90deg,
+      #5622a8,
+      #8435dd
+    );
   border-color:#a15cff;
 }
 
 .game.mines-active{
   background:
-    linear-gradient(90deg,#0474d3,#00afe4);
+    linear-gradient(
+      90deg,
+      #0474d3,
+      #00afe4
+    );
   border-color:#79edff;
 }
 
@@ -756,12 +922,47 @@ footer{
 }
 
 @media(max-width:360px){
-  .lucky{height:370px}
-  .logo{font-size:28px}
-  .value{font-size:57px}
-  .lucky-character{width:165px}
-  .av-value{font-size:50px}
-  .aviator-brand{font-size:36px}
+
+  .lucky{
+    height:370px;
+  }
+
+  .logo{
+    font-size:28px;
+  }
+
+  .value{
+    font-size:57px;
+  }
+
+  .lucky-character{
+    width:165px;
+  }
+
+  .av-value{
+    font-size:50px;
+  }
+
+  .aviator-brand{
+    font-size:37px;
+  }
+
+  .speed-logo{
+    font-size:34px;
+  }
+
+  .speed-car{
+    width:65px;
+    height:122px;
+  }
+
+  .car-blue{
+    left:calc(50% - 94px);
+  }
+
+  .car-red{
+    right:calc(50% - 94px);
+  }
 }
 
 </style>
@@ -772,20 +973,38 @@ footer{
 <div class="app">
 
 <header>
-  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
-  <div class="online">● ONLINE</div>
+  <div class="brand">
+    🤖 EBOMAFF PREDICTOR
+  </div>
+
+  <div class="online">
+    ● ONLINE
+  </div>
 </header>
 
 <div class="card">
 
-<div class="top">
-  <h2 id="gameTitle">LUCKY JET</h2>
-  <div class="ai">EBOMAFF AI</div>
-</div><!-- ======================
+  <div class="top">
+
+    <h2 id="gameTitle">
+      LUCKY JET
+    </h2>
+
+    <div class="ai">
+      EBOMAFF AI
+    </div>
+
+  </div>
+
+
+<!-- ======================
      LUCKY JET
 ====================== -->
 
-<div id="luckyScreen" class="screen active">
+<div
+  id="luckyScreen"
+  class="screen active"
+>
 
   <div class="lucky">
 
@@ -819,11 +1038,17 @@ footer{
 
   </div>
 
-  <div id="luckyStatus" class="status">
+  <div
+    id="luckyStatus"
+    class="status"
+  >
     ⌛ Moteur de prédiction non connecté.
   </div>
 
-  <button id="luckyPredict" class="predict">
+  <button
+    id="luckyPredict"
+    class="predict"
+  >
     🔎 PRÉDIRE
   </button>
 
@@ -834,7 +1059,10 @@ footer{
      MINES CLASSIC
 ====================== -->
 
-<div id="minesScreen" class="screen">
+<div
+  id="minesScreen"
+  class="screen"
+>
 
   <div class="mines">
 
@@ -846,7 +1074,10 @@ footer{
       EBOMAFF MINI-APPLICATION
     </div>
 
-    <div id="board" class="board"></div>
+    <div
+      id="board"
+      class="board"
+    ></div>
 
     <div class="trap-zone">
 
@@ -858,9 +1089,15 @@ footer{
 
         <button class="trap" data-trap="1">1</button>
         <button class="trap" data-trap="2">2</button>
-        <button class="trap active" data-trap="3">3</button>
-        <button class="trap" data-trap="4">4</button>
 
+        <button
+          class="trap active"
+          data-trap="3"
+        >
+          3
+        </button>
+
+        <button class="trap" data-trap="4">4</button>
         <button class="trap" data-trap="5">5</button>
         <button class="trap" data-trap="6">6</button>
         <button class="trap" data-trap="7">7</button>
@@ -870,20 +1107,23 @@ footer{
 
     </div>
 
-    <button id="minesPredict" class="mines-predict">
+    <button
+      id="minesPredict"
+      class="mines-predict"
+    >
       PRÉDIRE
     </button>
 
-    <div id="minesNote" class="mines-note">
+    <div
+      id="minesNote"
+      class="mines-note"
+    >
       ⌛ Moteur Mines non connecté.
     </div>
 
   </div>
 
-</div>
-
-
-<!-- ======================
+</div><!-- ======================
      AVIATOR
 ====================== -->
 
@@ -891,126 +1131,139 @@ footer{
 
   <div class="aviator">
 
-    <div class="av-rays"></div>
+    <div class="av-stage">
 
-    <div class="aviator-brand">
-      Aviator
-    </div>
+      <div class="av-rays"></div>
+      <div class="av-red-glow"></div>
 
-    <div class="av-value">
-      --.--x
-    </div>
+      <div class="aviator-brand">
+        Aviator
+      </div>
 
-    <div class="av-graph">
+      <div class="av-value">
+        --.--x
+      </div>
 
-      <svg
-        viewBox="0 0 400 230"
-        preserveAspectRatio="none"
-      >
+      <div class="av-graph">
 
-        <defs>
-
-          <linearGradient
-            id="redArea"
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="1"
-          >
-
-            <stop
-              offset="0%"
-              stop-color="#ff003c"
-              stop-opacity=".48"
-            />
-
-            <stop
-              offset="100%"
-              stop-color="#ff003c"
-              stop-opacity=".05"
-            />
-
-          </linearGradient>
-
-        </defs>
-
-        <path
-          d="
-            M0 220
-            C80 220 145 212 205 188
-            C265 164 315 120 355 55
-            L355 220 Z
-          "
-          fill="url(#redArea)"
-        />
-
-        <path
-          d="
-            M0 220
-            C80 220 145 212 205 188
-            C265 164 315 120 355 55
-          "
-          fill="none"
-          stroke="#ff174c"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
-        <line
-          x1="0"
-          y1="220"
-          x2="400"
-          y2="220"
-          stroke="#a00b2c"
-          stroke-width="2"
-        />
-
-        <g
-          class="av-plane"
-          transform="translate(318 35) scale(1.15)"
+        <svg
+          viewBox="0 0 400 275"
+          preserveAspectRatio="none"
         >
 
+          <defs>
+
+            <linearGradient
+              id="avFill"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="0%"
+                stop-color="#ff003c"
+                stop-opacity=".48"
+              />
+
+              <stop
+                offset="100%"
+                stop-color="#ff003c"
+                stop-opacity=".06"
+              />
+            </linearGradient>
+
+          </defs>
+
+          <!-- zone rouge sous la courbe -->
           <path
             d="
-              M4 38
-              L22 31
-              L35 16
-              L42 18
-              L38 29
-              L61 20
-              L72 23
-              L57 35
-              L72 40
-              L68 45
-              L46 40
-              L27 53
-              L19 51
-              L27 40
-              L8 44 Z
+              M0 267
+              C65 266 120 258 170 235
+              C225 210 270 170 305 125
+              C330 93 350 60 366 28
+              L366 267
+              Z
             "
-            fill="#ffffff"
-            stroke="#ff174c"
-            stroke-width="3"
-            stroke-linejoin="round"
+            fill="url(#avFill)"
           />
 
+          <!-- courbe rouge -->
           <path
-            d="M46 25 L61 28"
+            d="
+              M0 267
+              C65 266 120 258 170 235
+              C225 210 270 170 305 125
+              C330 93 350 60 366 28
+            "
             fill="none"
             stroke="#ff174c"
-            stroke-width="3"
+            stroke-width="5"
+            stroke-linecap="round"
           />
 
-          <path
-            d="M15 34 L-8 42"
-            fill="none"
-            stroke="#ff174c"
-            stroke-width="3"
+          <!-- ligne du bas -->
+          <line
+            x1="0"
+            y1="267"
+            x2="400"
+            y2="267"
+            stroke="#8c0a29"
+            stroke-width="2"
           />
 
-        </g>
+          <!-- avion rouge/blanc -->
+          <g
+            class="av-plane"
+            transform="translate(315 20) scale(1.05)"
+          >
 
-      </svg>
+            <path
+              d="
+                M3 39
+                L22 31
+                L35 15
+                L42 17
+                L39 28
+                L62 18
+                L76 21
+                L59 35
+                L76 40
+                L70 46
+                L47 40
+                L28 55
+                L18 52
+                L27 40
+                L7 45
+                Z
+              "
+              fill="#ffffff"
+              stroke="#ff174c"
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
+
+            <path
+              d="M44 26 L61 29"
+              fill="none"
+              stroke="#ff174c"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M17 34 L-9 43"
+              fill="none"
+              stroke="#ff174c"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+          </g>
+
+        </svg>
+
+      </div>
 
     </div>
 
@@ -1051,7 +1304,10 @@ footer{
 
 <div id="speedScreen" class="screen">
 
-  <div id="speedGame" class="speedcash">
+  <div
+    id="speedGame"
+    class="speedcash"
+  >
 
     <div class="speed-logo">
 
@@ -1078,9 +1334,56 @@ footer{
       --.--x
     </div>
 
-    <div class="speed-car car-blue"></div>
 
-    <div class="speed-car car-red"></div>
+    <!-- VOITURE BLEUE -->
+
+    <div class="speed-car car-blue">
+
+      <div class="wheel w1"></div>
+      <div class="wheel w2"></div>
+      <div class="wheel w3"></div>
+      <div class="wheel w4"></div>
+
+      <div class="car-body">
+
+        <div class="car-hood"></div>
+
+        <div class="car-window"></div>
+
+        <div class="car-roof"></div>
+
+        <div class="car-light light-left"></div>
+        <div class="car-light light-right"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- VOITURE ROUGE -->
+
+    <div class="speed-car car-red">
+
+      <div class="wheel w1"></div>
+      <div class="wheel w2"></div>
+      <div class="wheel w3"></div>
+      <div class="wheel w4"></div>
+
+      <div class="car-body">
+
+        <div class="car-hood"></div>
+
+        <div class="car-window"></div>
+
+        <div class="car-roof"></div>
+
+        <div class="car-light light-left"></div>
+        <div class="car-light light-right"></div>
+
+      </div>
+
+    </div>
+
 
     <div
       id="speedNote"
@@ -1256,7 +1559,7 @@ for(let i = 0; i < 25; i++){
 
 
 /* =========================
-   CHANGEMENT D'ÉCRAN
+   CACHER LES ÉCRANS
 ========================= */
 
 function hideScreens(){
@@ -1289,7 +1592,8 @@ btnLucky.onclick = function(){
 
   hideScreens();
 
-  gameTitle.textContent = "LUCKY JET";
+  gameTitle.textContent =
+    "LUCKY JET";
 
   luckyScreen.classList.add("active");
 
@@ -1306,7 +1610,8 @@ btnMines.onclick = function(){
 
   hideScreens();
 
-  gameTitle.textContent = "MINES CLASSIC";
+  gameTitle.textContent =
+    "MINES CLASSIC";
 
   minesScreen.classList.add("active");
 
@@ -1323,11 +1628,14 @@ btnAviator.onclick = function(){
 
   hideScreens();
 
-  gameTitle.textContent = "AVIATOR";
+  gameTitle.textContent =
+    "AVIATOR";
 
   aviatorScreen.classList.add("active");
 
-  btnAviator.classList.add("aviator-active");
+  btnAviator.classList.add(
+    "aviator-active"
+  );
 
 };
 
@@ -1340,11 +1648,14 @@ btnSpeed.onclick = function(){
 
   hideScreens();
 
-  gameTitle.textContent = "SPEED & CASH";
+  gameTitle.textContent =
+    "SPEED & CASH";
 
   speedScreen.classList.add("active");
 
-  btnSpeed.classList.add("speed-active");
+  btnSpeed.classList.add(
+    "speed-active"
+  );
 
 };
 
