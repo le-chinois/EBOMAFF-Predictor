@@ -27,6 +27,8 @@ body{
     padding:20px 15px 40px;
 }
 
+/* ===== EN-TÊTE ===== */
+
 .topbar{
     display:flex;
     justify-content:space-between;
@@ -44,6 +46,8 @@ body{
     font-size:14px;
     font-weight:800;
 }
+
+/* ===== CARTE ===== */
 
 .game-card{
     background:#101426;
@@ -81,11 +85,14 @@ body{
     display:block;
 }
 
+/* ===== IMAGES ===== */
+
 .game-image-box{
     width:100%;
     background:#02040a;
     border-radius:22px;
     overflow:hidden;
+    position:relative;
 }
 
 .game-image{
@@ -94,11 +101,67 @@ body{
     height:auto;
 }
 
+/* ===== LUCKY JET DYNAMIQUE ===== */
+
+.lucky-live-box{
+    position:relative;
+}
+
+/*
+   Cette valeur est placée par-dessus le --x
+   déjà présent dans l'image Lucky Jet.
+*/
+.lucky-live-value{
+    position:absolute;
+    left:50%;
+    top:29%;
+    transform:translate(-50%,-50%);
+
+    min-width:130px;
+    text-align:center;
+
+    color:#f052ff;
+    font-size:38px;
+    line-height:1;
+    font-weight:900;
+
+    text-shadow:
+        0 0 8px rgba(240,82,255,.95),
+        0 0 18px rgba(165,39,255,.85);
+
+    pointer-events:none;
+    z-index:5;
+}
+
+.lucky-live-value.calculating{
+    animation:luckyPulse .55s infinite alternate;
+}
+
+@keyframes luckyPulse{
+    from{
+        opacity:.45;
+        transform:
+            translate(-50%,-50%)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(1.08);
+    }
+}
+
+/* ===== STATUT ===== */
+
 .engine-status{
     margin:18px 7px 16px;
     color:#a8aaba;
     font-size:14px;
 }
+
+/* ===== BOUTONS ===== */
 
 .predict-btn{
     width:100%;
@@ -116,35 +179,65 @@ body{
 }
 
 .purple-btn{
-    background:linear-gradient(90deg,#7028ff,#bd34ff);
+    background:linear-gradient(
+        90deg,
+        #7028ff,
+        #bd34ff
+    );
 }
 
 .green-btn{
-    background:linear-gradient(180deg,#16e85f,#00bd45);
+    background:linear-gradient(
+        180deg,
+        #16e85f,
+        #00bd45
+    );
 }
 
 .blue-btn{
-    background:linear-gradient(90deg,#1769ff,#00b7ff);
+    background:linear-gradient(
+        90deg,
+        #1769ff,
+        #00b7ff
+    );
 }
 
 .pink-btn{
-    background:linear-gradient(90deg,#a62cff,#ff4b9b);
+    background:linear-gradient(
+        90deg,
+        #a62cff,
+        #ff4b9b
+    );
 }
 
 .yellow-btn{
     color:#20283d;
-    background:linear-gradient(90deg,#fff,#fff8c9,#ffe12e);
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #fff8c9,
+        #ffe12e
+    );
 }
 
 .cyan-btn{
-    background:linear-gradient(180deg,#17c4d1,#0798ac);
+    background:linear-gradient(
+        180deg,
+        #17c4d1,
+        #0798ac
+    );
 }
 
 .orange-btn{
-    background:linear-gradient(90deg,#ff8a18,#ffb72e);
+    background:linear-gradient(
+        90deg,
+        #ff8a18,
+        #ffb72e
+    );
 }
 
-/* AVIATOR */
+/* ===== AVIATOR ===== */
 
 .aviator-next{
     margin-top:14px;
@@ -167,12 +260,13 @@ body{
     font-size:31px;
     font-weight:900;
     margin-top:5px;
+
     text-shadow:
         0 0 8px #ff174f,
         0 0 18px #ff174f;
 }
 
-/* MINES */
+/* ===== MINES ===== */
 
 .trap-title{
     margin-top:18px;
@@ -192,8 +286,10 @@ body{
     height:46px;
     border:2px solid #159fea;
     border-radius:13px;
+
     background:#0b579f;
     color:#fff;
+
     font-size:16px;
     font-weight:900;
 }
@@ -202,10 +298,12 @@ body{
     background:#fff;
     color:#172238;
     border-color:#fff;
-    box-shadow:0 0 16px rgba(0,238,255,.75);
+
+    box-shadow:
+        0 0 16px rgba(0,238,255,.75);
 }
 
-/* MENU */
+/* ===== MENU ===== */
 
 .menu-title{
     margin:27px 3px 15px;
@@ -224,8 +322,10 @@ body{
     min-height:58px;
     border:1px solid #292e48;
     border-radius:17px;
+
     background:#111522;
     color:#fff;
+
     font-size:15px;
     font-weight:800;
     padding:8px;
@@ -234,7 +334,12 @@ body{
 
 .game-menu button.active-game{
     border-color:#a84aff;
-    background:linear-gradient(90deg,#6723c9,#9638e8);
+
+    background:linear-gradient(
+        90deg,
+        #6723c9,
+        #9638e8
+    );
 }
 
 .footer{
@@ -244,6 +349,7 @@ body{
     line-height:1.6;
     font-size:13px;
 }
+
 </style>
 </head>
 
@@ -252,36 +358,71 @@ body{
 <div class="app">
 
     <div class="topbar">
-        <div class="brand">🤖 EBOMAFF PREDICTOR</div>
-        <div class="online">● ONLINE</div>
+
+        <div class="brand">
+            🤖 EBOMAFF PREDICTOR
+        </div>
+
+        <div class="online">
+            ● ONLINE
+        </div>
+
     </div>
+
 
     <div class="game-card">
 
         <div class="game-head">
-            <div id="gameTitle" class="game-title">
+
+            <div
+                id="gameTitle"
+                class="game-title"
+            >
                 LUCKY JET
             </div>
 
             <div class="ai-badge">
                 EBOMAFF AI
             </div>
+
         </div>
 
 
-        <!-- LUCKY JET -->
+        <!-- ==================================
+             1. LUCKY JET
+        =================================== -->
 
-        <div id="luckyScreen" class="screen active">
+        <div
+            id="luckyScreen"
+            class="screen active"
+        >
 
-            <div class="game-image-box">
+            <div
+                class="
+                    game-image-box
+                    lucky-live-box
+                "
+            >
+
                 <img
                     src="/luckyjet.png"
                     class="game-image"
                     alt="Lucky Jet"
                 >
+
+                <div
+                    id="luckyLiveValue"
+                    class="lucky-live-value"
+                >
+                    --x
+                </div>
+
             </div>
 
-            <div id="luckyStatus" class="engine-status">
+            <div
+                id="luckyStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Lucky Jet non connecté.
             </div>
 
@@ -295,16 +436,23 @@ body{
         </div>
 
 
-        <!-- AVIATOR -->
+        <!-- ==================================
+             2. AVIATOR
+        =================================== -->
 
-        <div id="aviatorScreen" class="screen">
+        <div
+            id="aviatorScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/aviator.png"
                     class="game-image"
                     alt="Aviator"
                 >
+
             </div>
 
             <div class="aviator-next">
@@ -319,7 +467,10 @@ body{
 
             </div>
 
-            <div id="aviatorStatus" class="engine-status">
+            <div
+                id="aviatorStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Aviator non connecté.
             </div>
 
@@ -333,19 +484,29 @@ body{
         </div>
 
 
-        <!-- CRASH -->
+        <!-- ==================================
+             3. CRASH
+        =================================== -->
 
-        <div id="crashScreen" class="screen">
+        <div
+            id="crashScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/crash.png"
                     class="game-image"
                     alt="Crash"
                 >
+
             </div>
 
-            <div id="crashStatus" class="engine-status">
+            <div
+                id="crashStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Crash non connecté.
             </div>
 
@@ -359,19 +520,29 @@ body{
         </div>
 
 
-        <!-- ROCKET QUEEN -->
+        <!-- ==================================
+             4. ROCKET QUEEN
+        =================================== -->
 
-        <div id="rocketQueenScreen" class="screen">
+        <div
+            id="rocketQueenScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/rocketqueen.png"
                     class="game-image"
                     alt="Rocket Queen"
                 >
+
             </div>
 
-            <div id="rocketQueenStatus" class="engine-status">
+            <div
+                id="rocketQueenStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Rocket Queen non connecté.
             </div>
 
@@ -385,16 +556,23 @@ body{
         </div>
 
 
-        <!-- MINES CLASSIC -->
+        <!-- ==================================
+             5. MINES CLASSIC
+        =================================== -->
 
-        <div id="minesScreen" class="screen">
+        <div
+            id="minesScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/mines.png"
                     class="game-image"
                     alt="Mines Classic"
                 >
+
             </div>
 
             <div class="trap-title">
@@ -403,19 +581,68 @@ body{
 
             <div class="trap-buttons">
 
-                <button class="trap-btn" data-trap="1">1</button>
-                <button class="trap-btn" data-trap="2">2</button>
-                <button class="trap-btn selected" data-trap="3">3</button>
-                <button class="trap-btn" data-trap="4">4</button>
+                <button
+                    class="trap-btn"
+                    data-trap="1"
+                >
+                    1
+                </button>
 
-                <button class="trap-btn" data-trap="5">5</button>
-                <button class="trap-btn" data-trap="6">6</button>
-                <button class="trap-btn" data-trap="7">7</button>
-                <button class="trap-btn" data-trap="8">8</button>
+                <button
+                    class="trap-btn"
+                    data-trap="2"
+                >
+                    2
+                </button>
+
+                <button
+                    class="trap-btn selected"
+                    data-trap="3"
+                >
+                    3
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="4"
+                >
+                    4
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="5"
+                >
+                    5
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="6"
+                >
+                    6
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="7"
+                >
+                    7
+                </button>
+
+                <button
+                    class="trap-btn"
+                    data-trap="8"
+                >
+                    8
+                </button>
 
             </div>
 
-            <div id="minesStatus" class="engine-status">
+            <div
+                id="minesStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Mines non connecté.
             </div>
 
@@ -429,19 +656,29 @@ body{
         </div>
 
 
-        <!-- LIMBO -->
+        <!-- ==================================
+             6. LIMBO
+        =================================== -->
 
-        <div id="limboScreen" class="screen">
+        <div
+            id="limboScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/limbo.png"
                     class="game-image"
                     alt="Limbo"
                 >
+
             </div>
 
-            <div id="limboStatus" class="engine-status">
+            <div
+                id="limboStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Limbo non connecté.
             </div>
 
@@ -455,19 +692,29 @@ body{
         </div>
 
 
-        <!-- PENALTY -->
+        <!-- ==================================
+             7. PENALTY
+        =================================== -->
 
-        <div id="penaltyScreen" class="screen">
+        <div
+            id="penaltyScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/penalty.png"
                     class="game-image"
                     alt="Penalty"
                 >
+
             </div>
 
-            <div id="penaltyStatus" class="engine-status">
+            <div
+                id="penaltyStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Penalty non connecté.
             </div>
 
@@ -481,19 +728,29 @@ body{
         </div>
 
 
-        <!-- ROCKET X -->
+        <!-- ==================================
+             8. ROCKET X
+        =================================== -->
 
-        <div id="rocketXScreen" class="screen">
+        <div
+            id="rocketXScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/rocketx.png"
                     class="game-image"
                     alt="Rocket X"
                 >
+
             </div>
 
-            <div id="rocketXStatus" class="engine-status">
+            <div
+                id="rocketXStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Rocket X non connecté.
             </div>
 
@@ -507,19 +764,29 @@ body{
         </div>
 
 
-        <!-- SPEED & CASH -->
+        <!-- ==================================
+             9. SPEED & CASH
+        =================================== -->
 
-        <div id="speedScreen" class="screen">
+        <div
+            id="speedScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/speedcash.png"
                     class="game-image"
                     alt="Speed & Cash"
                 >
+
             </div>
 
-            <div id="speedStatus" class="engine-status">
+            <div
+                id="speedStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Speed &amp; Cash non connecté.
             </div>
 
@@ -533,19 +800,29 @@ body{
         </div>
 
 
-        <!-- CHICKEN TRAIN -->
+        <!-- ==================================
+             10. CHICKEN TRAIN
+        =================================== -->
 
-        <div id="chickenScreen" class="screen">
+        <div
+            id="chickenScreen"
+            class="screen"
+        >
 
             <div class="game-image-box">
+
                 <img
                     src="/chickentrain.png"
                     class="game-image"
                     alt="Chicken Train"
                 >
+
             </div>
 
-            <div id="chickenStatus" class="engine-status">
+            <div
+                id="chickenStatus"
+                class="engine-status"
+            >
                 ⌛ Moteur Chicken Train non connecté.
             </div>
 
@@ -561,7 +838,9 @@ body{
     </div>
 
 
-    <!-- MENU -->
+    <!-- ==================================
+         MENU DES 10 JEUX
+    =================================== -->
 
     <div class="menu-title">
         🎮 CHOISIR UN JEU
@@ -664,205 +943,132 @@ body{
 <script>
 
 /* =========================================
-   ÉCRANS
+   LES 10 ÉCRANS
 ========================================= */
 
 const screens = {
-    lucky: document.getElementById("luckyScreen"),
-    aviator: document.getElementById("aviatorScreen"),
-    crash: document.getElementById("crashScreen"),
-    rocketQueen: document.getElementById("rocketQueenScreen"),
-    mines: document.getElementById("minesScreen"),
-    limbo: document.getElementById("limboScreen"),
-    penalty: document.getElementById("penaltyScreen"),
-    rocketX: document.getElementById("rocketXScreen"),
-    speed: document.getElementById("speedScreen"),
-    chicken: document.getElementById("chickenScreen")
+
+    lucky:
+        document.getElementById("luckyScreen"),
+
+    aviator:
+        document.getElementById("aviatorScreen"),
+
+    crash:
+        document.getElementById("crashScreen"),
+
+    rocketQueen:
+        document.getElementById("rocketQueenScreen"),
+
+    mines:
+        document.getElementById("minesScreen"),
+
+    limbo:
+        document.getElementById("limboScreen"),
+
+    penalty:
+        document.getElementById("penaltyScreen"),
+
+    rocketX:
+        document.getElementById("rocketXScreen"),
+
+    speed:
+        document.getElementById("speedScreen"),
+
+    chicken:
+        document.getElementById("chickenScreen")
 };
+
 
 const gameTitle =
     document.getElementById("gameTitle");
 
 
 /* =========================================
-   MENU
+   MENU DES JEUX
 ========================================= */
 
 document
 .querySelectorAll(".game-select")
 .forEach(function(button){
 
-    button.addEventListener("click", function(){
+    button.addEventListener(
+        "click",
+        function(){
 
-        const game =
-            button.dataset.game;
+            const game =
+                button.dataset.game;
 
-        const title =
-            button.dataset.title;
+            const title =
+                button.dataset.title;
 
-        Object.values(screens)
-        .forEach(function(screen){
 
-            screen.classList.remove("active");
+            Object
+            .values(screens)
+            .forEach(function(screen){
 
-        });
+                screen.classList.remove(
+                    "active"
+                );
 
-        document
-        .querySelectorAll(".game-select")
-        .forEach(function(item){
-
-            item.classList.remove("active-game");
-
-        });
-
-        if(screens[game]){
-
-            screens[game]
-            .classList.add("active");
-
-            button.classList.add("active-game");
-
-            gameTitle.textContent = title;
-
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
             });
 
-        }
 
-    });
+            document
+            .querySelectorAll(".game-select")
+            .forEach(function(item){
+
+                item.classList.remove(
+                    "active-game"
+                );
+
+            });
+
+
+            if(screens[game]){
+
+                screens[game]
+                .classList.add("active");
+
+                button
+                .classList.add("active-game");
+
+                gameTitle.textContent =
+                    title;
+
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+
+            }
+
+        }
+    );
 
 });
 
 
 /* =========================================
-   MINES - SÉLECTION 1 À 8
+   MINES : SÉLECTION 1 À 8
 ========================================= */
 
 document
 .querySelectorAll(".trap-btn")
 .forEach(function(button){
 
-    button.addEventListener("click", function(){
+    button.addEventListener(
+        "click",
+        function(){
 
-        document
-        .querySelectorAll(".trap-btn")
-        .forEach(function(item){
+            document
+            .querySelectorAll(".trap-btn")
+            .forEach(function(item){
 
-            item.classList.remove("selected");
+                item.classList.remove(
+                    "selected"
+                );
 
-        });
+            });
 
-        button.classList.add("selected");
-
-    });
-
-});
-
-
-/* =========================================
-   BOUTONS PRÉDIRE
-========================================= */
-
-function setupPredict(
-    buttonId,
-    statusId,
-    gameName
-){
-
-    const button =
-        document.getElementById(buttonId);
-
-    const status =
-        document.getElementById(statusId);
-
-    if(!button || !status){
-        return;
-    }
-
-    button.addEventListener("click", function(){
-
-        status.textContent =
-            "🔎 Connexion au moteur "
-            + gameName
-            + "...";
-
-        setTimeout(function(){
-
-            status.textContent =
-                "⌛ Moteur "
-                + gameName
-                + " non connecté.";
-
-        },900);
-
-    });
-
-}
-
-
-setupPredict(
-    "luckyPredict",
-    "luckyStatus",
-    "Lucky Jet"
-);
-
-setupPredict(
-    "aviatorPredict",
-    "aviatorStatus",
-    "Aviator"
-);
-
-setupPredict(
-    "crashPredict",
-    "crashStatus",
-    "Crash"
-);
-
-setupPredict(
-    "rocketQueenPredict",
-    "rocketQueenStatus",
-    "Rocket Queen"
-);
-
-setupPredict(
-    "minesPredict",
-    "minesStatus",
-    "Mines"
-);
-
-setupPredict(
-    "limboPredict",
-    "limboStatus",
-    "Limbo"
-);
-
-setupPredict(
-    "penaltyPredict",
-    "penaltyStatus",
-    "Penalty"
-);
-
-setupPredict(
-    "rocketXPredict",
-    "rocketXStatus",
-    "Rocket X"
-);
-
-setupPredict(
-    "speedPredict",
-    "speedStatus",
-    "Speed & Cash"
-);
-
-setupPredict(
-    "chickenPredict",
-    "chickenStatus",
-    "Chicken Train"
-);
-
-</script>
-
-</body>
-</html>
+          
