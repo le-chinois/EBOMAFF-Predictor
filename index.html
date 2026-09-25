@@ -6,11 +6,7 @@
 <title>EBOMAFF Predictor</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   min-height:100vh;
@@ -69,6 +65,9 @@ header{
   border-radius:20px;
 }
 
+.screen{display:none}
+.screen.active{display:block}
+
 /* =========================
    LUCKY JET
 ========================= */
@@ -80,21 +79,15 @@ header{
   position:relative;
   overflow:hidden;
   text-align:center;
-
   background:
-    radial-gradient(circle at 50% 53%,
-      #521988 0%,
-      #2c1255 35%,
-      #100c27 62%,
-      #070812 100%);
+    radial-gradient(circle at 50% 53%,#521988 0%,#2c1255 35%,#100c27 62%,#070812 100%);
 }
 
 .stars{
   position:absolute;
   inset:0;
   opacity:.35;
-  background-image:
-    radial-gradient(#fff 1px,transparent 1px);
+  background-image:radial-gradient(#fff 1px,transparent 1px);
   background-size:42px 42px;
 }
 
@@ -104,22 +97,15 @@ header{
   top:22px;
   left:0;
   right:0;
-
   font-size:31px;
   font-weight:950;
   font-style:italic;
   letter-spacing:-2px;
-
   color:#bc4cff;
-
-  text-shadow:
-    0 0 12px #a43cff,
-    0 0 28px #6b1ddf;
+  text-shadow:0 0 12px #a43cff,0 0 28px #6b1ddf;
 }
 
-.logo span{
-  color:#fff;
-}
+.logo span{color:#fff}
 
 .value{
   position:absolute;
@@ -127,36 +113,22 @@ header{
   top:91px;
   left:0;
   right:0;
-
   font-size:63px;
-  line-height:1;
   font-weight:950;
-
   color:#d47cff;
-
-  text-shadow:
-    0 0 12px #bd4cff,
-    0 0 32px #7c2cff;
+  text-shadow:0 0 12px #bd4cff,0 0 32px #7c2cff;
 }
 
-.value small{
-  font-size:34px;
-}
+.value small{font-size:34px}
 
 .glow{
   position:absolute;
-  z-index:1;
-
   width:230px;
   height:230px;
-
   top:110px;
   left:50%;
-
   transform:translateX(-50%);
-
   border-radius:50%;
-
   background:#8336ff;
   opacity:.20;
   filter:blur(35px);
@@ -165,17 +137,12 @@ header{
 .lucky-character{
   position:absolute;
   z-index:7;
-
   top:155px;
   left:50%;
-
   width:185px;
   max-height:190px;
-  height:auto;
-
   transform:translateX(-50%);
   object-fit:contain;
-
   filter:
     drop-shadow(0 13px 12px rgba(0,0,0,.65))
     drop-shadow(0 0 17px rgba(146,66,255,.55));
@@ -184,36 +151,21 @@ header{
 .arc{
   position:absolute;
   z-index:3;
-
   width:440px;
   height:180px;
-
   left:-65px;
   bottom:-74px;
-
   border-top:7px solid #8246f5;
   border-radius:50%;
-
   transform:rotate(-9deg);
-
-  box-shadow:
-    0 -7px 20px #8245ff77,
-    0 -18px 50px #6b32d955;
+  box-shadow:0 -7px 20px #8245ff77;
 }
 
 .cloud{
   position:absolute;
   z-index:4;
   border-radius:50%;
-
-  background:
-    linear-gradient(
-      180deg,
-      #6942c9,
-      #3c257f
-    );
-
-  box-shadow:0 0 30px #6838d755;
+  background:linear-gradient(#6942c9,#3c257f);
 }
 
 .c1{
@@ -240,269 +192,635 @@ header{
 .caption{
   position:absolute;
   z-index:12;
-
   bottom:17px;
   left:0;
   right:0;
-
   text-align:center;
-
   color:#dacbff;
   font-size:10px;
   letter-spacing:2px;
   font-weight:900;
 }
 
+.status{
+  padding:15px 18px 8px;
+  color:#a5a8b8;
+  font-size:12px;
+}
+
+.predict{
+  width:calc(100% - 30px);
+  margin:7px 15px 18px;
+  padding:16px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  background:linear-gradient(90deg,#7130ff,#b93eff);
+}
+
+.predict:active{transform:scale(.98)}
+
 /* =========================
    MINES CLASSIC
 ========================= */
 
-.mines-screen{
-  display:none;
+.mines{
   position:relative;
-
-  margin:0 15px;
-  min-height:570px;
-
-  padding:19px 15px 0;
-
-  border-radius:22px;
+  margin:0 15px 18px;
+  min-height:610px;
   overflow:hidden;
-
+  border-radius:22px;
+  padding:18px 14px 105px;
   background:
-    radial-gradient(
-      ellipse at 50% 72%,
-      rgba(0,255,90,.55) 0%,
-      rgba(0,221,82,.25) 18%,
-      transparent 38%
-    ),
-    linear-gradient(
-      180deg,
-      #075de9 0%,
-      #0069ee 42%,
-      #0759dd 73%,
-      #0045bd 100%
-    );
-
-  box-shadow:
-    inset 0 0 45px rgba(0,229,255,.22);
+    radial-gradient(ellipse at 50% 68%,rgba(0,255,90,.55),transparent 34%),
+    linear-gradient(180deg,#075bea,#0069ef 45%,#0758dc 75%,#0044b9);
+  box-shadow:inset 0 0 45px #00d9ff33;
 }
 
-.mines-screen.active{
-  display:block;
-}
-
-.mines-title{
-  position:relative;
-  z-index:5;
-
+.mines-brand{
   text-align:center;
-
-  font-size:23px;
+  font-size:24px;
   font-weight:950;
-
-  margin-bottom:3px;
-
-  text-shadow:
-    0 2px 3px rgba(0,0,0,.35),
-    0 0 12px rgba(255,255,255,.25);
+  text-shadow:0 0 14px #7beeff;
 }
 
-.mines-subtitle{
-  position:relative;
-  z-index:5;
-
+.mines-sub{
   text-align:center;
-
-  color:#e4f5ff;
   font-size:12px;
-
-  margin-bottom:25px;
+  color:#e8f7ff;
+  margin:3px 0 22px;
 }
 
-/* GRILLE */
-
-.mines-board{
-  position:relative;
-  z-index:6;
-
-  width:100%;
-  max-width:310px;
-
-  margin:0 auto 20px;
+.board{
+  max-width:305px;
+  margin:auto;
   padding:8px;
-
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:5px;
-
   border:4px solid #fff;
-
   border-radius:15px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #766bd2,
-      #5c56c5
-    );
-
+  background:#6b61d0;
   box-shadow:
     0 0 5px #fff,
-    0 0 15px #8ff5ff,
-    0 0 28px rgba(81,236,255,.90);
+    0 0 17px #8df4ff,
+    0 0 28px #3eeaffaa;
 }
 
-.mine-cell{
-  position:relative;
-
-  aspect-ratio:1/1;
-
+.cell{
+  aspect-ratio:1;
   display:flex;
   align-items:center;
   justify-content:center;
-
   border:2px solid #0750a7;
-
-  border-radius:5px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #0871c8,
-      #0755a5
-    );
-
-  box-shadow:
-    inset 0 2px 4px rgba(255,255,255,.15),
-    0 2px 4px rgba(0,0,0,.32);
+  border-radius:6px;
+  background:linear-gradient(#0872c9,#0753a2);
+  box-shadow:inset 0 2px 3px #ffffff22,0 2px 4px #0005;
 }
 
-.mine-cell::after{
+.cell::after{
   content:"";
-
   width:12px;
   height:12px;
-
   border-radius:50%;
-
   background:#15bce8;
-
-  box-shadow:
-    inset 0 0 4px #7cf3ff,
-    0 0 6px #00d9ff;
+  box-shadow:0 0 6px #00dcff;
 }
 
-/* CASE ÉTOILE */
-
-.mine-cell.star{
-  border-color:#fff0a2;
-
-  background:
-    linear-gradient(
-      180deg,
-      #ffe52b,
-      #ffa500
-    );
-
-  box-shadow:
-    0 0 5px #fff,
-    0 0 13px #ffdc00;
+.cell.star{
+  background:linear-gradient(#ffe62d,#ffa500);
+  border-color:#fff3a3;
+  box-shadow:0 0 10px #ffdc00;
 }
 
-.mine-cell.star::after{
+.cell.star::after{
   content:"★";
-
   width:auto;
   height:auto;
-
-  background:transparent;
-
+  background:none;
   color:#fff;
-
-  font-size:28px;
-
-  text-shadow:
-    0 0 4px #fff,
-    0 0 8px #fff;
+  font-size:27px;
+  text-shadow:0 0 7px #fff;
 }
 
-/* SÉLECTION DES PIÈGES */
-
-.trap-area{
+.trap-zone{
   position:relative;
-  z-index:6;
-
-  padding:5px 0 14px;
+  max-width:305px;
+  margin:22px auto 0;
+  z-index:5;
 }
 
-.trap-area::before{
+.trap-zone::before{
   content:"";
-
   position:absolute;
-
   z-index:-1;
-
   width:290px;
-  height:150px;
-
-  top:45%;
-
+  height:145px;
+  top:50%;
   left:50%;
-
-  transform:translate(-50%,-50%);
-
+  transform:translate(-50%,-45%);
   border-radius:50%;
-
   background:
-    radial-gradient(
-      ellipse,
-      rgba(0,255,99,.78) 0%,
-      rgba(0,207,84,.42) 36%,
-      transparent 72%
-    );
-
+    radial-gradient(ellipse,rgba(0,255,89,.78),rgba(0,206,81,.30) 42%,transparent 72%);
   filter:blur(8px);
 }
 
 .trap-title{
   text-align:center;
-
-  margin-bottom:11px;
-
-  color:#fff;
-
   font-size:15px;
   font-weight:900;
-
-  text-shadow:
-    0 2px 2px rgba(0,0,0,.35),
-    0 0 8px #00ff76;
+  margin-bottom:11px;
+  text-shadow:0 0 8px #00ff76;
 }
 
 .traps{
-  max-width:310px;
-
-  margin:auto;
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:8px 11px;
 }
 
 .trap{
-  height:43px;
-
+  height:42px;
   border:2px solid #e3f8ff;
-
   border-radius:13px;
-
   color:#fff;
+  background:linear-gradient(#0781d2,#0754a4);
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 0 6px #69eeff88;
+}
 
+.trap.active{
+  color:#333;
+  background:#fff;
+  box-shadow:0 0 9px #fff;
+}
+
+.mines-predict{
+  display:block;
+  width:72%;
+  margin:20px auto 0;
+  padding:14px;
+  border:0;
+  border-radius:14px;
+  color:#26304b;
+  font-size:17px;
+  font-weight:900;
+  background:linear-gradient(90deg,#fff,#fffbd4,#ffe52b);
+  box-shadow:0 0 11px #fff,0 0 25px #ffe52b88;
+}
+
+.mines-note{
+  text-align:center;
+  margin-top:12px;
+  font-size:11px;
+  color:#e5f5ff;
+}
+
+/* BOMBE */
+
+.bomb{
+  position:absolute;
+  width:120px;
+  height:120px;
+  left:-25px;
+  bottom:-35px;
+  border-radius:50%;
   background:
-    linear-gradient(
-      180deg,
-      #0781d2
+    radial-gradient(circle at 35% 28%,#53629d,#222c5a 30%,#0d1539 60%,#020617 100%);
+  box-shadow:
+    inset -18px -18px 24px #0008,
+    inset 12px 10px 18px #879cff33,
+    0 12px 24px #0007;
+}
+
+.bomb-cap{
+  position:absolute;
+  width:30px;
+  height:21px;
+  left:62px;
+  bottom:72px;
+  border-radius:6px;
+  transform:rotate(28deg);
+  background:linear-gradient(90deg,#111832,#8a93ad,#192142);
+}
+
+.fuse{
+  position:absolute;
+  width:58px;
+  height:58px;
+  left:72px;
+  bottom:88px;
+  border-top:6px solid #eee;
+  border-radius:55%;
+  transform:rotate(-22deg);
+}
+
+.spark{
+  position:absolute;
+  left:106px;
+  bottom:127px;
+  color:#fff342;
+  font-size:39px;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ffd900,
+    0 0 20px #ff7300;
+}
+
+/* =========================
+   GAME MENU
+========================= */
+
+.title{
+  margin:24px 2px 12px;
+  color:#a9adbd;
+  font-size:12px;
+  font-weight:800;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.game{
+  padding:14px 5px;
+  border-radius:14px;
+  border:1px solid #292e42;
+  background:#121625;
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+}
+
+.game.active{
+  background:linear-gradient(90deg,#5622a8,#8435dd);
+  border-color:#a15cff;
+}
+
+.game.mines-active{
+  background:linear-gradient(90deg,#0474d3,#00afe4);
+  border-color:#79edff;
+}
+
+footer{
+  margin-top:22px;
+  text-align:center;
+  color:#6e7387;
+  font-size:11px;
+  line-height:1.6;
+}
+
+@media(max-width:360px){
+  .lucky{height:370px}
+  .logo{font-size:28px}
+  .value{font-size:57px}
+  .lucky-character{width:165px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
+  <div class="online">● ONLINE</div>
+</header>
+
+<div class="card">
+
+  <div class="top">
+    <h2 id="gameTitle">LUCKY JET</h2>
+    <div class="ai">EBOMAFF AI</div>
+  </div>
+
+  <!-- LUCKY JET -->
+
+  <div id="luckyScreen" class="screen active">
+
+    <div class="lucky">
+
+      <div class="stars"></div>
+
+      <div class="logo">
+        LUCKY<span>JET</span>
+      </div>
+
+      <div class="value">
+        --<small>x</small>
+      </div>
+
+      <div class="glow"></div>
+
+      <img
+        class="lucky-character"
+        src="./luckyjet.png"
+        alt="Lucky Jet"
+      >
+
+      <div class="arc"></div>
+
+      <div class="cloud c1"></div>
+      <div class="cloud c2"></div>
+      <div class="cloud c3"></div>
+
+      <div class="caption">
+        PROCHAINE PRÉDICTION
+      </div>
+
+    </div>
+
+    <div id="luckyStatus" class="status">
+      ⌛ Moteur de prédiction non connecté.
+    </div>
+
+    <button id="luckyPredict" class="predict">
+      🔎 PRÉDIRE
+    </button>
+
+  </div>
+
+  <!-- MINES -->
+
+  <div id="minesScreen" class="screen">
+
+    <div class="mines">
+
+      <div class="mines-brand">
+        MINES ⭐
+      </div>
+
+      <div class="mines-sub">
+        EBOMAFF MINI-APPLICATION
+      </div>
+
+      <div id="board" class="board"></div>
+
+      <div class="trap-zone">
+
+        <div class="trap-title">
+          💣 SÉLECTION DE PIÈGES
+        </div>
+
+        <div class="traps">
+
+          <button class="trap" data-trap="1">1</button>
+          <button class="trap" data-trap="2">2</button>
+          <button class="trap active" data-trap="3">3</button>
+          <button class="trap" data-trap="4">4</button>
+
+          <button class="trap" data-trap="5">5</button>
+          <button class="trap" data-trap="6">6</button>
+          <button class="trap" data-trap="7">7</button>
+          <button class="trap" data-trap="8">8</button>
+
+        </div>
+
+      </div>
+
+      <button id="minesPredict" class="mines-predict">
+        PRÉDIRE
+      </button>
+
+      <div id="minesNote" class="mines-note">
+        Moteur Mines non connecté.
+      </div>
+
+      <div class="bomb"></div>
+      <div class="bomb-cap"></div>
+      <div class="fuse"></div>
+      <div class="spark">✦</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="title">
+  🎮 CHOISIR UN JEU
+</div>
+
+<div class="games">
+
+  <button id="btnLucky" class="game active">
+    🚀 Lucky Jet
+  </button>
+
+  <button class="game">
+    ✈️ Aviator
+  </button>
+
+  <button class="game">
+    💥 Crash
+  </button>
+
+  <button class="game">
+    👑 Rocket Queen
+  </button>
+
+  <button id="btnMines" class="game">
+    💣 Mines Classic
+  </button>
+
+  <button class="game">
+    📈 Limbo
+  </button>
+
+  <button class="game">
+    ⚽ Penalty
+  </button>
+
+  <button class="game">
+    🚀 Rocket X
+  </button>
+
+  <button class="game">
+    🏎️ Speed & Cash
+  </button>
+
+  <button class="game">
+    🐔 Chicken Train
+  </button>
+
+</div>
+
+<footer>
+  EBOMAFF Robot Prediction 🤖<br>
+  Moteur d'analyse EBOMAFF
+</footer>
+
+</div>
+
+<script>
+
+const luckyScreen =
+  document.getElementById("luckyScreen");
+
+const minesScreen =
+  document.getElementById("minesScreen");
+
+const btnLucky =
+  document.getElementById("btnLucky");
+
+const btnMines =
+  document.getElementById("btnMines");
+
+const gameTitle =
+  document.getElementById("gameTitle");
+
+const board =
+  document.getElementById("board");
+
+const minesNote =
+  document.getElementById("minesNote");
+
+const luckyStatus =
+  document.getElementById("luckyStatus");
+
+const luckyPredict =
+  document.getElementById("luckyPredict");
+
+const minesPredict =
+  document.getElementById("minesPredict");
+
+let selectedTrap=3;
+
+/* CRÉER 25 CASES */
+
+for(let i=0;i<25;i++){
+
+  const cell=
+    document.createElement("div");
+
+  cell.className="cell";
+
+  board.appendChild(cell);
+
+}
+
+/* LUCKY JET */
+
+btnLucky.onclick=function(){
+
+  gameTitle.textContent=
+    "LUCKY JET";
+
+  luckyScreen.classList.add(
+    "active"
+  );
+
+  minesScreen.classList.remove(
+    "active"
+  );
+
+  btnLucky.classList.add(
+    "active"
+  );
+
+  btnMines.classList.remove(
+    "mines-active"
+  );
+
+};
+
+/* MINES */
+
+btnMines.onclick=function(){
+
+  gameTitle.textContent=
+    "MINES CLASSIC";
+
+  luckyScreen.classList.remove(
+    "active"
+  );
+
+  minesScreen.classList.add(
+    "active"
+  );
+
+  btnLucky.classList.remove(
+    "active"
+  );
+
+  btnMines.classList.add(
+    "mines-active"
+  );
+
+};
+
+/* CHOIX DES PIÈGES */
+
+document
+.querySelectorAll(".trap")
+.forEach(function(button){
+
+  button.onclick=function(){
+
+    document
+    .querySelectorAll(".trap")
+    .forEach(function(item){
+
+      item.classList.remove(
+        "active"
+      );
+
+    });
+
+    button.classList.add(
+      "active"
+    );
+
+    selectedTrap=
+      Number(button.dataset.trap);
+
+    minesNote.textContent=
+      "Pièges sélectionnés : "
+      + selectedTrap;
+
+  };
+
+});
+
+/* PRÉDIRE LUCKY */
+
+luckyPredict.onclick=function(){
+
+  luckyStatus.textContent=
+    "🔎 Connexion au moteur EBOMAFF...";
+
+  setTimeout(function(){
+
+    luckyStatus.textContent=
+      "⌛ Moteur de prédiction non connecté.";
+
+  },900);
+
+};
+
+/* PRÉDIRE MINES */
+
+minesPredict.onclick=function(){
+
+  minesNote.textContent=
+    "🔎 Connexion au moteur Mines...";
+
+  setTimeout(function(){
+
+    minesNote.textContent=
+      "⌛ Moteur Mines non connecté.";
+
+  },900);
+
+};
+
+</script>
+
+</body>
+</html>
