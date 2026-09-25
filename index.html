@@ -17,7 +17,7 @@
 body{
     min-height:100vh;
     background:#050810;
-    color:white;
+    color:#fff;
     font-family:Arial,Helvetica,sans-serif;
 }
 
@@ -28,9 +28,7 @@ body{
     padding:20px 15px 40px;
 }
 
-/* ============================= */
-/* EN-TÊTE                       */
-/* ============================= */
+/* ===== EN-TÊTE ===== */
 
 .topbar{
     display:flex;
@@ -50,9 +48,7 @@ body{
     font-weight:800;
 }
 
-/* ============================= */
-/* CARTE PRINCIPALE              */
-/* ============================= */
+/* ===== CARTE ===== */
 
 .game-card{
     background:#101426;
@@ -82,10 +78,6 @@ body{
     font-size:12px;
 }
 
-/* ============================= */
-/* ÉCRANS                        */
-/* ============================= */
-
 .screen{
     display:none;
 }
@@ -94,31 +86,22 @@ body{
     display:block;
 }
 
-/* ============================= */
-/* IMAGES                        */
-/* ============================= */
+/* ===== IMAGES ===== */
 
 .game-image-box{
     width:100%;
     background:#02040a;
     border-radius:22px;
     overflow:hidden;
-    position:relative;
 }
 
 .game-image{
+    display:block;
     width:100%;
     height:auto;
-    display:block;
 }
 
-/* ============================= */
-/* LUCKY JET                     */
-/* ============================= */
-
-.lucky-image{
-    border-radius:22px;
-}
+/* ===== STATUT ===== */
 
 .engine-status{
     margin:18px 7px 16px;
@@ -126,12 +109,14 @@ body{
     font-size:14px;
 }
 
+/* ===== BOUTONS ===== */
+
 .predict-btn{
     width:100%;
     height:58px;
     border:0;
     border-radius:18px;
-    color:white;
+    color:#fff;
     font-size:20px;
     font-weight:900;
     cursor:pointer;
@@ -139,6 +124,12 @@ body{
 
 .predict-btn:active{
     transform:scale(.98);
+}
+
+/* ===== LUCKY JET ===== */
+
+.lucky-image{
+    border-radius:22px;
 }
 
 .lucky-btn{
@@ -149,9 +140,7 @@ body{
     );
 }
 
-/* ============================= */
-/* AVIATOR                       */
-/* ============================= */
+/* ===== AVIATOR — NE PAS MODIFIER ===== */
 
 .aviator-image-box{
     background:#020207;
@@ -194,9 +183,151 @@ body{
         0 0 16px rgba(0,255,91,.35);
 }
 
-/* ============================= */
-/* SPEED & CASH                  */
-/* ============================= */
+/* ===== MINES ANCIEN DESIGN ===== */
+
+.mines-app{
+    position:relative;
+    min-height:760px;
+    padding:22px 12px 28px;
+    border-radius:22px;
+    overflow:hidden;
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at 50% 68%,
+            rgba(0,255,151,.65),
+            transparent 22%
+        ),
+        linear-gradient(
+            180deg,
+            #0874f2,
+            #0864dd,
+            #0757c8
+        );
+}
+
+.mines-logo{
+    font-size:26px;
+    font-weight:900;
+}
+
+.mines-subtitle{
+    margin-top:6px;
+    font-size:13px;
+    color:#e6f4ff;
+}
+
+.mines-board-wrap{
+    width:82%;
+    margin:26px auto 25px;
+    padding:9px;
+
+    border:5px solid #fff;
+    border-radius:18px;
+
+    background:#6556bc;
+
+    box-shadow:
+        0 0 18px #fff,
+        0 0 32px rgba(0,238,255,.75);
+}
+
+.mines-board{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+}
+
+.mine-cell{
+    aspect-ratio:1;
+    border-radius:7px;
+    border:2px solid #0750a7;
+
+    background:
+        radial-gradient(
+            circle,
+            #16c7eb 0 13%,
+            transparent 15%
+        ),
+        linear-gradient(
+            #087bc9,
+            #0753a2
+        );
+
+    box-shadow:
+        inset 0 0 8px rgba(0,220,255,.35);
+}
+
+.trap-title{
+    margin-top:10px;
+    font-size:17px;
+    font-weight:900;
+}
+
+.trap-buttons{
+    width:82%;
+    margin:14px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.trap-btn{
+    height:48px;
+    border:2px solid white;
+    border-radius:14px;
+
+    color:white;
+    font-size:16px;
+    font-weight:900;
+
+    background:linear-gradient(
+        #0781d2,
+        #0754a4
+    );
+}
+
+.trap-btn.selected{
+    background:#fff;
+    color:#333;
+
+    box-shadow:
+        0 0 20px #fff,
+        0 0 35px #26ff9a;
+}
+
+.mines-predict{
+    width:72%;
+    height:58px;
+    margin-top:25px;
+
+    border:0;
+    border-radius:17px;
+
+    color:#28304c;
+    font-size:20px;
+    font-weight:900;
+
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #fffbd5,
+        #ffe936
+    );
+
+    box-shadow:
+        0 0 18px rgba(255,255,255,.7);
+}
+
+.mines-status{
+    margin-top:14px;
+    font-size:13px;
+    color:#fff;
+}
+
+/* ===== SPEED & CASH — NE PAS MODIFIER ===== */
 
 .speed-image-box{
     background:#02070d;
@@ -213,9 +344,7 @@ body{
         0 0 16px rgba(0,210,225,.28);
 }
 
-/* ============================= */
-/* MENU DES JEUX                 */
-/* ============================= */
+/* ===== MENU ===== */
 
 .menu-title{
     margin:27px 3px 15px;
@@ -241,49 +370,20 @@ body{
     padding:8px;
 }
 
-.game-menu button:active{
-    transform:scale(.98);
-}
-
 .game-menu button.active-lucky{
     border-color:#a84aff;
-
-    background:linear-gradient(
-        90deg,
-        #6723c9,
-        #9638e8
-    );
+    background:linear-gradient(90deg,#6723c9,#9638e8);
 }
 
 .game-menu button.active-aviator{
     border-color:#ff315d;
-
-    background:linear-gradient(
-        90deg,
-        #8f092c,
-        #ed073d
-    );
-
-    box-shadow:
-        0 0 15px rgba(255,20,70,.35);
+    background:linear-gradient(90deg,#8f092c,#ed073d);
 }
 
 .game-menu button.active-speed{
     border-color:#22e9f2;
-
-    background:linear-gradient(
-        90deg,
-        #087f91,
-        #12bdca
-    );
-
-    box-shadow:
-        0 0 15px rgba(0,220,235,.30);
+    background:linear-gradient(90deg,#087f91,#12bdca);
 }
-
-/* ============================= */
-/* PIED DE PAGE                  */
-/* ============================= */
 
 .footer{
     text-align:center;
@@ -311,17 +411,14 @@ body{
         </div>
 
     </div>    <!-- =========================
-         CARTE DES JEUX
+         CARTE PRINCIPALE
     ========================== -->
 
     <div class="game-card">
 
         <div class="game-head">
 
-            <div
-                id="gameTitle"
-                class="game-title"
-            >
+            <div id="gameTitle" class="game-title">
                 LUCKY JET
             </div>
 
@@ -334,12 +431,10 @@ body{
 
         <!-- =====================
              LUCKY JET
+             ANCIEN DESIGN
         ====================== -->
 
-        <div
-            id="luckyScreen"
-            class="screen active"
-        >
+        <div id="luckyScreen" class="screen active">
 
             <div class="game-image-box">
 
@@ -370,12 +465,10 @@ body{
 
         <!-- =====================
              AVIATOR
+             ON NE TOUCHE PLUS
         ====================== -->
 
-        <div
-            id="aviatorScreen"
-            class="screen"
-        >
+        <div id="aviatorScreen" class="screen">
 
             <div
                 class="
@@ -426,160 +519,128 @@ body{
 
         </div>        <!-- =====================
              MINES CLASSIC
+             ANCIEN DESIGN
         ====================== -->
 
-        <div
-            id="minesScreen"
-            class="screen"
-        >
+        <div id="minesScreen" class="screen">
 
-            <div
-                class="game-image-box"
-                style="
-                    min-height:420px;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    background:
-                    linear-gradient(
-                        180deg,
-                        #075bea,
-                        #0069ef,
-                        #0044b9
-                    );
-                "
-            >
+            <div class="mines-app">
 
-                <div
-                    style="
-                        width:90%;
-                        text-align:center;
-                    "
-                >
+                <div class="mines-logo">
+                    MINES ⭐
+                </div>
 
-                    <div
-                        style="
-                            font-size:25px;
-                            font-weight:900;
-                            margin-bottom:18px;
-                        "
-                    >
-                        MINES ⭐
-                    </div>
+                <div class="mines-subtitle">
+                    EBOMAFF MINI-APPLICATION
+                </div>
 
+
+                <div class="mines-board-wrap">
 
                     <div
                         id="minesBoard"
-                        style="
-                            display:grid;
-                            grid-template-columns:
-                            repeat(5,1fr);
-                            gap:6px;
-                            padding:10px;
-                            background:#675dcc;
-                            border:4px solid white;
-                            border-radius:16px;
-                        "
+                        class="mines-board"
                     >
-                    </div>
-
-
-                    <div
-                        style="
-                            margin-top:20px;
-                            font-weight:900;
-                        "
-                    >
-                        💣 SÉLECTION DE PIÈGES
-                    </div>
-
-
-                    <div
-                        id="trapButtons"
-                        style="
-                            display:grid;
-                            grid-template-columns:
-                            repeat(4,1fr);
-                            gap:8px;
-                            margin-top:12px;
-                        "
-                    >
-
-                        <button class="trap-btn" data-trap="1">
-                            1
-                        </button>
-
-                        <button class="trap-btn" data-trap="2">
-                            2
-                        </button>
-
-                        <button class="trap-btn selected" data-trap="3">
-                            3
-                        </button>
-
-                        <button class="trap-btn" data-trap="4">
-                            4
-                        </button>
-
-                        <button class="trap-btn" data-trap="5">
-                            5
-                        </button>
-
-                        <button class="trap-btn" data-trap="6">
-                            6
-                        </button>
-
-                        <button class="trap-btn" data-trap="7">
-                            7
-                        </button>
-
-                        <button class="trap-btn" data-trap="8">
-                            8
-                        </button>
-
                     </div>
 
                 </div>
 
+
+                <div class="trap-title">
+                    💣 SÉLECTION DE PIÈGES
+                </div>
+
+
+                <div
+                    id="trapButtons"
+                    class="trap-buttons"
+                >
+
+                    <button
+                        class="trap-btn"
+                        data-trap="1"
+                    >
+                        1
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="2"
+                    >
+                        2
+                    </button>
+
+                    <button
+                        class="trap-btn selected"
+                        data-trap="3"
+                    >
+                        3
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="4"
+                    >
+                        4
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="5"
+                    >
+                        5
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="6"
+                    >
+                        6
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="7"
+                    >
+                        7
+                    </button>
+
+                    <button
+                        class="trap-btn"
+                        data-trap="8"
+                    >
+                        8
+                    </button>
+
+                </div>
+
+
+                <button
+                    id="minesPredict"
+                    class="mines-predict"
+                >
+                    ✨ PRÉDIRE
+                </button>
+
+
+                <div
+                    id="minesStatus"
+                    class="mines-status"
+                >
+                    ⌛ Moteur Mines non connecté.
+                </div>
+
             </div>
-
-
-            <div
-                id="minesStatus"
-                class="engine-status"
-            >
-                ⌛ Moteur Mines non connecté.
-            </div>
-
-
-            <button
-                id="minesPredict"
-                class="predict-btn"
-                style="
-                    color:#26304b;
-                    background:
-                    linear-gradient(
-                        90deg,
-                        #ffffff,
-                        #fffbd4,
-                        #ffe52b
-                    );
-                "
-            >
-                PRÉDIRE
-            </button>
 
         </div>
 
 
         <!-- =====================
              SPEED & CASH
+             ON NE TOUCHE PLUS
         ====================== -->
 
-        <div
-            id="speedScreen"
-            class="screen"
-        >
+        <div id="speedScreen" class="screen">
 
             <div
                 class="
@@ -683,69 +744,32 @@ body{
 
 </div><script>
 
-/* =========================
-   ÉLÉMENTS
-========================= */
+/* ===== ÉCRANS ===== */
 
-const luckyScreen =
-    document.getElementById("luckyScreen");
+const luckyScreen = document.getElementById("luckyScreen");
+const aviatorScreen = document.getElementById("aviatorScreen");
+const minesScreen = document.getElementById("minesScreen");
+const speedScreen = document.getElementById("speedScreen");
 
-const aviatorScreen =
-    document.getElementById("aviatorScreen");
+const btnLucky = document.getElementById("btnLucky");
+const btnAviator = document.getElementById("btnAviator");
+const btnMines = document.getElementById("btnMines");
+const btnSpeed = document.getElementById("btnSpeed");
 
-const minesScreen =
-    document.getElementById("minesScreen");
+const gameTitle = document.getElementById("gameTitle");
 
-const speedScreen =
-    document.getElementById("speedScreen");
+const luckyStatus = document.getElementById("luckyStatus");
+const aviatorStatus = document.getElementById("aviatorStatus");
+const minesStatus = document.getElementById("minesStatus");
+const speedStatus = document.getElementById("speedStatus");
 
-
-const btnLucky =
-    document.getElementById("btnLucky");
-
-const btnAviator =
-    document.getElementById("btnAviator");
-
-const btnMines =
-    document.getElementById("btnMines");
-
-const btnSpeed =
-    document.getElementById("btnSpeed");
+const luckyPredict = document.getElementById("luckyPredict");
+const aviatorPredict = document.getElementById("aviatorPredict");
+const minesPredict = document.getElementById("minesPredict");
+const speedPredict = document.getElementById("speedPredict");
 
 
-const gameTitle =
-    document.getElementById("gameTitle");
-
-
-const luckyStatus =
-    document.getElementById("luckyStatus");
-
-const aviatorStatus =
-    document.getElementById("aviatorStatus");
-
-const minesStatus =
-    document.getElementById("minesStatus");
-
-const speedStatus =
-    document.getElementById("speedStatus");
-
-
-const luckyPredict =
-    document.getElementById("luckyPredict");
-
-const aviatorPredict =
-    document.getElementById("aviatorPredict");
-
-const minesPredict =
-    document.getElementById("minesPredict");
-
-const speedPredict =
-    document.getElementById("speedPredict");
-
-
-/* =========================
-   CACHER LES ÉCRANS
-========================= */
+/* ===== CHANGEMENT DE JEU ===== */
 
 function hideAllScreens(){
 
@@ -754,304 +778,160 @@ function hideAllScreens(){
     minesScreen.classList.remove("active");
     speedScreen.classList.remove("active");
 
-
-    btnLucky.classList.remove(
-        "active-lucky"
-    );
-
-    btnAviator.classList.remove(
-        "active-aviator"
-    );
-
-    btnSpeed.classList.remove(
-        "active-speed"
-    );
-
+    btnLucky.classList.remove("active-lucky");
+    btnAviator.classList.remove("active-aviator");
+    btnSpeed.classList.remove("active-speed");
 }
 
 
-/* =========================
-   LUCKY JET
-========================= */
+btnLucky.addEventListener("click", function(){
 
-btnLucky.addEventListener(
-    "click",
-    function(){
+    hideAllScreens();
 
-        hideAllScreens();
+    luckyScreen.classList.add("active");
+    btnLucky.classList.add("active-lucky");
 
-        luckyScreen.classList.add(
-            "active"
-        );
-
-        btnLucky.classList.add(
-            "active-lucky"
-        );
-
-        gameTitle.textContent =
-            "LUCKY JET";
-
-    }
-);
+    gameTitle.textContent = "LUCKY JET";
+});
 
 
-/* =========================
-   AVIATOR
-========================= */
+btnAviator.addEventListener("click", function(){
 
-btnAviator.addEventListener(
-    "click",
-    function(){
+    hideAllScreens();
 
-        hideAllScreens();
+    aviatorScreen.classList.add("active");
+    btnAviator.classList.add("active-aviator");
 
-        aviatorScreen.classList.add(
-            "active"
-        );
-
-        btnAviator.classList.add(
-            "active-aviator"
-        );
-
-        gameTitle.textContent =
-            "AVIATOR";
-
-    }
-);
+    gameTitle.textContent = "AVIATOR";
+});
 
 
-/* =========================
-   MINES CLASSIC
-========================= */
+btnMines.addEventListener("click", function(){
 
-btnMines.addEventListener(
-    "click",
-    function(){
+    hideAllScreens();
 
-        hideAllScreens();
+    minesScreen.classList.add("active");
 
-        minesScreen.classList.add(
-            "active"
-        );
-
-        gameTitle.textContent =
-            "MINES CLASSIC";
-
-    }
-);
+    gameTitle.textContent = "MINES CLASSIC";
+});
 
 
-/* =========================
-   SPEED & CASH
-========================= */
+btnSpeed.addEventListener("click", function(){
 
-btnSpeed.addEventListener(
-    "click",
-    function(){
+    hideAllScreens();
 
-        hideAllScreens();
+    speedScreen.classList.add("active");
+    btnSpeed.classList.add("active-speed");
 
-        speedScreen.classList.add(
-            "active"
-        );
-
-        btnSpeed.classList.add(
-            "active-speed"
-        );
-
-        gameTitle.textContent =
-            "SPEED & CASH";
-
-    }
-);
+    gameTitle.textContent = "SPEED & CASH";
+});
 
 
-/* =========================
-   CRÉER LE PLATEAU MINES
-========================= */
+/* ===== GRILLE MINES 5 × 5 ===== */
 
-const minesBoard =
-    document.getElementById("minesBoard");
-
+const minesBoard = document.getElementById("minesBoard");
 
 for(let i = 0; i < 25; i++){
 
-    const cell =
-        document.createElement("div");
+    const cell = document.createElement("div");
 
-    cell.style.aspectRatio = "1";
-
-    cell.style.borderRadius = "7px";
-
-    cell.style.border =
-        "2px solid #0750a7";
-
-    cell.style.background =
-        "linear-gradient(#0872c9,#0753a2)";
-
-    cell.style.boxShadow =
-        "inset 0 0 8px rgba(0,220,255,.25)";
+    cell.className = "mine-cell";
 
     minesBoard.appendChild(cell);
-
 }
 
 
-/* =========================
-   SÉLECTION DES PIÈGES
-========================= */
+/* ===== SÉLECTION DES PIÈGES ===== */
 
 document
 .querySelectorAll(".trap-btn")
 .forEach(function(button){
 
-    button.style.height = "42px";
-    button.style.borderRadius = "12px";
-    button.style.border =
-        "2px solid #e3f8ff";
-    button.style.fontWeight = "900";
-    button.style.fontSize = "15px";
-    button.style.color = "#fff";
-    button.style.background =
-        "linear-gradient(#0781d2,#0754a4)";
+    button.addEventListener("click", function(){
 
+        document
+        .querySelectorAll(".trap-btn")
+        .forEach(function(item){
 
-    if(
-        button.classList.contains(
-            "selected"
-        )
-    ){
+            item.classList.remove("selected");
 
-        button.style.background = "#fff";
-        button.style.color = "#333";
+        });
 
-    }
+        button.classList.add("selected");
 
-
-    button.addEventListener(
-        "click",
-        function(){
-
-            document
-            .querySelectorAll(".trap-btn")
-            .forEach(function(item){
-
-                item.classList.remove(
-                    "selected"
-                );
-
-                item.style.background =
-                    "linear-gradient(#0781d2,#0754a4)";
-
-                item.style.color =
-                    "#fff";
-
-            });
-
-
-            button.classList.add(
-                "selected"
-            );
-
-            button.style.background =
-                "#fff";
-
-            button.style.color =
-                "#333";
-
-        }
-    );
+    });
 
 });
 
 
-/* =========================
-   BOUTON LUCKY JET
-========================= */
+/* ===== LUCKY JET ===== */
 
-luckyPredict.addEventListener(
-    "click",
-    function(){
+luckyPredict.addEventListener("click", function(){
+
+    luckyStatus.textContent =
+        "🔎 Connexion au moteur EBOMAFF...";
+
+    setTimeout(function(){
 
         luckyStatus.textContent =
-            "🔎 Connexion au moteur EBOMAFF...";
+            "⌛ Moteur de prédiction non connecté.";
 
-        setTimeout(function(){
+    },900);
 
-            luckyStatus.textContent =
-                "⌛ Moteur de prédiction non connecté.";
-
-        },900);
-
-    }
-);
+});
 
 
-/* =========================
-   BOUTON AVIATOR
-========================= */
+/* ===== AVIATOR — CONSERVÉ ===== */
 
-aviatorPredict.addEventListener(
-    "click",
-    function(){
+aviatorPredict.addEventListener("click", function(){
+
+    aviatorStatus.textContent =
+        "🔎 Connexion au moteur Aviator...";
+
+    setTimeout(function(){
 
         aviatorStatus.textContent =
-            "🔎 Connexion au moteur Aviator...";
+            "⌛ Moteur Aviator non connecté.";
 
-        setTimeout(function(){
+    },900);
 
-            aviatorStatus.textContent =
-                "⌛ Moteur Aviator non connecté.";
-
-        },900);
-
-    }
-);
+});
 
 
-/* =========================
-   BOUTON MINES
-========================= */
+/* ===== MINES CLASSIC ===== */
 
-minesPredict.addEventListener(
-    "click",
-    function(){
+minesPredict.addEventListener("click", function(){
+
+    minesStatus.textContent =
+        "🔎 Connexion au moteur Mines...";
+
+    setTimeout(function(){
 
         minesStatus.textContent =
-            "🔎 Connexion au moteur Mines...";
+            "⌛ Moteur Mines non connecté.";
 
-        setTimeout(function(){
+    },900);
 
-            minesStatus.textContent =
-                "⌛ Moteur Mines non connecté.";
-
-        },900);
-
-    }
-);
+});
 
 
-/* =========================
-   BOUTON SPEED & CASH
-========================= */
+/* ===== SPEED & CASH — CONSERVÉ ===== */
 
-speedPredict.addEventListener(
-    "click",
-    function(){
+speedPredict.addEventListener("click", function(){
+
+    speedStatus.textContent =
+        "🔎 Connexion au moteur Speed & Cash...";
+
+    setTimeout(function(){
 
         speedStatus.textContent =
-            "🔎 Connexion au moteur Speed & Cash...";
+            "⌛ Moteur Speed & Cash non connecté.";
 
-        setTimeout(function(){
+    },900);
 
-            speedStatus.textContent =
-                "⌛ Moteur Speed & Cash non connecté.";
-
-        },900);
-
-    }
-);
+});
 
 </script>
+
 </body>
 </html>
