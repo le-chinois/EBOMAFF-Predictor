@@ -4,291 +4,348 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>EBOMAFF Predictor</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
   min-height:100vh;
+  background:#060812;
+  color:white;
   font-family:Arial,sans-serif;
-  color:#fff;
-  background:#060912;
 }
 
 .app{
-  max-width:500px;
+  max-width:480px;
   margin:auto;
   padding:18px 15px 35px;
 }
 
-.header{
+header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  margin-bottom:17px;
 }
 
 .brand{
-  font-size:18px;
+  font-size:17px;
   font-weight:900;
 }
 
 .online{
-  color:#4dffa2;
+  color:#4cff9a;
   font-size:12px;
-  font-weight:800;
+  font-weight:bold;
 }
 
 .card{
+  background:#101326;
+  border:1px solid #292d43;
+  border-radius:25px;
   overflow:hidden;
-  border:1px solid #292e43;
-  border-radius:28px;
-  background:#101426;
-  box-shadow:0 20px 50px #0008;
 }
 
-.card-head{
+.top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 18px 14px;
+  padding:18px;
 }
 
-.game-title{
-  font-size:24px;
-  font-weight:900;
+.top h2{
+  font-size:21px;
 }
 
 .ai{
-  padding:9px 13px;
-  border-radius:20px;
+  font-size:10px;
+  color:#bbb;
   background:#ffffff0d;
-  color:#aeb2c4;
-  font-size:11px;
+  padding:8px 11px;
+  border-radius:20px;
 }
 
-.stage{
-  min-height:390px;
-  margin:0 16px;
-  border-radius:23px;
-  overflow:hidden;
-  position:relative;
-}
+/* LUCKY JET */
 
-.status{
-  padding:15px 20px 8px;
-  color:#9da3b7;
-  font-size:13px;
-}
-
-.predict{
-  width:calc(100% - 32px);
-  margin:7px 16px 20px;
-  padding:17px;
-  border:0;
-  border-radius:17px;
-  color:#fff;
-  font-size:17px;
-  font-weight:900;
-  background:linear-gradient(90deg,#7130ff,#bd39ff);
-}
-
-.predict:active{
-  transform:scale(.98);
-}
-
-.section-title{
-  margin:25px 3px 13px;
-  color:#a9adbd;
-  font-size:13px;
-  font-weight:800;
-}
-
-.games{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-}
-
-.game-btn{
-  padding:15px 7px;
-  border-radius:16px;
-  border:1px solid #292e43;
-  background:#121625;
-  color:#fff;
-  font-size:13px;
-  font-weight:800;
-}
-
-.game-btn.active{
-  background:linear-gradient(90deg,#5520a8,#8834e1);
-  border-color:#9e55ff;
-}
-
-.footer{
-  text-align:center;
-  color:#6e7488;
-  font-size:11px;
-  line-height:1.6;
-  margin-top:25px;
-}
-
-/* BASE */
-.sky{
+.lucky{
   height:390px;
+  margin:0 15px;
+  border-radius:22px;
   position:relative;
   overflow:hidden;
   text-align:center;
-  background:linear-gradient(180deg,#15102e,#0a0c1b);
-}
-
-.logo{
-  padding-top:23px;
-  font-size:24px;
-  font-weight:950;
-  letter-spacing:1px;
-}
-
-.big{
-  position:absolute;
-  z-index:4;
-  top:120px;
-  left:0;
-  right:0;
-  font-size:58px;
-  font-weight:950;
-}
-
-.object{
-  position:absolute;
-  z-index:3;
-  right:18%;
-  top:190px;
-  font-size:72px;
-}
-
-.curve{
-  position:absolute;
-  width:120%;
-  height:170px;
-  left:-10%;
-  bottom:-60px;
-  border-top:5px solid #7846ff;
-  border-radius:50% 50% 0 0;
-  transform:rotate(-10deg);
+  background:
+    radial-gradient(circle at 50% 55%,#4b197c 0%,#241145 38%,#090916 78%);
 }
 
 .stars{
   position:absolute;
   inset:0;
-  opacity:.45;
+  opacity:.3;
   background-image:radial-gradient(#fff 1px,transparent 1px);
-  background-size:45px 45px;
+  background-size:40px 40px;
 }
 
-/* ============================= */
-/* LUCKY JET                     */
-/* ============================= */
-
-.lucky-new{
-  height:390px;
-  position:relative;
-  overflow:hidden;
-  text-align:center;
-  background:
-    radial-gradient(circle at 50% 50%,#421675 0%,#211044 35%,#0a0919 76%);
-}
-
-.lucky-stars{
+.logo{
   position:absolute;
-  inset:0;
-  opacity:.35;
-  background-image:
-    radial-gradient(#fff 1px,transparent 1px);
-  background-size:42px 42px;
-}
-
-.lucky-logo{
-  position:absolute;
-  z-index:5;
   top:25px;
   left:0;
   right:0;
-  font-size:31px;
-  font-weight:950;
+  z-index:5;
+  font-size:32px;
+  font-weight:900;
   font-style:italic;
-  letter-spacing:-2px;
-  color:#bc4cff;
-  text-shadow:
-    0 0 12px #a43cff,
-    0 0 30px #6b1ddf;
+  color:#bd52ff;
+  text-shadow:0 0 18px #8c32ff;
 }
 
-.lucky-logo strong{
-  color:#fff;
+.logo span{
+  color:white;
 }
 
-.lucky-result{
+.value{
   position:absolute;
-  z-index:7;
-  top:100px;
+  z-index:6;
+  top:92px;
   left:0;
   right:0;
-  font-size:62px;
-  font-weight:950;
-  color:#d27aff;
-  text-shadow:
-    0 0 12px #b94cff,
-    0 0 35px #7b2cff;
+  font-size:64px;
+  font-weight:900;
+  color:#d178ff;
+  text-shadow:0 0 25px #8c2eff;
 }
 
-.lucky-result small{
+.value small{
   font-size:34px;
 }
 
-.lucky-glow{
+.glow{
   position:absolute;
-  z-index:1;
-  width:220px;
-  height:220px;
-  top:115px;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  background:#8a36ff;
+  opacity:.17;
+  filter:blur(30px);
+  top:120px;
   left:50%;
   transform:translateX(-50%);
-  border-radius:50%;
-  background:#7c2cff;
-  opacity:.18;
-  filter:blur(30px);
 }
 
-.lucky-jet{
+.jet{
   position:absolute;
   z-index:5;
-  top:180px;
+  top:185px;
   left:50%;
   transform:translateX(-50%) rotate(-12deg);
   font-size:100px;
-  filter:
-    drop-shadow(0 12px 12px #000)
-    drop-shadow(0 0 18px #a34cff);
+  filter:drop-shadow(0 10px 12px #000);
 }
 
-.lucky-person{
+.rider{
   position:absolute;
   z-index:6;
-  top:184px;
+  top:188px;
   left:50%;
   transform:translateX(-50%);
-  font-size:55px;
+  font-size:48px;
 }
 
-.lucky-trail{
+.arc{
   position:absolute;
-  z-index:2;
-  width:420px;
-  height:190px;
-  left:-60px;
-  bottom:-80px;
-  border-top:7px solid #8546ff;
+  width:440px;
+  height:180px;
+  left:-65px;
+  bottom:-75px;
+  border-top:7px solid #7e43ee;
   border-radius:50%;
-  transform:rotate(-10deg);
+  transform:rotate(-9deg);
+  box-shadow:0 -10px 35px #7438e888;
+}
+
+.cloud{
+  position:absolute;
+  bottom:-50px;
+  height:110px;
+  border-radius:50%;
+  background:linear-gradient(#6840c7,#29195c);
+}
+
+.c1{
+  width:190px;
+  left:-50px;
+}
+
+.c2{
+  width:230px;
+  left:95px;
+  bottom:-70px;
+}
+
+.c3{
+  width:190px;
+  right:-55px;
+}
+
+.caption{
+  position:absolute;
+  z-index:8;
+  bottom:16px;
+  left:0;
+  right:0;
+  font-size:10px;
+  letter-spacing:2px;
+  color:#d8c8ff;
+  font-weight:bold;
+}
+
+.status{
+  padding:15px 18px 8px;
+  color:#a4a8ba;
+  font-size:12px;
+}
+
+.predict{
+  display:block;
+  width:calc(100% - 30px);
+  margin:7px 15px 18px;
+  padding:16px;
+  border:0;
+  border-radius:15px;
+  color:white;
+  font-size:16px;
+  font-weight:900;
+  background:linear-gradient(90deg,#7130ff,#b93eff);
+}
+
+.title{
+  margin:24px 2px 12px;
+  color:#a9adbd;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.game{
+  padding:14px 5px;
+  border-radius:14px;
+  border:1px solid #292e42;
+  background:#121625;
+  color:white;
+  font-weight:bold;
+}
+
+.game.active{
+  background:linear-gradient(90deg,#5622a8,#8435dd);
+  border-color:#a15cff;
+}
+
+footer{
+  margin-top:22px;
+  text-align:center;
+  color:#6e7387;
+  font-size:11px;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="brand">🤖 EBOMAFF PREDICTOR</div>
+  <div class="online">● ONLINE</div>
+</header>
+
+<div class="card">
+
+  <div class="top">
+    <h2>🚀 LUCKY JET</h2>
+    <div class="ai">EBOMAFF AI</div>
+  </div>
+
+  <div class="lucky">
+
+    <div class="stars"></div>
+
+    <div class="logo">
+      LUCKY<span>JET</span>
+    </div>
+
+    <div class="value">
+      --<small>x</small>
+    </div>
+
+    <div class="glow"></div>
+
+    <div class="jet">🚀</div>
+    <div class="rider">😎</div>
+
+    <div class="arc"></div>
+
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+
+    <div class="caption">
+      PROCHAINE PRÉDICTION
+    </div>
+
+  </div>
+
+  <div id="status" class="status">
+    ⌛ Moteur de prédiction non connecté.
+  </div>
+
+  <button id="predict" class="predict">
+    🔎 PRÉDIRE
+  </button>
+
+</div>
+
+<div class="title">🎮 CHOISIR UN JEU</div>
+
+<div class="games">
+  <button class="game active">🚀 Lucky Jet</button>
+  <button class="game">✈️ Aviator</button>
+  <button class="game">💥 Crash</button>
+  <button class="game">👑 Rocket Queen</button>
+  <button class="game">💣 Mines Classic</button>
+  <button class="game">📈 Limbo</button>
+  <button class="game">⚽ Penalty</button>
+  <button class="game">🚀 Rocket X</button>
+  <button class="game">🏎️ Speed & Cash</button>
+  <button class="game">🐔 Chicken Train</button>
+</div>
+
+<footer>
+  EBOMAFF Robot Prediction 🤖<br>
+  Moteur d'analyse EBOMAFF
+</footer>
+
+</div>
+
+<script>
+const button=document.getElementById("predict");
+const status=document.getElementById("status");
+
+button.onclick=function(){
+  button.disabled=true;
+  status.textContent="🔎 Connexion au moteur d'analyse EBOMAFF...";
+
+  setTimeout(function(){
+    status.textContent="⌛ Moteur de prédiction non connecté.";
+    button.disabled=false;
+  },900);
+};
+</script>
+
+</body>
+</html>
