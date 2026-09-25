@@ -121,13 +121,42 @@ class HealthHandler(BaseHTTPRequestHandler):
                     content = file.read()
 
                 self.send_response(200)
-                self.send_header("Content-Type", "text/html; charset=utf-8")
-                self.send_header("Content-Length", str(len(content)))
+
+                self.send_header(
+                    "Content-Type",
+                    "text/html; charset=utf-8"
+                )
+
+                self.send_header(
+                    "Content-Length",
+                    str(len(content))
+                )
+
+                # EMPÊCHE LE CACHE DE GARDER
+                # UNE ANCIENNE VERSION DU SITE
+                self.send_header(
+                    "Cache-Control",
+                    "no-store, no-cache, must-revalidate, max-age=0"
+                )
+
+                self.send_header(
+                    "Pragma",
+                    "no-cache"
+                )
+
+                self.send_header(
+                    "Expires",
+                    "0"
+                )
+
                 self.end_headers()
                 self.wfile.write(content)
 
             except FileNotFoundError:
-                self.send_error(404, "index.html not found")
+                self.send_error(
+                    404,
+                    "index.html not found"
+                )
 
             return
 
@@ -138,40 +167,96 @@ class HealthHandler(BaseHTTPRequestHandler):
                     content = file.read()
 
                 self.send_response(200)
-                self.send_header("Content-Type", "image/png")
-                self.send_header("Content-Length", str(len(content)))
-                self.send_header("Cache-Control", "no-cache")
+
+                self.send_header(
+                    "Content-Type",
+                    "image/png"
+                )
+
+                self.send_header(
+                    "Content-Length",
+                    str(len(content))
+                )
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store, no-cache, must-revalidate, max-age=0"
+                )
+
+                self.send_header(
+                    "Pragma",
+                    "no-cache"
+                )
+
+                self.send_header(
+                    "Expires",
+                    "0"
+                )
+
                 self.end_headers()
                 self.wfile.write(content)
 
             except FileNotFoundError:
-                self.send_error(404, "luckyjet.png not found")
+                self.send_error(
+                    404,
+                    "luckyjet.png not found"
+                )
 
             return
 
         # AUTRES ADRESSES
-        self.send_error(404, "Not Found")
+        self.send_error(
+            404,
+            "Not Found"
+        )
 
     def log_message(self, format, *args):
         pass
 
 
 def run_server():
-    port = int(os.getenv("PORT", "10000"))
-    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    port = int(
+        os.getenv("PORT", "10000")
+    )
+
+    server = HTTPServer(
+        ("0.0.0.0", port),
+        HealthHandler
+    )
+
     server.serve_forever()
 
 
 def main():
     if not TOKEN:
-        raise RuntimeError("BOT_TOKEN n'est pas configuré.")
+        raise RuntimeError(
+            "BOT_TOKEN n'est pas configuré."
+        )
 
-    threading.Thread(target=run_server, daemon=True).start()
+    threading.Thread(
+        target=run_server,
+        daemon=True
+    ).start()
 
-    app = Application.builder().token(TOKEN).build()
+    app = (
+        Application
+        .builder()
+        .token(TOKEN)
+        .build()
+    )
 
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CallbackQueryHandler(button_click))
+    app.add_handler(
+        CommandHandler(
+            "start",
+            start
+        )
+    )
+
+    app.add_handler(
+        CallbackQueryHandler(
+            button_click
+        )
+    )
 
     app.add_handler(
         MessageHandler(
@@ -180,7 +265,10 @@ def main():
         )
     )
 
-    print("🤖 EBOMAFF Predictor démarré...")
+    print(
+        "🤖 EBOMAFF Predictor démarré..."
+    )
+
     app.run_polling()
 
 
