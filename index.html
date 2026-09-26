@@ -1633,6 +1633,56 @@ function showChickenEgg(eggNumber){
    FIN
 ========================================= */
 
+    /* TEST ANIMATION LUCKY JET */
+
+const luckyTestButton =
+    document.getElementById("luckyPredict");
+
+if(luckyTestButton){
+
+    luckyTestButton.addEventListener("click", function(){
+
+        const value =
+            document.getElementById("luckyValue");
+
+        if(!value){
+            return;
+        }
+
+        value.textContent = "ANALYSE...";
+
+        value.classList.add(
+            "visible",
+            "calculating"
+        );
+
+        setStatus(
+            "luckyStatus",
+            "🔄 Analyse Lucky Jet en cours..."
+        );
+
+        setTimeout(function(){
+
+            value.classList.remove(
+                "calculating"
+            );
+
+            value.textContent = "";
+
+            value.classList.remove(
+                "visible"
+            );
+
+            setStatus(
+                "luckyStatus",
+                "⌛ Moteur Lucky Jet non connecté."
+            );
+
+        },3000);
+
+    });
+
+}
 </script>
 
 </body>
