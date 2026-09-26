@@ -47,7 +47,7 @@ body{
     font-weight:800;
 }
 
-/* ===== CARTE ===== */
+/* ===== CARTE PRINCIPALE ===== */
 
 .game-card{
     background:#101426;
@@ -101,67 +101,150 @@ body{
     height:auto;
 }
 
-/* ===== LUCKY JET DYNAMIQUE ===== */
+/* =========================================
+   ZONES DYNAMIQUES DES MULTIPLICATEURS
+========================================= */
 
-.lucky-live-box{
-    position:relative;
-}
-
-/*
-   Cette valeur est placée par-dessus le --x
-   déjà présent dans l'image Lucky Jet.
-*/
-.lucky-live-value{
+.live-value{
     position:absolute;
-    left:50%;
-    top:29%;
+    z-index:10;
     transform:translate(-50%,-50%);
-
-    min-width:130px;
     text-align:center;
-
-    color:#f052ff;
-    font-size:38px;
-    line-height:1;
     font-weight:900;
-
-    text-shadow:
-        0 0 8px rgba(240,82,255,.95),
-        0 0 18px rgba(165,39,255,.85);
-
+    line-height:1;
     pointer-events:none;
-    z-index:5;
+    opacity:0;
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
 }
 
-.lucky-live-value.calculating{
-    animation:luckyPulse .55s infinite alternate;
+.live-value.visible{
+    opacity:1;
 }
 
-@keyframes luckyPulse{
+.live-value.calculating{
+    opacity:1;
+    animation:valuePulse .55s infinite alternate;
+}
+
+@keyframes valuePulse{
     from{
-        opacity:.45;
         transform:
             translate(-50%,-50%)
-            scale(.94);
+            scale(.92);
+        opacity:.45;
     }
 
     to{
-        opacity:1;
         transform:
             translate(-50%,-50%)
             scale(1.08);
+        opacity:1;
     }
 }
 
-/* ===== STATUT ===== */
+/* Lucky Jet */
+
+#luckyValue{
+    left:50%;
+    top:29%;
+    min-width:140px;
+    color:#f052ff;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(240,82,255,.95),
+        0 0 18px rgba(165,39,255,.85);
+}
+
+/* Aviator */
+
+#aviatorValue{
+    left:50%;
+    top:29%;
+    min-width:140px;
+    color:#ff315d;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(255,49,93,.95),
+        0 0 18px rgba(255,23,79,.8);
+}
+
+/* Crash */
+
+#crashValue{
+    left:50%;
+    top:48%;
+    min-width:150px;
+    color:#fff;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(0,183,255,.95),
+        0 0 18px rgba(23,105,255,.85);
+}
+
+/* Rocket Queen */
+
+#rocketQueenValue{
+    left:50%;
+    top:31%;
+    min-width:150px;
+    color:#fff;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(255,75,155,.95),
+        0 0 18px rgba(166,44,255,.85);
+}
+
+/* Limbo */
+
+#limboValue{
+    left:50%;
+    top:50%;
+    min-width:160px;
+    color:#fff;
+    font-size:42px;
+    text-shadow:
+        0 0 8px rgba(255,255,255,.7),
+        0 0 18px rgba(112,40,255,.9);
+}
+
+/* Rocket X */
+
+#rocketXValue{
+    left:50%;
+    top:70%;
+    min-width:150px;
+    color:#ff9d20;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(255,138,24,.9),
+        0 0 18px rgba(255,183,46,.75);
+}
+
+/* Speed & Cash */
+
+#speedValue{
+    left:50%;
+    top:50%;
+    min-width:150px;
+    color:#fff;
+    font-size:38px;
+    text-shadow:
+        0 0 8px rgba(23,196,209,.95),
+        0 0 18px rgba(7,152,172,.85);
+}
+
+/* ===== STATUT MOTEUR ===== */
 
 .engine-status{
     margin:18px 7px 16px;
     color:#a8aaba;
     font-size:14px;
+    line-height:1.5;
 }
 
-/* ===== BOUTONS ===== */
+/* ===== BOUTONS PRÉDIRE ===== */
 
 .predict-btn{
     width:100%;
@@ -176,6 +259,11 @@ body{
 
 .predict-btn:active{
     transform:scale(.98);
+}
+
+.predict-btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
 }
 
 .purple-btn{
@@ -212,7 +300,6 @@ body{
 
 .yellow-btn{
     color:#20283d;
-
     background:linear-gradient(
         90deg,
         #fff,
@@ -237,36 +324,9 @@ body{
     );
 }
 
-/* ===== AVIATOR ===== */
-
-.aviator-next{
-    margin-top:14px;
-    border:1px solid #841735;
-    border-radius:18px;
-    padding:13px 10px;
-    text-align:center;
-    background:#0d1120;
-}
-
-.aviator-next-label{
-    color:#c8cad5;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:4px;
-}
-
-.aviator-next-value{
-    color:#ff315d;
-    font-size:31px;
-    font-weight:900;
-    margin-top:5px;
-
-    text-shadow:
-        0 0 8px #ff174f,
-        0 0 18px #ff174f;
-}
-
-/* ===== MINES ===== */
+/* =========================================
+   MINES CLASSIC
+========================================= */
 
 .trap-title{
     margin-top:18px;
@@ -286,10 +346,8 @@ body{
     height:46px;
     border:2px solid #159fea;
     border-radius:13px;
-
     background:#0b579f;
     color:#fff;
-
     font-size:16px;
     font-weight:900;
 }
@@ -298,12 +356,115 @@ body{
     background:#fff;
     color:#172238;
     border-color:#fff;
-
     box-shadow:
         0 0 16px rgba(0,238,255,.75);
 }
 
-/* ===== MENU ===== */
+/* =========================================
+   PENALTY - 15 ZONES
+========================================= */
+
+.penalty-live-box{
+    position:relative;
+}
+
+.penalty-grid{
+    position:absolute;
+    z-index:8;
+
+    left:14%;
+    right:14%;
+    top:28%;
+    height:39%;
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:4px;
+
+    pointer-events:none;
+}
+
+.penalty-zone{
+    border-radius:50%;
+    opacity:0;
+    transform:scale(.65);
+    transition:
+        opacity .18s ease,
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+.penalty-zone.scanning{
+    opacity:.55;
+    transform:scale(.82);
+    border:2px solid rgba(255,255,255,.8);
+}
+
+.penalty-zone.selected{
+    opacity:1;
+    transform:scale(1);
+    border:3px solid #fff;
+    background:rgba(22,232,95,.28);
+    box-shadow:
+        0 0 10px #16e85f,
+        0 0 25px #16e85f;
+}
+
+/* =========================================
+   CHICKEN TRAIN - ŒUFS
+========================================= */
+
+.chicken-live-box{
+    position:relative;
+}
+
+.egg-track{
+    position:absolute;
+    z-index:9;
+
+    left:12%;
+    right:12%;
+    top:64%;
+
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:5px;
+
+    pointer-events:none;
+}
+
+.egg-marker{
+    aspect-ratio:1/1;
+    border-radius:50%;
+    opacity:0;
+    transform:scale(.6);
+    transition:
+        opacity .18s ease,
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+.egg-marker.scanning{
+    opacity:.65;
+    transform:scale(.82);
+    border:2px solid rgba(255,255,255,.9);
+    background:rgba(255,225,46,.15);
+}
+
+.egg-marker.selected{
+    opacity:1;
+    transform:scale(1);
+    border:3px solid #fff;
+    background:rgba(255,225,46,.28);
+    box-shadow:
+        0 0 10px #ffe12e,
+        0 0 25px #ffb72e;
+}
+
+/* =========================================
+   MENU
+========================================= */
 
 .menu-title{
     margin:27px 3px 15px;
@@ -322,10 +483,8 @@ body{
     min-height:58px;
     border:1px solid #292e48;
     border-radius:17px;
-
     background:#111522;
     color:#fff;
-
     font-size:15px;
     font-weight:800;
     padding:8px;
@@ -334,7 +493,6 @@ body{
 
 .game-menu button.active-game{
     border-color:#a84aff;
-
     background:linear-gradient(
         90deg,
         #6723c9,
@@ -369,7 +527,6 @@ body{
 
     </div>
 
-
     <div class="game-card">
 
         <div class="game-head">
@@ -385,10 +542,7 @@ body{
                 EBOMAFF AI
             </div>
 
-        </div>
-
-
-        <!-- ==================================
+        </div>        <!-- ==================================
              1. LUCKY JET
         =================================== -->
 
@@ -397,12 +551,7 @@ body{
             class="screen active"
         >
 
-            <div
-                class="
-                    game-image-box
-                    lucky-live-box
-                "
-            >
+            <div class="game-image-box">
 
                 <img
                     src="/luckyjet.png"
@@ -411,11 +560,9 @@ body{
                 >
 
                 <div
-                    id="luckyLiveValue"
-                    class="lucky-live-value"
-                >
-                    --x
-                </div>
+                    id="luckyValue"
+                    class="live-value"
+                ></div>
 
             </div>
 
@@ -453,17 +600,10 @@ body{
                     alt="Aviator"
                 >
 
-            </div>
-
-            <div class="aviator-next">
-
-                <div class="aviator-next-label">
-                    PROCHAINE PRÉDICTION
-                </div>
-
-                <div class="aviator-next-value">
-                    --.--x
-                </div>
+                <div
+                    id="aviatorValue"
+                    class="live-value"
+                ></div>
 
             </div>
 
@@ -478,7 +618,7 @@ body{
                 id="aviatorPredict"
                 class="predict-btn green-btn"
             >
-                ● PRÉDIRE
+                ✈️ PRÉDIRE
             </button>
 
         </div>
@@ -500,6 +640,11 @@ body{
                     class="game-image"
                     alt="Crash"
                 >
+
+                <div
+                    id="crashValue"
+                    class="live-value"
+                ></div>
 
             </div>
 
@@ -536,6 +681,11 @@ body{
                     class="game-image"
                     alt="Rocket Queen"
                 >
+
+                <div
+                    id="rocketQueenValue"
+                    class="live-value"
+                ></div>
 
             </div>
 
@@ -584,58 +734,42 @@ body{
                 <button
                     class="trap-btn"
                     data-trap="1"
-                >
-                    1
-                </button>
+                >1</button>
 
                 <button
                     class="trap-btn"
                     data-trap="2"
-                >
-                    2
-                </button>
+                >2</button>
 
                 <button
                     class="trap-btn selected"
                     data-trap="3"
-                >
-                    3
-                </button>
+                >3</button>
 
                 <button
                     class="trap-btn"
                     data-trap="4"
-                >
-                    4
-                </button>
+                >4</button>
 
                 <button
                     class="trap-btn"
                     data-trap="5"
-                >
-                    5
-                </button>
+                >5</button>
 
                 <button
                     class="trap-btn"
                     data-trap="6"
-                >
-                    6
-                </button>
+                >6</button>
 
                 <button
                     class="trap-btn"
                     data-trap="7"
-                >
-                    7
-                </button>
+                >7</button>
 
                 <button
                     class="trap-btn"
                     data-trap="8"
-                >
-                    8
-                </button>
+                >8</button>
 
             </div>
 
@@ -673,6 +807,11 @@ body{
                     alt="Limbo"
                 >
 
+                <div
+                    id="limboValue"
+                    class="live-value"
+                ></div>
+
             </div>
 
             <div
@@ -701,13 +840,41 @@ body{
             class="screen"
         >
 
-            <div class="game-image-box">
+            <div
+                class="
+                    game-image-box
+                    penalty-live-box
+                "
+            >
 
                 <img
                     src="/penalty.png"
                     class="game-image"
                     alt="Penalty"
                 >
+
+                <div
+                    id="penaltyGrid"
+                    class="penalty-grid"
+                >
+                    <div class="penalty-zone" data-zone="1"></div>
+                    <div class="penalty-zone" data-zone="2"></div>
+                    <div class="penalty-zone" data-zone="3"></div>
+                    <div class="penalty-zone" data-zone="4"></div>
+                    <div class="penalty-zone" data-zone="5"></div>
+
+                    <div class="penalty-zone" data-zone="6"></div>
+                    <div class="penalty-zone" data-zone="7"></div>
+                    <div class="penalty-zone" data-zone="8"></div>
+                    <div class="penalty-zone" data-zone="9"></div>
+                    <div class="penalty-zone" data-zone="10"></div>
+
+                    <div class="penalty-zone" data-zone="11"></div>
+                    <div class="penalty-zone" data-zone="12"></div>
+                    <div class="penalty-zone" data-zone="13"></div>
+                    <div class="penalty-zone" data-zone="14"></div>
+                    <div class="penalty-zone" data-zone="15"></div>
+                </div>
 
             </div>
 
@@ -725,10 +892,7 @@ body{
                 ⚽ PRÉDIRE
             </button>
 
-        </div>
-
-
-        <!-- ==================================
+        </div>        <!-- ==================================
              8. ROCKET X
         =================================== -->
 
@@ -744,6 +908,11 @@ body{
                     class="game-image"
                     alt="Rocket X"
                 >
+
+                <div
+                    id="rocketXValue"
+                    class="live-value"
+                ></div>
 
             </div>
 
@@ -781,6 +950,11 @@ body{
                     alt="Speed & Cash"
                 >
 
+                <div
+                    id="speedValue"
+                    class="live-value"
+                ></div>
+
             </div>
 
             <div
@@ -809,13 +983,30 @@ body{
             class="screen"
         >
 
-            <div class="game-image-box">
+            <div
+                class="
+                    game-image-box
+                    chicken-live-box
+                "
+            >
 
                 <img
                     src="/chickentrain.png"
                     class="game-image"
                     alt="Chicken Train"
                 >
+
+                <div
+                    id="eggTrack"
+                    class="egg-track"
+                >
+                    <div class="egg-marker" data-egg="1"></div>
+                    <div class="egg-marker" data-egg="2"></div>
+                    <div class="egg-marker" data-egg="3"></div>
+                    <div class="egg-marker" data-egg="4"></div>
+                    <div class="egg-marker" data-egg="5"></div>
+                    <div class="egg-marker" data-egg="6"></div>
+                </div>
 
             </div>
 
@@ -947,7 +1138,6 @@ body{
 ========================================= */
 
 const screens = {
-
     lucky:
         document.getElementById("luckyScreen"),
 
@@ -985,7 +1175,7 @@ const gameTitle =
 
 
 /* =========================================
-   MENU DES JEUX
+   CHANGEMENT DE JEU
 ========================================= */
 
 document
@@ -1002,7 +1192,6 @@ document
             const title =
                 button.dataset.title;
 
-
             Object
             .values(screens)
             .forEach(function(screen){
@@ -1012,7 +1201,6 @@ document
                 );
 
             });
-
 
             document
             .querySelectorAll(".game-select")
@@ -1024,14 +1212,13 @@ document
 
             });
 
-
             if(screens[game]){
 
                 screens[game]
-                .classList.add("active");
+                    .classList.add("active");
 
                 button
-                .classList.add("active-game");
+                    .classList.add("active-game");
 
                 gameTitle.textContent =
                     title;
@@ -1050,8 +1237,10 @@ document
 
 
 /* =========================================
-   MINES : SÉLECTION 1 À 8
+   MINES : SÉLECTION DU NOMBRE DE PIÈGES
 ========================================= */
+
+let selectedTraps = 3;
 
 document
 .querySelectorAll(".trap-btn")
@@ -1071,4 +1260,380 @@ document
 
             });
 
-          
+            button.classList.add(
+                "selected"
+            );
+
+            selectedTraps =
+                Number(button.dataset.trap);
+
+        }
+    );
+
+});/* =========================================
+   OUTILS D'AFFICHAGE
+========================================= */
+
+function setStatus(id, message){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+        element.textContent = message;
+    }
+}
+
+
+function clearLiveValue(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(!element){
+        return;
+    }
+
+    element.textContent = "";
+
+    element.classList.remove(
+        "visible",
+        "calculating"
+    );
+}
+
+
+/* =========================================
+   MOTEURS NON CONNECTÉS
+========================================= */
+
+const engines = {
+
+    lucky:{
+        button:"luckyPredict",
+        status:"luckyStatus",
+        value:"luckyValue",
+        name:"Lucky Jet"
+    },
+
+    aviator:{
+        button:"aviatorPredict",
+        status:"aviatorStatus",
+        value:"aviatorValue",
+        name:"Aviator"
+    },
+
+    crash:{
+        button:"crashPredict",
+        status:"crashStatus",
+        value:"crashValue",
+        name:"Crash"
+    },
+
+    rocketQueen:{
+        button:"rocketQueenPredict",
+        status:"rocketQueenStatus",
+        value:"rocketQueenValue",
+        name:"Rocket Queen"
+    },
+
+    limbo:{
+        button:"limboPredict",
+        status:"limboStatus",
+        value:"limboValue",
+        name:"Limbo"
+    },
+
+    rocketX:{
+        button:"rocketXPredict",
+        status:"rocketXStatus",
+        value:"rocketXValue",
+        name:"Rocket X"
+    },
+
+    speed:{
+        button:"speedPredict",
+        status:"speedStatus",
+        value:"speedValue",
+        name:"Speed & Cash"
+    }
+
+};
+
+
+/* =========================================
+   BOUTONS MULTIPLICATEURS
+========================================= */
+
+Object
+.values(engines)
+.forEach(function(engine){
+
+    const button =
+        document.getElementById(
+            engine.button
+        );
+
+    if(!button){
+        return;
+    }
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            clearLiveValue(
+                engine.value
+            );
+
+            setStatus(
+                engine.status,
+                "⌛ Moteur "
+                + engine.name
+                + " non connecté."
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   MINES CLASSIC
+========================================= */
+
+const minesPredict =
+    document.getElementById(
+        "minesPredict"
+    );
+
+if(minesPredict){
+
+    minesPredict.addEventListener(
+        "click",
+        function(){
+
+            setStatus(
+                "minesStatus",
+                "⌛ Moteur Mines non connecté. "
+                + selectedTraps
+                + " piège(s) sélectionné(s)."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   PENALTY
+========================================= */
+
+const penaltyZones =
+    Array.from(
+        document.querySelectorAll(
+            ".penalty-zone"
+        )
+    );
+
+
+function resetPenalty(){
+
+    penaltyZones.forEach(
+        function(zone){
+
+            zone.classList.remove(
+                "scanning",
+                "selected"
+            );
+
+        }
+    );
+
+}
+
+
+const penaltyPredict =
+    document.getElementById(
+        "penaltyPredict"
+    );
+
+if(penaltyPredict){
+
+    penaltyPredict.addEventListener(
+        "click",
+        function(){
+
+            resetPenalty();
+
+            setStatus(
+                "penaltyStatus",
+                "⌛ Moteur Penalty non connecté."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   CHICKEN TRAIN
+========================================= */
+
+const eggMarkers =
+    Array.from(
+        document.querySelectorAll(
+            ".egg-marker"
+        )
+    );
+
+
+function resetEggs(){
+
+    eggMarkers.forEach(
+        function(egg){
+
+            egg.classList.remove(
+                "scanning",
+                "selected"
+            );
+
+        }
+    );
+
+}
+
+
+const chickenPredict =
+    document.getElementById(
+        "chickenPredict"
+    );
+
+if(chickenPredict){
+
+    chickenPredict.addEventListener(
+        "click",
+        function(){
+
+            resetEggs();
+
+            setStatus(
+                "chickenStatus",
+                "⌛ Moteur Chicken Train non connecté."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   FONCTIONS PRÊTES POUR LE FUTUR MOTEUR
+========================================= */
+
+function showMultiplier(
+    game,
+    multiplier
+){
+
+    const engine =
+        engines[game];
+
+    if(!engine){
+        return;
+    }
+
+    const element =
+        document.getElementById(
+            engine.value
+        );
+
+    if(!element){
+        return;
+    }
+
+    element.textContent =
+        "X" + Number(multiplier).toFixed(2);
+
+    element.classList.add(
+        "visible"
+    );
+
+    setStatus(
+        engine.status,
+        "✅ Résultat reçu par le moteur."
+    );
+
+}
+
+
+function showPenaltyZone(zoneNumber){
+
+    resetPenalty();
+
+    const zone =
+        document.querySelector(
+            '.penalty-zone[data-zone="'
+            + zoneNumber
+            + '"]'
+        );
+
+    if(!zone){
+        return;
+    }
+
+    zone.classList.add(
+        "selected"
+    );
+
+    setStatus(
+        "penaltyStatus",
+        "✅ Zone "
+        + zoneNumber
+        + " reçue par le moteur."
+    );
+
+}
+
+
+function showChickenEgg(eggNumber){
+
+    resetEggs();
+
+    const egg =
+        document.querySelector(
+            '.egg-marker[data-egg="'
+            + eggNumber
+            + '"]'
+        );
+
+    if(!egg){
+        return;
+    }
+
+    egg.classList.add(
+        "selected"
+    );
+
+    setStatus(
+        "chickenStatus",
+        "✅ Étape "
+        + eggNumber
+        + " reçue par le moteur."
+    );
+
+}
+
+
+/* =========================================
+   FIN
+========================================= */
+
+</script>
+
+</body>
+</html>
