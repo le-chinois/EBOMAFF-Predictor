@@ -601,8 +601,20 @@ body{
 
 /* Positions demandées pour ANALYSE */
 #aviatorValue{top:38%!important;}
-#rocketQueenValue{top:43%!important;}
+#rocketQueenValue{top:49%!important;}
 #limboValue{top:64%!important;}
+
+/* V4 - mouvements visuels pendant ANALYSE */
+#luckyScreen .game-image-box.analysis-motion{animation:luckyFloat .55s ease-in-out infinite alternate;}
+#aviatorScreen .game-image-box.analysis-motion{animation:aviatorFlight .65s ease-in-out infinite alternate;}
+#rocketQueenScreen .game-image-box.analysis-motion{animation:queenFlight .65s ease-in-out infinite alternate;}
+#rocketXScreen .game-image-box.analysis-motion{animation:rocketFlight .6s ease-in-out infinite alternate;}
+#crashScreen .game-image-box.analysis-motion{animation:graphPulse .55s ease-in-out infinite alternate;}
+@keyframes luckyFloat{from{background-position:0 0}to{background-position:0 0}}
+@keyframes aviatorFlight{from{filter:brightness(.96)}to{filter:brightness(1.08)}}
+@keyframes queenFlight{from{filter:brightness(.96)}to{filter:brightness(1.08)}}
+@keyframes rocketFlight{from{filter:brightness(.96)}to{filter:brightness(1.08)}}
+@keyframes graphPulse{from{filter:brightness(.96)}to{filter:brightness(1.08)}}
 
 </style>
 </head>
@@ -1448,11 +1460,13 @@ function animateMultiplierEngine(engine){
  const box=value.closest(".game-image-box");
  button.disabled=true;
  value.textContent="ANALYSE...";
- value.classList.add("visible","calculating");
+ value.classList.add("visible","calculating","analysis-running");
+ if(box) box.classList.add("analysis-motion");
 
  setStatus(engine.status,"🔄 Analyse "+engine.name+" en cours...");
  setTimeout(function(){
-   value.classList.remove("calculating","visible");
+   value.classList.remove("calculating","visible","analysis-running");
+   if(box) box.classList.remove("analysis-motion");
    value.textContent="";
 
    button.disabled=false;
@@ -1467,7 +1481,7 @@ Object.values(engines).forEach(function(engine){
 
 /* MINES CLASSIC */
 const mineCells=Array.from(document.querySelectorAll(".mine-cell"));
-function resetMines(){mineCells.forEach(c=>c.classList.remove("analysis-motion"));}
+function resetMines(){mineCells.forEach(c=>c.classList.remove("scanning","selected","analysis-motion"));}
 const minesPredict=document.getElementById("minesPredict");
 if(minesPredict){
  minesPredict.addEventListener("click",function(){
@@ -1476,7 +1490,7 @@ if(minesPredict){
    let step=0;
    const timer=setInterval(function(){
      resetMines();
-     if(mineCells.length)mineCells[step%mineCells.length].classList.add("analysis-motion");
+     if(mineCells.length)mineCells[step%mineCells.length].classList.add("scanning");
      step++;
      if(step>=25){
        clearInterval(timer);resetMines();minesPredict.disabled=false;
@@ -1497,7 +1511,7 @@ if(penaltyPredict){
    let step=0;
    const timer=setInterval(function(){
      resetPenalty();
-     if(penaltyZones.length)penaltyZones[step%penaltyZones.length].classList.add("analysis-motion");
+     if(penaltyZones.length)penaltyZones[step%penaltyZones.length].classList.add("scanning");
      step++;
      if(step>=15){
        clearInterval(timer);resetPenalty();penaltyPredict.disabled=false;
@@ -1518,7 +1532,7 @@ if(chickenPredict){
    let step=0;
    const timer=setInterval(function(){
      resetEggs();
-     if(eggMarkers.length)eggMarkers[step%eggMarkers.length].classList.add("analysis-motion");
+     if(eggMarkers.length)eggMarkers[step%eggMarkers.length].classList.add("scanning");
      step++;
      if(step>=18){
        clearInterval(timer);resetEggs();chickenPredict.disabled=false;
