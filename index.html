@@ -3269,6 +3269,9 @@ function showChickenEgg(eggNumber){
         x.style.removeProperty('box-shadow');
         x.style.removeProperty('overflow');
         x.style.removeProperty('position');
+        x.style.removeProperty('opacity');
+        x.style.removeProperty('transform');
+        x.style.removeProperty('box-sizing');
       });
     }
   }
@@ -3281,6 +3284,11 @@ function showChickenEgg(eggNumber){
   function reveal(cell,h){
     /* V31 : c'est LA VRAIE CASE qui devient le résultat, comme la vidéo originale. */
     cell.style.setProperty('position','relative','important');
+    /* IMPORTANT : les zones HTML Mines sont invisibles par défaut (opacity:0).
+       On les rend visibles UNIQUEMENT au moment du résultat. */
+    cell.style.setProperty('opacity','1','important');
+    cell.style.setProperty('transform','scale(1)','important');
+    cell.style.setProperty('box-sizing','border-box','important');
     cell.style.setProperty('overflow','hidden','important');
     cell.style.setProperty(
       'background',
