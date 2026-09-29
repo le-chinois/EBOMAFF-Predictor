@@ -1503,6 +1503,76 @@ box-shadow:inset 0 0 8px rgba(255,255,255,.96);opacity:0;transform:scale(.18)}
 .m22-result.show{animation:m22s .34s cubic-bezier(.18,1.35,.3,1) forwards}
 @keyframes m22s{0%{opacity:0;transform:scale(.18)}72%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
 
+
+/* V23 — FINITION VISUELLE UNIQUEMENT */
+
+/* Scanner V22 conservé, simplement beaucoup plus lumineux */
+.m22-scan{
+  background:
+    radial-gradient(circle,
+      rgba(17,80,255,.32) 0 34%,
+      rgba(0,225,255,.42) 35% 63%,
+      rgba(255,255,255,.20) 64% 100%) !important;
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,.45),
+    inset 0 0 22px rgba(0,238,255,.55),
+    0 0 8px rgba(255,255,255,.72),
+    0 0 16px rgba(0,238,255,.82) !important;
+}
+.m22-scan:before{
+  width:82% !important;
+  background:
+    radial-gradient(circle at 42% 35%,
+      #ffffff 0 7%,
+      #1473ff 10% 43%,
+      #0628a9 54% 64%,
+      #00f0ff 67% 75%,
+      #ffffff 77% 88%,
+      #00b7ff 90% 100%) !important;
+  box-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 18px #00f4ff,
+    0 0 28px rgba(0,170,255,.98) !important;
+}
+
+/* Le résultat remplit désormais pratiquement TOUT le rectangle de la case */
+.m22-result{
+  inset:0 !important;
+  border-radius:10% !important;
+  border:2px solid #fff45b !important;
+  background:
+    linear-gradient(180deg,
+      #fff15a 0%,
+      #ffd51a 16%,
+      #ffae00 42%,
+      #ff8200 72%,
+      #ff6500 100%) !important;
+  box-shadow:
+    inset 0 0 7px rgba(255,255,255,1),
+    inset 0 7px 12px rgba(255,255,255,.42),
+    inset 0 -6px 10px rgba(255,75,0,.30),
+    0 0 5px #fff27a,
+    0 0 9px rgba(255,174,0,.95) !important;
+}
+
+/* Étoile 3D jaune/or/blanc inspirée de la référence utilisateur */
+.m22-result:after{
+  content:"★" !important;
+  font-size:88% !important;
+  font-weight:900 !important;
+  line-height:1 !important;
+  color:#fff9b5 !important;
+  -webkit-text-stroke:2px #ffd400;
+  text-shadow:
+    0 -2px 0 #ffffff,
+    0 2px 0 #ffb300,
+    0 0 3px #ffffff,
+    0 0 7px #fff15a,
+    0 0 11px #ff9d00 !important;
+  transform:scaleX(1.05);
+}
+
 </style>
 </head>
 
