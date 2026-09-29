@@ -3261,7 +3261,15 @@ function showChickenEgg(eggNumber){
     h.querySelectorAll('.m24-analyser').forEach(x=>x.remove());
     if(removeResults){
       h.querySelectorAll('.m24-result').forEach(x=>x.remove());
-      grid.querySelectorAll('.mine-cell.m30-star-result').forEach(x=>x.classList.remove('m30-star-result'));
+      grid.querySelectorAll('.mine-cell').forEach(x=>{
+        x.classList.remove('m30-star-result');
+        x.querySelectorAll('.m31-star').forEach(s=>s.remove());
+        x.style.removeProperty('background');
+        x.style.removeProperty('border-color');
+        x.style.removeProperty('box-shadow');
+        x.style.removeProperty('overflow');
+        x.style.removeProperty('position');
+      });
     }
   }
 
@@ -3271,10 +3279,45 @@ function showChickenEgg(eggNumber){
   }
 
   function reveal(cell,h){
-    /* Comme la vidéo originale : la vraie case bleue devient directement orange + étoile. */
-    cell.classList.remove('m30-star-result');
-    void cell.offsetWidth;
-    cell.classList.add('m30-star-result');
+    /* V31 : c'est LA VRAIE CASE qui devient le résultat, comme la vidéo originale. */
+    cell.style.setProperty('position','relative','important');
+    cell.style.setProperty('overflow','hidden','important');
+    cell.style.setProperty(
+      'background',
+      'linear-gradient(180deg,#fff36a 0%,#ffd51a 18%,#ffad00 46%,#ff8300 73%,#ff6500 100%)',
+      'important'
+    );
+    cell.style.setProperty('border-color','#fff36a','important');
+    cell.style.setProperty(
+      'box-shadow',
+      'inset 0 0 7px rgba(255,255,255,.98), inset 0 5px 9px rgba(255,255,255,.42), 0 0 5px #fff36a, 0 0 9px rgba(255,185,0,.95)',
+      'important'
+    );
+
+    const star=document.createElement('span');
+    star.className='m31-star';
+    star.textContent='★';
+    Object.assign(star.style,{
+      position:'absolute',
+      inset:'0',
+      display:'flex',
+      alignItems:'center',
+      justifyContent:'center',
+      color:'#fff8b8',
+      fontSize:'70%',
+      fontWeight:'900',
+      lineHeight:'1',
+      textShadow:'0 0 2px #fff, 0 0 5px #fff, 0 0 8px #ffe95a, 0 2px 1px #ffad00',
+      pointerEvents:'none',
+      zIndex:'5'
+    });
+    cell.appendChild(star);
+
+    /* apparition progressive */
+    star.animate(
+      [{opacity:0,transform:'scale(.2)'},{opacity:1,transform:'scale(1.08)'},{opacity:1,transform:'scale(1)'}],
+      {duration:320,easing:'cubic-bezier(.18,1.35,.3,1)',fill:'forwards'}
+    );
   }
 
   async function run(){
