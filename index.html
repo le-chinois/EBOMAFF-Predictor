@@ -1610,6 +1610,28 @@ box-shadow:inset 0 0 8px rgba(255,255,255,.96);opacity:0;transform:scale(.18)}
 /* V25 — étoile calibrée sur la référence 410 × 360 : elle remplit la case sans déborder.
    Scanner V24 volontairement inchangé. */
 @keyframes m24pop{0%{opacity:0;transform:scale(.12)}72%{opacity:1;transform:scale(1.03)}100%{opacity:1;transform:scale(1)}}
+
+/* V26 — ÉTOILE SEULEMENT.
+   Référence exacte du dessin : 410px × 360px.
+   Le scanner m24-analyser reste strictement inchangé. */
+.m24-result{
+  padding:0 !important;
+}
+.m24-star{
+  width:100% !important;
+  height:100% !important;
+  display:block !important;
+  overflow:hidden !important;
+  transform:none !important;
+  font-size:0 !important;
+}
+.m24-star-svg{
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
 </style>
 
 </head>
@@ -3250,7 +3272,34 @@ function showChickenEgg(eggNumber){
     const el=document.createElement('div');
     el.className='m24-result';
     Object.assign(el.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});
-    el.innerHTML='<span class="m24-star">★</span>';
+    el.innerHTML=`<span class="m24-star">
+      <svg class="m24-star-svg" viewBox="0 0 410 360" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="m24StarGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fffbd0"/>
+            <stop offset="28%" stop-color="#fff36a"/>
+            <stop offset="58%" stop-color="#ffd21a"/>
+            <stop offset="100%" stop-color="#ff9b00"/>
+          </linearGradient>
+          <filter id="m24StarGlow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Étoile dessinée dans un canevas EXACT de 410 × 360 -->
+        <polygon
+          points="205,18 249,116 357,126 274,196 300,305 205,248 110,305 136,196 53,126 161,116"
+          fill="url(#m24StarGold)"
+          stroke="#fff7a8"
+          stroke-width="14"
+          stroke-linejoin="round"
+          filter="url(#m24StarGlow)"/>
+        <polygon
+          points="205,42 240,132 333,139 260,199 281,281 205,232 129,281 150,199 77,139 170,132"
+          fill="#fffbe8"
+          opacity=".72"/>
+      </svg>
+    </span>`;
     h.appendChild(el);
     requestAnimationFrame(()=>el.classList.add('show'));
   }
