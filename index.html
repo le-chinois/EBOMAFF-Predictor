@@ -1488,161 +1488,20 @@ body{
    pour réactiver le style du multiplicateur quand le moteur réel sera connecté. */
 
 
-/* V14 — MINES : couche flottante uniquement, grille intacte */
-#minesGrid{position:relative !important;}
-
-.mines-v14-overlay{
-  position:absolute;
-  inset:0;
-  z-index:60;
-  pointer-events:none;
-  overflow:visible;
-}
-.mines-v14-halo{
-  position:absolute;
-  width:52px;
-  height:52px;
-  left:0;top:0;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,.96);
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.7);
-  box-shadow:
-    0 0 7px rgba(255,255,255,.95),
-    0 0 18px rgba(255,255,255,.62),
-    0 0 34px rgba(120,210,255,.38);
-  transition:left .24s cubic-bezier(.22,.7,.25,1),
-             top .24s cubic-bezier(.22,.7,.25,1);
-}
-.mines-v14-halo.on{
-  opacity:1;
-  animation:minesV14Pulse .55s ease-in-out infinite alternate;
-}
-@keyframes minesV14Pulse{
-  from{transform:translate(-50%,-50%) scale(.72);filter:brightness(1)}
-  to{transform:translate(-50%,-50%) scale(1.02);filter:brightness(1.45)}
-}
-
-.mines-v14-star{
-  position:absolute;
-  z-index:55;
-  pointer-events:none;
-  transform:translate(-50%,-50%) scale(.12) rotate(-18deg);
-  opacity:0;
-  font-size:38px;
-  line-height:1;
-  color:#ffd84d;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 7px #fff5a0,
-    0 0 15px #ffd84d,
-    0 0 26px rgba(255,216,77,.78);
-}
-.mines-v14-star.show{
-  animation:minesV14StarIn .42s cubic-bezier(.18,1.5,.3,1) forwards;
-}
-@keyframes minesV14StarIn{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.12) rotate(-18deg)}
-  68%{opacity:1;transform:translate(-50%,-50%) scale(1.22) rotate(4deg)}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
-}
-
-
-/* V18 — repère = image Mines, jamais #minesGrid */
-#minesScreen .mines-live-box{position:relative !important;}
-.mines-v18-layer{
-  position:absolute;
-  inset:0;
-  z-index:80;
-  pointer-events:none;
-}
-
-
-/* V19 — scanner et résultat confinés dans UNE case */
-.mines-v19-scanner{
-  position:absolute;
-  z-index:90;
-  pointer-events:none;
-  border-radius:50%;
-  transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle at 42% 36%,
-      rgba(255,255,255,.92) 0 7%,
-      rgba(35,116,255,.95) 10% 45%,
-      rgba(5,42,177,.98) 58% 68%,
-      rgba(0,229,255,.98) 70% 78%,
-      #fff 80% 88%,
-      rgba(0,157,255,.98) 90% 100%);
-  box-shadow:
-    0 0 5px #fff,
-    0 0 10px rgba(0,238,255,.98),
-    0 0 18px rgba(0,139,255,.82);
-  opacity:0;
-  transition:left .24s cubic-bezier(.22,.7,.25,1),
-             top .24s cubic-bezier(.22,.7,.25,1);
-}
-.mines-v19-scanner.on{
-  opacity:1;
-  animation:minesV19ScanPulse .48s ease-in-out infinite alternate;
-}
-@keyframes minesV19ScanPulse{
-  from{filter:brightness(1);transform:translate(-50%,-50%) scale(.86)}
-  to{filter:brightness(1.45);transform:translate(-50%,-50%) scale(1)}
-}
-
-.mines-v19-result{
-  position:absolute;
-  z-index:85;
-  pointer-events:none;
-  transform:translate(-50%,-50%) scale(.18);
-  opacity:0;
-  border-radius:14%;
-  overflow:hidden;
-  box-sizing:border-box;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:
-    linear-gradient(180deg,#fff46a 0%,#ffd21c 18%,#ff9d00 55%,#ff6a00 100%);
-  border:2px solid #fff76b;
-  box-shadow:
-    inset 0 0 7px rgba(255,255,255,.95),
-    0 0 5px rgba(255,230,30,.95);
-}
-.mines-v19-result::after{
-  content:"★";
-  color:#fff;
-  font-size:72%;
-  line-height:1;
-  text-shadow:
-    0 0 2px #fff,
-    0 0 5px #fff9a8,
-    0 0 8px rgba(255,177,0,.95);
-}
-.mines-v19-result.show{
-  animation:minesV19ResultIn .36s cubic-bezier(.2,1.35,.3,1) forwards;
-}
-@keyframes minesV19ResultIn{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.18)}
-  72%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-}
-
-
-/* V21 — effets flottants, chacun enfermé dans le rectangle réel d'une case */
-.mines-v21-slot{position:absolute;z-index:95;pointer-events:none;overflow:hidden;border-radius:10%}
-.mines-v21-scan{position:absolute;inset:2%;display:flex;align-items:center;justify-content:center;border-radius:10%;
-background:radial-gradient(circle,rgba(0,90,255,.20) 0 34%,rgba(0,205,255,.28) 35% 64%,rgba(255,255,255,.12) 65% 100%)}
-.mines-v21-scan:before{content:"";width:78%;aspect-ratio:1;border-radius:50%;
-background:radial-gradient(circle at 42% 35%,#fff 0 6%,#126cff 9% 47%,#0829ad 57% 66%,#00eaff 68% 76%,#fff 78% 88%,#009cff 90% 100%);
-box-shadow:0 0 5px #fff,0 0 11px #00eaff,0 0 18px #008cff;animation:v21pulse .45s ease-in-out infinite alternate}
-@keyframes v21pulse{from{transform:scale(.88);filter:brightness(1)}to{transform:scale(1);filter:brightness(1.55)}}
-.mines-v21-result{position:absolute;inset:2%;display:flex;align-items:center;justify-content:center;border-radius:9%;overflow:hidden;
+/* V22 SAFE — uniquement les overlays Mines, aucun style des autres jeux */
+.m22-slot{position:absolute;z-index:120;pointer-events:none;overflow:hidden;border-radius:10%}
+.m22-scan{position:absolute;inset:2%;display:flex;align-items:center;justify-content:center;border-radius:10%;
+background:radial-gradient(circle,rgba(0,95,255,.22),rgba(0,215,255,.25) 62%,rgba(255,255,255,.10))}
+.m22-scan:before{content:"";width:78%;aspect-ratio:1;border-radius:50%;
+background:radial-gradient(circle at 42% 35%,#fff 0 6%,#126cff 9% 47%,#0829ad 57% 66%,#00eaff 68% 76%,#fff 78% 88%,#009cff 90%);
+box-shadow:0 0 5px #fff,0 0 12px #00eaff,0 0 20px #008cff;animation:m22p .45s ease-in-out infinite alternate}
+@keyframes m22p{from{transform:scale(.88);filter:brightness(1)}to{transform:scale(1);filter:brightness(1.6)}}
+.m22-result{position:absolute;inset:2%;display:flex;align-items:center;justify-content:center;border-radius:9%;overflow:hidden;
 background:linear-gradient(180deg,#fff45c,#ffd319 18%,#ff9c00 55%,#ff6900);border:2px solid #fff36a;
 box-shadow:inset 0 0 8px rgba(255,255,255,.96);opacity:0;transform:scale(.18)}
-.mines-v21-result:after{content:"★";color:#fff;font-size:72%;line-height:1;text-shadow:0 0 2px #fff,0 0 5px #fff6a0,0 0 8px #ffad00}
-.mines-v21-result.show{animation:v21star .34s cubic-bezier(.18,1.35,.3,1) forwards}
-@keyframes v21star{0%{opacity:0;transform:scale(.18)}72%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
+.m22-result:after{content:"★";color:#fff;font-size:72%;line-height:1;text-shadow:0 0 2px #fff,0 0 5px #fff6a0,0 0 8px #ffad00}
+.m22-result.show{animation:m22s .34s cubic-bezier(.18,1.35,.3,1) forwards}
+@keyframes m22s{0%{opacity:0;transform:scale(.18)}72%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
 
 </style>
 </head>
@@ -2345,49 +2204,1021 @@ box-shadow:inset 0 0 8px rgba(255,255,255,.96);opacity:0;transform:scale(.18)}
 
 
 <script>
-/* V21 — couche flottante + clipping exact des 25 vraies cases */
-(function(){
- const grid=document.getElementById('minesGrid'),btn=document.getElementById('minesPredict'),screen=document.getElementById('minesScreen');
- if(!grid||!btn||!screen)return;
- const box=grid.closest('.mines-live-box')||screen.querySelector('.mines-live-box')||grid.parentElement;
- let running=false,gen=0,scanSlot=null;
- const wait=ms=>new Promise(r=>setTimeout(r,ms));
- const cells=()=>Array.from(grid.querySelectorAll('.mine-cell')).slice(0,25);
- function shuffle(a){for(let i=a.length-1;i;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
- function clear(){gen++;running=false;btn.disabled=false;box.querySelectorAll('.mines-v21-layer').forEach(x=>x.remove())}
- function slot(layer,cell){
-   const b=box.getBoundingClientRect(),r=cell.getBoundingClientRect(),s=document.createElement('div');
-   s.className='mines-v21-slot';
-   s.style.left=(r.left-b.left)+'px';s.style.top=(r.top-b.top)+'px';
-   s.style.width=r.width+'px';s.style.height=r.height+'px';
-   layer.appendChild(s);return s;
+
+/* =========================================
+   LES 10 ÉCRANS
+========================================= */
+
+const screens = {
+    lucky:
+        document.getElementById("luckyScreen"),
+
+    aviator:
+        document.getElementById("aviatorScreen"),
+
+    crash:
+        document.getElementById("crashScreen"),
+
+    rocketQueen:
+        document.getElementById("rocketQueenScreen"),
+
+    mines:
+        document.getElementById("minesScreen"),
+
+    limbo:
+        document.getElementById("limboScreen"),
+
+    penalty:
+        document.getElementById("penaltyScreen"),
+
+    rocketX:
+        document.getElementById("rocketXScreen"),
+
+    speed:
+        document.getElementById("speedScreen"),
+
+    chicken:
+        document.getElementById("chickenScreen")
+};
+
+
+const gameTitle =
+    document.getElementById("gameTitle");
+
+
+/* =========================================
+   CHANGEMENT DE JEU
+========================================= */
+
+document
+.querySelectorAll(".game-select")
+.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            const game =
+                button.dataset.game;
+
+            const title =
+                button.dataset.title;
+
+            Object
+            .values(screens)
+            .forEach(function(screen){
+
+                screen.classList.remove(
+                    "active"
+                );
+
+            });
+
+            document
+            .querySelectorAll(".game-select")
+            .forEach(function(item){
+
+                item.classList.remove(
+                    "active-game"
+                );
+
+            });
+
+            if(screens[game]){
+
+                screens[game]
+                    .classList.add("active");
+
+                button
+                    .classList.add("active-game");
+
+                gameTitle.textContent =
+                    title;
+
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================
+   MINES : SÉLECTION DU NOMBRE DE PIÈGES
+========================================= */
+
+let selectedTraps = 3;
+
+document
+.querySelectorAll(".trap-btn")
+.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            document
+            .querySelectorAll(".trap-btn")
+            .forEach(function(item){
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            });
+
+            button.classList.add(
+                "selected"
+            );
+
+            selectedTraps =
+                Number(button.dataset.trap);
+
+        }
+    );
+
+});/* =========================================
+   OUTILS D'AFFICHAGE
+========================================= */
+
+function setStatus(id, message){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+        element.textContent = message;
+    }
+}
+
+
+function clearLiveValue(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(!element){
+        return;
+    }
+
+    element.textContent = "";
+
+    element.classList.remove(
+        "visible",
+        "calculating"
+    );
+}
+
+
+/* =========================================
+   MOTEURS ET ANIMATIONS D'ANALYSE
+========================================= */
+
+const engines = {
+ lucky:{button:"luckyPredict",status:"luckyStatus",value:"luckyValue",name:"Lucky Jet"},
+ aviator:{button:"aviatorPredict",status:"aviatorStatus",value:"aviatorValue",name:"Aviator"},
+ crash:{button:"crashPredict",status:"crashStatus",value:"crashValue",name:"Crash"},
+ rocketQueen:{button:"rocketQueenPredict",status:"rocketQueenStatus",value:"rocketQueenValue",name:"Rocket Queen"},
+ limbo:{button:"limboPredict",status:"limboStatus",value:"limboValue",name:"Limbo"},
+ rocketX:{button:"rocketXPredict",status:"rocketXStatus",value:"rocketXValue",name:"Rocket X"}
+};
+
+function animateMultiplierEngine(engine){
+ const button=document.getElementById(engine.button);
+ const value=document.getElementById(engine.value);
+ if(!button||!value)return;
+ const box=value.closest(".game-image-box");
+ button.disabled=true;
+ value.textContent="ANALYSE...";
+ value.classList.add("visible","calculating","analysis-running");
+ if(box) box.classList.add("analysis-motion");
+
+ /* TEST AVIATOR : mouvement du PNG transparent */
+ const aviatorPlane = engine.name==="Aviator" ? document.getElementById("aviatorPlane") : null;
+ if(aviatorPlane){
+   aviatorPlane.classList.remove("aviator-flying");
+   void aviatorPlane.offsetWidth;
+   aviatorPlane.classList.add("aviator-flying");
  }
- function scan(layer,cell){
-   if(scanSlot)scanSlot.remove();
-   scanSlot=slot(layer,cell);
-   const x=document.createElement('span');x.className='mines-v21-scan';scanSlot.appendChild(x);
- }
- function reveal(layer,cell){
-   const s=slot(layer,cell),x=document.createElement('span');x.className='mines-v21-result';
-   s.appendChild(x);void x.offsetWidth;x.classList.add('show');
- }
- async function run(){
-   if(running)return;clear();running=true;btn.disabled=true;const mineGen=gen,all=cells();
-   if(all.length!==25){running=false;btn.disabled=false;return}
-   const layer=document.createElement('div');layer.className='mines-v21-layer';
-   Object.assign(layer.style,{position:'absolute',inset:'0',zIndex:'90',pointerEvents:'none'});
-   box.style.position='relative';box.appendChild(layer);
-   const order=shuffle([...Array(25).keys()]),selected=order.slice(0,5),probes=order.slice(5,16);let p=0;
-   for(let n=0;n<selected.length;n++){
-     if(mineGen!==gen)return;
-     const count=n%2===0?2:1;
-     for(let j=0;j<count&&p<probes.length;j++){scan(layer,all[probes[p++]]);await wait(360)}
-     scan(layer,all[selected[n]]);await wait(460);reveal(layer,all[selected[n]]);await wait(480);
+
+ setStatus(engine.status,"🔄 Analyse "+engine.name+" en cours...");
+ setTimeout(function(){
+   value.classList.remove("calculating","visible","analysis-running");
+   if(box) box.classList.remove("analysis-motion");
+   if(aviatorPlane) aviatorPlane.classList.remove("aviator-flying");
+   value.textContent="";
+
+   button.disabled=false;
+   setStatus(engine.status,"⌛ Moteur "+engine.name+" non connecté.");
+ },3000);
+}
+
+Object.values(engines).forEach(function(engine){
+ const button=document.getElementById(engine.button);
+ if(button)button.addEventListener("click",function(){animateMultiplierEngine(engine);});
+});
+
+
+/* SPEED & CASH V5 — ROULEMENT IMAGE PAR IMAGE */
+const speedPredict=document.getElementById("speedPredict");
+const speedRaceBox=document.getElementById("speedRaceBox");
+const speedValue=document.getElementById("speedValue");
+const speedBlueCar=speedRaceBox ? speedRaceBox.querySelector(".speed-moving-blue") : null;
+const speedRedCar=speedRaceBox ? speedRaceBox.querySelector(".speed-moving-red") : null;
+
+let speedHoldTimer=null;
+let speedReturnTimer=null;
+let speedDriveFrame=null;
+
+function speedSetCar(car,y,x,lean){
+  if(!car)return;
+  car.style.transform="translate3d("+x.toFixed(2)+"px,"+(-y).toFixed(2)+"%,0) rotate("+lean.toFixed(3)+"deg)";
+}
+
+function speedClearInlineCars(){
+  [speedBlueCar,speedRedCar].forEach(function(car){
+    if(car)car.style.transform="";
+  });
+}
+
+function resetSpeedCash(){
+  if(speedDriveFrame){cancelAnimationFrame(speedDriveFrame);speedDriveFrame=null;}
+  if(speedHoldTimer){clearTimeout(speedHoldTimer);speedHoldTimer=null;}
+  if(speedReturnTimer){clearTimeout(speedReturnTimer);speedReturnTimer=null;}
+  if(speedRaceBox){
+    speedRaceBox.classList.remove(
+      "race-blue-wins","race-red-wins","speed-hold","speed-return",
+      "speed-js-driving","show-center-cuff","cuff-blue","cuff-red","speed-blue-result","speed-orange-result"
+    );
+  }
+  speedClearInlineCars();
+  if(speedValue){
+    speedValue.textContent="";
+    speedValue.classList.remove("visible","calculating");
+  }
+  if(speedPredict)speedPredict.disabled=false;
+}
+
+/* Roulement continu : chaque frame avance réellement les deux voitures.
+   La petite vibration latérale/rotation évolue avec la vitesse, comme un véhicule en mouvement. */
+function runSpeedDrive(blueWins,onDone){
+  const duration=2000;
+  const blueTarget=blueWins ? 188 : 151;
+  const redTarget=blueWins ? 151 : 188;
+  let startTime=null;
+
+  speedRaceBox.classList.add("speed-js-driving");
+
+  function frame(now){
+    if(startTime===null)startTime=now;
+    let t=Math.min(1,(now-startTime)/duration);
+
+    /* accélération continue, sans sauts de keyframes */
+    const p=t*t*(3-2*t);
+    const distance=p*(0.90+0.10*t);
+
+    /* vibration très légère du châssis pendant le roulement */
+    const motion=Math.sin(t*Math.PI);
+    const wave1=Math.sin(t*44*Math.PI);
+    const wave2=Math.sin(t*37*Math.PI+0.8);
+
+    const blueY=blueTarget*distance;
+    const redY=redTarget*distance;
+    const blueX=motion*(0.85*wave1 + 0.28*Math.sin(t*13*Math.PI));
+    const redX=motion*(0.82*wave2 + 0.25*Math.sin(t*12*Math.PI+1.1));
+    const blueLean=motion*wave1*0.22;
+    const redLean=motion*wave2*0.22;
+
+    speedSetCar(speedBlueCar,blueY,blueX,blueLean);
+    speedSetCar(speedRedCar,redY,redX,redLean);
+
+    if(t<1){
+      speedDriveFrame=requestAnimationFrame(frame);
+    }else{
+      speedDriveFrame=null;
+      /* position finale exacte avant de reprendre le cycle déjà validé */
+      speedSetCar(speedBlueCar,blueTarget,0,0);
+      speedSetCar(speedRedCar,redTarget,0,0);
+      onDone();
+    }
+  }
+  speedDriveFrame=requestAnimationFrame(frame);
+}
+
+if(speedPredict && speedRaceBox && speedValue && speedBlueCar && speedRedCar){
+  speedPredict.addEventListener("click",function(){
+    resetSpeedCash();
+    speedPredict.disabled=true;
+
+    const blueWins=Math.random()<0.5;
+    const resultClass=blueWins ? "race-blue-wins" : "race-red-wins";
+    speedRaceBox.classList.remove("speed-blue-result","speed-orange-result");
+    speedRaceBox.classList.add(blueWins ? "speed-blue-result" : "speed-orange-result");
+    speedRaceBox.classList.add(resultClass);
+    setStatus("speedStatus","⌛ Moteur Speed & Cash non connecté.");
+
+    runSpeedDrive(blueWins,function(){
+      /* À partir d'ici : cycle arrivée -> attente -> retour déjà validé */
+      speedRaceBox.classList.remove("speed-js-driving");
+      speedClearInlineCars();
+      speedRaceBox.classList.add("speed-hold");
+
+      speedRaceBox.classList.add(
+        blueWins ? "cuff-red" : "cuff-blue",
+        "show-center-cuff"
+      );
+
+      speedValue.textContent="ANALYSE...";
+      speedValue.classList.add("visible");
+
+      speedReturnTimer=setTimeout(function(){
+        speedRaceBox.classList.remove("speed-hold");
+        void speedRaceBox.offsetWidth;
+        speedRaceBox.classList.add("speed-return");
+
+        setTimeout(function(){
+          speedRaceBox.classList.remove(
+            "speed-return","race-blue-wins","race-red-wins",
+            "show-center-cuff","cuff-blue","cuff-red","speed-blue-result","speed-orange-result"
+          );
+          speedClearInlineCars();
+          speedValue.textContent="";
+          speedValue.classList.remove("visible");
+          speedPredict.disabled=false;
+          setStatus("speedStatus","⌛ Moteur Speed & Cash non connecté.");
+        },980);
+      },1800);
+    });
+  });
+}
+
+/* MINES CLASSIC */
+const mineCells=Array.from(document.querySelectorAll(".mine-cell"));
+function resetMines(){mineCells.forEach(c=>c.classList.remove("scanning","selected","analysis-motion"));}
+const minesPredict=document.getElementById("minesPredict");
+if(minesPredict){
+ minesPredict.addEventListener("click",function(){
+   resetMines(); minesPredict.disabled=true;
+   setStatus("minesStatus","🔄 Analyse Mines en cours — "+selectedTraps+" piège(s) sélectionné(s)...");
+   let step=0;
+   const timer=setInterval(function(){
+     resetMines();
+     if(mineCells.length)mineCells[step%mineCells.length].classList.add("scanning");
+     step++;
+     if(step>=25){
+       clearInterval(timer);resetMines();minesPredict.disabled=false;
+       setStatus("minesStatus","⌛ Moteur Mines non connecté. "+selectedTraps+" piège(s) sélectionné(s).");
+     }
+   },100);
+ });
+}
+
+/* PENALTY - 15 ZONES */
+const penaltyZones=Array.from(document.querySelectorAll(".penalty-zone"));
+function resetPenalty(){penaltyZones.forEach(z=>z.classList.remove("scanning","selected"));}
+const penaltyPredict=document.getElementById("penaltyPredict");
+
+if(penaltyPredict){
+ penaltyPredict.addEventListener("click",function(){
+   resetPenalty();
+   penaltyPredict.disabled=true;
+   setStatus("penaltyStatus","🔄 Analyse des 15 zones en cours...");
+
+   /* Démo visuelle : parcours des 15 cibles, puis conservation de la dernière cible. */
+   let step=0;
+   const finalIndex=Math.floor(Math.random()*penaltyZones.length);
+
+   const scanOrder=[];
+   for(let round=0; round<2; round++){
+     for(let i=0;i<penaltyZones.length;i++) scanOrder.push(i);
    }
-   if(scanSlot)scanSlot.remove();scanSlot=null;running=false;btn.disabled=false;
+   scanOrder.push(finalIndex);
+
+   const timer=setInterval(function(){
+     penaltyZones.forEach(z=>z.classList.remove("scanning"));
+     const idx=scanOrder[step];
+     if(penaltyZones[idx]) penaltyZones[idx].classList.add("scanning");
+     step++;
+
+     if(step>=scanOrder.length){
+       clearInterval(timer);
+       penaltyZones.forEach(z=>z.classList.remove("scanning","selected"));
+
+       const finalZone=penaltyZones[finalIndex];
+       if(finalZone){
+         finalZone.classList.add("selected");
+         const zoneNumber=finalZone.dataset.zone;
+         setStatus("penaltyStatus","⌛ Moteur Penalty non connecté.");
+       }
+
+       penaltyPredict.disabled=false;
+     }
+   },110);
+ });
+}
+
+/* CHICKEN TRAIN - 6 ŒUFS */
+const eggMarkers=Array.from(document.querySelectorAll(".egg-marker"));
+function resetEggs(){eggMarkers.forEach(e=>e.classList.remove("scanning","selected"));}
+const chickenPredict=document.getElementById("chickenPredict");
+if(chickenPredict){
+ chickenPredict.addEventListener("click",function(){
+   resetEggs();chickenPredict.disabled=true;
+   setStatus("chickenStatus","🔄 Analyse Chicken Train en cours...");
+   let step=0;
+   const timer=setInterval(function(){
+     resetEggs();
+     if(eggMarkers.length)eggMarkers[step%eggMarkers.length].classList.add("scanning");
+     step++;
+     if(step>=18){
+       clearInterval(timer);resetEggs();chickenPredict.disabled=false;
+       setStatus("chickenStatus","⌛ Moteur Chicken Train non connecté.");
+     }
+   },150);
+ });
+}
+
+/* FONCTIONS PRÊTES POUR LE FUTUR MOTEUR */
+function showMultiplier(game,multiplier){
+ if(game === "lucky" && typeof window.stopLuckyFlight === "function") window.stopLuckyFlight();
+ const engine=engines[game]; if(!engine)return;
+ const element=document.getElementById(engine.value); if(!element)return;
+ element.textContent="X"+Number(multiplier).toFixed(2);
+ element.classList.add("visible");
+ setStatus(engine.status,"✅ Résultat reçu par le moteur.");
+}
+function showPenaltyZone(zoneNumber){
+ resetPenalty();
+ const zone=document.querySelector('.penalty-zone[data-zone="'+zoneNumber+'"]');
+ if(!zone)return;
+ zone.classList.add("selected");
+ const zoneLabel=document.getElementById("penaltyZoneLabel");
+ if(zoneLabel) zoneLabel.textContent="ZONE : "+zoneNumber;
+ setStatus("penaltyStatus","✅ Zone "+zoneNumber+" reçue par le moteur.");
+}
+function showChickenEgg(eggNumber){
+ resetEggs();
+ const egg=document.querySelector('.egg-marker[data-egg="'+eggNumber+'"]');
+ if(!egg)return;
+ egg.classList.add("selected");
+ setStatus("chickenStatus","✅ Étape "+eggNumber+" reçue par le moteur.");
+}
+
+/* FIN */
+
+/* ===== LUCKY JET : vol piloté par le moteur + décor vivant ===== */
+(function(){
+  const btn = document.getElementById('luckyPredict');
+  const character = document.getElementById('luckyCharacter');
+  const thruster = document.getElementById('luckyThruster');
+  const smoke = document.getElementById('luckySmoke');
+  const curve = document.getElementById('luckyCurvePath');
+  const taper = document.getElementById('luckyCurveTaper');
+  const svg = document.getElementById('luckyCurve');
+  const value = document.getElementById('luckyValue');
+  const status = document.getElementById('luckyStatus');
+  if(!btn || !character || !curve || !svg || !value) return;
+
+  /* Audio Lucky Jet fourni par l'utilisateur : vol + fin "fuuu" */
+  const luckyFlightAudio = new Audio('/luckyjet-flight.mp3');
+  const luckyStopAudio = new Audio('/luckyjet-stop.mp3');
+  luckyFlightAudio.loop = true;
+  luckyFlightAudio.preload = 'auto';
+  luckyStopAudio.preload = 'auto';
+
+  function startLuckyAudio(){
+    luckyStopAudio.pause(); luckyStopAudio.currentTime = 0;
+    luckyFlightAudio.currentTime = 0;
+    luckyFlightAudio.play().catch(function(){});
+  }
+  function stopLuckyAudioWithFuuu(){
+    luckyFlightAudio.pause(); luckyFlightAudio.currentTime = 0;
+    luckyStopAudio.currentTime = 0;
+    luckyStopAudio.play().catch(function(){});
+  }
+  function resetLuckyAudio(){
+    luckyFlightAudio.pause(); luckyFlightAudio.currentTime = 0;
+    luckyStopAudio.pause(); luckyStopAudio.currentTime = 0;
+  }
+
+  let raf = null, started = 0, flying = false;
+  const total = curve.getTotalLength();
+  curve.style.strokeDasharray = String(total);
+  curve.style.strokeDashoffset = String(total);
+
+  function placeCharacter(progress){
+    const length = total * progress;
+    const p = curve.getPointAtLength(length);
+    const p2 = curve.getPointAtLength(Math.min(total, length + 4));
+    const x = (p.x / 1000) * 100, y = (p.y / 520) * 100;
+    const angle = Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI;
+    character.style.left=x+'%'; character.style.top=y+'%';
+    character.style.transform='translate(-50%,-50%) rotate('+angle+'deg) scale('+(0.78+progress*.22)+')';
+    const rad=angle*Math.PI/180, back=7.8;
+    [thruster,smoke].forEach(function(el,i){if(!el)return; el.style.left=(x-Math.cos(rad)*(back+i*2.3))+'%'; el.style.top=(y-Math.sin(rad)*(back+i*2.3))+'%'; el.style.transform='translate(-50%,-50%) rotate('+angle+'deg)';});
+  }
+
+  function resetLucky(){
+    if(raf) cancelAnimationFrame(raf); raf=null; flying=false;
+    resetLuckyAudio();
+    curve.style.strokeDashoffset=String(total); if(taper)taper.style.clipPath='inset(0 100% 0 0)'; character.style.opacity='0'; character.classList.remove('lucky-propulsion');
+    if(thruster)thruster.style.opacity='0'; if(smoke)smoke.style.opacity='0';
+    placeCharacter(0); value.textContent=''; value.classList.remove('visible'); btn.disabled=false;
+  }
+
+  /* Appelé automatiquement quand le moteur renvoie son coefficient. */
+  window.stopLuckyFlight=function(){
+    flying=false; if(raf)cancelAnimationFrame(raf); raf=null; character.classList.remove('lucky-propulsion');
+    stopLuckyAudioWithFuuu();
+    if(thruster)thruster.style.opacity='0'; if(smoke)smoke.style.opacity='0'; if(window.stopLuckySmoke)window.stopLuckySmoke();
+    btn.disabled=false;
+  };
+
+  resetLucky();
+
+  /* Démarre le son dès l'appui physique sur PRÉDIRE (Android/Chrome compris). */
+  btn.addEventListener('pointerdown', function(){
+    startLuckyAudio();
+  }, {passive:true});
+
+  btn.addEventListener('click',function(e){
+    e.stopImmediatePropagation(); btn.disabled=true; flying=true; started=performance.now();
+    curve.style.strokeDashoffset=String(total); if(taper)taper.style.clipPath='inset(0 100% 0 0)'; character.style.opacity='1'; character.classList.add('lucky-propulsion');
+    if(thruster)thruster.style.opacity='1'; if(smoke)smoke.style.opacity='1'; if(window.startLuckySmoke)window.startLuckySmoke(); placeCharacter(0);
+    value.textContent='ANALYSE...'; value.classList.add('visible');
+    if(status)status.textContent='🔄 Analyse Lucky Jet en cours...';
+
+    function frame(now){
+      if(!flying)return;
+      const elapsed=now-started;
+      /* Aucune durée de fin : progression continue jusqu'à l'ordre du moteur. */
+      const p=Math.min(.985,1-Math.exp(-elapsed/6200));
+      curve.style.strokeDashoffset=String(total*(1-p)); if(taper)taper.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)'; placeCharacter(p);
+      value.textContent='ANALYSE...';
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+  },true);
+})();
+
+
+
+
+
+</script>
+
+
+<style>
+/* FINAL — nuages animés lumineux uniquement, petite taille conservée */
+#luckyCloudLayer > .lucky-cloud{
+  width:21% !important;
+  height:8.5% !important;
+  box-shadow:
+    0 -3px 9px rgba(123,82,255,.34),
+    inset 0 4px 8px rgba(143,99,255,.22),
+    inset 0 -5px 10px rgba(78,42,205,.24) !important;
+}
+#luckyCloudLayer > .lucky-cloud.c1,
+#luckyCloudLayer > .lucky-cloud.c1::before,
+#luckyCloudLayer > .lucky-cloud.c1::after{
+  background:#5530D9 !important;
+  filter:none !important;
+}
+#luckyCloudLayer > .lucky-cloud.c2,
+#luckyCloudLayer > .lucky-cloud.c2::before,
+#luckyCloudLayer > .lucky-cloud.c2::after{
+  background:#6438EE !important;
+  filter:none !important;
+}
+#luckyCloudLayer > .lucky-cloud.c3,
+#luckyCloudLayer > .lucky-cloud.c3::before,
+#luckyCloudLayer > .lucky-cloud.c3::after{
+  background:#4928C7 !important;
+  filter:none !important;
+}
+</style>
+
+
+<script>
+/* CRASH V13 — Line : historique long, continu, scrolling réel */
+(function(){
+ const btn=document.getElementById("crashPredict");
+ const line=document.getElementById("crashLine");
+ const area=document.getElementById("crashArea");
+ const dot=document.getElementById("crashDot");
+ const halo=document.getElementById("crashHalo");
+ const vertical=document.getElementById("crashVertical");
+ const value=document.getElementById("crashValue");
+ const status=document.getElementById("crashStatus");
+ const referenceLine=document.getElementById("crashReferenceLine");
+ if(!btn||!line||!area||!dot||!halo||!vertical||!value)return;
+
+ let raf=null,running=false,lastTime=0,sampleAcc=0,elapsed=0;
+ let points=[];
+
+ const LEFT=55, ACTIVE_X=825, AREA_BOTTOM=675;
+ const SAMPLE_MS=90;
+ const SCROLL_PX_PER_SEC=30;
+
+ function clearChart(){
+   points=[];
+   if(referenceLine) referenceLine.style.opacity="0";
+   line.setAttribute("d","");
+   area.setAttribute("d","");
+   dot.style.opacity="0";
+   halo.style.opacity="0";
+   vertical.style.opacity="0";
  }
- btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();run()},true);
- document.addEventListener('click',e=>{const t=e.target.closest('[data-game]');if(t&&(t.dataset.game||'').toLowerCase()!=='mines')clear()},true);
+
+ /* Le point actif monte de façon continue.
+    Les intervalles entre les poussées donnent les paliers/cassures,
+    sans aucun saut de hauteur. */
+ function activeY(ms){
+   const s=ms/1000;
+   const ss=(a,b,x)=>{
+     if(x<=a)return 0;
+     if(x>=b)return 1;
+     const u=(x-a)/(b-a);
+     return u*u*(3-2*u);
+   };
+
+   let rise=0;
+   rise += 28*ss(0.00,0.75,s);
+   rise += 43*ss(1.05,1.90,s);
+   rise += 31*ss(2.30,3.05,s);
+   rise += 47*ss(3.45,4.45,s);
+   rise += 34*ss(4.95,5.85,s);
+   rise += 49*ss(6.35,7.45,s);
+   rise += 36*ss(7.95,8.90,s);
+   rise += 45*ss(9.40,10.55,s);
+   if(s>10.55) rise+=(s-10.55)*14;
+
+   return Math.max(125,455-rise);
+ }
+
+ /* Historique initial LONG.
+    Point essentiel : son dernier point finit EXACTEMENT à activeY(0)=455.
+    Donc aucun raccord vertical artificiel n'est possible. */
+ function seedHistory(){
+   const A=[
+     [LEFT,620],
+     [95,608],
+     [125,607],
+     [160,594],
+     [195,570],
+     [225,544],
+     [255,536],
+     [295,535],
+     [330,520],
+     [365,492],
+     [395,472],
+     [430,471],
+     [465,471],
+     [500,462],
+     [535,448],
+     [570,435],
+     [610,420],
+     [645,405],
+     [680,389],
+     [715,374],
+     [750,358],
+     [785,340],
+     [ACTIVE_X,455]
+   ];
+
+   /* On remonte progressivement le dernier tronçon vers le point actif
+      sans créer de cassure verticale. */
+   A[A.length-2][1]=466;
+   A[A.length-3][1]=480;
+   A[A.length-4][1]=494;
+   A[A.length-5][1]=508;
+   A[A.length-6][1]=522;
+
+   points=[];
+   for(let k=0;k<A.length-1;k++){
+     const p=A[k], q=A[k+1];
+     const n=Math.max(2,Math.ceil((q[0]-p[0])/10));
+     for(let i=0;i<n;i++){
+       const u=i/n;
+       points.push({
+         x:p[0]+(q[0]-p[0])*u,
+         y:p[1]+(q[1]-p[1])*u
+       });
+     }
+   }
+   points.push({x:ACTIVE_X,y:activeY(0)});
+ }
+
+ function render(){
+   if(points.length<2)return;
+
+   let d="M "+points[0].x.toFixed(1)+" "+points[0].y.toFixed(1);
+   for(let i=1;i<points.length;i++){
+     d+=" L "+points[i].x.toFixed(1)+" "+points[i].y.toFixed(1);
+   }
+   line.setAttribute("d",d);
+
+   const first=points[0], end=points[points.length-1];
+   area.setAttribute("d",
+     d+" L "+end.x.toFixed(1)+" "+AREA_BOTTOM+
+     " L "+first.x.toFixed(1)+" "+AREA_BOTTOM+" Z");
+
+   dot.setAttribute("cx",ACTIVE_X);
+   dot.setAttribute("cy",end.y);
+   halo.setAttribute("cx",ACTIVE_X);
+   halo.setAttribute("cy",end.y);
+   vertical.setAttribute("x1",ACTIVE_X);
+   vertical.setAttribute("x2",ACTIVE_X);
+   vertical.setAttribute("y1","90");
+   vertical.setAttribute("y2",AREA_BOTTOM);
+
+   dot.style.opacity="1";
+   halo.style.opacity="1";
+   vertical.style.opacity="1";
+ }
+
+ function appendPoint(){
+   /* Nouveau point = continuation du point précédent.
+      Il naît au cercle; aucune remise à zéro de l'historique. */
+   points.push({x:ACTIVE_X,y:activeY(elapsed)});
+ }
+
+ function trimOnlyOutsideViewport(){
+   /* On ne supprime JAMAIS un point encore visible.
+      Suppression uniquement après sortie réelle du bord gauche. */
+   while(points.length>3 && points[1].x < LEFT-12){
+     points.shift();
+   }
+ }
+
+ function reset(){
+   if(raf)cancelAnimationFrame(raf);
+   raf=null; running=false; lastTime=0; sampleAcc=0; elapsed=0;
+   clearChart();
+   value.textContent="";
+   value.classList.remove("visible","calculating","analysis-running");
+   btn.disabled=false;
+ }
+
+ window.stopCrashFlight=function(result){
+   running=false;
+   if(raf)cancelAnimationFrame(raf);
+   raf=null;
+   clearChart();
+   btn.disabled=false;
+
+   if(result!==undefined && result!==null && result!==""){
+     const raw=String(result).replace(/^x/i,"").trim();
+     value.innerHTML=
+       '<span style="font-size:.55em">x</span>'+raw+
+       '<div style="font-size:.34em;color:#1688ff;font-style:normal;margin-top:5px">Tour terminé</div>';
+     value.classList.add("visible");
+     if(status)status.textContent="✅ Tour Crash terminé.";
+   }
+ };
+
+ reset();
+
+ btn.addEventListener("click",function(e){
+   e.stopImmediatePropagation();
+   btn.disabled=true;
+   running=true;
+   lastTime=performance.now();
+   sampleAcc=0;
+   elapsed=0;
+
+   seedHistory();
+   render();
+
+   if(referenceLine){
+     referenceLine.style.opacity="0";
+     referenceLine.src="/crash-line-reference.webp?run="+Date.now();
+     requestAnimationFrame(()=>{ referenceLine.style.opacity="1"; });
+   }
+
+   value.textContent="ANALYSE...";
+   value.classList.add("visible","analysis-running");
+   if(status)status.textContent="🔄 Analyse Crash en cours...";
+
+   function frame(now){
+     if(!running)return;
+
+     const dt=Math.min(40,now-lastTime);
+     lastTime=now;
+     elapsed+=dt;
+     sampleAcc+=dt;
+
+     /* HISTORIQUE : tous les anciens points défilent ensemble vers la gauche. */
+     const dx=SCROLL_PX_PER_SEC*(dt/1000);
+     for(let i=0;i<points.length;i++){
+       points[i].x-=dx;
+     }
+
+     while(sampleAcc>=SAMPLE_MS){
+       sampleAcc-=SAMPLE_MS;
+       appendPoint();
+     }
+
+     /* L'extrémité active reste exactement sous le cercle fixe. */
+     if(points.length){
+       points[points.length-1].x=ACTIVE_X;
+       points[points.length-1].y=activeY(elapsed);
+     }
+
+     trimOnlyOutsideViewport();
+     render();
+     raf=requestAnimationFrame(frame);
+   }
+
+   raf=requestAnimationFrame(frame);
+ },true);
+})();
+</script>
+
+
+<script>
+/* V11 — RESET LUCKY JET LORSQU'ON QUITTE LE JEU */
+(function(){
+  function stopMediaInsideLucky(){
+    var lucky = document.querySelector('#game-lucky, #luckyGame, .game-lucky, [data-game-panel="lucky"], [data-panel="lucky"]');
+    var media = lucky ? lucky.querySelectorAll('audio,video') : document.querySelectorAll('audio[id*="lucky" i],video[id*="lucky" i]');
+    media.forEach(function(m){
+      try{ m.pause(); m.currentTime=0; }catch(e){}
+    });
+    /* audio Lucky Jet éventuellement placé hors du panneau */
+    document.querySelectorAll('audio[id*="lucky" i], audio[class*="lucky" i]').forEach(function(a){
+      try{ a.pause(); a.currentTime=0; }catch(e){}
+    });
+  }
+
+  function resetLuckyJet(){
+    stopMediaInsideLucky();
+
+    /* Annule les animations CSS du panneau sans modifier son design */
+    var lucky = document.querySelector('#game-lucky, #luckyGame, .game-lucky, [data-game-panel="lucky"], [data-panel="lucky"]');
+    if(lucky){
+      lucky.querySelectorAll('[class*="animat"], [class*="flying"], [class*="running"], [class*="active"]').forEach(function(el){
+        /* ne retire que les classes d'état Lucky connues/temporaires */
+        ['animating','flying','running','predicting','analyzing','active-flight'].forEach(function(c){el.classList.remove(c);});
+      });
+    }
+
+    /* Restaure le bouton PRÉDIRE Lucky Jet */
+    var btn = document.querySelector('#luckyPredict, #predictLucky, #lucky-predict, [data-action="lucky-predict"]');
+    if(btn){
+      btn.disabled=false;
+      btn.style.display='';
+      btn.style.visibility='visible';
+      btn.style.opacity='1';
+      btn.removeAttribute('aria-hidden');
+    }
+
+    /* Cache les états d'analyse/résultat Lucky Jet si présents */
+    ['#luckyAnalysis','#luckyResult','#luckyLoading','.lucky-analysis','.lucky-result','.lucky-loading'].forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el){
+        el.classList.remove('visible','show','active');
+      });
+    });
+  }
+
+  /* Le clic sur un autre jeu remet Lucky Jet à zéro immédiatement. */
+  document.addEventListener('click',function(e){
+    var tab=e.target.closest('[data-game]');
+    if(!tab)return;
+    var game=(tab.getAttribute('data-game')||'').toLowerCase();
+    if(game && game!=='lucky' && game!=='luckyjet' && game!=='lucky-jet'){
+      resetLuckyJet();
+    }
+  },true);
+
+  window.resetLuckyJetOnLeave=resetLuckyJet;
+})();
+</script>
+
+
+<script>
+/* V22 SAFE : extension Mines isolée. Aucun script existant n'est remplacé. */
+(function(){
+  const grid=document.getElementById('minesGrid');
+  const btn=document.getElementById('minesPredict');
+  const screen=document.getElementById('minesScreen');
+  if(!grid||!btn||!screen)return;
+
+  let busy=false, token=0, currentScan=null;
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  const getCells=()=>Array.from(grid.querySelectorAll('.mine-cell')).slice(0,25);
+
+  function shuffle(a){
+    for(let i=a.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [a[i],a[j]]=[a[j],a[i]];
+    }
+    return a;
+  }
+
+  function host(){
+    return grid.closest('.mines-live-box') || screen.querySelector('.mines-live-box') || grid.parentElement;
+  }
+
+  function cleanup(){
+    token++;
+    busy=false;
+    btn.disabled=false;
+    const h=host();
+    if(h) h.querySelectorAll('.m22-layer').forEach(x=>x.remove());
+    currentScan=null;
+  }
+
+  function makeSlot(layer,cell,h){
+    const hb=h.getBoundingClientRect();
+    const r=cell.getBoundingClientRect();
+    const s=document.createElement('div');
+    s.className='m22-slot';
+    s.style.left=(r.left-hb.left)+'px';
+    s.style.top=(r.top-hb.top)+'px';
+    s.style.width=r.width+'px';
+    s.style.height=r.height+'px';
+    layer.appendChild(s);
+    return s;
+  }
+
+  async function demo(){
+    if(busy)return;
+    cleanup();
+    busy=true;
+    btn.disabled=true;
+    const my=token, cells=getCells(), h=host();
+    if(!h || cells.length!==25){busy=false;btn.disabled=false;return;}
+
+    // couche indépendante au-dessus du Mines seulement
+    const oldPos=getComputedStyle(h).position;
+    if(oldPos==='static') h.style.position='relative';
+    const layer=document.createElement('div');
+    layer.className='m22-layer';
+    Object.assign(layer.style,{position:'absolute',inset:'0',zIndex:'110',pointerEvents:'none'});
+    h.appendChild(layer);
+
+    function scan(cell){
+      if(currentScan)currentScan.remove();
+      currentScan=makeSlot(layer,cell,h);
+      const x=document.createElement('span');
+      x.className='m22-scan';
+      currentScan.appendChild(x);
+    }
+    function reveal(cell){
+      const s=makeSlot(layer,cell,h);
+      const x=document.createElement('span');
+      x.className='m22-result';
+      s.appendChild(x);
+      void x.offsetWidth;
+      x.classList.add('show');
+    }
+
+    const order=shuffle([...Array(25).keys()]);
+    const chosen=order.slice(0,5), probes=order.slice(5,16);
+    let p=0;
+
+    for(let n=0;n<chosen.length;n++){
+      if(my!==token)return;
+      const count=n%2===0?2:1;
+      for(let j=0;j<count && p<probes.length;j++){
+        scan(cells[probes[p++]]);
+        await wait(350);
+      }
+      scan(cells[chosen[n]]);
+      await wait(450);
+      reveal(cells[chosen[n]]);
+      await wait(470);
+    }
+
+    if(currentScan)currentScan.remove();
+    currentScan=null;
+    busy=false;
+    btn.disabled=false;
+  }
+
+  /*
+    Capture uniquement le bouton Mines.
+    Aucun listener global de navigation n'est remplacé/supprimé.
+  */
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    demo();
+  },true);
+
+  // Nettoyage seulement lorsqu'un autre onglet est effectivement cliqué.
+  document.addEventListener('click',function(e){
+    const t=e.target.closest('[data-game]');
+    if(t && (t.dataset.game||'').toLowerCase()!=='mines'){
+      cleanup();
+    }
+  },false);
 })();
 </script>
 
