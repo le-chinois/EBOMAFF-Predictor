@@ -2435,10 +2435,7 @@ document
                 gameTitle.textContent =
                     title;
 
-                window.scrollTo({
-                    top:0,
-                    behavior:"auto"
-                });
+                window.scrollTo(0, 0);
 
             }
 
@@ -3439,6 +3436,25 @@ function showChickenEgg(eggNumber){
 }
 #luckyValue.visible{opacity:1 !important;}
 </style>
+
+<style id="instant-game-switch-v48">
+html, body { scroll-behavior: auto !important; overflow-anchor: none !important; }
+.screen, .game-screen, [data-game-screen] {
+  transition: none !important;
+}
+</style>
+<script id="instant-game-switch-patch-v48">
+/* Keep game switching visually atomic: render first, then reposition in the same frame.
+   This does not alter any game engine/animation logic. */
+document.addEventListener('click', function(e){
+  const b = e.target.closest('[data-game]');
+  if (!b) return;
+  requestAnimationFrame(function(){
+    window.scrollTo(0,0);
+  });
+}, true);
+</script>
+
 </body>
 </html>
 
