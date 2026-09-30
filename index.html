@@ -1634,6 +1634,22 @@ box-shadow:inset 0 0 8px rgba(255,255,255,.96);opacity:0;transform:scale(.18)}
 
 </style>
 
+
+<style id="instant-game-pages-v47">
+/* V47 — ouverture instantanée des pages de jeux.
+   Aucun changement aux moteurs/animations des jeux, notamment Speed & Cash. */
+.screen{
+  transition:none !important;
+  animation:none !important;
+}
+.screen.active{
+  display:block !important;
+}
+html{
+  scroll-behavior:auto !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2421,7 +2437,7 @@ document
 
                 window.scrollTo({
                     top:0,
-                    behavior:"smooth"
+                    behavior:"auto"
                 });
 
             }
