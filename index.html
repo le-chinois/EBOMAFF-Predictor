@@ -2882,22 +2882,18 @@ function showChickenEgg(eggNumber){
 
     /* Démo uniquement : coefficient généré localement, sans données 1win. */
     luckyDemoResult = (1.10 + Math.random()*5.90).toFixed(2);
-    const luckyResultDelay = 300; /* résultat visible après ~0,3 s */
-    const luckyDemoDuration = 4200 + Math.random()*2200;
-    let luckyResultVisible = false;
+    const luckyDemoDuration = 500; /* trajet COMPLET en ~0,5 seconde */
     if(luckyDemoTimer) clearTimeout(luckyDemoTimer);
 
-    /* Affiche très vite le coefficient, puis laisse l'animation continuer. */
-    setTimeout(function(){
-      if(!flying) return;
-      luckyResultVisible = true;
-      value.textContent = 'x'+luckyDemoResult;
-      value.classList.add('visible');
-      if(status) status.textContent = '🎮 Résultat démo — x'+luckyDemoResult;
-    }, luckyResultDelay);
+    /* Le multiplicateur final reste caché pendant tout le trajet. */
+    value.textContent = 'ANALYSE...';
 
     luckyDemoTimer = setTimeout(function(){
       if(!flying) return;
+      /* Le personnage est arrivé : seulement maintenant le résultat final apparaît. */
+      curve.style.strokeDashoffset='0';
+      if(taper)taper.style.clipPath='inset(0 0% 0 0)';
+      placeCharacter(1);
       value.textContent = 'x'+luckyDemoResult;
       value.classList.add('visible');
       if(status) status.textContent = '🎮 Démo terminée — x'+luckyDemoResult;
@@ -2908,11 +2904,14 @@ function showChickenEgg(eggNumber){
     function frame(now){
       if(!flying)return;
       const elapsed=now-started;
-      /* Aucune durée de fin : progression continue jusqu'à l'ordre de fin de démo. */
-      const p=Math.min(.985,1-Math.exp(-elapsed/6200));
-      curve.style.strokeDashoffset=String(total*(1-p)); if(taper)taper.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)'; placeCharacter(p);
-      value.textContent = luckyResultVisible ? ('x'+luckyDemoResult) : 'ANALYSE...';
-      raf=requestAnimationFrame(frame);
+      const t=Math.min(1,elapsed/luckyDemoDuration);
+      /* Trajet rapide mais fluide : accélération puis arrivée douce. */
+      const p=1-Math.pow(1-t,3);
+      curve.style.strokeDashoffset=String(total*(1-p));
+      if(taper)taper.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)';
+      placeCharacter(p);
+      value.textContent='ANALYSE...';
+      if(t<1) raf=requestAnimationFrame(frame);
     }
     raf=requestAnimationFrame(frame);
   },true);
