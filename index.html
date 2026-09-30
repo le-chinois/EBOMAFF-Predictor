@@ -2882,8 +2882,20 @@ function showChickenEgg(eggNumber){
 
     /* Démo uniquement : coefficient généré localement, sans données 1win. */
     luckyDemoResult = (1.10 + Math.random()*5.90).toFixed(2);
+    const luckyResultDelay = 300; /* résultat visible après ~0,3 s */
     const luckyDemoDuration = 4200 + Math.random()*2200;
+    let luckyResultVisible = false;
     if(luckyDemoTimer) clearTimeout(luckyDemoTimer);
+
+    /* Affiche très vite le coefficient, puis laisse l'animation continuer. */
+    setTimeout(function(){
+      if(!flying) return;
+      luckyResultVisible = true;
+      value.textContent = 'x'+luckyDemoResult;
+      value.classList.add('visible');
+      if(status) status.textContent = '🎮 Résultat démo — x'+luckyDemoResult;
+    }, luckyResultDelay);
+
     luckyDemoTimer = setTimeout(function(){
       if(!flying) return;
       value.textContent = 'x'+luckyDemoResult;
@@ -2896,10 +2908,10 @@ function showChickenEgg(eggNumber){
     function frame(now){
       if(!flying)return;
       const elapsed=now-started;
-      /* Aucune durée de fin : progression continue jusqu'à l'ordre du moteur. */
+      /* Aucune durée de fin : progression continue jusqu'à l'ordre de fin de démo. */
       const p=Math.min(.985,1-Math.exp(-elapsed/6200));
       curve.style.strokeDashoffset=String(total*(1-p)); if(taper)taper.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)'; placeCharacter(p);
-      value.textContent='ANALYSE...';
+      value.textContent = luckyResultVisible ? ('x'+luckyDemoResult) : 'ANALYSE...';
       raf=requestAnimationFrame(frame);
     }
     raf=requestAnimationFrame(frame);
