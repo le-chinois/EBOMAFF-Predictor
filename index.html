@@ -3587,6 +3587,34 @@ function showChickenEgg(eggNumber){
 }
 </style>
 
+
+<style id="aviator-v53">
+#aviatorScreen{background:#050505!important}
+#aviatorScreen img[src*="plane"],#aviatorScreen img[src*="avion"],#aviatorScreen .plane,#aviatorScreen .airplane{display:none!important}
+#av53{position:relative;width:min(92vw,560px);height:310px;margin:8px auto 14px;background:#050505;border-radius:18px;overflow:hidden}
+#av53logo{position:absolute;top:18px;left:24px;color:#ef1724;font:900 italic 31px Arial}
+#av53logo:before{content:"✈";margin-right:7px;display:inline-block;transform:rotate(-18deg)}
+#av53ring{position:absolute;left:50%;top:57%;width:238px;height:238px;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(#ff1b2d 0 5deg,transparent 5deg 17deg);filter:drop-shadow(0 0 8px #ff1225) drop-shadow(0 0 18px rgba(255,0,30,.65));-webkit-mask:radial-gradient(circle,transparent 0 41%,#000 42% 51%,transparent 52%);mask:radial-gradient(circle,transparent 0 41%,#000 42% 51%,transparent 52%)}
+#av53ring.go{animation:av53spin .52s linear infinite}@keyframes av53spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+#av53x{position:absolute;left:50%;top:57%;transform:translate(-50%,-50%);color:white;font:900 38px Arial;opacity:0;z-index:2}#av53x.show{opacity:1}
+</style>
+<script id="aviator-v53-js">
+(function(){
+function init(){
+ var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
+ if(!s||document.getElementById("av53"))return;
+ var d=document.createElement("div");d.id="av53";d.innerHTML='<div id="av53logo">AVIATOR</div><div id="av53ring"></div><div id="av53x"></div>';
+ var t=s.querySelector(".aviator-stage,.game-stage,.stage")||s;t.prepend(d);
+ var b=[...s.querySelectorAll("button")].find(x=>/PR[ÉE]DIRE/i.test(x.textContent||""));if(!b)return;
+ b.addEventListener("click",function(e){e.preventDefault();e.stopImmediatePropagation();
+ var r=document.getElementById("av53ring"),x=document.getElementById("av53x");x.classList.remove("show");r.classList.remove("go");void r.offsetWidth;r.classList.add("go");b.disabled=true;
+ var v=(1.10+Math.random()*18.90).toFixed(2);
+ setTimeout(function(){r.classList.remove("go");x.textContent=v+"x";x.classList.add("show");b.disabled=false},1600);
+ },true);
+}
+document.readyState==="loading"?document.addEventListener("DOMContentLoaded",init):init();
+})();
+</script>
 </body>
 </html>
 
