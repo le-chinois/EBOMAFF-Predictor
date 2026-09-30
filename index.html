@@ -1650,6 +1650,20 @@ html{
 }
 </style>
 
+
+<!-- V49 : préchargement des visuels des jeux pour éviter leur apparition tardive -->
+<link rel="preload" as="image" href="/luckyjet-bg.png">
+<link rel="preload" as="image" href="/luckyjet-personnage.png">
+<link rel="preload" as="image" href="/aviator.png">
+<link rel="preload" as="image" href="/aviator_plane.png">
+<link rel="preload" as="image" href="/crash-bg.png">
+<link rel="preload" as="image" href="/rocketqueen.png">
+<link rel="preload" as="image" href="/mines.png">
+<link rel="preload" as="image" href="/limbo.png">
+<link rel="preload" as="image" href="/penalty-bg.png">
+<link rel="preload" as="image" href="/rocketx.png">
+<link rel="preload" as="image" href="/chickentrain.png">
+
 </head>
 
 <body>
@@ -3437,23 +3451,87 @@ function showChickenEgg(eggNumber){
 #luckyValue.visible{opacity:1 !important;}
 </style>
 
-<style id="instant-game-switch-v48">
-html, body { scroll-behavior: auto !important; overflow-anchor: none !important; }
-.screen, .game-screen, [data-game-screen] {
-  transition: none !important;
+
+
+
+<script id="game-assets-preload-v49">
+(function () {
+  const assets = [
+    "/luckyjet-bg.png",
+    "/luckyjet-personnage.png",
+    "/aviator.png",
+    "/aviator_plane.png",
+    "/crash-bg.png",
+    "/rocketqueen.png",
+    "/mines.png",
+    "/limbo.png",
+    "/penalty-bg.png",
+    "/rocketx.png",
+    "/chickentrain.png"
+  ];
+
+  assets.forEach(function (src) {
+    const img = new Image();
+    img.decoding = "async";
+    img.fetchPriority = "high";
+    img.src = src;
+    if (img.decode) img.decode().catch(function(){});
+  });
+
+  document.querySelectorAll(
+    "#luckyScreen img,#aviatorScreen img,#crashScreen img,#rocketQueenScreen img," +
+    "#minesScreen img,#limboScreen img,#penaltyScreen img,#rocketXScreen img,#chickenScreen img"
+  ).forEach(function (img) {
+    img.loading = "eager";
+    img.decoding = "sync";
+    try { img.fetchPriority = "high"; } catch(e) {}
+  });
+})();
+</script>
+
+
+<style id="lucky-multiplier-style-v50">
+/* V50 — Lucky Jet : apparence du multiplicateur uniquement.
+   Position existante conservée volontairement. */
+#luckyValue{
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+
+  color:#fffdfd !important;
+  font-size:clamp(34px,10.5vw,58px) !important;
+  font-weight:1000 !important;
+  font-style:italic !important;
+  line-height:.95 !important;
+  letter-spacing:-2px !important;
+  -webkit-text-stroke:1px rgba(255,255,255,.96) !important;
+
+  /* garde exactement la position/rotation déjà validée */
+  transform:translate(-50%,-50%) rotate(-7deg) !important;
+
+  text-shadow:
+    0 2px 0 #ffd8ff,
+    0 4px 0 #f3a8ff,
+    0 6px 0 #bc4bea,
+    0 8px 0 #7b22c9,
+    -3px 5px 0 rgba(112,20,190,.82),
+    0 0 4px #ffffff,
+    0 0 10px #fff4ff,
+    0 0 18px #f5a9ff,
+    0 0 30px rgba(199,62,255,.96),
+    0 0 45px rgba(126,31,255,.78) !important;
+
+  filter:
+    drop-shadow(-8px 8px 5px rgba(95,18,190,.55))
+    drop-shadow(0 0 8px rgba(255,255,255,.72))
+    drop-shadow(0 0 15px rgba(218,67,255,.82)) !important;
+}
+#luckyValue.visible{
+  opacity:1 !important;
 }
 </style>
-<script id="instant-game-switch-patch-v48">
-/* Keep game switching visually atomic: render first, then reposition in the same frame.
-   This does not alter any game engine/animation logic. */
-document.addEventListener('click', function(e){
-  const b = e.target.closest('[data-game]');
-  if (!b) return;
-  requestAnimationFrame(function(){
-    window.scrollTo(0,0);
-  });
-}, true);
-</script>
 
 </body>
 </html>
