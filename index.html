@@ -3853,6 +3853,75 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
+
+<style id="aviator-v57-circle-image">
+/* V57 : cadran Aviator = image séparée validée */
+#aviatorGaugeV56{
+  border:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  width:min(66%,310px) !important;
+}
+#aviatorTicksV56,
+#aviatorPlaneV56{
+  display:none !important;
+}
+#aviatorCircleImgV57{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  pointer-events:none;
+  transform-origin:50% 50%;
+}
+#aviatorCircleImgV57.spin{
+  animation:aviatorCircleSpinV57 .48s linear infinite;
+}
+@keyframes aviatorCircleSpinV57{
+  to{transform:rotate(360deg)}
+}
+#aviatorValueV56{
+  top:66% !important;
+  z-index:5 !important;
+}
+</style>
+<script id="aviator-v57-circle-image-js">
+(function(){
+ function init(){
+   var gauge=document.getElementById("aviatorGaugeV56");
+   if(!gauge || document.getElementById("aviatorCircleImgV57")) return;
+
+   var img=document.createElement("img");
+   img.id="aviatorCircleImgV57";
+   img.src="/aviator-circle.png";
+   img.alt="";
+   gauge.insertBefore(img,gauge.firstChild);
+
+   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
+   if(!s) return;
+   var b=[].slice.call(s.querySelectorAll("button")).find(function(x){
+     return /PR[ÉE]DIRE/i.test(x.textContent||"");
+   });
+   if(!b) return;
+
+   /* Animation visuelle de l'image validée */
+   b.addEventListener("click",function(){
+     var c=document.getElementById("aviatorCircleImgV57");
+     if(!c) return;
+     c.classList.remove("spin");
+     void c.offsetWidth;
+     c.classList.add("spin");
+     setTimeout(function(){ c.classList.remove("spin"); },1600);
+   },false);
+ }
+ if(document.readyState==="loading"){
+   document.addEventListener("DOMContentLoaded",init);
+ }else init();
+})();
+</script>
+
 </body>
 </html>
 
