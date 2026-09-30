@@ -2877,7 +2877,7 @@ function showChickenEgg(eggNumber){
     e.stopImmediatePropagation(); btn.disabled=true; flying=true; started=performance.now();
     curve.style.strokeDashoffset=String(total); if(taper)taper.style.clipPath='inset(0 100% 0 0)'; character.style.opacity='1'; character.classList.add('lucky-propulsion');
     if(thruster)thruster.style.opacity='1'; if(smoke)smoke.style.opacity='1'; if(window.startLuckySmoke)window.startLuckySmoke(); placeCharacter(0);
-    value.textContent='ANALYSE...'; value.classList.add('visible');
+    value.textContent=''; value.classList.remove('visible');
     if(status)status.textContent='🎮 Démo Lucky Jet en cours...';
 
     /* Démo uniquement : coefficient généré localement, sans données 1win. */
@@ -2885,8 +2885,9 @@ function showChickenEgg(eggNumber){
     const luckyDemoDuration = 500; /* trajet COMPLET en ~0,5 seconde */
     if(luckyDemoTimer) clearTimeout(luckyDemoTimer);
 
-    /* Le multiplicateur final reste caché pendant tout le trajet. */
-    value.textContent = 'ANALYSE...';
+    /* Le multiplicateur final reste totalement caché pendant tout le trajet. */
+    value.textContent = '';
+    value.classList.remove('visible');
 
     luckyDemoTimer = setTimeout(function(){
       if(!flying) return;
@@ -2910,7 +2911,9 @@ function showChickenEgg(eggNumber){
       curve.style.strokeDashoffset=String(total*(1-p));
       if(taper)taper.style.clipPath='inset(0 '+(100-p*100)+'% 0 0)';
       placeCharacter(p);
-      value.textContent='ANALYSE...';
+      /* Aucun texte d'analyse pendant le trajet. */
+      value.textContent='';
+      value.classList.remove('visible');
       if(t<1) raf=requestAnimationFrame(frame);
     }
     raf=requestAnimationFrame(frame);
