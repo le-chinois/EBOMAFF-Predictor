@@ -3935,6 +3935,79 @@ function showChickenEgg(eggNumber){
 #aviatorGaugeV56{ top:62% !important; }
 </style>
 
+
+<style id="aviator-v60-demo-final">
+#aviatorGaugeV56{
+  /* position et taille V59 conservées */
+  transform:translate(-50%,-50%);
+}
+#aviatorGaugeV56.av60-spin{
+  animation:av60GaugeSpin .48s linear infinite !important;
+}
+@keyframes av60GaugeSpin{
+  from{transform:translate(-50%,-50%) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+#aviatorValueV56{
+  left:50% !important;
+  top:66% !important;
+  transform:translate(-50%,-50%) !important;
+  color:#ff2438 !important;
+  font:900 clamp(30px,8vw,48px)/1 Arial,sans-serif !important;
+  white-space:nowrap !important;
+  opacity:0 !important;
+  display:block !important;
+  z-index:50 !important;
+  text-shadow:0 0 8px rgba(255,20,40,.75) !important;
+}
+#aviatorValueV56.av60-show{opacity:1 !important;}
+</style>
+
+<script id="aviator-v60-demo-final-js">
+(function(){
+ function initV60(){
+   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
+   var gauge=document.getElementById("aviatorGaugeV56");
+   var value=document.getElementById("aviatorValueV56");
+   if(!s||!gauge||!value||gauge.dataset.v60==="1") return;
+   gauge.dataset.v60="1";
+
+   var btn=[].slice.call(s.querySelectorAll("button")).find(function(x){
+     return /PR[ÉE]DIRE/i.test(x.textContent||"");
+   });
+   if(!btn) return;
+
+   /* V60 prend seul le contrôle du clic Aviator */
+   btn.addEventListener("click",function(e){
+     e.preventDefault();
+     e.stopImmediatePropagation();
+
+     value.classList.remove("av60-show");
+     value.textContent="";
+     gauge.classList.remove("av60-spin");
+     void gauge.offsetWidth;
+     gauge.classList.add("av60-spin");
+     btn.disabled=true;
+
+     /* résultat de démonstration */
+     var result=(1.10 + Math.random()*18.90).toFixed(2) + "x";
+
+     setTimeout(function(){
+       gauge.classList.remove("av60-spin");
+       value.textContent=result;
+       value.classList.add("av60-show");
+       btn.disabled=false;
+     },1600);
+   },true);
+ }
+ if(document.readyState==="loading"){
+   document.addEventListener("DOMContentLoaded",initV60);
+ }else{
+   initV60();
+ }
+})();
+</script>
+
 </body>
 </html>
 
