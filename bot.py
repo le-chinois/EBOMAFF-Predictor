@@ -283,7 +283,7 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/luckyjet.png": "luckyjet.png",
             "/luckyjet-bg.png": "luckyjet-bg.png",
             "/luckyjet-personnage.png": "luckyjet-personnage.png",
-            "/aviator.png": "aviator.png",
+            "/aviator-bg.png": "aviator-bg.png",
             "/crash.png": "crash.png",
             "/crash-bg.png": "crash-bg.png",
             "/crash-line-reference.webp": "crash-line-reference.webp",
