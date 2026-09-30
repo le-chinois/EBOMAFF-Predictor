@@ -3701,6 +3701,158 @@ function showChickenEgg(eggNumber){
 #aviatorDynamicV54{top:65%!important;color:#ff3040!important;text-shadow:0 0 8px rgba(255,20,40,.75)!important;}
 </style>
 
+
+<style id="aviator-v56-visible-ring">
+/* V56 — cercle Aviator visible, sans modifier les 6 jeux validés */
+#aviatorCleanV54, #aviatorCleanV55, #aviatorCleanV56,
+#aviatorScreen [id^="aviatorClean"]{
+  position:relative !important;
+}
+
+/* Le vrai cadran visible */
+#aviatorGaugeV56{
+  position:absolute;
+  left:50%;
+  top:57%;
+  width:min(62%,290px);
+  aspect-ratio:1/1;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  z-index:20;
+  border:3px solid #ff182b;
+  box-shadow:
+    0 0 5px #fff,
+    0 0 12px #ff1025,
+    0 0 26px rgba(255,0,25,.85),
+    inset 0 0 16px rgba(255,0,25,.22);
+  background:#000;
+}
+#aviatorTicksV56{
+  position:absolute;
+  inset:7%;
+  border-radius:50%;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      #ff1428 0deg 1.4deg,
+      transparent 1.4deg 7.5deg
+    );
+  -webkit-mask:radial-gradient(circle,transparent 0 83%,#000 84% 91%,transparent 92%);
+          mask:radial-gradient(circle,transparent 0 83%,#000 84% 91%,transparent 92%);
+}
+#aviatorTicksV56.spin{
+  animation:aviatorGaugeSpinV56 .48s linear infinite;
+}
+@keyframes aviatorGaugeSpinV56{
+  to{transform:rotate(360deg)}
+}
+#aviatorPlaneV56{
+  position:absolute;
+  left:50%;
+  top:39%;
+  width:42%;
+  height:24%;
+  transform:translate(-50%,-50%) rotate(-15deg);
+}
+#aviatorPlaneV56:before{
+  content:"";
+  position:absolute;
+  left:4%;
+  top:60%;
+  width:60%;
+  height:7px;
+  background:#ff1428;
+  transform:rotate(-23deg);
+  transform-origin:left center;
+  clip-path:polygon(0 50%,72% 0,100% 45%,100% 75%,72% 40%);
+  filter:drop-shadow(0 0 4px rgba(255,20,40,.7));
+}
+#aviatorPlaneV56:after{
+  content:"✈";
+  position:absolute;
+  right:1%;
+  top:3%;
+  color:#ff1428;
+  font:900 38px/1 Arial,sans-serif;
+  transform:rotate(-18deg);
+  text-shadow:0 0 6px rgba(255,20,40,.7);
+}
+#aviatorValueV56{
+  position:absolute;
+  left:50%;
+  top:66%;
+  transform:translate(-50%,-50%);
+  color:#ff2338;
+  font:900 clamp(28px,8vw,46px)/1 Arial,sans-serif;
+  white-space:nowrap;
+  opacity:0;
+  z-index:3;
+  text-shadow:0 0 7px rgba(255,20,40,.7);
+}
+#aviatorValueV56.show{opacity:1}
+</style>
+
+<script id="aviator-v56-visible-ring-js">
+(function(){
+ function setupV56(){
+   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
+   if(!s || document.getElementById("aviatorGaugeV56")) return;
+
+   var host=document.getElementById("aviatorCleanV54")||
+            document.getElementById("aviatorCleanV55")||
+            s.querySelector('[id^="aviatorClean"]')||
+            s.querySelector(".aviator-stage,.game-stage,.stage")||s;
+
+   var gauge=document.createElement("div");
+   gauge.id="aviatorGaugeV56";
+   gauge.innerHTML='<div id="aviatorTicksV56"></div><div id="aviatorPlaneV56"></div><div id="aviatorValueV56"></div>';
+   host.appendChild(gauge);
+
+   /* neutralise les anciens overlays de résultat V54/V55 s'ils existent */
+   ["aviatorDynamicV54","aviatorDynamicV55","av53x","av53ring","aviatorSpinnerV54","aviatorSpinnerV55"].forEach(function(id){
+     var el=document.getElementById(id);
+     if(el) el.style.display="none";
+   });
+
+   var b=[].slice.call(s.querySelectorAll("button")).find(function(x){
+     return /PR[ÉE]DIRE/i.test(x.textContent||"");
+   });
+   if(!b) return;
+
+   b.addEventListener("click",function(e){
+     e.preventDefault();
+     e.stopImmediatePropagation();
+
+     var ticks=document.getElementById("aviatorTicksV56");
+     var val=document.getElementById("aviatorValueV56");
+     if(!ticks||!val) return;
+
+     val.classList.remove("show");
+     val.textContent="";
+     ticks.classList.remove("spin");
+     void ticks.offsetWidth;
+     ticks.classList.add("spin");
+     b.disabled=true;
+
+     /* Valeur de démonstration uniquement */
+     var n=(1.10+Math.random()*18.90).toFixed(2);
+
+     setTimeout(function(){
+       ticks.classList.remove("spin");
+       val.textContent=n+"x";
+       val.classList.add("show");
+       b.disabled=false;
+     },1600);
+   },true);
+ }
+ if(document.readyState==="loading"){
+   document.addEventListener("DOMContentLoaded",setupV56);
+ }else{
+   setupV56();
+ }
+})();
+</script>
+
 </body>
 </html>
 
