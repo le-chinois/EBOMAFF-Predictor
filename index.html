@@ -1723,362 +1723,6 @@ html{
 </style>
 
 
-<style id="rocketqueen-v83-style">
-#rocketQueenScreen .rocketqueen-v83-stage{
-  position:relative;
-  overflow:hidden;
-  min-height:330px;
-  background:#16061f;
-}
-#rocketQueenScreen .rocketqueen-v83-bg{
-  position:absolute;
-  inset:-12%;
-  background-image:url("/rocketqueen-bg.png");
-  background-size:cover;
-  background-position:center;
-  transform:scale(1.18);
-  will-change:transform,background-position;
-}
-#rocketQueenScreen .rocketqueen-v83-character{
-  position:absolute;
-  z-index:4;
-  width:58%;
-  max-width:390px;
-  height:auto;
-  left:19%;
-  top:34%;
-  object-fit:contain;
-  pointer-events:none;
-  will-change:transform;
-}
-#rocketQueenScreen .rocketqueen-v83-flame{
-  position:absolute;
-  z-index:3;
-  width:34%;
-  max-width:230px;
-  height:auto;
-  left:8%;
-  top:57%;
-  object-fit:contain;
-  pointer-events:none;
-  opacity:.92;
-  transform-origin:80% 50%;
-  will-change:transform,opacity;
-}
-#rocketQueenScreen #rocketQueenValue{
-  z-index:6;
-  top:43%!important;
-  left:30%!important;
-  min-width:0!important;
-  color:#ffb11a!important;
-  font-size:42px!important;
-  font-weight:900!important;
-  text-shadow:0 2px 5px rgba(0,0,0,.45)!important;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-bg{
-  animation:rocketQueenBgV83 2.9s linear forwards;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-character{
-  animation:rocketQueenCharacterV83 2.9s cubic-bezier(.2,.68,.2,1) forwards;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-flame{
-  animation:rocketQueenFlameV83 .16s ease-in-out infinite alternate,
-            rocketQueenFlameTravelV83 2.9s cubic-bezier(.2,.68,.2,1) forwards;
-}
-@keyframes rocketQueenBgV83{
-  from{transform:scale(1.18) translate3d(0,0,0);}
-  to{transform:scale(1.28) translate3d(-7%,9%,0);}
-}
-@keyframes rocketQueenCharacterV83{
-  0%{transform:translate3d(0,0,0) rotate(-3deg) scale(.92);}
-  55%{transform:translate3d(24%,-20%,0) rotate(-8deg) scale(1);}
-  100%{transform:translate3d(54%,-48%,0) rotate(-12deg) scale(1.05);}
-}
-@keyframes rocketQueenFlameTravelV83{
-  0%{margin-left:0;margin-top:0;}
-  55%{margin-left:14%;margin-top:-11%;}
-  100%{margin-left:31%;margin-top:-28%;}
-}
-@keyframes rocketQueenFlameV83{
-  from{transform:scale(.88) rotate(-8deg);opacity:.72;}
-  to{transform:scale(1.10) rotate(-8deg);opacity:1;}
-}
-</style>
-
-
-<style id="rocketqueen-v84-final-style">
-/* V84 — Rocket Queen: no background zoom */
-#rocketQueenScreen .rocketqueen-v83-bg{
-  inset:0 !important;
-  transform:none !important;
-  background-image:url("/rocketqueen-bg.png") !important;
-  background-size:100% auto !important;
-  background-repeat:repeat-y !important;
-  background-position:center 0 !important;
-}
-
-/* Real vertical floating/scrolling effect while the rocket flies */
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-bg{
-  animation:rocketQueenBgFloatV84 2.9s linear forwards !important;
-}
-@keyframes rocketQueenBgFloatV84{
-  from{background-position:center 0;}
-  to{background-position:center 82%;}
-}
-
-/* Old separate flame is no longer used */
-#rocketQueenScreen .rocketqueen-v83-flame{
-  display:none !important;
-}
-
-/* Logo based on the original reference */
-#rocketQueenScreen .rocketqueen-v84-logo{
-  position:absolute;
-  z-index:8;
-  top:5.2%;
-  left:7%;
-  width:31%;
-  text-align:center;
-  pointer-events:none;
-  line-height:.72;
-  transform:rotate(-2deg);
-}
-#rocketQueenScreen .rocketqueen-v84-logo .rocket{
-  display:block;
-  color:#ef8be8;
-  font-family:"Brush Script MT","Segoe Script","Comic Sans MS",cursive;
-  font-size:clamp(20px,5.1vw,37px);
-  font-weight:700;
-  font-style:italic;
-  letter-spacing:-1.5px;
-  text-shadow:0 1px 1px rgba(65,15,83,.35);
-}
-#rocketQueenScreen .rocketqueen-v84-logo .queen{
-  display:block;
-  margin-top:2px;
-  margin-left:36%;
-  color:#ffd63f;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:clamp(8px,1.8vw,13px);
-  font-weight:900;
-  font-style:italic;
-  letter-spacing:-.5px;
-}
-
-/* Curved trajectory like the original */
-#rocketQueenScreen .rocketqueen-v84-curve{
-  position:absolute;
-  z-index:2;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  overflow:visible;
-}
-#rocketQueenScreen .rocketqueen-v84-path{
-  fill:none;
-  stroke:rgba(255,245,220,.92);
-  stroke-width:2.2;
-  stroke-linecap:round;
-  stroke-dasharray:520;
-  stroke-dashoffset:520;
-  opacity:0;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
-  opacity:1;
-  animation:rocketQueenCurveDrawV84 2.9s linear forwards;
-}
-@keyframes rocketQueenCurveDrawV84{
-  from{stroke-dashoffset:520;}
-  to{stroke-dashoffset:0;}
-}
-</style>
-
-
-<style id="rocketqueen-v85-logo-curve">
-/* Bigger logo, same upper-left area */
-#rocketQueenScreen .rocketqueen-v84-logo{
-  top:4.2% !important;
-  left:5.5% !important;
-  width:39% !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .rocket{
-  font-size:clamp(27px,6.8vw,49px) !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .queen{
-  font-size:clamp(10px,2.3vw,16px) !important;
-  margin-left:34% !important;
-}
-
-/* Longer trajectory, from bottom-left to the rocket */
-#rocketQueenScreen .rocketqueen-v84-path{
-  stroke-width:2.5 !important;
-  stroke-dasharray:1000 !important;
-  stroke-dashoffset:1000 !important;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
-  animation:rocketQueenCurveDrawV85 2.9s linear forwards !important;
-}
-@keyframes rocketQueenCurveDrawV85{
-  from{stroke-dashoffset:1000;}
-  to{stroke-dashoffset:0;}
-}
-</style>
-
-
-<style id="rocketqueen-v86-three-fixes">
-/* 1 — réellement agrandir le logo */
-#rocketQueenScreen .rocketqueen-v84-logo{
-  top:3.5% !important;
-  left:4.5% !important;
-  width:46% !important;
-  transform:rotate(-2deg) scale(1.22) !important;
-  transform-origin:left top !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .rocket{
-  font-size:clamp(36px,9vw,66px) !important;
-  line-height:.70 !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .queen{
-  font-size:clamp(12px,3vw,21px) !important;
-  margin-top:5px !important;
-  margin-left:37% !important;
-}
-
-/* 2 — courbe complète type Lucky Jet */
-#rocketQueenScreen .rocketqueen-v84-path{
-  stroke:rgba(255,247,224,.96) !important;
-  stroke-width:3 !important;
-  stroke-linecap:round !important;
-  fill:none !important;
-  stroke-dasharray:1250 !important;
-  stroke-dashoffset:1250 !important;
-  opacity:0;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
-  opacity:1 !important;
-  animation:rocketQueenCurveDrawV86 2.9s linear forwards !important;
-}
-@keyframes rocketQueenCurveDrawV86{
-  from{stroke-dashoffset:1250;}
-  to{stroke-dashoffset:0;}
-}
-
-/* 3 — effet vivant sur la flamme déjà intégrée à l'image.
-   Pas de retour du fichier rocketqueen-flamme.png. */
-#rocketQueenScreen .rocketqueen-v86-flamefx{
-  position:absolute;
-  z-index:3;
-  left:17%;
-  top:66%;
-  width:22%;
-  height:8%;
-  pointer-events:none;
-  opacity:0;
-  transform-origin:right center;
-  background:
-    radial-gradient(ellipse at right center,
-      rgba(255,255,190,.95) 0%,
-      rgba(255,224,40,.88) 24%,
-      rgba(255,132,0,.72) 48%,
-      rgba(255,80,0,.30) 67%,
-      rgba(255,80,0,0) 76%);
-  filter:blur(2px);
-  border-radius:55% 12% 12% 55%;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v86-flamefx{
-  opacity:.95;
-  animation:
-    rocketQueenFlamePulseV86 .11s ease-in-out infinite alternate,
-    rocketQueenFlameMoveV86 2.9s cubic-bezier(.2,.68,.2,1) forwards;
-}
-@keyframes rocketQueenFlamePulseV86{
-  from{transform:scaleX(.72) scaleY(.72); opacity:.62;}
-  to{transform:scaleX(1.18) scaleY(1.08); opacity:1;}
-}
-@keyframes rocketQueenFlameMoveV86{
-  0%{left:17%;top:66%;}
-  55%{left:31%;top:55%;}
-  100%{left:48%;top:38%;}
-}
-</style>
-
-
-<style id="rocketqueen-v87-exact-fixes">
-/* LOGO : déplacé vers la zone gauche indiquée, sans le recentrer */
-#rocketQueenScreen .rocketqueen-v84-logo{
-  top:3.2% !important;
-  left:1.2% !important;
-  width:43% !important;
-  transform:rotate(-2deg) !important;
-  transform-origin:left top !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .rocket{
-  font-size:clamp(31px,7.7vw,56px) !important;
-}
-#rocketQueenScreen .rocketqueen-v84-logo .queen{
-  font-size:clamp(11px,2.5vw,18px) !important;
-  margin-left:36% !important;
-}
-
-/* COURBE : même principe que Lucky Jet.
-   Elle part du bas-gauche et se dessine jusqu'à la fusée. */
-#rocketQueenScreen .rocketqueen-v84-curve{
-  z-index:5 !important;
-  display:block !important;
-  opacity:1 !important;
-}
-#rocketQueenScreen .rocketqueen-v84-path{
-  fill:none !important;
-  stroke:#fff4dc !important;
-  stroke-width:3.2 !important;
-  stroke-linecap:round !important;
-  stroke-linejoin:round !important;
-  vector-effect:non-scaling-stroke;
-  path-length:1;
-  stroke-dasharray:1 !important;
-  stroke-dashoffset:1 !important;
-  opacity:0 !important;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
-  opacity:1 !important;
-  animation:rocketQueenCurveDrawV87 2.9s linear forwards !important;
-}
-@keyframes rocketQueenCurveDrawV87{
-  0%{stroke-dashoffset:1;opacity:1;}
-  100%{stroke-dashoffset:0;opacity:1;}
-}
-
-/* AUCUNE flamme artificielle supplémentaire.
-   On garde uniquement la flamme qui fait déjà partie de l'image du personnage. */
-#rocketQueenScreen .rocketqueen-v86-flamefx{
-  display:none !important;
-}
-</style>
-
-<style id="rocketqueen-v88-curve-fix">
-/* V88 — une seule règle finale fiable pour la courbe Rocket Queen */
-#rocketQueenScreen .rocketqueen-v84-path{
-  fill:none !important;
-  stroke:#fff4dc !important;
-  stroke-width:3.2 !important;
-  stroke-linecap:round !important;
-  stroke-linejoin:round !important;
-  vector-effect:non-scaling-stroke !important;
-  stroke-dasharray:1400 !important;
-  stroke-dashoffset:1400 !important;
-  opacity:0 !important;
-}
-#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
-  opacity:1 !important;
-  animation:rocketQueenCurveDrawV88 2.9s linear forwards !important;
-}
-@keyframes rocketQueenCurveDrawV88{
-  from{stroke-dashoffset:1400;opacity:1;}
-  to{stroke-dashoffset:0;opacity:1;}
-}
-</style>
-
 </head>
 
 <body>
@@ -2296,11 +1940,6 @@ html{
                     <span class="rocket">Rocket</span>
                     <span class="queen">queen</span>
                 </div>
-
-                <svg id="rocketQueenCurve" class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-                    <path id="rocketQueenCurvePath" class="rocketqueen-v84-path"
-                          d="M 0 690 C 150 680, 300 640, 435 575 C 575 508, 680 410, 760 315 C 825 238, 875 168, 940 105" />
-                </svg>
 <img
                     src="/rocketqueen-personnage.png"
                     id="rocketQueenCharacterV83"
@@ -4512,192 +4151,86 @@ function showChickenEgg(eggNumber){
 
 
 
-<style id="rocketqueen-v90-original-trajectory">
-/* V90 — trajectoire Rocket Queen calée sur la vidéo originale.
-   La ligne est volontairement indépendante des anciens keyframes V84–V88. */
-#rocketQueenScreen .rocketqueen-v84-curve{
-  position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
-  z-index:7!important;
-  display:block!important;
-  opacity:1!important;
-  overflow:visible!important;
-  pointer-events:none!important;
+
+
+<style id="rocketqueen-v94-clean-style">
+/* V94 — Rocket Queen: système unique, sans courbe ni ancien délai. */
+#rocketQueenScreen .rocketqueen-v83-stage{
+  position:relative; overflow:hidden; min-height:330px; background:#16061f;
 }
-#rocketQueenScreen #rocketQueenCurvePath{
-  fill:none!important;
-  stroke:#fff7e7!important;
-  stroke-width:3.2!important;
-  stroke-linecap:round!important;
-  stroke-linejoin:round!important;
-  vector-effect:non-scaling-stroke!important;
-  opacity:0!important;
-  stroke-dasharray:none!important;
-  stroke-dashoffset:0!important;
-  animation:none!important;
-  filter:drop-shadow(0 0 2px rgba(255,255,255,.42))!important;
+#rocketQueenScreen .rocketqueen-v83-bg{
+  position:absolute; inset:0; background-image:url("/rocketqueen-bg.png");
+  background-size:100% auto; background-repeat:repeat-y; background-position:center 0;
+  transform:none; animation:none;
 }
-#rocketQueenScreen.rocketqueen-v90-active #rocketQueenCurvePath{opacity:1!important;}
+#rocketQueenScreen .rocketqueen-v84-logo{
+  position:absolute; z-index:7; top:3.2%; left:1.2%; width:43%; text-align:center;
+  pointer-events:none; line-height:.72; transform:rotate(-2deg); transform-origin:left top;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .rocket{
+  display:block; color:#ef8be8; font-family:"Brush Script MT","Segoe Script","Comic Sans MS",cursive;
+  font-size:clamp(31px,7.7vw,56px); font-weight:700; font-style:italic; letter-spacing:-1.5px;
+  text-shadow:0 1px 1px rgba(65,15,83,.35);
+}
+#rocketQueenScreen .rocketqueen-v84-logo .queen{
+  display:block; margin-top:2px; margin-left:36%; color:#ffd63f; font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(11px,2.5vw,18px); font-weight:900; font-style:italic; letter-spacing:-.5px;
+}
 #rocketQueenScreen .rocketqueen-v83-character{
-  z-index:8!important;
-  animation:none!important;
-  width:54%!important;
-  max-width:370px!important;
-  transform-origin:50% 50%!important;
-  will-change:left,top,transform!important;
+  position:absolute; display:block; opacity:1; z-index:8; width:54%; max-width:370px; height:auto;
+  left:64%; top:54%; object-fit:contain; pointer-events:none;
+  transform:translate(-50%,-50%) rotate(-10deg) scale(.98); transform-origin:50% 58%;
+  animation:none; will-change:transform,filter;
 }
-#rocketQueenScreen #rocketQueenValue{z-index:9!important;}
+#rocketQueenScreen #rocketQueenValue{
+  z-index:9; top:43%!important; left:30%!important; min-width:0!important;
+  color:#ffb11a!important; font-size:42px!important; font-weight:900!important;
+  text-shadow:0 2px 5px rgba(0,0,0,.45)!important;
+}
+#rocketQueenScreen.rocketqueen-v94-animating .rocketqueen-v83-character{
+  animation:rocketQueenPulseV94 .20s ease-in-out infinite alternate;
+}
+@keyframes rocketQueenPulseV94{
+  from{transform:translate(-50%,-50%) rotate(-10.7deg) scale(.978);filter:brightness(.99);}
+  to{transform:translate(-50%,-50%) rotate(-9.3deg) scale(1.002);filter:brightness(1.05);}
+}
+@media (prefers-reduced-motion:reduce){
+  #rocketQueenScreen.rocketqueen-v94-animating .rocketqueen-v83-character{animation:none;}
+}
 </style>
-<script id="rocketqueen-v90-controller">
+<script id="rocketqueen-v94-controller">
 (function(){
   const screen=document.getElementById('rocketQueenScreen');
   const btn=document.getElementById('rocketQueenPredict');
   const value=document.getElementById('rocketQueenValue');
-  const character=document.getElementById('rocketQueenCharacterV83');
-  const path=document.getElementById('rocketQueenCurvePath');
-  if(!screen||!btn||!value||!character||!path) return;
+  if(!screen||!btn||!value) return;
+  const WAIT_MS=1600;
+  let timer=null;
 
-  let raf=0;
-  const duration=2900;
-
-  function setCurve(p){
-    /* Original: départ collé au coin bas-gauche, courbe douce, arrivée sous l'arrière de la fusée. */
-    const ex=80 + 430*p;       // 80 -> 510
-    const ey=690 - 245*p;      // 690 -> 445
-    const c1x=150 + 70*p;
-    const c1y=688 - 18*p;
-    const c2x=340 + 120*p;
-    const c2y=650 - 120*p;
-    path.setAttribute('d',`M 0 700 C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${ex.toFixed(1)} ${ey.toFixed(1)}`);
-  }
-
-  function setCharacter(p){
-    /* La fusée monte vers le haut/droite comme dans la vidéo originale. */
-    const e=p*p*(3-2*p);
-    const x=31 + 30*e;
-    const y=88 - 37*e;
-    const rot=-4 - 8*e;
-    const scale=.90 + .08*e;
-    character.style.left=x+'%';
-    character.style.top=y+'%';
-    character.style.transform=`translate(-50%,-50%) rotate(${rot}deg) scale(${scale})`;
-  }
-
-  function reset(){
-    if(raf) cancelAnimationFrame(raf);
-    raf=0;
-    screen.classList.remove('rocketqueen-v83-flying','rocketqueen-v90-active');
+  function clearResult(){
+    screen.classList.remove('rocketqueen-v94-animating');
     value.classList.remove('visible','calculating','analysis-running');
     value.textContent='';
-    path.style.opacity='0';
-    setCurve(0);
-    setCharacter(0);
-    character.style.opacity='0';
   }
-
-  reset();
+  clearResult();
 
   btn.addEventListener('click',function(){
-    reset();
+    if(timer!==null) clearTimeout(timer);
+    clearResult();
     btn.disabled=true;
-    const finalMultiplier=1.10+Math.random()*18.90;
-    const start=performance.now();
-    screen.classList.add('rocketqueen-v83-flying','rocketqueen-v90-active');
-    path.style.opacity='1';
-    character.style.opacity='1';
-    value.classList.add('visible');
-
-    function tick(now){
-      const p=Math.min(1,(now-start)/duration);
-      const e=p*p*(3-2*p);
-      setCurve(e);
-      setCharacter(e);
-      value.textContent='x'+(1+(finalMultiplier-1)*e).toFixed(2);
-      if(p<1){
-        raf=requestAnimationFrame(tick);
-      }else{
-        setCurve(1); setCharacter(1);
-        value.textContent='x'+finalMultiplier.toFixed(2);
-        btn.disabled=false;
-        if(typeof setStatus==='function') setStatus('rocketQueenStatus','⌛ Moteur Rocket Queen non connecté.');
-      }
-    }
-    raf=requestAnimationFrame(tick);
-  });
-})();
-</script>
-
-
-<style id="rocketqueen-v91-fixed-animation">
-/* V91 — Rocket Queen sans courbe : personnage fixe + animation sur place. */
-#rocketQueenScreen .rocketqueen-v84-curve,
-#rocketQueenScreen #rocketQueenCurvePath{display:none!important;opacity:0!important;animation:none!important;}
-#rocketQueenScreen .rocketqueen-v83-character{
-  display:block!important;
-  opacity:1!important;
-  left:64%!important;
-  top:54%!important;
-  width:54%!important;
-  max-width:370px!important;
-  z-index:8!important;
-  transform:translate(-50%,-50%) rotate(-10deg) scale(.98)!important;
-  transform-origin:50% 58%!important;
-  animation:none!important;
-  will-change:transform!important;
-}
-#rocketQueenScreen.rocketqueen-v91-animating .rocketqueen-v83-character{
-  animation:rocketQueenHoverV91 .46s ease-in-out infinite alternate!important;
-}
-@keyframes rocketQueenHoverV91{
-  0%{transform:translate(-50%,-50%) translateY(5px) rotate(-8deg) scale(.97);}
-  100%{transform:translate(-50%,-50%) translateY(-10px) rotate(-12deg) scale(1.01);}
-}
-#rocketQueenScreen #rocketQueenValue{z-index:9!important;}
-@media (prefers-reduced-motion:reduce){
- #rocketQueenScreen.rocketqueen-v91-animating .rocketqueen-v83-character{animation:none!important;}
-}
-</style>
-<script id="rocketqueen-v91-controller">
-(function(){
-  const screen=document.getElementById('rocketQueenScreen');
-  const oldBtn=document.getElementById('rocketQueenPredict');
-  const value=document.getElementById('rocketQueenValue');
-  const character=document.getElementById('rocketQueenCharacterV83');
-  if(!screen||!oldBtn||!value||!character) return;
-
-  /* Remplace le bouton pour retirer l'ancien contrôleur V90 sans toucher aux autres jeux. */
-  const btn=oldBtn.cloneNode(true);
-  oldBtn.parentNode.replaceChild(btn,oldBtn);
-
-  screen.classList.remove('rocketqueen-v83-flying','rocketqueen-v90-active');
-  screen.classList.remove('rocketqueen-v91-animating');
-  character.style.opacity='1';
-  character.style.left=''; character.style.top=''; character.style.transform='';
-  value.classList.remove('visible','calculating','analysis-running');
-  value.textContent='';
-
-  let timer=0;
-  btn.addEventListener('click',function(){
-    if(timer) clearTimeout(timer);
-    btn.disabled=true;
-    value.classList.remove('visible','calculating','analysis-running');
-    value.textContent='';
-    screen.classList.remove('rocketqueen-v83-flying','rocketqueen-v90-active');
-    screen.classList.add('rocketqueen-v91-animating');
-
+    screen.classList.add('rocketqueen-v94-animating');
     timer=setTimeout(function(){
-      screen.classList.remove('rocketqueen-v91-animating');
-      const finalMultiplier=(1.10+Math.random()*18.90).toFixed(2);
-      value.textContent='x'+finalMultiplier;
+      timer=null;
+      screen.classList.remove('rocketqueen-v94-animating');
+      value.textContent='x'+(1.10+Math.random()*18.90).toFixed(2);
       value.classList.add('visible');
       btn.disabled=false;
       if(typeof setStatus==='function') setStatus('rocketQueenStatus','⌛ Moteur Rocket Queen non connecté.');
-    },1600);
+    },WAIT_MS);
   });
 })();
 </script>
+
 </body>
 </html>
 
