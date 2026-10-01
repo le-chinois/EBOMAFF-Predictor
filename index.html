@@ -1827,8 +1827,7 @@ html{
                 ⌛ Moteur Aviator non connecté.
             </div>
 
-            <div class="engine-status" id="aviatorEngineStatus" style="display:block!important;visibility:visible!important;opacity:1!important;">⌛ Moteur Aviator non connecté.</div>
-<button
+            <button
                 id="aviatorPredict"
                 class="predict-btn green-btn"
             >
@@ -4019,6 +4018,54 @@ function showChickenEgg(eggNumber){
   }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
   else init();
+})();
+</script>
+
+
+<style id="aviator-v72-status-style">
+#aviatorEngineStatusV72{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  margin:18px 7px 16px!important;
+  padding:0!important;
+  color:#a8aaba!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:14px!important;
+  font-weight:400!important;
+  line-height:1.5!important;
+  text-align:left!important;
+  visibility:visible!important;
+  opacity:1!important;
+  z-index:999!important;
+}
+</style>
+<script id="aviator-v72-status-controller">
+(function(){
+ function putStatus(){
+   var s=document.getElementById("aviatorScreen");
+   if(!s) return;
+   var btn=Array.from(s.querySelectorAll("button")).find(function(b){
+     return /PR[ÉE]DIRE/i.test(b.textContent||"") && b.offsetParent!==null;
+   }) || Array.from(s.querySelectorAll("button")).find(function(b){
+     return /PR[ÉE]DIRE/i.test(b.textContent||"");
+   });
+   if(!btn) return;
+   var old=document.getElementById("aviatorEngineStatusV72");
+   if(old) old.remove();
+   var status=document.createElement("div");
+   status.id="aviatorEngineStatusV72";
+   status.textContent="⌛ Moteur Aviator non connecté.";
+   btn.parentNode.insertBefore(status,btn);
+ }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",function(){
+   setTimeout(putStatus,250);
+   setTimeout(putStatus,900);
+ });
+ else {
+   setTimeout(putStatus,250);
+   setTimeout(putStatus,900);
+ }
 })();
 </script>
 
