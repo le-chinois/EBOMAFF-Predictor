@@ -2056,6 +2056,29 @@ html{
 }
 </style>
 
+<style id="rocketqueen-v88-curve-fix">
+/* V88 — une seule règle finale fiable pour la courbe Rocket Queen */
+#rocketQueenScreen .rocketqueen-v84-path{
+  fill:none !important;
+  stroke:#fff4dc !important;
+  stroke-width:3.2 !important;
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+  vector-effect:non-scaling-stroke !important;
+  stroke-dasharray:1400 !important;
+  stroke-dashoffset:1400 !important;
+  opacity:0 !important;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
+  opacity:1 !important;
+  animation:rocketQueenCurveDrawV88 2.9s linear forwards !important;
+}
+@keyframes rocketQueenCurveDrawV88{
+  from{stroke-dashoffset:1400;opacity:1;}
+  to{stroke-dashoffset:0;opacity:1;}
+}
+</style>
+
 </head>
 
 <body>
@@ -2275,7 +2298,7 @@ html{
                 </div>
 
                 <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-                    <path class="rocketqueen-v84-path" pathLength="1"
+                    <path class="rocketqueen-v84-path"
                           d="M 0 690 C 150 680, 300 640, 435 575 C 575 508, 680 410, 760 315 C 825 238, 875 168, 940 105" />
                 </svg>
 <img
