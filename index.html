@@ -2297,8 +2297,8 @@ html{
                     <span class="queen">queen</span>
                 </div>
 
-                <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-                    <path class="rocketqueen-v84-path"
+                <svg id="rocketQueenCurve" class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+                    <path id="rocketQueenCurvePath" class="rocketqueen-v84-path"
                           d="M 0 690 C 150 680, 300 640, 435 575 C 575 508, 680 410, 760 315 C 825 238, 875 168, 940 105" />
                 </svg>
 <img
@@ -4511,46 +4511,86 @@ function showChickenEgg(eggNumber){
 </script>
 
 
-<script id="rocketqueen-v83-controller">
+<style id="rocketqueen-v89-luckyjet-curve-fix">
+/* V89 — Rocket Queen reprend la mécanique validée de Lucky Jet */
+#rocketQueenScreen .rocketqueen-v84-curve{
+  position:absolute!important; inset:0!important; width:100%!important; height:100%!important;
+  z-index:5!important; pointer-events:none!important; overflow:visible!important; opacity:1!important; display:block!important;
+}
+#rocketQueenScreen #rocketQueenCurvePath{
+  fill:none!important; stroke:#fff4dc!important; stroke-width:4!important;
+  stroke-linecap:round!important; stroke-linejoin:round!important;
+  filter:drop-shadow(0 0 4px rgba(255,244,220,.8))!important;
+  opacity:1!important; animation:none!important;
+}
+#rocketQueenScreen .rocketqueen-v83-character{animation:none!important; z-index:8!important; will-change:left,top,transform!important;}
+</style>
+<script id="rocketqueen-v89-controller">
 (function(){
   const screen=document.getElementById("rocketQueenScreen");
   const btn=document.getElementById("rocketQueenPredict");
   const value=document.getElementById("rocketQueenValue");
-  if(!screen||!btn||!value) return;
+  const character=document.getElementById("rocketQueenCharacterV83");
+  const curve=document.getElementById("rocketQueenCurvePath");
+  if(!screen||!btn||!value||!character||!curve) return;
 
-  let timer=null, start=0, finalMultiplier=1.10;
+  let raf=null, start=0, finalMultiplier=1.10;
+  const total=curve.getTotalLength();
+  curve.style.strokeDasharray=String(total);
+  curve.style.strokeDashoffset=String(total);
+
+  function placeCharacter(progress){
+    const length=total*progress;
+    const p=curve.getPointAtLength(length);
+    const p2=curve.getPointAtLength(Math.min(total,length+4));
+    const x=(p.x/1000)*100;
+    const y=(p.y/700)*100;
+    const angle=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI;
+    character.style.left=x+'%';
+    character.style.top=y+'%';
+    character.style.transform='translate(-50%,-50%) rotate('+angle+'deg) scale('+(0.88+progress*.12)+')';
+  }
 
   function reset(){
-    if(timer) cancelAnimationFrame(timer);
+    if(raf) cancelAnimationFrame(raf); raf=null;
     screen.classList.remove("rocketqueen-v83-flying");
     value.classList.remove("visible","calculating","analysis-running");
     value.textContent="";
+    curve.style.strokeDasharray=String(total);
+    curve.style.strokeDashoffset=String(total);
+    character.style.opacity='0';
+    placeCharacter(0);
   }
+
+  reset();
 
   btn.addEventListener("click",function(){
     reset();
-    void screen.offsetWidth;
-
     btn.disabled=true;
     finalMultiplier=1.10+Math.random()*18.90;
     start=performance.now();
     screen.classList.add("rocketqueen-v83-flying");
     value.classList.add("visible");
+    character.style.opacity='1';
 
     function tick(now){
       const p=Math.min(1,(now-start)/2900);
-      const current=1+(finalMultiplier-1)*(p*p*(3-2*p));
+      const eased=p*p*(3-2*p);
+      curve.style.strokeDashoffset=String(total*(1-p));
+      placeCharacter(p);
+      const current=1+(finalMultiplier-1)*eased;
       value.textContent="x"+current.toFixed(2);
-
       if(p<1){
-        timer=requestAnimationFrame(tick);
+        raf=requestAnimationFrame(tick);
       }else{
+        curve.style.strokeDashoffset='0';
+        placeCharacter(1);
         value.textContent="x"+finalMultiplier.toFixed(2);
         btn.disabled=false;
         setStatus("rocketQueenStatus","⌛ Moteur Rocket Queen non connecté.");
       }
     }
-    timer=requestAnimationFrame(tick);
+    raf=requestAnimationFrame(tick);
   });
 })();
 </script>
