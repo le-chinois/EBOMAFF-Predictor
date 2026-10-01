@@ -3643,48 +3643,7 @@ function showChickenEgg(eggNumber){
   to{transform:translate(-50%,-50%) rotate(360deg)}
 }
 </style>
-<script id="aviator-v54-clean-js">
-(function(){
- function init(){
-   const s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
-   if(!s||document.getElementById("aviatorCleanV54")) return;
 
-   const target=s.querySelector(".aviator-stage,.game-stage,.stage")||s;
-
-   /* Retire de l'affichage les anciens blocs visuels Aviator, sans toucher aux boutons */
-   [...target.children].forEach(function(el){
-     if(el.tagName!=="BUTTON" && !el.querySelector('button')){
-       el.style.display="none";
-     }
-   });
-
-   const v=document.createElement("div");
-   v.id="aviatorCleanV54";
-   v.innerHTML='<div id="aviatorSpinnerV54"></div><div id="aviatorDynamicV54"></div>';
-   target.prepend(v);
-
-   const b=[...s.querySelectorAll("button")].find(x=>/PR[ÉE]DIRE/i.test(x.textContent||""));
-   if(!b)return;
-
-   b.addEventListener("click",function(e){
-     e.preventDefault(); e.stopImmediatePropagation();
-     const spin=document.getElementById("aviatorSpinnerV54");
-     const val=document.getElementById("aviatorDynamicV54");
-     val.classList.remove("show");
-     spin.classList.remove("go"); void spin.offsetWidth; spin.classList.add("go");
-     b.disabled=true;
-     const n=(1.10+Math.random()*18.90).toFixed(2);
-     setTimeout(function(){
-       spin.classList.remove("go");
-       val.textContent=n+"x";
-       val.classList.add("show");
-       b.disabled=false;
-     },1600);
-   },true);
- }
- document.readyState==="loading"?document.addEventListener("DOMContentLoaded",init):init();
-})();
-</script>
 
 
 <style id="aviator-v55-final">
@@ -3792,66 +3751,7 @@ function showChickenEgg(eggNumber){
 #aviatorValueV56.show{opacity:1}
 </style>
 
-<script id="aviator-v56-visible-ring-js">
-(function(){
- function setupV56(){
-   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
-   if(!s || document.getElementById("aviatorGaugeV56")) return;
 
-   var host=document.getElementById("aviatorCleanV54")||
-            document.getElementById("aviatorCleanV55")||
-            s.querySelector('[id^="aviatorClean"]')||
-            s.querySelector(".aviator-stage,.game-stage,.stage")||s;
-
-   var gauge=document.createElement("div");
-   gauge.id="aviatorGaugeV56";
-   gauge.innerHTML='<div id="aviatorTicksV56"></div><div id="aviatorPlaneV56"></div><div id="aviatorValueV56"></div>';
-   host.appendChild(gauge);
-
-   /* neutralise les anciens overlays de résultat V54/V55 s'ils existent */
-   ["aviatorDynamicV54","aviatorDynamicV55","av53x","av53ring","aviatorSpinnerV54","aviatorSpinnerV55"].forEach(function(id){
-     var el=document.getElementById(id);
-     if(el) el.style.display="none";
-   });
-
-   var b=[].slice.call(s.querySelectorAll("button")).find(function(x){
-     return /PR[ÉE]DIRE/i.test(x.textContent||"");
-   });
-   if(!b) return;
-
-   b.addEventListener("click",function(e){
-     e.preventDefault();
-     e.stopImmediatePropagation();
-
-     var ticks=document.getElementById("aviatorTicksV56");
-     var val=document.getElementById("aviatorValueV56");
-     if(!ticks||!val) return;
-
-     val.classList.remove("show");
-     val.textContent="";
-     ticks.classList.remove("spin");
-     void ticks.offsetWidth;
-     ticks.classList.add("spin");
-     b.disabled=true;
-
-     /* Valeur de démonstration uniquement */
-     var n=(1.10+Math.random()*18.90).toFixed(2);
-
-     setTimeout(function(){
-       ticks.classList.remove("spin");
-       val.textContent=n+"x";
-       val.classList.add("show");
-       b.disabled=false;
-     },1600);
-   },true);
- }
- if(document.readyState==="loading"){
-   document.addEventListener("DOMContentLoaded",setupV56);
- }else{
-   setupV56();
- }
-})();
-</script>
 
 
 <style id="aviator-v57-circle-image">
@@ -3887,40 +3787,7 @@ function showChickenEgg(eggNumber){
   z-index:5 !important;
 }
 </style>
-<script id="aviator-v57-circle-image-js">
-(function(){
- function init(){
-   var gauge=document.getElementById("aviatorGaugeV56");
-   if(!gauge || document.getElementById("aviatorCircleImgV57")) return;
 
-   var img=document.createElement("img");
-   img.id="aviatorCircleImgV57";
-   img.src="/aviator-circle.png";
-   img.alt="";
-   gauge.insertBefore(img,gauge.firstChild);
-
-   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
-   if(!s) return;
-   var b=[].slice.call(s.querySelectorAll("button")).find(function(x){
-     return /PR[ÉE]DIRE/i.test(x.textContent||"");
-   });
-   if(!b) return;
-
-   /* Animation visuelle de l'image validée */
-   b.addEventListener("click",function(){
-     var c=document.getElementById("aviatorCircleImgV57");
-     if(!c) return;
-     c.classList.remove("spin");
-     void c.offsetWidth;
-     c.classList.add("spin");
-     setTimeout(function(){ c.classList.remove("spin"); },1600);
-   },false);
- }
- if(document.readyState==="loading"){
-   document.addEventListener("DOMContentLoaded",init);
- }else init();
-})();
-</script>
 
 
 <style id="aviator-v58-bigger-circle">
@@ -3963,48 +3830,68 @@ function showChickenEgg(eggNumber){
 #aviatorValueV56.av60-show{opacity:1 !important;}
 </style>
 
-<script id="aviator-v60-demo-final-js">
+
+
+
+<script id="aviator-v61-single-controller">
 (function(){
- function initV60(){
-   var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
-   var gauge=document.getElementById("aviatorGaugeV56");
-   var value=document.getElementById("aviatorValueV56");
-   if(!s||!gauge||!value||gauge.dataset.v60==="1") return;
-   gauge.dataset.v60="1";
+  function init(){
+    var s=document.getElementById("aviatorScreen")||document.querySelector(".aviator-screen");
+    if(!s || s.dataset.av61==="1") return;
+    s.dataset.av61="1";
 
-   var btn=[].slice.call(s.querySelectorAll("button")).find(function(x){
-     return /PR[ÉE]DIRE/i.test(x.textContent||"");
-   });
-   if(!btn) return;
+    var target=s.querySelector(".aviator-stage,.game-stage,.stage")||s;
 
-   /* V60 prend seul le contrôle du clic Aviator */
-   btn.addEventListener("click",function(e){
-     e.preventDefault();
-     e.stopImmediatePropagation();
+    /* Nouveau fond Aviator */
+    var host=document.getElementById("aviatorCleanV54");
+    if(!host){
+      Array.from(target.children).forEach(function(el){
+        if(el.tagName!=="BUTTON" && !el.querySelector("button")) el.style.display="none";
+      });
+      host=document.createElement("div");
+      host.id="aviatorCleanV54";
+      target.prepend(host);
+    }
 
-     value.classList.remove("av60-show");
-     value.textContent="";
-     gauge.classList.remove("av60-spin");
-     void gauge.offsetWidth;
-     gauge.classList.add("av60-spin");
-     btn.disabled=true;
+    /* Cercle image validé */
+    var gauge=document.createElement("div");
+    gauge.id="aviatorGaugeV56";
+    gauge.innerHTML=
+      '<img id="aviatorCircleImgV57" src="/aviator-circle.png" alt="">' +
+      '<div id="aviatorValueV56"></div>';
+    host.appendChild(gauge);
 
-     /* résultat de démonstration */
-     var result=(1.10 + Math.random()*18.90).toFixed(2) + "x";
+    var value=document.getElementById("aviatorValueV56");
+    var circle=document.getElementById("aviatorCircleImgV57");
+    var btn=Array.from(s.querySelectorAll("button")).find(function(x){
+      return /PR[ÉE]DIRE/i.test(x.textContent||"");
+    });
+    if(!btn) return;
 
-     setTimeout(function(){
-       gauge.classList.remove("av60-spin");
-       value.textContent=result;
-       value.classList.add("av60-show");
-       btn.disabled=false;
-     },1600);
-   },true);
- }
- if(document.readyState==="loading"){
-   document.addEventListener("DOMContentLoaded",initV60);
- }else{
-   initV60();
- }
+    btn.addEventListener("click",function(e){
+      e.preventDefault();
+
+      value.classList.remove("av60-show");
+      value.textContent="";
+      circle.classList.remove("spin");
+      void circle.offsetWidth;
+      circle.classList.add("spin");
+      btn.disabled=true;
+
+      var result=(1.10 + Math.random()*18.90).toFixed(2) + "x";
+
+      setTimeout(function(){
+        circle.classList.remove("spin");
+        value.textContent=result;
+        value.classList.add("av60-show");
+        btn.disabled=false;
+      },1600);
+    });
+  }
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",init);
+  }else init();
 })();
 </script>
 
