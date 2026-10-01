@@ -1894,6 +1894,37 @@ html{
 }
 </style>
 
+
+<style id="rocketqueen-v85-logo-curve">
+/* Bigger logo, same upper-left area */
+#rocketQueenScreen .rocketqueen-v84-logo{
+  top:4.2% !important;
+  left:5.5% !important;
+  width:39% !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .rocket{
+  font-size:clamp(27px,6.8vw,49px) !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .queen{
+  font-size:clamp(10px,2.3vw,16px) !important;
+  margin-left:34% !important;
+}
+
+/* Longer trajectory, from bottom-left to the rocket */
+#rocketQueenScreen .rocketqueen-v84-path{
+  stroke-width:2.5 !important;
+  stroke-dasharray:1000 !important;
+  stroke-dashoffset:1000 !important;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
+  animation:rocketQueenCurveDrawV85 2.9s linear forwards !important;
+}
+@keyframes rocketQueenCurveDrawV85{
+  from{stroke-dashoffset:1000;}
+  to{stroke-dashoffset:0;}
+}
+</style>
+
 </head>
 
 <body>
@@ -2114,7 +2145,7 @@ html{
 
                 <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
                     <path class="rocketqueen-v84-path"
-                          d="M 5 680 C 205 650, 360 585, 500 490 C 650 390, 735 285, 835 190" />
+                          d="M 0 690 C 175 675, 335 625, 475 535 C 615 445, 705 335, 775 245 C 825 180, 865 145, 910 120" />
                 </svg>
 <img
                     src="/rocketqueen-personnage.png"
