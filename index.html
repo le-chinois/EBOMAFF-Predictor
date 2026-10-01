@@ -1659,7 +1659,6 @@ html{
 <link rel="preload" as="image" href="/crash-bg.png">
 <link rel="preload" as="image" href="/rocketqueen-bg.png">
 <link rel="preload" as="image" href="/rocketqueen-personnage.png">
-<link rel="preload" as="image" href="/rocketqueen-flamme.png">
 <link rel="preload" as="image" href="/mines.png">
 <link rel="preload" as="image" href="/limbo.png">
 <link rel="preload" as="image" href="/penalty-bg.png">
@@ -1803,6 +1802,95 @@ html{
 @keyframes rocketQueenFlameV83{
   from{transform:scale(.88) rotate(-8deg);opacity:.72;}
   to{transform:scale(1.10) rotate(-8deg);opacity:1;}
+}
+</style>
+
+
+<style id="rocketqueen-v84-final-style">
+/* V84 — Rocket Queen: no background zoom */
+#rocketQueenScreen .rocketqueen-v83-bg{
+  inset:0 !important;
+  transform:none !important;
+  background-image:url("/rocketqueen-bg.png") !important;
+  background-size:100% auto !important;
+  background-repeat:repeat-y !important;
+  background-position:center 0 !important;
+}
+
+/* Real vertical floating/scrolling effect while the rocket flies */
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-bg{
+  animation:rocketQueenBgFloatV84 2.9s linear forwards !important;
+}
+@keyframes rocketQueenBgFloatV84{
+  from{background-position:center 0;}
+  to{background-position:center 82%;}
+}
+
+/* Old separate flame is no longer used */
+#rocketQueenScreen .rocketqueen-v83-flame{
+  display:none !important;
+}
+
+/* Logo based on the original reference */
+#rocketQueenScreen .rocketqueen-v84-logo{
+  position:absolute;
+  z-index:8;
+  top:5.2%;
+  left:7%;
+  width:31%;
+  text-align:center;
+  pointer-events:none;
+  line-height:.72;
+  transform:rotate(-2deg);
+}
+#rocketQueenScreen .rocketqueen-v84-logo .rocket{
+  display:block;
+  color:#ef8be8;
+  font-family:"Brush Script MT","Segoe Script","Comic Sans MS",cursive;
+  font-size:clamp(20px,5.1vw,37px);
+  font-weight:700;
+  font-style:italic;
+  letter-spacing:-1.5px;
+  text-shadow:0 1px 1px rgba(65,15,83,.35);
+}
+#rocketQueenScreen .rocketqueen-v84-logo .queen{
+  display:block;
+  margin-top:2px;
+  margin-left:36%;
+  color:#ffd63f;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(8px,1.8vw,13px);
+  font-weight:900;
+  font-style:italic;
+  letter-spacing:-.5px;
+}
+
+/* Curved trajectory like the original */
+#rocketQueenScreen .rocketqueen-v84-curve{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:visible;
+}
+#rocketQueenScreen .rocketqueen-v84-path{
+  fill:none;
+  stroke:rgba(255,245,220,.92);
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-dasharray:520;
+  stroke-dashoffset:520;
+  opacity:0;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
+  opacity:1;
+  animation:rocketQueenCurveDrawV84 2.9s linear forwards;
+}
+@keyframes rocketQueenCurveDrawV84{
+  from{stroke-dashoffset:520;}
+  to{stroke-dashoffset:0;}
 }
 </style>
 
@@ -2019,14 +2107,16 @@ html{
             <div class="game-image-box rocketqueen-v83-stage">
                 <div class="rocketqueen-v83-bg"></div>
 
-                <img
-                    src="/rocketqueen-flamme.png"
-                    id="rocketQueenFlameV83"
-                    class="rocketqueen-v83-flame"
-                    alt=""
-                >
+                <div class="rocketqueen-v84-logo" aria-label="Rocket Queen">
+                    <span class="rocket">Rocket</span>
+                    <span class="queen">queen</span>
+                </div>
 
-                <img
+                <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+                    <path class="rocketqueen-v84-path"
+                          d="M 5 680 C 205 650, 360 585, 500 490 C 650 390, 735 285, 835 190" />
+                </svg>
+<img
                     src="/rocketqueen-personnage.png"
                     id="rocketQueenCharacterV83"
                     class="rocketqueen-v83-character"
@@ -3631,7 +3721,6 @@ function showChickenEgg(eggNumber){
     "/crash-bg.png",
     "/rocketqueen-bg.png",
     "/rocketqueen-personnage.png",
-    "/rocketqueen-flamme.png",
     "/mines.png",
     "/limbo.png",
     "/penalty-bg.png",
