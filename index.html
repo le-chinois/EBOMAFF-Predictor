@@ -4160,16 +4160,17 @@ function showChickenEgg(eggNumber){
       e.preventDefault();
       e.stopPropagation();
       btn.disabled=true;
-      value.classList.remove("calculating","analysis-running","visible");
-      value.textContent="ANALYSE...";
-      value.classList.add("visible","calculating","analysis-running");
-      if(status) status.textContent="🔄 Analyse Limbo en cours...";
+      value.classList.remove("calculating","analysis-running","visible","limbo-v65-result");
+      value.textContent="";
+      value.style.opacity="0";
+      if(status) status.textContent="⏳ Limbo en cours...";
 
       var result=(1.10+Math.random()*18.90).toFixed(2)+"x";
       window.setTimeout(function(){
         value.classList.remove("calculating","analysis-running");
         value.textContent=result;
-        value.classList.add("visible");
+        value.style.opacity="1";
+        value.classList.add("visible","limbo-v65-result");
         btn.disabled=false;
         if(status) status.textContent="🎮 Résultat démo Limbo";
       },1600);
