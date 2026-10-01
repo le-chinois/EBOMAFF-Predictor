@@ -3901,6 +3901,60 @@ function showChickenEgg(eggNumber){
 #aviatorValueV56{top:56% !important;}
 </style>
 
+
+<style id="limbo-v65-green-result">
+#limboScreen #limboValue.limbo-v65-result{
+  color:#00e85f !important;
+  font-weight:1000 !important;
+  text-shadow:
+    0 1px 0 #00bd4c,
+    0 2px 0 #009d40,
+    0 0 8px rgba(0,232,95,.55) !important;
+}
+</style>
+<script id="limbo-v65-final">
+(function(){
+  function initV65(){
+    var s=document.getElementById("limboScreen");
+    if(!s) return;
+
+    var value=document.getElementById("limboValue");
+    if(!value) return;
+
+    // No ANALYSE displayed when Limbo is opened/refreshed.
+    function clearInitial(){
+      if(/ANALYSE/i.test(value.textContent||"")){
+        value.textContent="";
+        value.classList.remove("visible","calculating","analysis-running","limbo-v65-result");
+        value.style.opacity="0";
+      }
+    }
+    clearInitial();
+    setTimeout(clearInitial,0);
+    setTimeout(clearInitial,100);
+
+    // Observe the existing validated V64 controller:
+    // keep its timing/logic, only restyle the final x result in green.
+    var obs=new MutationObserver(function(){
+      var t=(value.textContent||"").trim();
+      if(/^\d+(?:\.\d+)?x$/i.test(t)){
+        value.classList.add("limbo-v65-result");
+        value.style.opacity="1";
+      }else{
+        value.classList.remove("limbo-v65-result");
+      }
+    });
+    obs.observe(value,{childList:true,characterData:true,subtree:true});
+  }
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",initV65);
+  }else{
+    initV65();
+  }
+})();
+</script>
+
 </body>
 </html>
 
