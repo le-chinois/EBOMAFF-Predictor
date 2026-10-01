@@ -1925,6 +1925,84 @@ html{
 }
 </style>
 
+
+<style id="rocketqueen-v86-three-fixes">
+/* 1 — réellement agrandir le logo */
+#rocketQueenScreen .rocketqueen-v84-logo{
+  top:3.5% !important;
+  left:4.5% !important;
+  width:46% !important;
+  transform:rotate(-2deg) scale(1.22) !important;
+  transform-origin:left top !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .rocket{
+  font-size:clamp(36px,9vw,66px) !important;
+  line-height:.70 !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .queen{
+  font-size:clamp(12px,3vw,21px) !important;
+  margin-top:5px !important;
+  margin-left:37% !important;
+}
+
+/* 2 — courbe complète type Lucky Jet */
+#rocketQueenScreen .rocketqueen-v84-path{
+  stroke:rgba(255,247,224,.96) !important;
+  stroke-width:3 !important;
+  stroke-linecap:round !important;
+  fill:none !important;
+  stroke-dasharray:1250 !important;
+  stroke-dashoffset:1250 !important;
+  opacity:0;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
+  opacity:1 !important;
+  animation:rocketQueenCurveDrawV86 2.9s linear forwards !important;
+}
+@keyframes rocketQueenCurveDrawV86{
+  from{stroke-dashoffset:1250;}
+  to{stroke-dashoffset:0;}
+}
+
+/* 3 — effet vivant sur la flamme déjà intégrée à l'image.
+   Pas de retour du fichier rocketqueen-flamme.png. */
+#rocketQueenScreen .rocketqueen-v86-flamefx{
+  position:absolute;
+  z-index:3;
+  left:17%;
+  top:66%;
+  width:22%;
+  height:8%;
+  pointer-events:none;
+  opacity:0;
+  transform-origin:right center;
+  background:
+    radial-gradient(ellipse at right center,
+      rgba(255,255,190,.95) 0%,
+      rgba(255,224,40,.88) 24%,
+      rgba(255,132,0,.72) 48%,
+      rgba(255,80,0,.30) 67%,
+      rgba(255,80,0,0) 76%);
+  filter:blur(2px);
+  border-radius:55% 12% 12% 55%;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v86-flamefx{
+  opacity:.95;
+  animation:
+    rocketQueenFlamePulseV86 .11s ease-in-out infinite alternate,
+    rocketQueenFlameMoveV86 2.9s cubic-bezier(.2,.68,.2,1) forwards;
+}
+@keyframes rocketQueenFlamePulseV86{
+  from{transform:scaleX(.72) scaleY(.72); opacity:.62;}
+  to{transform:scaleX(1.18) scaleY(1.08); opacity:1;}
+}
+@keyframes rocketQueenFlameMoveV86{
+  0%{left:17%;top:66%;}
+  55%{left:31%;top:55%;}
+  100%{left:48%;top:38%;}
+}
+</style>
+
 </head>
 
 <body>
@@ -2145,9 +2223,11 @@ html{
 
                 <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
                     <path class="rocketqueen-v84-path"
-                          d="M 0 690 C 175 675, 335 625, 475 535 C 615 445, 705 335, 775 245 C 825 180, 865 145, 910 120" />
+                          d="M 0 695 C 155 685, 300 650, 430 585 C 565 518, 655 430, 730 340 C 800 255, 850 185, 925 115" />
                 </svg>
-<img
+<div class="rocketqueen-v86-flamefx" aria-hidden="true"></div>
+
+                <img
                     src="/rocketqueen-personnage.png"
                     id="rocketQueenCharacterV83"
                     class="rocketqueen-v83-character"
