@@ -1664,6 +1664,20 @@ html{
 <link rel="preload" as="image" href="/rocketx.png">
 <link rel="preload" as="image" href="/chickentrain.png">
 
+
+<style id="penalty-v74-zone-number-style">
+#penaltyScreen .penalty-zone-number{
+  display:inline-block;
+  margin-left:6px;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:1000;
+  font-style:normal;
+  letter-spacing:-1px;
+  text-shadow:0 1px 0 rgba(220,220,220,.95),0 2px 2px rgba(0,0,0,.30);
+}
+</style>
+
 </head>
 
 <body>
@@ -2733,7 +2747,16 @@ if(minesPredict){
 
 /* PENALTY - 15 ZONES */
 const penaltyZones=Array.from(document.querySelectorAll(".penalty-zone"));
-function resetPenalty(){penaltyZones.forEach(z=>z.classList.remove("scanning","selected"));}
+const penaltyZoneLabel=document.getElementById("penaltyZoneLabel");
+function setPenaltyZoneLabel(zone){
+  if(penaltyZoneLabel){
+    penaltyZoneLabel.innerHTML='ZONE : <span class="penalty-zone-number">'+(zone||"")+'</span>';
+  }
+}
+function resetPenalty(){
+  penaltyZones.forEach(z=>z.classList.remove("scanning","selected"));
+  setPenaltyZoneLabel("");
+}
 const penaltyPredict=document.getElementById("penaltyPredict");
 
 if(penaltyPredict){
@@ -2755,7 +2778,10 @@ if(penaltyPredict){
    const timer=setInterval(function(){
      penaltyZones.forEach(z=>z.classList.remove("scanning"));
      const idx=scanOrder[step];
-     if(penaltyZones[idx]) penaltyZones[idx].classList.add("scanning");
+     if(penaltyZones[idx]){
+       penaltyZones[idx].classList.add("scanning");
+       setPenaltyZoneLabel(penaltyZones[idx].dataset.zone);
+     }
      step++;
 
      if(step>=scanOrder.length){
@@ -2766,6 +2792,7 @@ if(penaltyPredict){
        if(finalZone){
          finalZone.classList.add("selected");
          const zoneNumber=finalZone.dataset.zone;
+         setPenaltyZoneLabel(zoneNumber);
          setStatus("penaltyStatus","⌛ Moteur Penalty non connecté.");
        }
 
@@ -4066,92 +4093,6 @@ function showChickenEgg(eggNumber){
    setTimeout(putStatus,250);
    setTimeout(putStatus,900);
  }
-})();
-</script>
-
-
-<style id="penalty-v73-zone-style">
-#penaltyZoneNumberV73{
-  display:inline-block!important;
-  margin-left:8px!important;
-  color:#fff!important;
-  font-family:Arial,Helvetica,sans-serif!important;
-  font-weight:1000!important;
-  font-style:normal!important;
-  letter-spacing:-1px!important;
-  line-height:1!important;
-  text-shadow:0 1px 0 rgba(220,220,220,.95),0 2px 2px rgba(0,0,0,.30)!important;
-}
-</style>
-<script id="penalty-v73-zone-controller">
-(function(){
- function init(){
-   var s=document.getElementById("penaltyScreen");
-   if(!s || s.dataset.penaltyV73==="1") return;
-   s.dataset.penaltyV73="1";
-
-   // Find the visible "ZONE :" label already present in the validated Penalty design.
-   var all=Array.from(s.querySelectorAll("*"));
-   var label=all.find(function(el){
-     return el.children.length===0 && /^\s*ZONE\s*:\s*$/i.test(el.textContent||"");
-   });
-   if(!label){
-     label=all.find(function(el){
-       return /ZONE\s*:/i.test(el.textContent||"") && el.children.length===0;
-     });
-   }
-   if(!label) return;
-
-   var num=document.createElement("span");
-   num.id="penaltyZoneNumberV73";
-   label.appendChild(num);
-
-   var btn=Array.from(s.querySelectorAll("button")).find(function(b){
-     return /PR[ÉE]DIRE/i.test(b.textContent||"");
-   });
-   if(!btn) return;
-
-   // Preserve the existing Penalty demo/controller. We only mirror its selected zone.
-   btn.addEventListener("click",function(){
-     num.textContent="";
-     var tries=0;
-     var timer=setInterval(function(){
-       tries++;
-       // Validated design has target spots. Find the one that becomes luminous/active.
-       var spots=Array.from(s.querySelectorAll(
-         '.penalty-target,.target,.zone,.penalty-zone,[data-zone],[data-index]'
-       ));
-       var active=spots.find(function(el){
-         var cs=getComputedStyle(el);
-         return el.classList.contains("active") ||
-                el.classList.contains("selected") ||
-                el.classList.contains("lit") ||
-                el.classList.contains("glow") ||
-                (cs.boxShadow && cs.boxShadow!=="none" && cs.boxShadow.indexOf("0px 0px 0px")===-1);
-       });
-
-       if(active){
-         var z=active.getAttribute("data-zone") ||
-               active.getAttribute("data-index") ||
-               active.dataset.zone ||
-               active.dataset.index;
-         if(!z){
-           var idx=spots.indexOf(active);
-           if(idx>=0) z=String(idx+1);
-         }
-         if(z){
-           // If data-index is zero-based, normalize only explicit numeric 0.
-           if(z==="0") z="1";
-           num.textContent=z;
-           clearInterval(timer);
-         }
-       }
-       if(tries>30) clearInterval(timer);
-     },50);
-   },false);
- }
- if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
- else init();
 })();
 </script>
 
