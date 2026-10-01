@@ -4629,6 +4629,75 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
+
+<style id="rocketqueen-v91-fixed-animation">
+/* V91 — Rocket Queen sans courbe : personnage fixe + animation sur place. */
+#rocketQueenScreen .rocketqueen-v84-curve,
+#rocketQueenScreen #rocketQueenCurvePath{display:none!important;opacity:0!important;animation:none!important;}
+#rocketQueenScreen .rocketqueen-v83-character{
+  display:block!important;
+  opacity:1!important;
+  left:64%!important;
+  top:54%!important;
+  width:54%!important;
+  max-width:370px!important;
+  z-index:8!important;
+  transform:translate(-50%,-50%) rotate(-10deg) scale(.98)!important;
+  transform-origin:50% 58%!important;
+  animation:none!important;
+  will-change:transform!important;
+}
+#rocketQueenScreen.rocketqueen-v91-animating .rocketqueen-v83-character{
+  animation:rocketQueenHoverV91 .46s ease-in-out infinite alternate!important;
+}
+@keyframes rocketQueenHoverV91{
+  0%{transform:translate(-50%,-50%) translateY(5px) rotate(-8deg) scale(.97);}
+  100%{transform:translate(-50%,-50%) translateY(-10px) rotate(-12deg) scale(1.01);}
+}
+#rocketQueenScreen #rocketQueenValue{z-index:9!important;}
+@media (prefers-reduced-motion:reduce){
+ #rocketQueenScreen.rocketqueen-v91-animating .rocketqueen-v83-character{animation:none!important;}
+}
+</style>
+<script id="rocketqueen-v91-controller">
+(function(){
+  const screen=document.getElementById('rocketQueenScreen');
+  const oldBtn=document.getElementById('rocketQueenPredict');
+  const value=document.getElementById('rocketQueenValue');
+  const character=document.getElementById('rocketQueenCharacterV83');
+  if(!screen||!oldBtn||!value||!character) return;
+
+  /* Remplace le bouton pour retirer l'ancien contrôleur V90 sans toucher aux autres jeux. */
+  const btn=oldBtn.cloneNode(true);
+  oldBtn.parentNode.replaceChild(btn,oldBtn);
+
+  screen.classList.remove('rocketqueen-v83-flying','rocketqueen-v90-active');
+  screen.classList.remove('rocketqueen-v91-animating');
+  character.style.opacity='1';
+  character.style.left=''; character.style.top=''; character.style.transform='';
+  value.classList.remove('visible','calculating','analysis-running');
+  value.textContent='';
+
+  let timer=0;
+  btn.addEventListener('click',function(){
+    if(timer) clearTimeout(timer);
+    btn.disabled=true;
+    value.classList.remove('visible','calculating','analysis-running');
+    value.textContent='';
+    screen.classList.remove('rocketqueen-v83-flying','rocketqueen-v90-active');
+    screen.classList.add('rocketqueen-v91-animating');
+
+    timer=setTimeout(function(){
+      screen.classList.remove('rocketqueen-v91-animating');
+      const finalMultiplier=(1.10+Math.random()*18.90).toFixed(2);
+      value.textContent='x'+finalMultiplier;
+      value.classList.add('visible');
+      btn.disabled=false;
+      if(typeof setStatus==='function') setStatus('rocketQueenStatus','⌛ Moteur Rocket Queen non connecté.');
+    },2200);
+  });
+})();
+</script>
 </body>
 </html>
 
