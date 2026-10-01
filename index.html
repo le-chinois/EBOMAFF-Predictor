@@ -1657,7 +1657,9 @@ html{
 <link rel="preload" as="image" href="/aviator.png">
 <link rel="preload" as="image" href="/aviator_plane.png">
 <link rel="preload" as="image" href="/crash-bg.png">
-<link rel="preload" as="image" href="/rocketqueen.png">
+<link rel="preload" as="image" href="/rocketqueen-bg.png">
+<link rel="preload" as="image" href="/rocketqueen-personnage.png">
+<link rel="preload" as="image" href="/rocketqueen-flamme.png">
 <link rel="preload" as="image" href="/mines.png">
 <link rel="preload" as="image" href="/limbo.png">
 <link rel="preload" as="image" href="/penalty-bg.png">
@@ -1718,6 +1720,89 @@ html{
   content:none !important;
   display:none !important;
   background:transparent !important;
+}
+</style>
+
+
+<style id="rocketqueen-v83-style">
+#rocketQueenScreen .rocketqueen-v83-stage{
+  position:relative;
+  overflow:hidden;
+  min-height:330px;
+  background:#16061f;
+}
+#rocketQueenScreen .rocketqueen-v83-bg{
+  position:absolute;
+  inset:-12%;
+  background-image:url("/rocketqueen-bg.png");
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.18);
+  will-change:transform,background-position;
+}
+#rocketQueenScreen .rocketqueen-v83-character{
+  position:absolute;
+  z-index:4;
+  width:58%;
+  max-width:390px;
+  height:auto;
+  left:19%;
+  top:34%;
+  object-fit:contain;
+  pointer-events:none;
+  will-change:transform;
+}
+#rocketQueenScreen .rocketqueen-v83-flame{
+  position:absolute;
+  z-index:3;
+  width:34%;
+  max-width:230px;
+  height:auto;
+  left:8%;
+  top:57%;
+  object-fit:contain;
+  pointer-events:none;
+  opacity:.92;
+  transform-origin:80% 50%;
+  will-change:transform,opacity;
+}
+#rocketQueenScreen #rocketQueenValue{
+  z-index:6;
+  top:43%!important;
+  left:30%!important;
+  min-width:0!important;
+  color:#ffb11a!important;
+  font-size:42px!important;
+  font-weight:900!important;
+  text-shadow:0 2px 5px rgba(0,0,0,.45)!important;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-bg{
+  animation:rocketQueenBgV83 2.9s linear forwards;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-character{
+  animation:rocketQueenCharacterV83 2.9s cubic-bezier(.2,.68,.2,1) forwards;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v83-flame{
+  animation:rocketQueenFlameV83 .16s ease-in-out infinite alternate,
+            rocketQueenFlameTravelV83 2.9s cubic-bezier(.2,.68,.2,1) forwards;
+}
+@keyframes rocketQueenBgV83{
+  from{transform:scale(1.18) translate3d(0,0,0);}
+  to{transform:scale(1.28) translate3d(-7%,9%,0);}
+}
+@keyframes rocketQueenCharacterV83{
+  0%{transform:translate3d(0,0,0) rotate(-3deg) scale(.92);}
+  55%{transform:translate3d(24%,-20%,0) rotate(-8deg) scale(1);}
+  100%{transform:translate3d(54%,-48%,0) rotate(-12deg) scale(1.05);}
+}
+@keyframes rocketQueenFlameTravelV83{
+  0%{margin-left:0;margin-top:0;}
+  55%{margin-left:14%;margin-top:-11%;}
+  100%{margin-left:31%;margin-top:-28%;}
+}
+@keyframes rocketQueenFlameV83{
+  from{transform:scale(.88) rotate(-8deg);opacity:.72;}
+  to{transform:scale(1.10) rotate(-8deg);opacity:1;}
 }
 </style>
 
@@ -1931,11 +2016,20 @@ html{
             class="screen"
         >
 
-            <div class="game-image-box">
+            <div class="game-image-box rocketqueen-v83-stage">
+                <div class="rocketqueen-v83-bg"></div>
 
                 <img
-                    src="/rocketqueen.png"
-                    class="game-image"
+                    src="/rocketqueen-flamme.png"
+                    id="rocketQueenFlameV83"
+                    class="rocketqueen-v83-flame"
+                    alt=""
+                >
+
+                <img
+                    src="/rocketqueen-personnage.png"
+                    id="rocketQueenCharacterV83"
+                    class="rocketqueen-v83-character"
                     alt="Rocket Queen"
                 >
 
@@ -1943,7 +2037,6 @@ html{
                     id="rocketQueenValue"
                     class="live-value"
                 ></div>
-
             </div>
 
             <div
@@ -2591,7 +2684,6 @@ const engines = {
  lucky:{button:"luckyPredict",status:"luckyStatus",value:"luckyValue",name:"Lucky Jet"},
  aviator:{button:"aviatorPredict",status:"aviatorStatus",value:"aviatorValue",name:"Aviator"},
  crash:{button:"crashPredict",status:"crashStatus",value:"crashValue",name:"Crash"},
- rocketQueen:{button:"rocketQueenPredict",status:"rocketQueenStatus",value:"rocketQueenValue",name:"Rocket Queen"},
  rocketX:{button:"rocketXPredict",status:"rocketXStatus",value:"rocketXValue",name:"Rocket X"}
 };
 
@@ -3537,7 +3629,9 @@ function showChickenEgg(eggNumber){
     "/aviator.png",
     "/aviator_plane.png",
     "/crash-bg.png",
-    "/rocketqueen.png",
+    "/rocketqueen-bg.png",
+    "/rocketqueen-personnage.png",
+    "/rocketqueen-flamme.png",
     "/mines.png",
     "/limbo.png",
     "/penalty-bg.png",
@@ -4139,6 +4233,51 @@ function showChickenEgg(eggNumber){
    setTimeout(putStatus,250);
    setTimeout(putStatus,900);
  }
+})();
+</script>
+
+
+<script id="rocketqueen-v83-controller">
+(function(){
+  const screen=document.getElementById("rocketQueenScreen");
+  const btn=document.getElementById("rocketQueenPredict");
+  const value=document.getElementById("rocketQueenValue");
+  if(!screen||!btn||!value) return;
+
+  let timer=null, start=0, finalMultiplier=1.10;
+
+  function reset(){
+    if(timer) cancelAnimationFrame(timer);
+    screen.classList.remove("rocketqueen-v83-flying");
+    value.classList.remove("visible","calculating","analysis-running");
+    value.textContent="";
+  }
+
+  btn.addEventListener("click",function(){
+    reset();
+    void screen.offsetWidth;
+
+    btn.disabled=true;
+    finalMultiplier=1.10+Math.random()*18.90;
+    start=performance.now();
+    screen.classList.add("rocketqueen-v83-flying");
+    value.classList.add("visible");
+
+    function tick(now){
+      const p=Math.min(1,(now-start)/2900);
+      const current=1+(finalMultiplier-1)*(p*p*(3-2*p));
+      value.textContent="x"+current.toFixed(2);
+
+      if(p<1){
+        timer=requestAnimationFrame(tick);
+      }else{
+        value.textContent="x"+finalMultiplier.toFixed(2);
+        btn.disabled=false;
+        setStatus("rocketQueenStatus","⌛ Moteur Rocket Queen non connecté.");
+      }
+    }
+    timer=requestAnimationFrame(tick);
+  });
 })();
 </script>
 
