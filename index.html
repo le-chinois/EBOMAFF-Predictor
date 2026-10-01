@@ -2558,7 +2558,7 @@ function animateMultiplierEngine(engine){
  if(!button||!value)return;
  const box=value.closest(".game-image-box");
  button.disabled=true;
- value.textContent="ANALYSE...";
+ value.textContent="⌛ Moteur Speed & Cash non connecté.";
  value.classList.add("visible","calculating","analysis-running");
  if(box) box.classList.add("analysis-motion");
 
@@ -2703,7 +2703,7 @@ if(speedPredict && speedRaceBox && speedValue && speedBlueCar && speedRedCar){
         "show-center-cuff"
       );
 
-      speedValue.textContent="ANALYSE...";
+      speedValue.textContent="⌛ Moteur Speed & Cash non connecté.";
       speedValue.classList.add("visible");
 
       speedReturnTimer=setTimeout(function(){
