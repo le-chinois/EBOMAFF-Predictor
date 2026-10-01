@@ -1678,6 +1678,31 @@ html{
 }
 </style>
 
+
+<style id="speed-v78-demo-multiplier-style">
+/* SPEED & CASH V78 — multiplicateur démo blanc épais, référence x3.76 */
+#speedScreen #speedValue{
+  color:#fff !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+  font-size:clamp(42px,12vw,72px) !important;
+  font-weight:1000 !important;
+  line-height:1 !important;
+  letter-spacing:-3px !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  text-shadow:
+    0 1px 0 rgba(235,235,235,.95),
+    0 3px 3px rgba(0,0,0,.38) !important;
+  left:50% !important;
+  top:42.2% !important;
+  transform:translateX(-50%) !important;
+  width:auto !important;
+  min-width:0 !important;
+  padding:0 !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2703,7 +2728,8 @@ if(speedPredict && speedRaceBox && speedValue && speedBlueCar && speedRedCar){
         "show-center-cuff"
       );
 
-      speedValue.textContent="⌛ Moteur Speed & Cash non connecté.";
+      const speedDemoMultiplier="x"+(1.10 + Math.random()*18.90).toFixed(2);
+      speedValue.textContent=speedDemoMultiplier;
       speedValue.classList.add("visible");
 
       speedReturnTimer=setTimeout(function(){
