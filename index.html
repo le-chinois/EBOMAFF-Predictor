@@ -2003,6 +2003,59 @@ html{
 }
 </style>
 
+
+<style id="rocketqueen-v87-exact-fixes">
+/* LOGO : déplacé vers la zone gauche indiquée, sans le recentrer */
+#rocketQueenScreen .rocketqueen-v84-logo{
+  top:3.2% !important;
+  left:1.2% !important;
+  width:43% !important;
+  transform:rotate(-2deg) !important;
+  transform-origin:left top !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .rocket{
+  font-size:clamp(31px,7.7vw,56px) !important;
+}
+#rocketQueenScreen .rocketqueen-v84-logo .queen{
+  font-size:clamp(11px,2.5vw,18px) !important;
+  margin-left:36% !important;
+}
+
+/* COURBE : même principe que Lucky Jet.
+   Elle part du bas-gauche et se dessine jusqu'à la fusée. */
+#rocketQueenScreen .rocketqueen-v84-curve{
+  z-index:5 !important;
+  display:block !important;
+  opacity:1 !important;
+}
+#rocketQueenScreen .rocketqueen-v84-path{
+  fill:none !important;
+  stroke:#fff4dc !important;
+  stroke-width:3.2 !important;
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+  vector-effect:non-scaling-stroke;
+  path-length:1;
+  stroke-dasharray:1 !important;
+  stroke-dashoffset:1 !important;
+  opacity:0 !important;
+}
+#rocketQueenScreen.rocketqueen-v83-flying .rocketqueen-v84-path{
+  opacity:1 !important;
+  animation:rocketQueenCurveDrawV87 2.9s linear forwards !important;
+}
+@keyframes rocketQueenCurveDrawV87{
+  0%{stroke-dashoffset:1;opacity:1;}
+  100%{stroke-dashoffset:0;opacity:1;}
+}
+
+/* AUCUNE flamme artificielle supplémentaire.
+   On garde uniquement la flamme qui fait déjà partie de l'image du personnage. */
+#rocketQueenScreen .rocketqueen-v86-flamefx{
+  display:none !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2222,12 +2275,10 @@ html{
                 </div>
 
                 <svg class="rocketqueen-v84-curve" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-                    <path class="rocketqueen-v84-path"
-                          d="M 0 695 C 155 685, 300 650, 430 585 C 565 518, 655 430, 730 340 C 800 255, 850 185, 925 115" />
+                    <path class="rocketqueen-v84-path" pathLength="1"
+                          d="M 0 690 C 150 680, 300 640, 435 575 C 575 508, 680 410, 760 315 C 825 238, 875 168, 940 105" />
                 </svg>
-<div class="rocketqueen-v86-flamefx" aria-hidden="true"></div>
-
-                <img
+<img
                     src="/rocketqueen-personnage.png"
                     id="rocketQueenCharacterV83"
                     class="rocketqueen-v83-character"
