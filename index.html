@@ -2535,7 +2535,6 @@ const engines = {
  aviator:{button:"aviatorPredict",status:"aviatorStatus",value:"aviatorValue",name:"Aviator"},
  crash:{button:"crashPredict",status:"crashStatus",value:"crashValue",name:"Crash"},
  rocketQueen:{button:"rocketQueenPredict",status:"rocketQueenStatus",value:"rocketQueenValue",name:"Rocket Queen"},
- limbo:{button:"limboPredict",status:"limboStatus",value:"limboValue",name:"Limbo"},
  rocketX:{button:"rocketXPredict",status:"rocketXStatus",value:"rocketXValue",name:"Rocket X"}
 };
 
@@ -2573,6 +2572,9 @@ Object.values(engines).forEach(function(engine){
  const button=document.getElementById(engine.button);
  if(button)button.addEventListener("click",function(){animateMultiplierEngine(engine);});
 });
+
+
+
 
 
 /* SPEED & CASH V5 — ROULEMENT IMAGE PAR IMAGE */
@@ -4086,3 +4088,44 @@ function showChickenEgg(eggNumber){
 </style>
 
 \n<style>\n/* V46 — Lucky Jet : position V45 conservée, rendu final inspiré de l’image 2. */\n#luckyValue{\n  left:38% !important; top:35% !important;\n  min-width:0 !important; width:auto !important;\n  padding:12px 34px 14px !important;\n  border:2.5px solid #ffd21f !important;\n  border-radius:50% !important;\n  background:transparent !important;\n  color:#ffd51f !important;\n  font-size:clamp(30px,8.8vw,48px) !important;\n  font-weight:1000 !important; font-style:italic !important;\n  line-height:.95 !important; letter-spacing:-1.5px !important; white-space:nowrap !important;\n  transform:translate(-50%,-50%) rotate(-7deg) !important;\n  -webkit-text-stroke:.45px #ffb000;\n  text-shadow:0 2px 0 #d97800,0 4px 0 #a84c00,0 6px 7px rgba(82,23,0,.72),0 0 6px #fff3a2,0 0 14px #ffd21f,0 0 26px rgba(255,160,0,.98) !important;\n  box-shadow:0 0 4px #fff6bd,0 0 10px #ffd21f,0 0 22px rgba(255,171,0,.95),0 0 36px rgba(255,128,0,.50),inset 0 0 6px rgba(255,226,91,.20) !important;\n}\n#luckyValue::before,#luckyValue::after{content:'✦';position:absolute;color:#fff8c9;font-style:normal;font-size:13px;line-height:1;text-shadow:0 0 4px #fff,0 0 8px #ffd21f,0 0 15px #ff9d00;pointer-events:none;}\n#luckyValue::before{left:-5px;top:42%;transform:rotate(7deg);}\n#luckyValue::after{right:-5px;top:22%;transform:rotate(7deg) scale(1.15);}\n#luckyValue.visible{opacity:1 !important;}\n</style>\n
+
+<!-- LIMBO V64 — contrôleur démo indépendant -->
+<script id="limbo-v64-demo-controller">
+(function(){
+  function installLimboDemo(){
+    var oldBtn=document.getElementById("limboPredict");
+    var value=document.getElementById("limboValue");
+    var status=document.getElementById("limboStatus");
+    if(!oldBtn || !value) return;
+
+    /* Remplace le bouton par une copie pour supprimer tout ancien gestionnaire Limbo. */
+    var btn=oldBtn.cloneNode(true);
+    oldBtn.parentNode.replaceChild(btn,oldBtn);
+
+    btn.addEventListener("click",function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      btn.disabled=true;
+      value.classList.remove("calculating","analysis-running","visible");
+      value.textContent="ANALYSE...";
+      value.classList.add("visible","calculating","analysis-running");
+      if(status) status.textContent="🔄 Analyse Limbo en cours...";
+
+      var result=(1.10+Math.random()*18.90).toFixed(2)+"x";
+      window.setTimeout(function(){
+        value.classList.remove("calculating","analysis-running");
+        value.textContent=result;
+        value.classList.add("visible");
+        btn.disabled=false;
+        if(status) status.textContent="🎮 Résultat démo Limbo";
+      },1600);
+    },true);
+  }
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",installLimboDemo);
+  }else{
+    installLimboDemo();
+  }
+})();
+</script>
