@@ -1751,25 +1751,59 @@ html{
 <style id="chicken-levels-step2-v100">
 /* CHICKEN TRAIN — ÉTAPE 2 UNIQUEMENT : sélection des 4 niveaux. */
 #chickenScreen .chicken-levels-hitbox{
-  position:absolute; z-index:40; left:55.1%; right:0.5%; top:5.2%; height:13.1%;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:2.6%; pointer-events:auto;
+  position:absolute;
+  z-index:40;
+  left:55.15%;
+  right:1.65%;
+  top:3.05%;
+  height:14.15%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2.55%;
+  pointer-events:auto;
 }
 #chickenScreen .chicken-level-btn{
-  appearance:none; -webkit-appearance:none; border:2px solid transparent; border-radius:12px;
-  background:transparent; padding:0; margin:0; cursor:pointer; color:transparent; font-size:0;
-  box-shadow:none; transition:box-shadow .16s ease,border-color .16s ease,filter .16s ease;
+  appearance:none;
+  -webkit-appearance:none;
+  border:1.5px solid transparent;
+  border-radius:9px;
+  background:transparent;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+  color:transparent;
+  font-size:0;
+  box-shadow:none;
+  outline:none;
+  transition:border-color .14s ease,box-shadow .14s ease,background .14s ease;
 }
-#chickenScreen .chicken-level-btn.active[data-level="bas"]{border-color:#32ff79;box-shadow:0 0 8px #22ff72,0 0 18px rgba(0,255,100,.82),inset 0 0 12px rgba(0,255,100,.20)}
-#chickenScreen .chicken-level-btn.active[data-level="moyen"]{border-color:#36c7ff;box-shadow:0 0 8px #26baff,0 0 18px rgba(0,155,255,.85),inset 0 0 12px rgba(0,155,255,.20)}
-#chickenScreen .chicken-level-btn.active[data-level="grand"]{border-color:#ffc03d;box-shadow:0 0 8px #ffae20,0 0 18px rgba(255,155,0,.86),inset 0 0 12px rgba(255,155,0,.20)}
-#chickenScreen .chicken-level-btn.active[data-level="extreme"]{border-color:#ff4965;box-shadow:0 0 8px #ff3454,0 0 18px rgba(255,35,70,.86),inset 0 0 12px rgba(255,35,70,.20)}
+#chickenScreen .chicken-level-btn.active[data-level="bas"]{
+  border-color:#42ff83;
+  background:rgba(20,255,105,.035);
+  box-shadow:0 0 3px #35ff7c,0 0 7px rgba(30,255,110,.52),inset 0 0 5px rgba(30,255,110,.16);
+}
+#chickenScreen .chicken-level-btn.active[data-level="moyen"]{
+  border-color:#42c9ff;
+  background:rgba(30,170,255,.035);
+  box-shadow:0 0 3px #31bdff,0 0 7px rgba(20,155,255,.52),inset 0 0 5px rgba(20,155,255,.16);
+}
+#chickenScreen .chicken-level-btn.active[data-level="grand"]{
+  border-color:#ffc24b;
+  background:rgba(255,170,25,.035);
+  box-shadow:0 0 3px #ffb52c,0 0 7px rgba(255,155,15,.52),inset 0 0 5px rgba(255,155,15,.16);
+}
+#chickenScreen .chicken-level-btn.active[data-level="extreme"]{
+  border-color:#ff536d;
+  background:rgba(255,45,75,.035);
+  box-shadow:0 0 3px #ff405d,0 0 7px rgba(255,35,70,.52),inset 0 0 5px rgba(255,35,70,.16);
+}
 </style>
 
 
 <style id="chicken-scanner-step3-style-v101">
 /* CHICKEN TRAIN — ÉTAPE 3 UNIQUEMENT : scanner */
 #chickenScreen .chicken-scanner-step3{
-  position:absolute;z-index:30;left:42.5%;top:84.1%;width:16.2%;aspect-ratio:1/1;
+  position:absolute;z-index:30;left:50%;top:82.5%;width:16%;aspect-ratio:1/1;
   transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;
   transition:opacity .18s ease;
 }
@@ -4673,23 +4707,3 @@ function showChickenEgg(eggNumber){
   });
 })();
 </script>
-
-<style id="chicken-step3-recalage-final">
-#chickenScreen .chicken-scanner-text{display:none!important;}
-/* Hitboxes invisibles au repos; seule la carte active reçoit un halo léger. */
-#chickenScreen .chicken-level-btn{
-  border-color:transparent!important;
-}
-#chickenScreen .chicken-level-btn.active[data-level="bas"]{
-  border-color:#32ff79!important;
-}
-#chickenScreen .chicken-level-btn.active[data-level="moyen"]{
-  border-color:#36c7ff!important;
-}
-#chickenScreen .chicken-level-btn.active[data-level="grand"]{
-  border-color:#ffc03d!important;
-}
-#chickenScreen .chicken-level-btn.active[data-level="extreme"]{
-  border-color:#ff4965!important;
-}
-</style>
