@@ -1765,6 +1765,41 @@ html{
 #chickenScreen .chicken-level-btn.active[data-level="extreme"]{border-color:#ff4965;box-shadow:0 0 8px #ff3454,0 0 18px rgba(255,35,70,.86),inset 0 0 12px rgba(255,35,70,.20)}
 </style>
 
+
+<style id="chicken-scanner-step3-style-v101">
+/* CHICKEN TRAIN — ÉTAPE 3 UNIQUEMENT : scanner */
+#chickenScreen .chicken-scanner-step3{
+  position:absolute;z-index:30;left:50%;top:82.5%;width:16%;aspect-ratio:1/1;
+  transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;
+  transition:opacity .18s ease;
+}
+#chickenScreen .chicken-scanner-step3.active{opacity:1}
+#chickenScreen .chicken-scanner-ring{
+  position:absolute;inset:5%;border-radius:50%;border:3px solid rgba(75,225,255,.95);
+  box-shadow:0 0 8px #fff,0 0 18px #16cfff,0 0 32px rgba(0,112,255,.9),inset 0 0 18px rgba(0,190,255,.48);
+  animation:chickenScannerPulse .48s ease-in-out infinite alternate;
+}
+#chickenScreen .chicken-scanner-ring::before,#chickenScreen .chicken-scanner-ring::after{
+  content:"";position:absolute;left:50%;top:50%;background:rgba(130,240,255,.7);transform:translate(-50%,-50%);
+}
+#chickenScreen .chicken-scanner-ring::before{width:72%;height:1px}
+#chickenScreen .chicken-scanner-ring::after{width:1px;height:72%}
+#chickenScreen .chicken-scanner-sweep{
+  position:absolute;inset:9%;border-radius:50%;overflow:hidden;animation:chickenScannerRotate .72s linear infinite;
+}
+#chickenScreen .chicken-scanner-sweep::before{
+  content:"";position:absolute;left:50%;top:50%;width:48%;height:48%;transform-origin:0 0;
+  background:linear-gradient(90deg,rgba(20,220,255,.72),transparent);clip-path:polygon(0 0,100% 0,0 100%);
+}
+#chickenScreen .chicken-scanner-text{
+  position:absolute;left:50%;top:112%;transform:translateX(-50%);white-space:nowrap;
+  color:#baf7ff;font-size:clamp(7px,2.1vw,11px);font-weight:1000;letter-spacing:.4px;
+  text-shadow:0 0 7px #00bfff,0 0 12px #006cff;
+}
+@keyframes chickenScannerRotate{to{transform:rotate(360deg)}}
+@keyframes chickenScannerPulse{from{transform:scale(.92);filter:brightness(.9)}to{transform:scale(1.06);filter:brightness(1.35)}}
+</style>
+
 </head>
 
 <body>
@@ -2339,6 +2374,12 @@ html{
                     <button type="button" class="chicken-level-btn" data-level="extreme" aria-label="Extrême"></button>
                 </div>
 
+                <div id="chickenScannerStep3" class="chicken-scanner-step3" aria-hidden="true">
+                    <div class="chicken-scanner-ring"></div>
+                    <div class="chicken-scanner-sweep"></div>
+                    <div class="chicken-scanner-text">SCAN EN COURS...</div>
+                </div>
+
                 <div
                     id="eggTrack"
                     class="egg-track"
@@ -2906,26 +2947,11 @@ if(penaltyPredict){
  });
 }
 
-/* CHICKEN TRAIN - 6 ŒUFS */
+/* CHICKEN TRAIN — ancien scan des œufs désactivé à l'étape 3.
+   Le bouton PRÉDIRE est maintenant piloté par le scanner circulaire dédié. */
 const eggMarkers=Array.from(document.querySelectorAll(".egg-marker"));
 function resetEggs(){eggMarkers.forEach(e=>e.classList.remove("scanning","selected"));}
 const chickenPredict=document.getElementById("chickenPredict");
-if(chickenPredict){
- chickenPredict.addEventListener("click",function(){
-   resetEggs();chickenPredict.disabled=true;
-   setStatus("chickenStatus","🔄 Analyse Chicken Train en cours...");
-   let step=0;
-   const timer=setInterval(function(){
-     resetEggs();
-     if(eggMarkers.length)eggMarkers[step%eggMarkers.length].classList.add("scanning");
-     step++;
-     if(step>=18){
-       clearInterval(timer);resetEggs();chickenPredict.disabled=false;
-       setStatus("chickenStatus","⌛ Moteur Chicken Train non connecté.");
-     }
-   },150);
- });
-}
 
 /* FONCTIONS PRÊTES POUR LE FUTUR MOTEUR */
 function showMultiplier(game,multiplier){
@@ -4298,6 +4324,27 @@ function showChickenEgg(eggNumber){
     btn.classList.add('active');
     window.chickenTrainLevel=btn.dataset.level;
   }));
+})();
+</script>
+
+
+<script id="chicken-scanner-step3-script-v101">
+(function(){
+  const btn=document.getElementById('chickenPredict');
+  const scanner=document.getElementById('chickenScannerStep3');
+  if(!btn||!scanner)return;
+  btn.addEventListener('click',function(){
+    if(btn.disabled)return;
+    btn.disabled=true;
+    if(typeof resetEggs==='function') resetEggs();
+    scanner.classList.add('active');
+    if(typeof setStatus==='function') setStatus('chickenStatus','🔄 SCAN EN COURS...');
+    setTimeout(function(){
+      scanner.classList.remove('active');
+      if(typeof setStatus==='function') setStatus('chickenStatus','⌛ Moteur Chicken Train non connecté.');
+      btn.disabled=false;
+    },1600);
+  });
 })();
 </script>
 
