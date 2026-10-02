@@ -300,6 +300,7 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/speedcash.png": "speedcash.png",
             "/speedcash-bg.png": "speedcash-bg.png",
             "/chickentrain.png": "chickentrain.png",
+            "/chickentrain-bg.png": "chickentrain-bg.png",
         }
 
         audio_files = {
