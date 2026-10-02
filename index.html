@@ -1724,6 +1724,29 @@ html{
 </style>
 
 
+
+<style id="rocketx-v99-center-only">
+/* V99 — Rocket X : uniquement centrage du multiplicateur dans la case existante. */
+#rocketXScreen .rocketx-stage::after{display:none !important;content:none !important;}
+#rocketXScreen .rocketx-value{
+  left:7.0% !important;
+  top:10.15% !important;
+  width:34.0% !important;
+  height:10.8% !important;
+  padding:0 !important;
+  margin:0 !important;
+  box-sizing:border-box !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  border:0 !important;
+  outline:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  transform:none !important;
+}
+</style>
 </head>
 
 <body>
@@ -4447,17 +4470,8 @@ function showChickenEgg(eggNumber){
 }
 /* Aucun cadre HTML : le cadre orange est déjà dessiné dans rocketx-bg.png. */
 #rocketXScreen .rocketx-multiplier-box{display:contents !important;}
-/* V98 — masque uniquement le remplissage sombre déjà imprimé dans le fond.
-   Le contour orange reste visible ; visuellement l’intérieur rejoint le ciel bleu. */
-#rocketXScreen .rocketx-stage::after{
-  content:""; position:absolute; z-index:5; pointer-events:none;
-  left:7.6%; top:10.9%; width:32.7%; height:9.4%;
-  border-radius:14px;
-  background:#173b78;
-}
-
 #rocketXScreen .rocketx-value{
-  position:absolute !important; z-index:7 !important;
+  position:absolute !important; z-index:6 !important;
   left:7.0% !important; top:10.2% !important;
   width:34.0% !important; height:10.8% !important;
   min-width:0 !important;
