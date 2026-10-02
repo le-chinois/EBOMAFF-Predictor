@@ -1747,6 +1747,24 @@ html{
   transform:none !important;
 }
 </style>
+
+<style id="chicken-levels-step2-v100">
+/* CHICKEN TRAIN — ÉTAPE 2 UNIQUEMENT : sélection des 4 niveaux. */
+#chickenScreen .chicken-levels-hitbox{
+  position:absolute; z-index:40; left:54.6%; right:1.5%; top:2.6%; height:16.5%;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2.2%; pointer-events:auto;
+}
+#chickenScreen .chicken-level-btn{
+  appearance:none; -webkit-appearance:none; border:2px solid transparent; border-radius:12px;
+  background:transparent; padding:0; margin:0; cursor:pointer; color:transparent; font-size:0;
+  box-shadow:none; transition:box-shadow .16s ease,border-color .16s ease,filter .16s ease;
+}
+#chickenScreen .chicken-level-btn.active[data-level="bas"]{border-color:#32ff79;box-shadow:0 0 8px #22ff72,0 0 18px rgba(0,255,100,.82),inset 0 0 12px rgba(0,255,100,.20)}
+#chickenScreen .chicken-level-btn.active[data-level="moyen"]{border-color:#36c7ff;box-shadow:0 0 8px #26baff,0 0 18px rgba(0,155,255,.85),inset 0 0 12px rgba(0,155,255,.20)}
+#chickenScreen .chicken-level-btn.active[data-level="grand"]{border-color:#ffc03d;box-shadow:0 0 8px #ffae20,0 0 18px rgba(255,155,0,.86),inset 0 0 12px rgba(255,155,0,.20)}
+#chickenScreen .chicken-level-btn.active[data-level="extreme"]{border-color:#ff4965;box-shadow:0 0 8px #ff3454,0 0 18px rgba(255,35,70,.86),inset 0 0 12px rgba(255,35,70,.20)}
+</style>
+
 </head>
 
 <body>
@@ -2313,6 +2331,13 @@ html{
                     class="game-image"
                     alt="Chicken Train"
                 >
+
+                <div class="chicken-levels-hitbox" id="chickenLevels" aria-label="Niveau Chicken Train">
+                    <button type="button" class="chicken-level-btn active" data-level="bas" aria-label="Bas"></button>
+                    <button type="button" class="chicken-level-btn" data-level="moyen" aria-label="Moyen"></button>
+                    <button type="button" class="chicken-level-btn" data-level="grand" aria-label="Grand"></button>
+                    <button type="button" class="chicken-level-btn" data-level="extreme" aria-label="Extrême"></button>
+                </div>
 
                 <div
                     id="eggTrack"
@@ -4256,6 +4281,23 @@ function showChickenEgg(eggNumber){
       if(typeof setStatus==='function') setStatus('rocketQueenStatus','⌛ Moteur Rocket Queen non connecté.');
     },WAIT_MS);
   });
+})();
+</script>
+
+
+<script id="chicken-levels-step2-script-v100">
+(function(){
+  const root=document.getElementById('chickenLevels');
+  if(!root)return;
+  const buttons=[...root.querySelectorAll('.chicken-level-btn')];
+  window.chickenTrainLevel='bas';
+  window.chickenTrainLevelSteps={bas:19,moyen:19,grand:18,extreme:14};
+  buttons.forEach(btn=>btn.addEventListener('click',function(e){
+    e.preventDefault(); e.stopPropagation();
+    buttons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    window.chickenTrainLevel=btn.dataset.level;
+  }));
 })();
 </script>
 
