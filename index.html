@@ -4447,8 +4447,17 @@ function showChickenEgg(eggNumber){
 }
 /* Aucun cadre HTML : le cadre orange est déjà dessiné dans rocketx-bg.png. */
 #rocketXScreen .rocketx-multiplier-box{display:contents !important;}
+/* V98 — masque uniquement le remplissage sombre déjà imprimé dans le fond.
+   Le contour orange reste visible ; visuellement l’intérieur rejoint le ciel bleu. */
+#rocketXScreen .rocketx-stage::after{
+  content:""; position:absolute; z-index:5; pointer-events:none;
+  left:7.6%; top:10.9%; width:32.7%; height:9.4%;
+  border-radius:14px;
+  background:#173b78;
+}
+
 #rocketXScreen .rocketx-value{
-  position:absolute !important; z-index:6 !important;
+  position:absolute !important; z-index:7 !important;
   left:7.0% !important; top:10.2% !important;
   width:34.0% !important; height:10.8% !important;
   min-width:0 !important;
