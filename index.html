@@ -1751,8 +1751,8 @@ html{
 <style id="chicken-levels-step2-v100">
 /* CHICKEN TRAIN — ÉTAPE 2 UNIQUEMENT : sélection des 4 niveaux. */
 #chickenScreen .chicken-levels-hitbox{
-  position:absolute; z-index:40; left:54.6%; right:1.5%; top:2.6%; height:16.5%;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:2.2%; pointer-events:auto;
+  position:absolute; z-index:40; left:55.1%; right:0.5%; top:5.2%; height:13.1%;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2.6%; pointer-events:auto;
 }
 #chickenScreen .chicken-level-btn{
   appearance:none; -webkit-appearance:none; border:2px solid transparent; border-radius:12px;
@@ -1769,7 +1769,7 @@ html{
 <style id="chicken-scanner-step3-style-v101">
 /* CHICKEN TRAIN — ÉTAPE 3 UNIQUEMENT : scanner */
 #chickenScreen .chicken-scanner-step3{
-  position:absolute;z-index:30;left:50%;top:82.5%;width:16%;aspect-ratio:1/1;
+  position:absolute;z-index:30;left:42.5%;top:84.1%;width:16.2%;aspect-ratio:1/1;
   transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;
   transition:opacity .18s ease;
 }
@@ -4673,3 +4673,23 @@ function showChickenEgg(eggNumber){
   });
 })();
 </script>
+
+<style id="chicken-step3-recalage-final">
+#chickenScreen .chicken-scanner-text{display:none!important;}
+/* Hitboxes invisibles au repos; seule la carte active reçoit un halo léger. */
+#chickenScreen .chicken-level-btn{
+  border-color:transparent!important;
+}
+#chickenScreen .chicken-level-btn.active[data-level="bas"]{
+  border-color:#32ff79!important;
+}
+#chickenScreen .chicken-level-btn.active[data-level="moyen"]{
+  border-color:#36c7ff!important;
+}
+#chickenScreen .chicken-level-btn.active[data-level="grand"]{
+  border-color:#ffc03d!important;
+}
+#chickenScreen .chicken-level-btn.active[data-level="extreme"]{
+  border-color:#ff4965!important;
+}
+</style>
