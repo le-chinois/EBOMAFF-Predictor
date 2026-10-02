@@ -2205,9 +2205,7 @@ html{
                     alt="Fusée Rocket X"
                 >
 
-                <div class="rocketx-multiplier-box">
-                    <div id="rocketXValue" class="rocketx-value"></div>
-                </div>
+                <div id="rocketXValue" class="rocketx-value"></div>
 
             </div>
 
@@ -4427,7 +4425,7 @@ function showChickenEgg(eggNumber){
 \n<style>\n/* V46 — Lucky Jet : position V45 conservée, rendu final inspiré de l’image 2. */\n#luckyValue{\n  left:38% !important; top:35% !important;\n  min-width:0 !important; width:auto !important;\n  padding:12px 34px 14px !important;\n  border:2.5px solid #ffd21f !important;\n  border-radius:50% !important;\n  background:transparent !important;\n  color:#ffd51f !important;\n  font-size:clamp(30px,8.8vw,48px) !important;\n  font-weight:1000 !important; font-style:italic !important;\n  line-height:.95 !important; letter-spacing:-1.5px !important; white-space:nowrap !important;\n  transform:translate(-50%,-50%) rotate(-7deg) !important;\n  -webkit-text-stroke:.45px #ffb000;\n  text-shadow:0 2px 0 #d97800,0 4px 0 #a84c00,0 6px 7px rgba(82,23,0,.72),0 0 6px #fff3a2,0 0 14px #ffd21f,0 0 26px rgba(255,160,0,.98) !important;\n  box-shadow:0 0 4px #fff6bd,0 0 10px #ffd21f,0 0 22px rgba(255,171,0,.95),0 0 36px rgba(255,128,0,.50),inset 0 0 6px rgba(255,226,91,.20) !important;\n}\n#luckyValue::before,#luckyValue::after{content:'✦';position:absolute;color:#fff8c9;font-style:normal;font-size:13px;line-height:1;text-shadow:0 0 4px #fff,0 0 8px #ffd21f,0 0 15px #ff9d00;pointer-events:none;}\n#luckyValue::before{left:-5px;top:42%;transform:rotate(7deg);}\n#luckyValue::after{right:-5px;top:22%;transform:rotate(7deg) scale(1.15);}\n#luckyValue.visible{opacity:1 !important;}\n
 
 /* =========================================
-   ROCKET X V95 — ANIMATION SUR PLACE 1,6 S
+   ROCKET X V96 — PNG TRANSPARENT + CASE DU FOND
 ========================================= */
 #rocketXScreen .rocketx-stage{
   position:relative; overflow:hidden;
@@ -4436,30 +4434,32 @@ function showChickenEgg(eggNumber){
   display:block; width:100%; height:100%; object-fit:cover;
 }
 #rocketXScreen .rocketx-personnage{
-  position:absolute; z-index:4; left:50%; top:54%;
-  width:31%; height:auto; transform:translate(-50%,-50%);
+  position:absolute; z-index:4; left:50%; top:55%;
+  width:34%; height:auto; transform:translate(-50%,-50%);
   transform-origin:50% 62%; pointer-events:none;
 }
 #rocketXScreen .rocketx-personnage.rocketx-animating{
-  animation:rocketXHoverV95 .32s ease-in-out infinite alternate;
+  animation:rocketXHoverV96 .32s ease-in-out infinite alternate;
 }
-@keyframes rocketXHoverV95{
-  from{transform:translate(-50%,-50%) translateY(2px) rotate(-.35deg) scale(1)}
-  to{transform:translate(-50%,-50%) translateY(-5px) rotate(.35deg) scale(1.012)}
+@keyframes rocketXHoverV96{
+  from{transform:translate(-50%,-50%) translateY(2px) rotate(-.25deg) scale(1)}
+  to{transform:translate(-50%,-50%) translateY(-5px) rotate(.25deg) scale(1.01)}
 }
-#rocketXScreen .rocketx-multiplier-box{
-  position:absolute; z-index:6; left:8.2%; top:10.8%;
-  width:35%; height:16.5%;
-  display:flex; align-items:center; justify-content:center;
-  border:2px solid #ff9a36; border-radius:18px;
-  background:rgba(51,58,91,.68);
-}
+/* Aucun cadre HTML : le cadre orange est déjà dessiné dans rocketx-bg.png. */
+#rocketXScreen .rocketx-multiplier-box{display:contents !important;}
 #rocketXScreen .rocketx-value{
-  color:#ff9a36; font-size:clamp(27px,7vw,46px); font-weight:900;
-  line-height:1; letter-spacing:.01em; text-shadow:0 2px 6px rgba(0,0,0,.25);
-  opacity:0; transform:scale(.92); transition:opacity .14s ease,transform .14s ease;
+  position:absolute !important; z-index:6 !important;
+  left:8.2% !important; top:10.8% !important;
+  width:35% !important; height:16.5% !important;
+  min-width:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  border:0 !important; outline:0 !important; box-shadow:none !important;
+  background:transparent !important;
+  color:#ff9a36 !important; font-size:clamp(27px,7vw,46px) !important; font-weight:900 !important;
+  line-height:1 !important; letter-spacing:.01em !important; text-shadow:0 2px 6px rgba(0,0,0,.25) !important;
+  opacity:0; transform:none !important; transition:opacity .14s ease;
 }
-#rocketXScreen .rocketx-value.visible{opacity:1;transform:scale(1)}
+#rocketXScreen .rocketx-value.visible{opacity:1 !important; transform:none !important;}
 @media (prefers-reduced-motion:reduce){
  #rocketXScreen .rocketx-personnage.rocketx-animating{animation:none}
 }
