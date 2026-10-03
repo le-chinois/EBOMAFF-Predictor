@@ -2395,6 +2395,13 @@ html{
                     <div class="chicken-scanner-text">SCAN EN COURS...</div>
                 </div>
 
+                <!-- CHICKEN TRAIN — HUD dynamique final -->
+                <div id="ctDynamicHud" class="ct-dynamic-hud" aria-hidden="true">
+                    <div class="ct-next-state"><img id="ctNextRailImage" src="/chickentrain-prochain-rail-vert.png" alt=""><span id="ctNextText">VOIE LIBRE</span></div>
+                    <div class="ct-target"><span class="ct-label">MULTIPLICATEUR CIBLE</span><strong id="ctTargetValue">1.01x</strong><span class="ct-label ct-pass-label">NOMBRE DE PASSAGES</span><strong id="ctPassValue">0 / 19 RAILS</strong></div>
+                    <div class="ct-final"><span class="ct-label">RÉSULTAT FINAL</span><strong id="ctFinalValue">---x</strong></div>
+                </div>
+
                 <div
                     id="eggTrack"
                     class="egg-track"
@@ -4435,6 +4442,74 @@ function showChickenEgg(eggNumber){
       },1080);
     },1620);
   },true);
+})();
+</script>
+
+<style id="chickentrain-final-v110">
+/* Chicken Train final — les 9 autres jeux restent inchangés. */
+#chickenScreen .chicken-live-box{position:relative;overflow:hidden;background:#090d16}
+#chickenScreen .chicken-live-box>.game-image{width:100%;height:auto;display:block}
+#chickenScreen .egg-track{display:none!important}
+#chickenScreen .chicken-scanner-step3{left:50%!important;top:78%!important;width:15%!important}
+#chickenScreen .chicken-scanner-text{display:none!important}
+#chickenScreen .chicken-train-original{width:25%!important;left:31%!important;top:-20%;opacity:0}
+#chickenScreen .chicken-player{width:12%!important;left:17%!important;top:49%!important;opacity:1}
+#chickenScreen .ct-dynamic-hud{position:absolute;z-index:25;left:2.5%;right:2.5%;bottom:2.2%;height:20%;display:grid;grid-template-columns:1.08fr 1.32fr 1fr;gap:1.5%;pointer-events:none}
+#chickenScreen .ct-dynamic-hud>div{position:relative;min-width:0;border:1px solid rgba(59,171,255,.6);border-radius:10px;background:rgba(3,11,24,.78);box-shadow:inset 0 0 13px rgba(0,117,255,.16),0 0 8px rgba(0,117,255,.18);display:flex;align-items:center;justify-content:center}
+#chickenScreen .ct-next-state{overflow:hidden}
+#chickenScreen .ct-next-state img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78}
+#chickenScreen #ctNextText{position:relative;z-index:2;padding:5px 7px;border-radius:8px;background:rgba(0,0,0,.58);font-size:clamp(7px,2vw,11px);font-weight:1000;text-align:center;text-shadow:0 0 8px currentColor}
+#chickenScreen .ct-target{flex-direction:column;gap:2px;padding:3px}
+#chickenScreen .ct-final{flex-direction:column;gap:5px;padding:3px}
+#chickenScreen .ct-label{font-size:clamp(6px,1.65vw,9px);font-weight:900;color:#dcecff;text-align:center}
+#chickenScreen .ct-pass-label{margin-top:2px}
+#chickenScreen #ctTargetValue{font-size:clamp(12px,4vw,21px);color:#ffd36a;text-shadow:0 0 8px rgba(255,184,45,.65)}
+#chickenScreen #ctPassValue{font-size:clamp(8px,2.2vw,12px);color:#79f4ff}
+#chickenScreen #ctFinalValue{font-size:clamp(14px,4.5vw,24px);color:#fff}
+#chickenScreen.ct-wait #ctNextText{color:#ff4b57}
+#chickenScreen.ct-go #ctNextText{color:#48ff8b}
+#chickenScreen .chicken-level-btn{z-index:50}
+#chickenScreen .chicken-player.ct-idle{animation:ctIdle .32s ease-in-out infinite alternate}
+#chickenScreen .chicken-player.ct-cross{animation:ctCross .82s cubic-bezier(.18,.72,.25,1) forwards}
+#chickenScreen .chicken-train-original.ct-pass{opacity:1;animation:ctTrain 1.05s linear forwards}
+@keyframes ctIdle{from{transform:translate(-50%,-50%) rotate(-1deg)}to{transform:translate(-50%,-53%) rotate(1deg)}}
+@keyframes ctCross{0%{left:17%;transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-55%) scale(1.04)}100%{left:39%;transform:translate(-50%,-50%) scale(1)}}
+@keyframes ctTrain{0%{top:-25%}100%{top:115%}}
+</style>
+<script id="chickentrain-final-v110-controller">
+(function(){
+ const screen=document.getElementById('chickenScreen'),btn=document.getElementById('chickenPredict');
+ if(!screen||!btn)return;
+ const train=document.getElementById('chickenTrainOriginal'),chicken=document.getElementById('chickenPlayer'),scanner=document.getElementById('chickenScannerStep3');
+ const nextImg=document.getElementById('ctNextRailImage'),nextText=document.getElementById('ctNextText'),target=document.getElementById('ctTargetValue'),passes=document.getElementById('ctPassValue'),finalV=document.getElementById('ctFinalValue');
+ const levels={
+  bas:[1.01,1.09,1.19,1.30,1.43,1.58,1.77,1.99,2.27,2.61,3.04,3.61,4.39,5.49,7.18,9.81,14.72,25.76,64.42],
+  moyen:[1.03,1.15,1.29,1.45,1.64,1.87,2.16,2.53,2.99,3.58,4.38,5.48,7.04,9.39,13.15,19.73,32.89,65.79,197.39],
+  grand:[1.14,1.40,1.74,2.20,2.81,3.66,4.85,6.57,9.13,13.09,19.48,30.33,50.05,89.09,175.95,404.69,1193.84,5849.82],
+  extreme:[1.36,2.03,3.10,4.90,8.02,13.67,24.53,46.79,96.31,218.64,565.73,1763.21,7361.40,54106.36]
+ };
+ const bg={bas:'/chickentrain-bas.png',moyen:'/chickentrain-moyen.png',grand:'/chickentrain-grand.png',extreme:'/chickentrain-extreme.png'};
+ let level='bas',step=0,running=false,token=0;
+ const bgImg=screen.querySelector('.chicken-live-box>.game-image');
+ function fmt(v){return Number(v).toFixed(2)+'x'}
+ function setState(go){screen.classList.toggle('ct-go',go);screen.classList.toggle('ct-wait',!go);nextImg.src=go?'/chickentrain-prochain-rail-vert.png':'/chickentrain-prochain-rail-rouge.png';nextText.textContent=go?'PASSE MAINTENANT':'ATTENDS';}
+ function reset(lvl){level=lvl||level;step=0;running=false;token++;btn.disabled=false;if(scanner)scanner.classList.remove('active');train.classList.remove('ct-pass');chicken.classList.remove('ct-cross','ct-idle');chicken.style.left='17%';if(bgImg)bgImg.src=bg[level];target.textContent=fmt(levels[level][0]);passes.textContent='0 / '+levels[level].length+' RAILS';finalV.textContent='---x';setState(true);if(typeof setStatus==='function')setStatus('chickenStatus','⌛ Moteur Chicken Train non connecté.');}
+ document.querySelectorAll('#chickenLevels .chicken-level-btn').forEach(b=>b.addEventListener('click',()=>reset(b.dataset.level),true));
+ /* neutralise les anciens contrôleurs Chicken Train sans modifier les autres jeux */
+ btn.replaceWith(btn.cloneNode(true));
+ const newBtn=document.getElementById('chickenPredict');
+ newBtn.addEventListener('click',function(){
+   if(running)return;running=true;newBtn.disabled=true;const my=++token;
+   if(step>=levels[level].length)step=0;
+   if(scanner)scanner.classList.add('active');
+   if(typeof setStatus==='function')setStatus('chickenStatus','🔄 SCAN DU PROCHAIN RAIL...');
+   setTimeout(()=>{if(my!==token)return;if(scanner)scanner.classList.remove('active');setState(false);chicken.classList.add('ct-idle');train.classList.remove('ct-pass');void train.offsetWidth;train.classList.add('ct-pass');if(typeof setStatus==='function')setStatus('chickenStatus','🔴 ATTENDS — TRAIN EN APPROCHE');
+     setTimeout(()=>{if(my!==token)return;train.classList.remove('ct-pass');chicken.classList.remove('ct-idle');setState(true);if(typeof setStatus==='function')setStatus('chickenStatus','🟢 PASSE MAINTENANT — VOIE LIBRE');chicken.classList.remove('ct-cross');void chicken.offsetWidth;chicken.classList.add('ct-cross');
+       setTimeout(()=>{if(my!==token)return;chicken.classList.remove('ct-cross');chicken.style.left='17%';step++;passes.textContent=step+' / '+levels[level].length+' RAILS';const value=levels[level][Math.min(step-1,levels[level].length-1)];finalV.textContent=fmt(value);if(step<levels[level].length)target.textContent=fmt(levels[level][step]);else target.textContent=fmt(levels[level][levels[level].length-1]);running=false;newBtn.disabled=false;if(typeof setStatus==='function')setStatus('chickenStatus','⌛ Moteur Chicken Train non connecté.');},840);
+     },1080);
+   },1600);
+ });
+ reset('bas');
 })();
 </script>
 </body>
