@@ -4906,24 +4906,69 @@ function showChickenEgg(eggNumber){
 
 
 
-<style id="chickentrain-train-v7-egg-contact">
-/* V7 — UNE SEULE MODIFICATION :
-   au passage sur l'œuf, le train passe visuellement DEVANT lui puis continue.
-   HUD + portique V6 restent inchangés. */
-
-/* Le train reste au-dessus de l'œuf/multiplicateur pendant sa traversée. */
-#chickenScreen .chicken-train-original.ct-pass{
-  z-index:24 !important;
+<style id="chickentrain-v8-egg-contact-style">
+/* V8 — TRAIN / ŒUF UNIQUEMENT. HUD et portique inchangés. */
+#chickenScreen .ct-egg-contact-mask{
+  position:absolute;
+  z-index:19;
+  left:35.15%;
+  top:38.0%;
+  width:11.1%;
+  height:9.0%;
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+  /* reprend le morceau exact du BG derrière l'œuf pour l'effacer temporairement */
+  background-image:url('/chickentrain-bg.png');
+  background-repeat:no-repeat;
+  background-size:900.9% auto;
+  background-position:39.55% 41.75%;
 }
+#chickenScreen .ct-egg-contact-mask.active{opacity:1}
 
-/* Les masques du portique restent encore au-dessus du train,
-   donc l'effet "train dans le portique" validé est conservé. */
-#chickenScreen .ct-portal-mask{
-  z-index:26 !important;
-}
-
-/* HUD toujours devant et inchangé. */
-#chickenScreen .ct-hud-wrap{z-index:30 !important;}
-#chickenScreen .ct-scanner-asset{z-index:35 !important;}
+/* Train devant le cache, portique toujours devant le train. */
+#chickenScreen .chicken-train-original.ct-pass{z-index:24 !important}
+#chickenScreen .ct-portal-mask{z-index:26 !important}
+#chickenScreen .ct-hud-wrap{z-index:30 !important}
+#chickenScreen .ct-scanner-asset{z-index:35 !important}
 </style>
+
+<script id="chickentrain-v8-egg-contact-script">
+(function(){
+  const box=document.querySelector('#chickenScreen .chicken-live-box');
+  const train=document.getElementById('chickenTrainOriginal');
+  if(!box||!train)return;
+
+  let mask=box.querySelector('.ct-egg-contact-mask');
+  if(!mask){
+    mask=document.createElement('div');
+    mask.className='ct-egg-contact-mask';
+    box.appendChild(mask);
+  }
+
+  let raf=0;
+  function watch(){
+    cancelAnimationFrame(raf);
+    const tick=()=>{
+      if(!train.classList.contains('ct-pass')){
+        mask.classList.remove('active');
+        return;
+      }
+      const br=box.getBoundingClientRect();
+      const tr=train.getBoundingClientRect();
+      if(br.height<=0){raf=requestAnimationFrame(tick);return;}
+
+      /* Position verticale du centre du train dans la scène.
+         L'œuf du premier rail est autour de 42.5% de hauteur. */
+      const cy=((tr.top + tr.height*0.52)-br.top)/br.height*100;
+      const touching = cy>=36.5 && cy<=49.5;
+      mask.classList.toggle('active',touching);
+      raf=requestAnimationFrame(tick);
+    };
+    raf=requestAnimationFrame(tick);
+  }
+
+  new MutationObserver(watch).observe(train,{attributes:true,attributeFilter:['class']});
+})();
+</script>
 
