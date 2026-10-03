@@ -4490,63 +4490,6 @@ function showChickenEgg(eggNumber){
  reset('bas');
 })();
 </script>
-
-<style id="chickentrain-train-only-fix-v2">
-/* CHICKEN TRAIN — TRAIN UNIQUEMENT. Aucun autre jeu/élément modifié. */
-
-/* Grand train : centré sur le 1er rail du nouveau BG. */
-#chickenScreen .chicken-train-original{
-  left:40.7% !important;
-  right:auto !important;
-  z-index:18 !important;
-  transform:translateX(-50%) !important;
-}
-
-/* La scène principale coupe le train avant le HUD intégré au BG. */
-#chickenScreen .chicken-live-box{
-  overflow:hidden !important;
-}
-
-/* Fenêtre PROCHAIN RAIL : tout ce qui bouge reste strictement dedans. */
-#chickenScreen .ct-hud-wrap{
-  overflow:hidden !important;
-}
-#chickenScreen .ct-next-image{
-  overflow:hidden !important;
-  object-fit:cover !important;
-  object-position:center !important;
-}
-</style>
-
-<script id="chickentrain-train-boundary-fix-v2">
-(function(){
-  const screen = document.getElementById('chickenScreen');
-  const train = document.getElementById('chickenTrainOriginal');
-  if(!screen || !train) return;
-
-  /* Empêche uniquement le grand train de pénétrer dans le HUD du nouveau BG.
-     Le HUD commence approximativement à 82% de la hauteur de l'image. */
-  function clampChickenTrain(){
-    const box = train.parentElement;
-    if(!box) return;
-    const maxBottom = box.clientHeight * 0.815;
-    const h = train.getBoundingClientRect().height || train.offsetHeight || 0;
-    const maxTop = Math.max(0, maxBottom - h);
-    const currentTop = parseFloat(getComputedStyle(train).top);
-    if(Number.isFinite(currentTop) && currentTop > maxTop){
-      train.style.top = maxTop + 'px';
-    }
-  }
-
-  new MutationObserver(clampChickenTrain).observe(train,{
-    attributes:true,
-    attributeFilter:['class','style']
-  });
-  window.addEventListener('resize', clampChickenTrain, {passive:true});
-  requestAnimationFrame(clampChickenTrain);
-})();
-</script>
-
 </body>
 </html>
 
@@ -4881,3 +4824,33 @@ function showChickenEgg(eggNumber){
 #chickenScreen .chicken-scan-ring:after{content:"";position:absolute;inset:-2px;border-radius:50%;border-top:2px solid #b8f5ff;border-right:2px solid transparent;border-bottom:2px solid transparent;border-left:2px solid transparent}
 @keyframes chickenScanSpin{to{transform:rotate(360deg)}}
 </style>
+
+
+<style id="chickentrain-train-only-v3">
+/* TRAIN CHICKEN TRAIN UNIQUEMENT */
+#chickenScreen .chicken-train-original{
+  position:absolute !important;
+  z-index:19 !important;
+  width:10.5% !important;
+  height:auto !important;
+  left:40.7% !important;
+  right:auto !important;
+  top:-18% !important;
+  opacity:0;
+  transform:translateX(-50%) !important;
+  object-fit:contain !important;
+  pointer-events:none !important;
+}
+
+/* Remplace réellement l'ancien trajet ctTrain111 qui descendait jusqu'à 108%. */
+#chickenScreen .chicken-train-original.ct-pass{
+  opacity:1 !important;
+  animation:ctTrainRailV3 1.05s linear forwards !important;
+}
+
+@keyframes ctTrainRailV3{
+  from{top:-18%;}
+  to{top:61.5%;}
+}
+</style>
+
