@@ -1750,53 +1750,16 @@ html{
 
 <style id="chicken-levels-step2-v100">
 /* CHICKEN TRAIN — ÉTAPE 2 UNIQUEMENT : sélection des 4 niveaux. */
-#chickenScreen .chicken-levels-hitbox{
-  position:absolute;
-  z-index:40;
-  left:55.15%;
-  right:1.65%;
-  top:3.05%;
-  height:14.15%;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:2.55%;
-  pointer-events:auto;
-}
-#chickenScreen .chicken-level-btn{
-  appearance:none;
-  -webkit-appearance:none;
-  border:1.5px solid transparent;
-  border-radius:9px;
-  background:transparent;
-  padding:0;
-  margin:0;
-  cursor:pointer;
-  color:transparent;
-  font-size:0;
-  box-shadow:none;
-  outline:none;
-  transition:border-color .14s ease,box-shadow .14s ease,background .14s ease;
-}
-#chickenScreen .chicken-level-btn.active[data-level="bas"]{
-  border-color:#42ff83;
-  background:rgba(20,255,105,.035);
-  box-shadow:0 0 3px #35ff7c,0 0 7px rgba(30,255,110,.52),inset 0 0 5px rgba(30,255,110,.16);
-}
-#chickenScreen .chicken-level-btn.active[data-level="moyen"]{
-  border-color:#42c9ff;
-  background:rgba(30,170,255,.035);
-  box-shadow:0 0 3px #31bdff,0 0 7px rgba(20,155,255,.52),inset 0 0 5px rgba(20,155,255,.16);
-}
-#chickenScreen .chicken-level-btn.active[data-level="grand"]{
-  border-color:#ffc24b;
-  background:rgba(255,170,25,.035);
-  box-shadow:0 0 3px #ffb52c,0 0 7px rgba(255,155,15,.52),inset 0 0 5px rgba(255,155,15,.16);
-}
-#chickenScreen .chicken-level-btn.active[data-level="extreme"]{
-  border-color:#ff536d;
-  background:rgba(255,45,75,.035);
-  box-shadow:0 0 3px #ff405d,0 0 7px rgba(255,35,70,.52),inset 0 0 5px rgba(255,35,70,.16);
-}
+#chickenScreen .chicken-levels-hitbox{position:absolute;z-index:40;inset:0;pointer-events:none}
+#chickenScreen .chicken-level-btn{position:absolute;top:3.1%;height:11.7%;width:8.5%;appearance:none;-webkit-appearance:none;border:1px solid transparent;border-radius:7px;background:transparent;padding:0;margin:0;cursor:pointer;color:transparent;font-size:0;box-shadow:none;outline:none;pointer-events:auto}
+#chickenScreen .chicken-level-btn[data-level="bas"]{left:55.2%}
+#chickenScreen .chicken-level-btn[data-level="moyen"]{left:65.15%}
+#chickenScreen .chicken-level-btn[data-level="grand"]{left:75.1%}
+#chickenScreen .chicken-level-btn[data-level="extreme"]{left:85.05%}
+#chickenScreen .chicken-level-btn.active[data-level="bas"]{border-color:#49ff85;box-shadow:0 0 2px #38ff79,0 0 5px rgba(35,255,105,.42),inset 0 0 3px rgba(35,255,105,.12)}
+#chickenScreen .chicken-level-btn.active[data-level="moyen"]{border-color:#48caff;box-shadow:0 0 2px #32baff,0 0 5px rgba(30,160,255,.42),inset 0 0 3px rgba(30,160,255,.12)}
+#chickenScreen .chicken-level-btn.active[data-level="grand"]{border-color:#ffc14a;box-shadow:0 0 2px #ffb52d,0 0 5px rgba(255,155,20,.42),inset 0 0 3px rgba(255,155,20,.12)}
+#chickenScreen .chicken-level-btn.active[data-level="extreme"]{border-color:#ff526d;box-shadow:0 0 2px #ff405e,0 0 5px rgba(255,40,70,.42),inset 0 0 3px rgba(255,40,70,.12)}
 </style>
 
 
@@ -4707,3 +4670,12 @@ function showChickenEgg(eggNumber){
   });
 })();
 </script>
+
+<style>
+#chickenScreen .chicken-scan-overlay{position:absolute!important;z-index:35!important;left:32.7%!important;top:73.0%!important;width:13.2%!important;aspect-ratio:1/1!important;height:auto!important;border-radius:50%!important;overflow:hidden!important;pointer-events:none!important;background:transparent!important;box-shadow:none!important;opacity:0!important}
+#chickenScreen .chicken-scan-overlay.scanning{opacity:1!important}
+#chickenScreen .chicken-scan-overlay .chicken-scan-text{display:none!important}
+#chickenScreen .chicken-scan-ring{position:absolute!important;inset:8%!important;border-radius:50%!important;border:2px solid rgba(70,210,255,.7)!important;background:transparent!important;box-shadow:0 0 4px rgba(45,190,255,.7),inset 0 0 4px rgba(45,190,255,.28)!important;animation:chickenScanSpin .7s linear infinite!important}
+#chickenScreen .chicken-scan-ring:after{content:"";position:absolute;inset:-2px;border-radius:50%;border-top:2px solid #b8f5ff;border-right:2px solid transparent;border-bottom:2px solid transparent;border-left:2px solid transparent}
+@keyframes chickenScanSpin{to{transform:rotate(360deg)}}
+</style>
