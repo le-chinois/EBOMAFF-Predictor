@@ -4826,31 +4826,33 @@ function showChickenEgg(eggNumber){
 </style>
 
 
-<style id="chickentrain-train-only-v3">
-/* TRAIN CHICKEN TRAIN UNIQUEMENT */
+<style id="chickentrain-train-v4-visible-fix">
+/* CHICKEN TRAIN — TRAIN UNIQUEMENT.
+   Le contrôleur final utilise .ct-pass. */
 #chickenScreen .chicken-train-original{
   position:absolute !important;
-  z-index:19 !important;
-  width:10.5% !important;
+  z-index:20 !important;
+  width:20% !important;
   height:auto !important;
   left:40.7% !important;
   right:auto !important;
-  top:-18% !important;
-  opacity:0;
+  top:-28% !important;
+  opacity:0 !important;
   transform:translateX(-50%) !important;
-  object-fit:contain !important;
   pointer-events:none !important;
 }
 
-/* Remplace réellement l'ancien trajet ctTrain111 qui descendait jusqu'à 108%. */
+/* IMPORTANT : c'est bien cette classe que le JS final ajoute au train. */
 #chickenScreen .chicken-train-original.ct-pass{
   opacity:1 !important;
-  animation:ctTrainRailV3 1.05s linear forwards !important;
+  animation:ctTrainRailV4 1.05s linear forwards !important;
 }
 
-@keyframes ctTrainRailV3{
-  from{top:-18%;}
-  to{top:61.5%;}
+/* Trajet vertical sur le rail, fin avant le HUD bleu. */
+@keyframes ctTrainRailV4{
+  0%   { top:-28%; opacity:1; }
+  8%   { top:-18%; opacity:1; }
+  100% { top:60%;  opacity:1; }
 }
 </style>
 
