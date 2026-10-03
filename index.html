@@ -4826,33 +4826,48 @@ function showChickenEgg(eggNumber){
 </style>
 
 
-<style id="chickentrain-train-v4-visible-fix">
-/* CHICKEN TRAIN — TRAIN UNIQUEMENT.
-   Le contrôleur final utilise .ct-pass. */
+<style id="chickentrain-train-v5-mask-only">
+/* CHICKEN TRAIN — TRAIN UNIQUEMENT
+   Course complète comme l'original : le train traverse le rail jusqu'en bas.
+   Le HUD intégré au nouveau BG masque simplement le train lorsqu'il arrive dessus. */
+
+/* Axe du premier rail */
 #chickenScreen .chicken-train-original{
-  position:absolute !important;
-  z-index:20 !important;
-  width:20% !important;
-  height:auto !important;
   left:40.7% !important;
-  right:auto !important;
-  top:-28% !important;
-  opacity:0 !important;
+  width:20% !important;
   transform:translateX(-50%) !important;
-  pointer-events:none !important;
 }
 
-/* IMPORTANT : c'est bien cette classe que le JS final ajoute au train. */
+/* Le JS final utilise .ct-pass : on conserve la traversée complète. */
 #chickenScreen .chicken-train-original.ct-pass{
   opacity:1 !important;
-  animation:ctTrainRailV4 1.05s linear forwards !important;
+  animation:ctTrainOriginalPathV5 1.05s linear forwards !important;
 }
 
-/* Trajet vertical sur le rail, fin avant le HUD bleu. */
-@keyframes ctTrainRailV4{
-  0%   { top:-28%; opacity:1; }
-  8%   { top:-18%; opacity:1; }
-  100% { top:60%;  opacity:1; }
+@keyframes ctTrainOriginalPathV5{
+  from{top:-30%;}
+  to{top:108%;}
 }
+
+/* Masque visuel AU-DESSUS du train, uniquement sur la zone du HUD.
+   Le train continue réellement derrière jusqu'à 108%, comme dans l'original. */
+#chickenScreen .chicken-live-box::after{
+  content:"";
+  position:absolute;
+  z-index:25;
+  left:0;
+  right:0;
+  bottom:0;
+  height:18.5%;
+  pointer-events:none;
+  background-image:url('/chickentrain-bg.png');
+  background-size:100% auto;
+  background-position:center bottom;
+  background-repeat:no-repeat;
+}
+
+/* Les éléments du HUD/scanner déjà existants restent devant le masque. */
+#chickenScreen .ct-hud-wrap{z-index:30 !important;}
+#chickenScreen .ct-scanner-asset{z-index:35 !important;}
 </style>
 
