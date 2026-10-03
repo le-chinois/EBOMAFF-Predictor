@@ -301,6 +301,21 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/speedcash-bg.png": "speedcash-bg.png",
             "/chickentrain.png": "chickentrain.png",
             "/chickentrain-bg.png": "chickentrain-bg.png",
+            "/chickentrain-train.png": "chickentrain-train.png",
+            "/chickentrain-poule.png": "chickentrain-poule.png",
+            "/chickentrain-elements.png": "chickentrain-elements.png",
+            "/chickentrain-poule-01.png": "chickentrain-poule-01.png",
+            "/chickentrain-poule-02.png": "chickentrain-poule-02.png",
+            "/chickentrain-poule-03.png": "chickentrain-poule-03.png",
+            "/chickentrain-poule-04.png": "chickentrain-poule-04.png",
+            "/chickentrain-poule-05.png": "chickentrain-poule-05.png",
+            "/chickentrain-poule-06.png": "chickentrain-poule-06.png",
+            "/chickentrain-poule-07.png": "chickentrain-poule-07.png",
+            "/chickentrain-poule-08.png": "chickentrain-poule-08.png",
+            "/chickentrain-poule-09.png": "chickentrain-poule-09.png",
+            "/chickentrain-poule-10.png": "chickentrain-poule-10.png",
+            "/chickentrain-poule-11.png": "chickentrain-poule-11.png",
+            "/chickentrain-poule-12.png": "chickentrain-poule-12.png",
         }
 
         audio_files = {

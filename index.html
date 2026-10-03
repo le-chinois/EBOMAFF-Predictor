@@ -1665,6 +1665,20 @@ html{
 <link rel="preload" as="image" href="/rocketx-bg.png">
 <link rel="preload" as="image" href="/rocketx-personnage.png">
 <link rel="preload" as="image" href="/chickentrain-bg.png">
+<link rel="preload" as="image" href="/chickentrain-train.png">
+<link rel="preload" as="image" href="/chickentrain-poule.png">
+<link rel="preload" as="image" href="/chickentrain-poule-01.png">
+<link rel="preload" as="image" href="/chickentrain-poule-02.png">
+<link rel="preload" as="image" href="/chickentrain-poule-03.png">
+<link rel="preload" as="image" href="/chickentrain-poule-04.png">
+<link rel="preload" as="image" href="/chickentrain-poule-05.png">
+<link rel="preload" as="image" href="/chickentrain-poule-06.png">
+<link rel="preload" as="image" href="/chickentrain-poule-07.png">
+<link rel="preload" as="image" href="/chickentrain-poule-08.png">
+<link rel="preload" as="image" href="/chickentrain-poule-09.png">
+<link rel="preload" as="image" href="/chickentrain-poule-10.png">
+<link rel="preload" as="image" href="/chickentrain-poule-11.png">
+<link rel="preload" as="image" href="/chickentrain-poule-12.png">
 
 
 <style id="penalty-v74-zone-number-style">
@@ -2363,6 +2377,10 @@ html{
                     class="game-image"
                     alt="Chicken Train"
                 >
+
+                <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
+                <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
+                <img id="chickenPlayer" class="chicken-player" src="/chickentrain-poule.png" alt="" aria-hidden="true">
 
                 <div class="chicken-levels-hitbox" id="chickenLevels" aria-label="Niveau Chicken Train">
                     <button type="button" class="chicken-level-btn active" data-level="bas" aria-label="Bas"></button>
@@ -4345,6 +4363,80 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
+
+<style id="chicken-assets-step4-v102">
+/* CHICKEN TRAIN — éléments transparents originaux, sans toucher aux autres jeux. */
+#chickenScreen .chicken-live-box{position:relative;overflow:hidden;}
+#chickenScreen .chicken-train-original{
+  position:absolute;z-index:18;width:18%;height:auto;left:38%;top:17%;
+  transform:translate(-50%,-50%);object-fit:contain;pointer-events:none;
+  opacity:0;filter:drop-shadow(0 6px 8px rgba(0,0,0,.35));
+}
+#chickenScreen .chicken-player{
+  position:absolute;z-index:22;width:12.5%;height:auto;left:31%;top:53%;
+  transform:translate(-50%,-50%);object-fit:contain;pointer-events:none;
+  filter:drop-shadow(0 5px 6px rgba(0,0,0,.30));
+}
+#chickenScreen .chicken-train-original.demo-pass{
+  opacity:1;animation:chickenTrainPassV102 1.05s linear forwards;
+}
+#chickenScreen .chicken-player.demo-run{
+  animation:chickenRunAcrossV102 .82s cubic-bezier(.2,.72,.28,1) forwards;
+}
+@keyframes chickenTrainPassV102{
+  0%{top:-16%;}
+  100%{top:116%;}
+}
+@keyframes chickenRunAcrossV102{
+  0%{left:31%;transform:translate(-50%,-50%) scale(1);}
+  48%{transform:translate(-50%,-53%) scale(1.03);}
+  100%{left:51%;transform:translate(-50%,-50%) scale(1);}
+}
+</style>
+
+<script id="chicken-assets-step4-script-v102">
+(function(){
+  const btn=document.getElementById('chickenPredict');
+  const train=document.getElementById('chickenTrainOriginal');
+  const chicken=document.getElementById('chickenPlayer');
+  if(!btn||!train||!chicken)return;
+
+  const poses=Array.from({length:12},(_,i)=>'/chickentrain-poule-'+String(i+1).padStart(2,'0')+'.png');
+  poses.forEach(src=>{const im=new Image();im.src=src;});
+  let poseTimer=null, seqToken=0;
+
+  function stopPose(){ if(poseTimer){clearInterval(poseTimer);poseTimer=null;} chicken.src='/chickentrain-poule.png'; }
+  function animatePoses(ms){
+    stopPose(); let i=0; chicken.src=poses[0];
+    poseTimer=setInterval(()=>{i=(i+1)%poses.length;chicken.src=poses[i];},68);
+    setTimeout(stopPose,ms);
+  }
+
+  /* On s'accroche au même bouton sans remplacer le scanner existant. */
+  btn.addEventListener('click',function(){
+    const token=++seqToken;
+    train.classList.remove('demo-pass'); chicken.classList.remove('demo-run');
+    chicken.style.left='31%';
+    /* Le scanner actuel dure 1,6 s. Ensuite : train original, puis passage de la poule. */
+    setTimeout(function(){
+      if(token!==seqToken)return;
+      train.classList.add('demo-pass');
+      if(typeof setStatus==='function') setStatus('chickenStatus','🔴 ATTENDS — TRAIN EN APPROCHE');
+      setTimeout(function(){
+        if(token!==seqToken)return;
+        train.classList.remove('demo-pass');
+        if(typeof setStatus==='function') setStatus('chickenStatus','🟢 PASSE MAINTENANT — VOIE LIBRE');
+        chicken.classList.add('demo-run'); animatePoses(820);
+        setTimeout(function(){
+          if(token!==seqToken)return;
+          chicken.classList.remove('demo-run'); chicken.style.left='51%';
+          if(typeof setStatus==='function') setStatus('chickenStatus','⌛ Moteur Chicken Train non connecté.');
+        },840);
+      },1080);
+    },1620);
+  },true);
+})();
+</script>
 </body>
 </html>
 
