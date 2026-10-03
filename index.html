@@ -4904,3 +4904,26 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
+
+
+<style id="chickentrain-train-v7-egg-contact">
+/* V7 — UNE SEULE MODIFICATION :
+   au passage sur l'œuf, le train passe visuellement DEVANT lui puis continue.
+   HUD + portique V6 restent inchangés. */
+
+/* Le train reste au-dessus de l'œuf/multiplicateur pendant sa traversée. */
+#chickenScreen .chicken-train-original.ct-pass{
+  z-index:24 !important;
+}
+
+/* Les masques du portique restent encore au-dessus du train,
+   donc l'effet "train dans le portique" validé est conservé. */
+#chickenScreen .ct-portal-mask{
+  z-index:26 !important;
+}
+
+/* HUD toujours devant et inchangé. */
+#chickenScreen .ct-hud-wrap{z-index:30 !important;}
+#chickenScreen .ct-scanner-asset{z-index:35 !important;}
+</style>
+
