@@ -4826,48 +4826,81 @@ function showChickenEgg(eggNumber){
 </style>
 
 
-<style id="chickentrain-train-v5-mask-only">
-/* CHICKEN TRAIN — TRAIN UNIQUEMENT
-   Course complète comme l'original : le train traverse le rail jusqu'en bas.
-   Le HUD intégré au nouveau BG masque simplement le train lorsqu'il arrive dessus. */
+<style id="chickentrain-train-v6-portique">
+/* TRAIN UNIQUEMENT — HUD déjà validé, ne pas toucher. */
 
-/* Axe du premier rail */
+/* Course complète sur l'axe du premier rail. */
 #chickenScreen .chicken-train-original{
   left:40.7% !important;
   width:20% !important;
   transform:translateX(-50%) !important;
+  z-index:20 !important;
 }
-
-/* Le JS final utilise .ct-pass : on conserve la traversée complète. */
 #chickenScreen .chicken-train-original.ct-pass{
   opacity:1 !important;
-  animation:ctTrainOriginalPathV5 1.05s linear forwards !important;
+  animation:ctTrainOriginalV6 1.05s linear forwards !important;
+}
+@keyframes ctTrainOriginalV6{
+  from{top:-30%}
+  to{top:108%}
 }
 
-@keyframes ctTrainOriginalPathV5{
-  from{top:-30%;}
-  to{top:108%;}
-}
-
-/* Masque visuel AU-DESSUS du train, uniquement sur la zone du HUD.
-   Le train continue réellement derrière jusqu'à 108%, comme dans l'original. */
+/* Masque HUD validé : le train continue derrière et disparaît visuellement. */
 #chickenScreen .chicken-live-box::after{
   content:"";
   position:absolute;
   z-index:25;
-  left:0;
-  right:0;
-  bottom:0;
+  left:0;right:0;bottom:0;
   height:18.5%;
   pointer-events:none;
+  background:url('/chickentrain-bg.png') center bottom/100% auto no-repeat;
+}
+#chickenScreen .ct-hud-wrap{z-index:30 !important}
+#chickenScreen .ct-scanner-asset{z-index:35 !important}
+
+/* Le portique du 1er rail passe DEVANT le train.
+   Le centre reste ouvert : le train traverse réellement DEDANS. */
+#chickenScreen .ct-portal-mask{
+  position:absolute;
+  z-index:21;
+  pointer-events:none;
   background-image:url('/chickentrain-bg.png');
-  background-size:100% auto;
-  background-position:center bottom;
   background-repeat:no-repeat;
+  background-size:1000% auto;
 }
 
-/* Les éléments du HUD/scanner déjà existants restent devant le masque. */
-#chickenScreen .ct-hud-wrap{z-index:30 !important;}
-#chickenScreen .ct-scanner-asset{z-index:35 !important;}
+/* 1er portique : côtés + traverse haute/basse, sans couvrir l'ouverture. */
+#chickenScreen .ct-portal-left{
+  left:31.8%; top:22.0%; width:2.7%; height:17.5%;
+  background-size:3703.7% auto;
+  background-position:32.7% 27%;
+}
+#chickenScreen .ct-portal-right{
+  left:45.2%; top:22.0%; width:2.7%; height:17.5%;
+  background-size:3703.7% auto;
+  background-position:46.5% 27%;
+}
+#chickenScreen .ct-portal-top{
+  left:31.8%; top:22.0%; width:16.1%; height:4.6%;
+  background-size:621.1% auto;
+  background-position:37.9% 23%;
+}
+#chickenScreen .ct-portal-bottom{
+  left:31.8%; top:35.2%; width:16.1%; height:4.3%;
+  background-size:621.1% auto;
+  background-position:37.9% 36.8%;
+}
 </style>
+
+<script id="chickentrain-train-v6-portique-script">
+(function(){
+  const box=document.querySelector('#chickenScreen .chicken-live-box');
+  if(!box || box.querySelector('.ct-portal-mask')) return;
+  ['left','right','top','bottom'].forEach(p=>{
+    const d=document.createElement('div');
+    d.className='ct-portal-mask ct-portal-'+p;
+    box.appendChild(d);
+  });
+})();
+</script>
 
