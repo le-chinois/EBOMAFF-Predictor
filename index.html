@@ -4491,13 +4491,61 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
-<style id="chickentrain-train-rail-fix-v112">
-/* V112 — Chicken Train : train centré exactement sur le premier rail du nouveau BG. */
+<style id="chickentrain-train-only-fix-v2">
+/* CHICKEN TRAIN — TRAIN UNIQUEMENT. Aucun autre jeu/élément modifié. */
+
+/* Grand train : centré sur le 1er rail du nouveau BG. */
 #chickenScreen .chicken-train-original{
   left:40.7% !important;
+  right:auto !important;
+  z-index:18 !important;
   transform:translateX(-50%) !important;
 }
+
+/* La scène principale coupe le train avant le HUD intégré au BG. */
+#chickenScreen .chicken-live-box{
+  overflow:hidden !important;
+}
+
+/* Fenêtre PROCHAIN RAIL : tout ce qui bouge reste strictement dedans. */
+#chickenScreen .ct-hud-wrap{
+  overflow:hidden !important;
+}
+#chickenScreen .ct-next-image{
+  overflow:hidden !important;
+  object-fit:cover !important;
+  object-position:center !important;
+}
 </style>
+
+<script id="chickentrain-train-boundary-fix-v2">
+(function(){
+  const screen = document.getElementById('chickenScreen');
+  const train = document.getElementById('chickenTrainOriginal');
+  if(!screen || !train) return;
+
+  /* Empêche uniquement le grand train de pénétrer dans le HUD du nouveau BG.
+     Le HUD commence approximativement à 82% de la hauteur de l'image. */
+  function clampChickenTrain(){
+    const box = train.parentElement;
+    if(!box) return;
+    const maxBottom = box.clientHeight * 0.815;
+    const h = train.getBoundingClientRect().height || train.offsetHeight || 0;
+    const maxTop = Math.max(0, maxBottom - h);
+    const currentTop = parseFloat(getComputedStyle(train).top);
+    if(Number.isFinite(currentTop) && currentTop > maxTop){
+      train.style.top = maxTop + 'px';
+    }
+  }
+
+  new MutationObserver(clampChickenTrain).observe(train,{
+    attributes:true,
+    attributeFilter:['class','style']
+  });
+  window.addEventListener('resize', clampChickenTrain, {passive:true});
+  requestAnimationFrame(clampChickenTrain);
+})();
+</script>
 
 </body>
 </html>
