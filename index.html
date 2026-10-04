@@ -4490,6 +4490,86 @@ function showChickenEgg(eggNumber){
  reset('bas');
 })();
 </script>
+
+
+<!-- ===== CHICKEN TRAIN V8 : ŒUF + PORTIER ANIMÉS ===== -->
+<style id="chickentrain-egg-gate-v8">
+#chickenScreen .ct-egg-v8{
+  position:absolute;z-index:19;left:39.5%;top:49.5%;width:8.5%;height:auto;
+  transform:translate(-50%,-50%) scale(1);pointer-events:none;
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.28));
+  animation:ctEggIdleV8 .72s ease-in-out infinite alternate;
+}
+#chickenScreen .ct-egg-v8.ct-egg-hit{
+  animation:ctEggHitV8 .34s ease-in-out 2;
+}
+@keyframes ctEggIdleV8{
+  from{transform:translate(-50%,-50%) translateY(1px) rotate(-2deg) scale(.98)}
+  to{transform:translate(-50%,-50%) translateY(-5px) rotate(2deg) scale(1.04)}
+}
+@keyframes ctEggHitV8{
+  0%{transform:translate(-50%,-50%) scale(1)}
+  45%{transform:translate(-50%,-58%) rotate(-7deg) scale(1.16)}
+  100%{transform:translate(-50%,-50%) rotate(5deg) scale(.96)}
+}
+#chickenScreen .ct-gate-v8{
+  position:absolute;z-index:23;left:30.5%;top:42.0%;width:20%;height:auto;
+  transform-origin:14% 55%;transform:rotate(-58deg);pointer-events:none;
+  filter:drop-shadow(0 5px 6px rgba(0,0,0,.32));
+  transition:transform .32s cubic-bezier(.2,.8,.25,1),filter .2s ease;
+}
+#chickenScreen .ct-gate-v8.ct-gate-down{
+  transform:rotate(0deg);
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.35)) brightness(1.08);
+}
+#chickenScreen .ct-gate-light-v8{
+  position:absolute;z-index:24;left:32.1%;top:43.1%;width:2.6%;aspect-ratio:1/1;
+  border-radius:50%;background:#35ff55;box-shadow:0 0 5px #35ff55,0 0 11px #35ff55;
+  pointer-events:none;transition:background .18s ease,box-shadow .18s ease;
+}
+#chickenScreen .ct-gate-light-v8.ct-yellow{
+  background:#ffe126;box-shadow:0 0 5px #ffe126,0 0 12px #ffb000;
+}
+</style>
+<script id="chickentrain-egg-gate-v8-script">
+(function(){
+  const box=document.querySelector('#chickenScreen .chicken-live-box');
+  const btn=document.getElementById('chickenPredict');
+  if(!box||!btn||document.getElementById('ctEggV8'))return;
+
+  const egg=document.createElement('img');
+  egg.id='ctEggV8'; egg.className='ct-egg-v8'; egg.src='/chickentrain-oeuf.png'; egg.alt=''; egg.setAttribute('aria-hidden','true');
+  const gate=document.createElement('img');
+  gate.id='ctGateV8'; gate.className='ct-gate-v8'; gate.src='/chickentrain-portier.png'; gate.alt=''; gate.setAttribute('aria-hidden','true');
+  const light=document.createElement('div');
+  light.id='ctGateLightV8'; light.className='ct-gate-light-v8';
+  box.appendChild(egg); box.appendChild(gate); box.appendChild(light);
+
+  let run=0;
+  btn.addEventListener('click',function(){
+    if(btn.disabled)return;
+    const token=++run;
+    gate.classList.remove('ct-gate-down');
+    light.classList.remove('ct-yellow');
+    egg.classList.remove('ct-egg-hit');
+
+    /* Le contrôleur Chicken Train : scan 1,6 s + train 1,08 s, puis la poule traverse. */
+    setTimeout(function(){
+      if(token!==run)return;
+      gate.classList.add('ct-gate-down');
+      light.classList.add('ct-yellow');
+      egg.classList.remove('ct-egg-hit'); void egg.offsetWidth; egg.classList.add('ct-egg-hit');
+      setTimeout(function(){
+        if(token!==run)return;
+        gate.classList.remove('ct-gate-down');
+        light.classList.remove('ct-yellow');
+        egg.classList.remove('ct-egg-hit');
+      },850);
+    },2680);
+  },true);
+})();
+</script>
+
 </body>
 </html>
 

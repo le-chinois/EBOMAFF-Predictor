@@ -301,6 +301,8 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/speedcash-bg.png": "speedcash-bg.png",
             "/chickentrain.png": "chickentrain.png",
             "/chickentrain-bg.png": "chickentrain-bg.png",
+            "/chickentrain-oeuf.png": "chickentrain-oeuf.png",
+            "/chickentrain-portier.png": "chickentrain-portier.png",
             "/chickentrain-train.png": "chickentrain-train.png",
             "/chickentrain-poule.png": "chickentrain-poule.png",
             "/chickentrain-elements.png": "chickentrain-elements.png",
