@@ -1876,14 +1876,30 @@ html{
 </style>
 
 
-<style id="chicken-portiers-alignes-v1">
-#chickenScreen .ebomaff-portiers-row{position:absolute;left:0;top:35%;width:100%;height:15%;z-index:16;pointer-events:none}
-#chickenScreen .ebomaff-portier{position:absolute;top:0;width:13%;height:auto;transform:translateX(-50%);object-fit:contain;pointer-events:none}
-#chickenScreen .ebomaff-portier.p1{left:40.1%}
-#chickenScreen .ebomaff-portier.p2{left:56.3%}
-#chickenScreen .ebomaff-portier.p3{left:72.5%}
-#chickenScreen .ebomaff-portier.p4{left:88.7%}
-#chickenScreen .chicken-gates,#chickenScreen .chicken-gate,#chickenScreen .chicken-portiers,#chickenScreen .chicken-portier{visibility:hidden!important}
+<style id="chicken-portiers-visible-fix">
+#chickenScreen .ebomaff-portiers-row{
+  position:absolute;
+  inset:0;
+  z-index:24;
+  pointer-events:none;
+}
+#chickenScreen .ebomaff-portier{
+  position:absolute;
+  top:35.2%;
+  width:12.5%;
+  height:auto;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  opacity:1 !important;
+  visibility:visible !important;
+  display:block !important;
+  pointer-events:none;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.25));
+}
+#chickenScreen .ebomaff-portier.p1{left:40.1%;}
+#chickenScreen .ebomaff-portier.p2{left:56.3%;}
+#chickenScreen .ebomaff-portier.p3{left:72.5%;}
+#chickenScreen .ebomaff-portier.p4{left:88.7%;}
 </style>
 
 </head>
@@ -2439,11 +2455,12 @@ html{
             id="chickenScreen"
             class="screen"
         >
+
 <div class="ebomaff-portiers-row" id="ebomaffPortiersRow" aria-hidden="true">
-<img class="ebomaff-portier p1" src="/chickentrain-portier.png" alt="">
-<img class="ebomaff-portier p2" src="/chickentrain-portier.png" alt="">
-<img class="ebomaff-portier p3" src="/chickentrain-portier.png" alt="">
-<img class="ebomaff-portier p4" src="/chickentrain-portier.png" alt="">
+  <img class="ebomaff-portier p1" src="chickentrain-portier.png" alt="">
+  <img class="ebomaff-portier p2" src="chickentrain-portier.png" alt="">
+  <img class="ebomaff-portier p3" src="chickentrain-portier.png" alt="">
+  <img class="ebomaff-portier p4" src="chickentrain-portier.png" alt="">
 </div>
 
 
