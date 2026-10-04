@@ -2443,9 +2443,7 @@ html{
                 >
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
-                <div class="chicken-train-rail-clip" aria-hidden="true">
-                    <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="">
-                </div>
+                <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
                 <img id="chickenPlayer" class="chicken-player" src="/chickentrain-poule.png" alt="" aria-hidden="true">
 
                 <div class="chicken-levels-hitbox" id="chickenLevels" aria-label="Niveau Chicken Train">
@@ -4433,22 +4431,12 @@ function showChickenEgg(eggNumber){
 <style id="chicken-assets-step4-v102">
 /* CHICKEN TRAIN — éléments transparents originaux, sans toucher aux autres jeux. */
 #chickenScreen .chicken-live-box{position:relative;overflow:hidden;}
-#chickenScreen .chicken-train-rail-clip{
-  position:absolute;
-  z-index:18;
-  left:29.7%;
-  top:10.5%;
-  width:18%;
-  height:66.5%;
-  overflow:hidden;
-  pointer-events:none;
-}
 #chickenScreen .chicken-train-original{
   position:absolute;
   z-index:18;
-  width:100%;
+  width:14%;
   height:auto;
-  left:50%;
+  left:40.1%;
   top:-18%;
   transform:translate(-50%,-50%);
   object-fit:contain;
@@ -4469,7 +4457,7 @@ function showChickenEgg(eggNumber){
 }
 @keyframes chickenTrainPassV102{
   0%{top:-18%;}
-  100%{top:118%;}
+  100%{top:76%;}
 }
 @keyframes chickenRunAcrossV102{
   0%{left:31%;transform:translate(-50%,-50%) scale(1);}
