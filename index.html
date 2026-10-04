@@ -4906,35 +4906,67 @@ function showChickenEgg(eggNumber){
 
 
 
-<style id="chickentrain-train-v9-original-style">
-/* V9 — TRAIN UNIQUEMENT, basé sur V6 validée.
-   ŒUF : aucune modification.
-   HUD + PORTIQUE : aucune modification. */
+<style id="chickentrain-train-v7-egg-contact">
+/* V7 — UNE SEULE MODIFICATION :
+   au passage sur l'œuf, le train passe visuellement DEVANT lui puis continue.
+   HUD + portique V6 restent inchangés. */
 
-#chickenScreen .chicken-train-original{
-  left:40.7% !important;
-  width:20% !important;
-  z-index:18 !important;
-  transform:translateX(-50%) !important;
-}
-
+/* Le train reste au-dessus de l'œuf/multiplicateur pendant sa traversée. */
 #chickenScreen .chicken-train-original.ct-pass{
-  opacity:1 !important;
-  z-index:18 !important;
-  animation:ctTrainOriginalStyleV9 1.05s linear forwards !important;
+  z-index:24 !important;
 }
 
-/* Traversée continue du haut vers le bas : aucune pause au niveau de l'œuf. */
-@keyframes ctTrainOriginalStyleV9{
-  0%   {top:-30%;}
-  100% {top:108%;}
+/* Les masques du portique restent encore au-dessus du train,
+   donc l'effet "train dans le portique" validé est conservé. */
+#chickenScreen .ct-portal-mask{
+  z-index:26 !important;
 }
 
-/* Portique déjà validé reste au-dessus du train. */
-#chickenScreen .ct-portal-mask{z-index:26 !important;}
-
-/* HUD déjà validé reste au-dessus du train. */
+/* HUD toujours devant et inchangé. */
 #chickenScreen .ct-hud-wrap{z-index:30 !important;}
 #chickenScreen .ct-scanner-asset{z-index:35 !important;}
 </style>
+
+
+
+<style id="chickentrain-zones-v8">
+/* ZONES UNIQUEMENT — train/HUD/portique validés inchangés */
+#chickenScreen .chicken-levels-hitbox{
+ position:absolute!important;z-index:60!important;
+ left:31.2%!important;top:2.6%!important;width:67.2%!important;height:8.4%!important;
+ display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:1.2%!important;
+ pointer-events:auto!important;
+}
+#chickenScreen .chicken-level-btn{
+ position:relative!important;inset:auto!important;width:100%!important;height:100%!important;
+ border-radius:8px!important;border:2px solid!important;cursor:pointer!important;opacity:1!important;
+ background:rgba(8,12,24,.90)!important;color:#fff!important;
+ font:900 clamp(6px,1.6vw,10px)/1.05 Arial,sans-serif!important;
+ padding:4px 1px!important;display:flex!important;flex-direction:column!important;
+ justify-content:center!important;align-items:center!important;text-align:center!important;
+ transform:none!important;outline:none!important;
+}
+#chickenScreen .chicken-level-btn[data-level="bas"]{border-color:#18ff62!important;box-shadow:inset 0 0 14px #063b18,0 0 7px #18ff62!important}
+#chickenScreen .chicken-level-btn[data-level="moyen"]{border-color:#2694ff!important;box-shadow:inset 0 0 14px #082b51,0 0 7px #2694ff!important}
+#chickenScreen .chicken-level-btn[data-level="grand"]{border-color:#ff9d19!important;box-shadow:inset 0 0 14px #4c2900,0 0 7px #ff9d19!important}
+#chickenScreen .chicken-level-btn[data-level="extreme"]{border-color:#ff3348!important;box-shadow:inset 0 0 14px #4b0710,0 0 7px #ff3348!important}
+#chickenScreen .chicken-level-btn.active{filter:brightness(1.3)!important;transform:scale(1.035)!important}
+#chickenScreen .ct-zone-icon{font-size:1.25em;line-height:1;margin-bottom:2px}
+#chickenScreen .ct-zone-name{font-size:1.08em;letter-spacing:.2px}
+#chickenScreen .ct-zone-range{font-size:.78em;font-weight:800;margin-top:3px;white-space:nowrap;color:#fff}
+</style>
+<script id="chickentrain-zones-v8-script">
+(function(){
+ const cfg={
+  bas:{icon:'●',name:'BAS',range:'1.01x - 64.42x'},
+  moyen:{icon:'◆',name:'MOYEN',range:'1.03x - 197.39x'},
+  grand:{icon:'◈',name:'GRAND',range:'1.14x - 5849.82x'},
+  extreme:{icon:'♛',name:'EXTRÊME',range:'1.36x - 54106.36x'}
+ };
+ document.querySelectorAll('#chickenLevels .chicken-level-btn').forEach(function(btn){
+   var c=cfg[btn.dataset.level]; if(!c)return;
+   btn.innerHTML='<span class="ct-zone-icon">'+c.icon+'</span><span class="ct-zone-name">'+c.name+'</span><span class="ct-zone-range">'+c.range+'</span>';
+ });
+})();
+</script>
 
