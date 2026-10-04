@@ -1811,17 +1811,6 @@ html{
 @keyframes chickenScannerPulse{from{transform:scale(.92);filter:brightness(.9)}to{transform:scale(1.06);filter:brightness(1.35)}}
 </style>
 
-
-<style id="ct-original-gates-style">
-.chicken-live-box{position:relative;overflow:hidden}
-.ct-original-gates{position:absolute;inset:0;z-index:18;pointer-events:none}
-.ct-original-gate{position:absolute;top:27.2%;width:14.5%;height:22%;transform:translateX(-50%)}
-.ct-gate-1{left:42.5%}.ct-gate-2{left:62.8%}.ct-gate-3{left:82.8%}.ct-gate-4{left:102.8%}
-.ct-original-gate img{position:absolute;object-fit:contain;user-select:none;-webkit-user-drag:none}
-.ct-gate-green{left:-38%;top:0;width:70%;height:100%;object-position:center}
-.ct-gate-red{left:55%;top:10%;width:58%;height:82%;object-position:center}
-</style>
-
 </head>
 
 <body>
@@ -2392,26 +2381,6 @@ html{
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
                 <img id="chickenPlayer" class="chicken-player" src="/chickentrain-poule.png" alt="" aria-hidden="true">
-
-                <!-- Portiers Chicken Train : disposition comme l'original -->
-                <div id="ctOriginalGates" class="ct-original-gates" aria-hidden="true">
-                    <div class="ct-original-gate ct-gate-1">
-                        <img class="ct-gate-green" src="/chickentrain-portier-vert-original.png" alt="">
-                        <img class="ct-gate-red" src="/chickentrain-signal-rouge-original.png" alt="">
-                    </div>
-                    <div class="ct-original-gate ct-gate-2">
-                        <img class="ct-gate-green" src="/chickentrain-portier-vert-original.png" alt="">
-                        <img class="ct-gate-red" src="/chickentrain-signal-rouge-original.png" alt="">
-                    </div>
-                    <div class="ct-original-gate ct-gate-3">
-                        <img class="ct-gate-green" src="/chickentrain-portier-vert-original.png" alt="">
-                        <img class="ct-gate-red" src="/chickentrain-signal-rouge-original.png" alt="">
-                    </div>
-                    <div class="ct-original-gate ct-gate-4">
-                        <img class="ct-gate-green" src="/chickentrain-portier-vert-original.png" alt="">
-                        <img class="ct-gate-red" src="/chickentrain-signal-rouge-original.png" alt="">
-                    </div>
-                </div>
 
                 <div class="chicken-levels-hitbox" id="chickenLevels" aria-label="Niveau Chicken Train">
                     <button type="button" class="chicken-level-btn active" data-level="bas" aria-label="Bas"></button>
