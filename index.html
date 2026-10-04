@@ -4501,6 +4501,38 @@ function showChickenEgg(eggNumber){
   },true);
 })();
 </script>
+
+<script id="chicken-level-click-fix">
+(function(){
+  const box = document.getElementById("chickenLevels");
+  if(!box) return;
+
+  const buttons = Array.from(box.querySelectorAll(".chicken-level-btn"));
+
+  buttons.forEach(function(button){
+    button.addEventListener("click", function(event){
+      event.preventDefault();
+      event.stopPropagation();
+
+      buttons.forEach(function(item){
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
+    });
+  });
+
+  buttons.forEach(function(button){
+    button.setAttribute(
+      "aria-pressed",
+      button.classList.contains("active") ? "true" : "false"
+    );
+  });
+})();
+</script>
+
 </body>
 </html>
 
