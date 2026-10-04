@@ -5050,3 +5050,43 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
+
+
+<!-- ===== CHICKEN TRAIN V112 : PORTIERS PAR RAIL / NIVEAU ===== -->
+<style id="chickentrain-gates-v112-style">
+#chickenScreen .ct-gates-v112{position:absolute;inset:0;z-index:23;pointer-events:none;overflow:hidden}
+#chickenScreen .ct-gate-slot-v112{position:absolute;left:30.5%;top:35.0%;width:20%;height:auto;transform:translateX(var(--ct-gate-shift,0%));transition:transform .32s cubic-bezier(.2,.8,.25,1),opacity .2s ease}
+#chickenScreen .ct-gate-img-v112{display:block;width:100%;height:auto;transform-origin:14% 55%;transform:rotate(-58deg);filter:drop-shadow(0 5px 6px rgba(0,0,0,.32));transition:transform .32s cubic-bezier(.2,.8,.25,1),filter .2s ease}
+#chickenScreen .ct-gate-slot-v112.ct-gate-down .ct-gate-img-v112{transform:rotate(0deg);filter:drop-shadow(0 5px 7px rgba(0,0,0,.35)) brightness(1.08)}
+#chickenScreen .ct-gate-light-v112{position:absolute;left:8%;top:21%;width:13%;aspect-ratio:1;border-radius:50%;background:#35ff55;box-shadow:0 0 5px #35ff55,0 0 11px #35ff55;transition:background .18s ease,box-shadow .18s ease}
+#chickenScreen .ct-gate-slot-v112.ct-gate-down .ct-gate-light-v112{background:#ffe126;box-shadow:0 0 5px #ffe126,0 0 12px #ffb000}
+/* L'ancien portier V8 est remplacé par le système multi-portiers V112. */
+#chickenScreen #ctGateV8,#chickenScreen #ctGateLightV8{display:none!important}
+</style>
+<script id="chickentrain-gates-v112-script">
+(function(){
+ const screen=document.getElementById('chickenScreen');
+ const box=document.querySelector('#chickenScreen .chicken-live-box');
+ const btn=document.getElementById('chickenPredict');
+ if(!screen||!box||!btn||document.getElementById('ctGatesV112'))return;
+ const counts={bas:19,moyen:19,grand:18,extreme:14};
+ let level='bas',step=0,run=0;
+ const layer=document.createElement('div'); layer.id='ctGatesV112'; layer.className='ct-gates-v112'; box.appendChild(layer);
+ function activeLevel(){const a=document.querySelector('#chickenLevels .chicken-level-btn.active');return a&&counts[a.dataset.level]?a.dataset.level:level}
+ function build(){level=activeLevel();const n=counts[level];step=Math.min(step,n-1);layer.innerHTML='';
+   /* Un seul passage est visible dans la fenêtre à la fois; on réutilise le même asset pour les 14/18/19 portiers successifs. */
+   for(let i=0;i<n;i++){const g=document.createElement('div');g.className='ct-gate-slot-v112';g.dataset.rail=String(i+1);g.style.display=i===step?'block':'none';
+     const im=document.createElement('img');im.className='ct-gate-img-v112';im.src='/chickentrain-portier.png';im.alt='';im.setAttribute('aria-hidden','true');
+     const light=document.createElement('span');light.className='ct-gate-light-v112';g.append(im,light);layer.appendChild(g);}
+ }
+ function current(){return layer.querySelector('.ct-gate-slot-v112[data-rail="'+(step+1)+'"]')}
+ function showStep(next){const all=layer.querySelectorAll('.ct-gate-slot-v112');all.forEach((g,i)=>g.style.display=i===next?'block':'none')}
+ document.querySelectorAll('#chickenLevels .chicken-level-btn').forEach(b=>b.addEventListener('click',()=>{level=b.dataset.level;step=0;run++;build()},false));
+ btn.addEventListener('click',function(){if(btn.disabled)return;level=activeLevel();if(layer.children.length!==counts[level]){step=0;build()}const my=++run;const g=current();if(!g)return;g.classList.remove('ct-gate-down');
+   setTimeout(()=>{if(my!==run)return;g.classList.add('ct-gate-down');
+     setTimeout(()=>{if(my!==run)return;g.classList.remove('ct-gate-down');const n=counts[level];if(step<n-1){step++;showStep(step)}},850);
+   },2680);
+ },true);
+ build();
+})();
+</script>
