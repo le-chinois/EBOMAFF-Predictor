@@ -1763,37 +1763,81 @@ html{
 </style>
 
 <style id="chicken-levels-step2-v100">
-/* CHICKEN TRAIN — ZONES VISUELLES BAS / MOYEN / GRAND / EXTRÊME */
-#chickenScreen .chicken-levels-hitbox{position:absolute;z-index:40;inset:0;pointer-events:none}
-#chickenScreen .chicken-level-btn{
- position:absolute;top:3.1%;height:11.7%;width:15.2%;appearance:none;-webkit-appearance:none;
- border:2px solid;border-radius:10px;padding:0;margin:0;cursor:pointer;pointer-events:auto;color:#fff;
- background:rgba(12,13,17,.90);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;
- justify-content:center;font-family:Arial,Helvetica,sans-serif;text-align:center;line-height:1.05;outline:none
+#chickenScreen .chicken-levels-hitbox{
+  position:absolute; inset:0; z-index:40; pointer-events:none;
 }
-#chickenScreen .chicken-level-btn::before{display:block;font-size:clamp(7px,2.15vw,13px);font-weight:1000;margin-bottom:5px;white-space:pre}
-#chickenScreen .chicken-level-btn::after{display:block;font-size:clamp(5px,1.35vw,8px);font-weight:900;white-space:nowrap;color:#fff}
+#chickenScreen .chicken-level-btn{
+  position:absolute;
+  top:3.0%;
+  width:15.0%;
+  height:9.2%;
+  min-width:0;
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+  border:2px solid;
+  border-radius:9px;
+  background:rgba(13,14,18,.91);
+  color:#fff;
+  pointer-events:auto;
+  appearance:none;
+  -webkit-appearance:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  overflow:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  text-align:center;
+  line-height:1;
+  white-space:nowrap;
+}
+#chickenScreen .chicken-level-btn::before{
+  display:block;
+  font-size:clamp(7px,1.8vw,11px);
+  font-weight:900;
+  line-height:1.05;
+  margin:0;
+  white-space:pre;
+}
+#chickenScreen .chicken-level-btn::after{
+  display:block;
+  font-size:clamp(5px,1.15vw,7px);
+  font-weight:800;
+  line-height:1;
+  margin-top:2px;
+  white-space:nowrap;
+}
+#chickenScreen .chicken-level-btn[data-level="bas"]{
+  left:31.2%; border-color:#12ec78;
+  box-shadow:0 0 7px rgba(18,236,120,.70);
+}
+#chickenScreen .chicken-level-btn[data-level="bas"]::before{content:"●\A BAS";}
+#chickenScreen .chicken-level-btn[data-level="bas"]::after{content:"1.01x - 64.42x";}
 
-#chickenScreen .chicken-level-btn[data-level="bas"]{left:31.0%;border-color:#18ee7a;box-shadow:0 0 7px rgba(24,238,122,.75),inset 0 0 12px rgba(24,238,122,.08)}
-#chickenScreen .chicken-level-btn[data-level="bas"]::before{content:"●\\A BAS"}
-#chickenScreen .chicken-level-btn[data-level="bas"]::after{content:"1.01x - 64.42x"}
+#chickenScreen .chicken-level-btn[data-level="moyen"]{
+  left:47.4%; border-color:#27aaff;
+  box-shadow:0 0 7px rgba(39,170,255,.65);
+}
+#chickenScreen .chicken-level-btn[data-level="moyen"]::before{content:"◆\A MOYEN";}
+#chickenScreen .chicken-level-btn[data-level="moyen"]::after{content:"1.03x - 197.39x";}
 
-#chickenScreen .chicken-level-btn[data-level="moyen"]{left:47.3%;border-color:#2baeff;box-shadow:0 0 7px rgba(43,174,255,.70),inset 0 0 12px rgba(43,174,255,.08)}
-#chickenScreen .chicken-level-btn[data-level="moyen"]::before{content:"◆\\A MOYEN"}
-#chickenScreen .chicken-level-btn[data-level="moyen"]::after{content:"1.03x - 197.39x"}
+#chickenScreen .chicken-level-btn[data-level="grand"]{
+  left:63.6%; border-color:#ff9b12;
+  box-shadow:0 0 7px rgba(255,155,18,.65);
+}
+#chickenScreen .chicken-level-btn[data-level="grand"]::before{content:"◇\A GRAND";}
+#chickenScreen .chicken-level-btn[data-level="grand"]::after{content:"1.14x - 5849.82x";}
 
-#chickenScreen .chicken-level-btn[data-level="grand"]{left:63.6%;border-color:#ff9e17;box-shadow:0 0 7px rgba(255,158,23,.70),inset 0 0 12px rgba(255,158,23,.08)}
-#chickenScreen .chicken-level-btn[data-level="grand"]::before{content:"◇\\A GRAND"}
-#chickenScreen .chicken-level-btn[data-level="grand"]::after{content:"1.14x - 5849.82x"}
+#chickenScreen .chicken-level-btn[data-level="extreme"]{
+  left:79.8%; border-color:#ff3456;
+  box-shadow:0 0 8px rgba(255,52,86,.72);
+}
+#chickenScreen .chicken-level-btn[data-level="extreme"]::before{content:"♛\A EXTRÊME";}
+#chickenScreen .chicken-level-btn[data-level="extreme"]::after{content:"1.36x - 54106.36x";}
 
-#chickenScreen .chicken-level-btn[data-level="extreme"]{left:79.9%;border-color:#ff3656;box-shadow:0 0 7px rgba(255,54,86,.78),inset 0 0 12px rgba(255,54,86,.08)}
-#chickenScreen .chicken-level-btn[data-level="extreme"]::before{content:"♛\\A EXTRÊME"}
-#chickenScreen .chicken-level-btn[data-level="extreme"]::after{content:"1.36x - 54106.36x"}
-
-#chickenScreen .chicken-level-btn.active[data-level="bas"]{box-shadow:0 0 4px #38ff79,0 0 12px rgba(35,255,105,.62),inset 0 0 8px rgba(35,255,105,.18)}
-#chickenScreen .chicken-level-btn.active[data-level="moyen"]{box-shadow:0 0 4px #32baff,0 0 12px rgba(30,160,255,.62),inset 0 0 8px rgba(30,160,255,.18)}
-#chickenScreen .chicken-level-btn.active[data-level="grand"]{box-shadow:0 0 4px #ffb52d,0 0 12px rgba(255,155,20,.62),inset 0 0 8px rgba(255,155,20,.18)}
-#chickenScreen .chicken-level-btn.active[data-level="extreme"]{box-shadow:0 0 4px #ff405e,0 0 12px rgba(255,40,70,.62),inset 0 0 8px rgba(255,40,70,.18)}
+#chickenScreen .chicken-level-btn.active{filter:brightness(1.08);}
 </style>
 
 
