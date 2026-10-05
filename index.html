@@ -2453,7 +2453,27 @@ html{
                     alt="Chicken Train"
                 >
 
-                <div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
+                <div class="ct-original-gates" id="ctOriginalGates" aria-hidden="true"><div class="ct-original-gate g1" data-gate="1">
+  <img class="ct-sprite ct-base" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-signal" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-barrier" src="/chickentrain-portier-complet-original.png" alt="">
+  <span class="ct-yellow-light"></span>
+</div><div class="ct-original-gate g2" data-gate="2">
+  <img class="ct-sprite ct-base" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-signal" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-barrier" src="/chickentrain-portier-complet-original.png" alt="">
+  <span class="ct-yellow-light"></span>
+</div><div class="ct-original-gate g3" data-gate="3">
+  <img class="ct-sprite ct-base" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-signal" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-barrier" src="/chickentrain-portier-complet-original.png" alt="">
+  <span class="ct-yellow-light"></span>
+</div><div class="ct-original-gate g4" data-gate="4">
+  <img class="ct-sprite ct-base" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-signal" src="/chickentrain-portier-complet-original.png" alt="">
+  <img class="ct-sprite ct-barrier" src="/chickentrain-portier-complet-original.png" alt="">
+  <span class="ct-yellow-light"></span>
+</div></div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
@@ -4554,16 +4574,55 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
-<!-- EBOMAFF: correction visibilité portiers Chicken Train -->
-<style id="ct-portiers-visibles-fix">
-#chickenScreen .game-image-box.chicken-live-box{position:relative!important;overflow:hidden}
-#chickenScreen .ct-complete-gates{display:block!important;position:absolute!important;inset:0!important;z-index:28!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;top:35%!important;width:15.5%!important;height:auto!important;transform:translate(-50%,-50%)!important;z-index:29!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate.g1{left:40.1%!important}
-#chickenScreen .ct-complete-gate.g2{left:56.3%!important}
-#chickenScreen .ct-complete-gate.g3{left:72.5%!important}
-#chickenScreen .ct-complete-gate.g4{left:88.7%!important}
+
+<style id="ct-original-portier-final-v1">
+/* Portier original : vrai PNG, rail entre la barrière et le signal. */
+#chickenScreen .ct-complete-gates,#chickenScreen .ct-complete-gate{display:none!important}
+#chickenScreen .ct-original-gates{position:absolute;inset:0;z-index:24;pointer-events:none;overflow:hidden}
+#chickenScreen .ct-original-gate{
+  position:absolute;top:35%;width:15.5%;aspect-ratio:562/360;
+  transform:translate(-50%,-50%);pointer-events:none;
+}
+/* Centres des quatre rails */
+#chickenScreen .ct-original-gate.g1{left:42.35%}
+#chickenScreen .ct-original-gate.g2{left:58.55%}
+#chickenScreen .ct-original-gate.g3{left:74.75%}
+#chickenScreen .ct-original-gate.g4{left:90.95%}
+#chickenScreen .ct-original-gate .ct-sprite{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  transform:none;transform-origin:21.5% 61%;pointer-events:none;
+}
+/* On reconstruit le PNG original en 3 parties sans le redessiner. */
+#chickenScreen .ct-original-gate .ct-base{clip-path:polygon(5% 57%,32% 57%,32% 100%,5% 100%)}
+#chickenScreen .ct-original-gate .ct-signal{clip-path:polygon(68% 28%,92% 28%,92% 100%,68% 100%)}
+#chickenScreen .ct-original-gate .ct-barrier{
+  clip-path:polygon(5% 0,30% 0,30% 64%,5% 64%);
+  transition:transform .30s cubic-bezier(.25,.05,.25,1);
+}
+/* Fermeture : seule la vraie barre jaune/noire pivote au-dessus du rail. */
+#chickenScreen .ct-original-gate.closed .ct-barrier{transform:rotate(90deg)}
+#chickenScreen .ct-original-gate .ct-yellow-light{
+  display:none;position:absolute;left:14.7%;top:73.4%;width:5.6%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);background:#ffd51f;box-shadow:0 0 5px #ffd51f,inset 0 0 2px #fff;z-index:6
+}
+#chickenScreen .ct-original-gate.closed .ct-yellow-light{display:block}
 </style>
+<script id="ct-original-portier-final-v1-script">
+(function(){
+  const btn=document.getElementById('chickenPredict');
+  const gates=[...document.querySelectorAll('#chickenScreen .ct-original-gate')];
+  if(!btn||!gates.length)return;
+  let token=0;
+  const openAll=()=>gates.forEach(g=>g.classList.remove('closed'));
+  openAll();
+  btn.addEventListener('click',function(){
+    const t=++token; openAll();
+    /* scanner 1,6 s + train 1,08 s + passage de la poule : fermeture du portier franchi */
+    setTimeout(function(){if(t===token&&gates[0])gates[0].classList.add('closed')},3500);
+    setTimeout(function(){if(t===token)openAll()},4700);
+  },true);
+})();
+</script>
 
 </body>
 </html>
@@ -4899,4 +4958,3 @@ function showChickenEgg(eggNumber){
 #chickenScreen .chicken-scan-ring:after{content:"";position:absolute;inset:-2px;border-radius:50%;border-top:2px solid #b8f5ff;border-right:2px solid transparent;border-bottom:2px solid transparent;border-left:2px solid transparent}
 @keyframes chickenScanSpin{to{transform:rotate(360deg)}}
 </style>
-
