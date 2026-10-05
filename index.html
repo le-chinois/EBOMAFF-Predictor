@@ -1876,30 +1876,43 @@ html{
 </style>
 
 
-<style id="chicken-portiers-visible-fix">
-#chickenScreen .ebomaff-portiers-row{
-  position:absolute;
-  inset:0;
-  z-index:24;
-  pointer-events:none;
+<style id="chicken-portiers-2assets-v1">
+#chickenScreen .ebomaff-gates-row{
+  position:absolute; inset:0; z-index:24; pointer-events:none;
 }
-#chickenScreen .ebomaff-portier{
+#chickenScreen .ebomaff-gate{
   position:absolute;
   top:35.2%;
-  width:12.5%;
+  width:14%;
+  height:15%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+#chickenScreen .ebomaff-gate.g1{left:40.1%}
+#chickenScreen .ebomaff-gate.g2{left:56.3%}
+#chickenScreen .ebomaff-gate.g3{left:72.5%}
+#chickenScreen .ebomaff-gate.g4{left:88.7%}
+
+#chickenScreen .ebomaff-gate .gate-green{
+  position:absolute;
+  left:18%;
+  top:50%;
+  width:48%;
   height:auto;
   transform:translate(-50%,-50%);
   object-fit:contain;
-  opacity:1 !important;
-  visibility:visible !important;
-  display:block !important;
-  pointer-events:none;
-  filter:drop-shadow(0 3px 3px rgba(0,0,0,.25));
+  display:block;
 }
-#chickenScreen .ebomaff-portier.p1{left:40.1%;}
-#chickenScreen .ebomaff-portier.p2{left:56.3%;}
-#chickenScreen .ebomaff-portier.p3{left:72.5%;}
-#chickenScreen .ebomaff-portier.p4{left:88.7%;}
+#chickenScreen .ebomaff-gate .gate-red{
+  position:absolute;
+  left:82%;
+  top:50%;
+  width:34%;
+  height:auto;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  display:block;
+}
 </style>
 
 </head>
@@ -2455,13 +2468,23 @@ html{
             id="chickenScreen"
             class="screen"
         >
-
-<div class="ebomaff-portiers-row" id="ebomaffPortiersRow" aria-hidden="true">
-  <img class="ebomaff-portier p1" src="chickentrain-portier.png" alt="">
-  <img class="ebomaff-portier p2" src="chickentrain-portier.png" alt="">
-  <img class="ebomaff-portier p3" src="chickentrain-portier.png" alt="">
-  <img class="ebomaff-portier p4" src="chickentrain-portier.png" alt="">
+<div class="ebomaff-gates-row" id="ebomaffGatesRow" aria-hidden="true">
+<div class="ebomaff-gate g1">
+  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
+  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
 </div>
+<div class="ebomaff-gate g2">
+  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
+  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
+</div>
+<div class="ebomaff-gate g3">
+  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
+  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
+</div>
+<div class="ebomaff-gate g4">
+  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
+  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
+</div></div>
 
 
             <div
