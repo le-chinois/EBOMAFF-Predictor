@@ -1881,44 +1881,40 @@ html{
 <!-- TEST VISUEL : 1 seul portier ouvert, aucune animation -->
 
 
-<style id="ct-final-single-gate-v2">
-/* CHICKEN TRAIN — CALAGE PORTIQUE 1
-   Le nouveau PNG fait ~200x360 : dimensionnement par hauteur. */
-#chickenScreen .ct-complete-gates{
-    display:block !important;
-    visibility:visible !important;
-    opacity:1 !important;
+<style id="ct-gate-two-parts-v3">
+/* CHICKEN TRAIN — TEST PREMIER RAIL
+   Les deux images appartiennent au même conteneur centré sur le rail. */
+#chickenScreen .ct-gate-test-v3{
     position:absolute !important;
-    inset:0 !important;
-    z-index:35 !important;
-    pointer-events:none !important;
-}
-#chickenScreen .ct-complete-gate{
-    display:none !important;
-    position:absolute !important;
-    width:auto !important;
-    pointer-events:none !important;
-}
-#chickenScreen .ct-complete-gate.g1{
-    display:block !important;
-    visibility:visible !important;
-    opacity:1 !important;
-
-    /* Premier rail */
-    left:40.1% !important;
+    left:40.1% !important;     /* centre du premier rail */
     top:34.0% !important;
-
-    /* Taille corrigée pour le PNG rapproché */
-    height:15.0% !important;
-    width:auto !important;
-
+    width:15.0% !important;    /* zone invisible autour du rail */
+    height:16.0% !important;
     transform:translate(-50%,-50%) !important;
     z-index:36 !important;
+    pointer-events:none !important;
 }
-#chickenScreen .ct-complete-gate.g2,
-#chickenScreen .ct-complete-gate.g3,
-#chickenScreen .ct-complete-gate.g4{
-    display:none !important;
+
+/* Partie jaune/noire + feu vert : côté gauche du rail */
+#chickenScreen .ct-gate-left-v3{
+    position:absolute !important;
+    right:55% !important;
+    bottom:0 !important;
+    height:100% !important;
+    width:auto !important;
+    max-width:none !important;
+    object-fit:contain !important;
+}
+
+/* Partie rouge/grise : côté droit du rail */
+#chickenScreen .ct-gate-right-v3{
+    position:absolute !important;
+    left:55% !important;
+    bottom:0 !important;
+    height:72% !important;
+    width:auto !important;
+    max-width:none !important;
+    object-fit:contain !important;
 }
 </style>
 
@@ -2489,7 +2485,14 @@ html{
                     alt="Chicken Train"
                 >
 
-<div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
+
+
+                
+                <!-- CHICKEN TRAIN — PORTIQUE TEST V3 : 2 parties ancrées au premier rail -->
+                <div class="ct-gate-test-v3" aria-hidden="true">
+                    <img class="ct-gate-left-v3" src="/chickentrain-portier-gauche.png" alt="">
+                    <img class="ct-gate-right-v3" src="/chickentrain-portier-droite.png" alt="">
+                </div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
