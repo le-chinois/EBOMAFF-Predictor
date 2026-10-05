@@ -1893,12 +1893,19 @@ html{
 </style>
 
 
-<style id="ct-portier-colle-rail-final">
-/* Position finale : rapprochement du portier vert du bord gauche du rail */
-#chickenScreen .ct-complete-gate.g1{left:43.0%}
-#chickenScreen .ct-complete-gate.g2{left:59.2%}
-#chickenScreen .ct-complete-gate.g3{left:75.4%}
-#chickenScreen .ct-complete-gate.g4{left:91.6%}
+
+<style id="ct-portiers-alignes-reference">
+#chickenScreen .ct-complete-gate{
+  top:35%;
+  width:15.5%;
+  height:auto;
+  transform:translate(-50%,-50%) scaleX(.82);
+  transform-origin:center center;
+}
+#chickenScreen .ct-complete-gate.g1{left:42.15%}
+#chickenScreen .ct-complete-gate.g2{left:58.35%}
+#chickenScreen .ct-complete-gate.g3{left:74.55%}
+#chickenScreen .ct-complete-gate.g4{left:90.75%}
 </style>
 
 </head>
@@ -2453,7 +2460,7 @@ html{
         <div
             id="chickenScreen"
             class="screen"
-        >
+        ><div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="chickentrain-portier-complet-original.png" alt=""></div>
 
             <div
                 class="
@@ -4568,52 +4575,18 @@ function showChickenEgg(eggNumber){
 </script>
 
 
-<style id="ct-portiers-passages-final">
-#chickenScreen .ct-passages-layer{
-  position:absolute; inset:0; z-index:24; pointer-events:none;
-}
-#chickenScreen .ct-passage-gate{
-  position:absolute;
-  top:35%;
-  width:15.5%;
-  height:auto;
-  transform:translate(-50%,-50%) scaleX(.82);
-  transform-origin:center center;
-  pointer-events:none;
-}
-/* Centres exacts des quatre rails */
-#chickenScreen .ct-passage-gate[data-level="bas"]{left:43.0%}
-#chickenScreen .ct-passage-gate[data-level="moyen"]{left:59.2%}
-#chickenScreen .ct-passage-gate[data-level="grand"]{left:75.4%}
-#chickenScreen .ct-passage-gate[data-level="extreme"]{left:91.6%}
-</style>
-<script id="ct-portiers-passages-js">
-document.addEventListener("DOMContentLoaded", function () {
-  const screen = document.getElementById("chickenScreen");
-  if (!screen) return;
+<script id="ct-passage-counts">
+(() => {
+  const counts = { bas:19, moyen:14, grand:18 };
+  window.CHICKEN_TRAIN_PASSAGES = Object.assign(
+    {}, window.CHICKEN_TRAIN_PASSAGES || {}, counts
+  );
 
-  /* Nombre de passages conservé par niveau.
-     BAS 19 / MOYEN 14 / GRAND 18.
-     EXTRÊME reprend la valeur déjà définie par le projet si elle existe,
-     sinon aucun nombre n'est inventé ici. */
-  const passages = { bas:19, moyen:14, grand:18 };
-
-  const layer = document.createElement("div");
-  layer.className = "ct-passages-layer";
-  layer.setAttribute("aria-hidden","true");
-
-  ["bas","moyen","grand","extreme"].forEach(level => {
-    const gate = document.createElement("img");
-    gate.className = "ct-passage-gate";
-    gate.dataset.level = level;
-    gate.src = "chickentrain-portier-complet-original.png";
-    gate.alt = "";
-    gate.dataset.totalPassages = passages[level] ?? "";
-    layer.appendChild(gate);
+  document.querySelectorAll('#chickenScreen .chicken-level-btn').forEach(btn => {
+    const level = btn.dataset.level;
+    if (counts[level] != null) btn.dataset.passages = String(counts[level]);
   });
-
-  screen.appendChild(layer);
-});
+})();
 </script>
 
 </body>
