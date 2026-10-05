@@ -1876,61 +1876,49 @@ html{
 </style>
 
 
-<style id="chicken-portiers-2assets-v1">
-#chickenScreen .ebomaff-gates-row{
-  position:absolute; inset:0; z-index:24; pointer-events:none;
-}
-#chickenScreen .ebomaff-gate{
+<style id="chicken-portiers-reference-v1">
+/* Un portier visuel = 2 PNG séparés, assemblés autour du rail. */
+#chickenScreen .ct-gates{
   position:absolute;
-  top:35.2%;
-  width:14%;
-  height:15%;
+  inset:0;
+  z-index:24;
+  pointer-events:none;
+}
+#chickenScreen .ct-gate{
+  position:absolute;
+  top:35.0%;
+  width:16.2%;
+  height:17%;
   transform:translate(-50%,-50%);
   pointer-events:none;
 }
-#chickenScreen .ebomaff-gate.g1{left:40.1%}
-#chickenScreen .ebomaff-gate.g2{left:56.3%}
-#chickenScreen .ebomaff-gate.g3{left:72.5%}
-#chickenScreen .ebomaff-gate.g4{left:88.7%}
+#chickenScreen .ct-gate.g1{left:40.1%}
+#chickenScreen .ct-gate.g2{left:56.3%}
+#chickenScreen .ct-gate.g3{left:72.5%}
+#chickenScreen .ct-gate.g4{left:88.7%}
 
-#chickenScreen .ebomaff-gate .gate-green{
+/* Barrière jaune/noire + feu vert : collée au côté gauche du rail. */
+#chickenScreen .ct-gate .ct-green{
   position:absolute;
-  left:18%;
+  right:53%;
   top:50%;
-  width:48%;
+  width:36%;
   height:auto;
-  transform:translate(-50%,-50%);
+  transform:translateY(-50%);
   object-fit:contain;
   display:block;
 }
-#chickenScreen .ebomaff-gate .gate-red{
+
+/* Signal rond rouge : collé au côté droit du même rail. */
+#chickenScreen .ct-gate .ct-red{
   position:absolute;
-  left:82%;
+  left:53%;
   top:50%;
-  width:34%;
+  width:27%;
   height:auto;
-  transform:translate(-50%,-50%);
+  transform:translateY(-50%);
   object-fit:contain;
   display:block;
-}
-</style>
-
-
-<style id="chicken-portiers-proportions-original-v2">
-#chickenScreen .ebomaff-gate{
-  top:35.2%;
-  width:18%;
-  height:20%;
-}
-#chickenScreen .ebomaff-gate .gate-green{
-  left:20%;
-  top:50%;
-  width:58%;
-}
-#chickenScreen .ebomaff-gate .gate-red{
-  left:75%;
-  top:50%;
-  width:48%;
 }
 </style>
 
@@ -2487,23 +2475,12 @@ html{
             id="chickenScreen"
             class="screen"
         >
-<div class="ebomaff-gates-row" id="ebomaffGatesRow" aria-hidden="true">
-<div class="ebomaff-gate g1">
-  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
-  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
+<div class="ct-gates" id="ctGates" aria-hidden="true">
+<div class="ct-gate g1"><img class="ct-green" src="chickentrain-portier-vert-original.png" alt=""><img class="ct-red" src="chickentrain-signal-rouge-original.png" alt=""></div>
+<div class="ct-gate g2"><img class="ct-green" src="chickentrain-portier-vert-original.png" alt=""><img class="ct-red" src="chickentrain-signal-rouge-original.png" alt=""></div>
+<div class="ct-gate g3"><img class="ct-green" src="chickentrain-portier-vert-original.png" alt=""><img class="ct-red" src="chickentrain-signal-rouge-original.png" alt=""></div>
+<div class="ct-gate g4"><img class="ct-green" src="chickentrain-portier-vert-original.png" alt=""><img class="ct-red" src="chickentrain-signal-rouge-original.png" alt=""></div>
 </div>
-<div class="ebomaff-gate g2">
-  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
-  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
-</div>
-<div class="ebomaff-gate g3">
-  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
-  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
-</div>
-<div class="ebomaff-gate g4">
-  <img class="gate-green" src="chickentrain-portier-vert-original.png" alt="">
-  <img class="gate-red" src="chickentrain-signal-rouge-original.png" alt="">
-</div></div>
 
 
             <div
