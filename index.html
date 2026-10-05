@@ -1881,9 +1881,9 @@ html{
 <!-- TEST VISUEL : 1 seul portier ouvert, aucune animation -->
 
 
-<style id="ct-final-single-gate-v1">
-/* CHICKEN TRAIN — PORTIQUE FINAL DE CALAGE
-   Un seul portique complet visible sur le premier rail. */
+<style id="ct-final-single-gate-v2">
+/* CHICKEN TRAIN — CALAGE PORTIQUE 1
+   Le nouveau PNG fait ~200x360 : dimensionnement par hauteur. */
 #chickenScreen .ct-complete-gates{
     display:block !important;
     visibility:visible !important;
@@ -1896,17 +1896,22 @@ html{
 #chickenScreen .ct-complete-gate{
     display:none !important;
     position:absolute !important;
-    height:auto !important;
+    width:auto !important;
     pointer-events:none !important;
 }
 #chickenScreen .ct-complete-gate.g1{
     display:block !important;
     visibility:visible !important;
     opacity:1 !important;
+
+    /* Premier rail */
     left:40.1% !important;
-    top:35% !important;
-    width:15.5% !important;
-    height:auto !important;
+    top:34.0% !important;
+
+    /* Taille corrigée pour le PNG rapproché */
+    height:15.0% !important;
+    width:auto !important;
+
     transform:translate(-50%,-50%) !important;
     z-index:36 !important;
 }
