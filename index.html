@@ -1875,26 +1875,45 @@ html{
 @keyframes chickenScannerPulse{from{transform:scale(.92);filter:brightness(.9)}to{transform:scale(1.06);filter:brightness(1.35)}}
 </style>
 
-<style id="ct-complete-gate-css">
-/* CHICKEN TRAIN — TEST PROPRE : un seul portique complet sur le premier rail */
+
+
+
+<!-- TEST VISUEL : 1 seul portier ouvert, aucune animation -->
+
+
+<style id="ct-final-single-gate-v1">
+/* CHICKEN TRAIN — PORTIQUE FINAL DE CALAGE
+   Un seul portique complet visible sur le premier rail. */
 #chickenScreen .ct-complete-gates{
-  position:absolute;
-  inset:0;
-  z-index:35;
-  pointer-events:none;
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    position:absolute !important;
+    inset:0 !important;
+    z-index:35 !important;
+    pointer-events:none !important;
 }
 #chickenScreen .ct-complete-gate{
-  position:absolute;
-  height:auto;
-  pointer-events:none;
-  display:none;
+    display:none !important;
+    position:absolute !important;
+    height:auto !important;
+    pointer-events:none !important;
 }
 #chickenScreen .ct-complete-gate.g1{
-  display:block;
-  left:40.1%;
-  top:35%;
-  width:15.5%;
-  transform:translate(-50%,-50%);
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    left:40.1% !important;
+    top:35% !important;
+    width:15.5% !important;
+    height:auto !important;
+    transform:translate(-50%,-50%) !important;
+    z-index:36 !important;
+}
+#chickenScreen .ct-complete-gate.g2,
+#chickenScreen .ct-complete-gate.g3,
+#chickenScreen .ct-complete-gate.g4{
+    display:none !important;
 }
 </style>
 
@@ -2465,8 +2484,7 @@ html{
                     alt="Chicken Train"
                 >
 
-
-                <div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
+<div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
@@ -4568,91 +4586,9 @@ function showChickenEgg(eggNumber){
 </script>
 
 <!-- EBOMAFF: correction visibilité portiers Chicken Train -->
-<style id="ct-portiers-visibles-fix">
-#chickenScreen .game-image-box.chicken-live-box{position:relative!important;overflow:hidden}
-#chickenScreen .ct-complete-gates{display:block!important;position:absolute!important;inset:0!important;z-index:28!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;top:35%!important;width:15.5%!important;height:auto!important;transform:translate(-50%,-50%)!important;z-index:29!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate.g1{left:40.1%!important}
-#chickenScreen .ct-complete-gate.g2{left:56.3%!important}
-#chickenScreen .ct-complete-gate.g3{left:72.5%!important}
-#chickenScreen .ct-complete-gate.g4{left:88.7%!important}
-</style>
 
 
 <!-- TEST 1 PORTIER OUVERT : rapproché du rail, sans animation -->
-<style id="ct-portier-ouvert-rapproche-v1">
-#chickenScreen .ct-complete-gates{display:none!important}
-
-#chickenScreen .ct-one-open-gate{
-  position:absolute;
-  left:40.1%;
-  top:35%;
-  width:16.2%;
-  height:13.5%;
-  transform:translate(-50%,-50%);
-  z-index:35;
-  pointer-events:none;
-}
-
-/* Même PNG complet, mais découpé visuellement en 2 côtés.
-   Cela permet de supprimer le grand vide transparent du PNG. */
-#chickenScreen .ct-one-open-gate .ct-side{
-  position:absolute;
-  top:0;
-  height:100%;
-  overflow:hidden;
-}
-#chickenScreen .ct-one-open-gate .ct-side img{
-  position:absolute;
-  top:0;
-  height:100%;
-  width:auto;
-  max-width:none;
-}
-
-/* Barrière : collée juste à gauche du rail */
-#chickenScreen .ct-one-open-gate .ct-left{
-  left:-15%;
-  width:43%;
-}
-#chickenScreen .ct-one-open-gate .ct-left img{
-  left:-9%;
-}
-
-/* Signal : collé juste à droite du rail */
-#chickenScreen .ct-one-open-gate .ct-right{
-  right:-15%;
-  width:37%;
-}
-#chickenScreen .ct-one-open-gate .ct-right img{
-  right:-4%;
-}
-</style>
-
-
-<style id="ct-portier-bords-rail-v4">
-/* 1 SEUL PORTIER OUVERT — aucune animation */
-#chickenScreen .ct-complete-gates{display:none!important}
-#chickenScreen .ct-one-open-gate{
- left:40.1%!important; top:35%!important;
- width:16.2%!important; height:13.5%!important;
- transform:translate(-50%,-50%)!important;
-}
-/* On garde taille/hauteur. On corrige seulement X :
-   barrière juste hors bord gauche, signal juste hors bord droit. */
-#chickenScreen .ct-one-open-gate .ct-left{
- left:3%!important; width:43%!important;
-}
-#chickenScreen .ct-one-open-gate .ct-left img{left:-9%!important}
-#chickenScreen .ct-one-open-gate .ct-right{
- right:1%!important; width:37%!important;
-}
-#chickenScreen .ct-one-open-gate .ct-right img{right:-4%!important}
-#chickenScreen .ct-one-open-gate,
-#chickenScreen .ct-one-open-gate *{
- animation:none!important; transition:none!important;
-}
-</style>
 
 </body>
 </html>
@@ -4991,21 +4927,3 @@ function showChickenEgg(eggNumber){
 
 
 <!-- EBOMAFF Chicken Train: portiques ancrés à chaque rail -->
-<style id="ct-rail-relative-gates-v1">
-#chickenScreen .ct-one-open-gate,#chickenScreen .ct-complete-gates{display:none!important}
-#chickenScreen .game-image-box.chicken-live-box{position:relative!important}
-#chickenScreen .ct-rail-gates{position:absolute!important;inset:0!important;z-index:35!important;pointer-events:none!important}
-#chickenScreen .ct-rail-anchor{position:absolute!important;top:35%!important;width:16.2%!important;height:13.5%!important;transform:translate(-50%,-50%)!important;pointer-events:none!important}
-#chickenScreen .ct-rail-anchor.rail-1{left:40.1%!important}
-#chickenScreen .ct-rail-anchor.rail-2{left:56.3%!important}
-#chickenScreen .ct-rail-anchor.rail-3{left:72.5%!important}
-#chickenScreen .ct-rail-anchor.rail-4{left:88.7%!important}
-#chickenScreen .ct-rail-anchor .ct-side{position:absolute!important;top:0!important;height:100%!important;overflow:hidden!important}
-#chickenScreen .ct-rail-anchor .ct-side img{position:absolute!important;top:0!important;height:100%!important;width:auto!important;max-width:none!important}
-/* Chaque côté est maintenant relatif à SON rail, jamais à la page. */
-#chickenScreen .ct-rail-anchor .ct-left{left:-15%!important;width:43%!important}
-#chickenScreen .ct-rail-anchor .ct-left img{left:-9%!important}
-#chickenScreen .ct-rail-anchor .ct-right{right:-15%!important;width:37%!important}
-#chickenScreen .ct-rail-anchor .ct-right img{right:-4%!important}
-#chickenScreen .ct-rail-anchor,#chickenScreen .ct-rail-anchor *{animation:none!important;transition:none!important}
-</style>
