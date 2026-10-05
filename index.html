@@ -2465,13 +2465,13 @@ html{
                     class="game-image"
                     alt="Chicken Train"
                 >
+<div class="ct-original-gates" aria-hidden="true">
+  <div class="ct-original-gate g1"><img class="ct-gate-left" src="/chickentrain-portier-vert-original.png" alt=""><img class="ct-gate-right" src="/chickentrain-signal-rouge-original.png" alt=""></div>
+  <div class="ct-original-gate g2"><img class="ct-gate-left" src="/chickentrain-portier-vert-original.png" alt=""><img class="ct-gate-right" src="/chickentrain-signal-rouge-original.png" alt=""></div>
+  <div class="ct-original-gate g3"><img class="ct-gate-left" src="/chickentrain-portier-vert-original.png" alt=""><img class="ct-gate-right" src="/chickentrain-signal-rouge-original.png" alt=""></div>
+  <div class="ct-original-gate g4"><img class="ct-gate-left" src="/chickentrain-portier-vert-original.png" alt=""><img class="ct-gate-right" src="/chickentrain-signal-rouge-original.png" alt=""></div>
+</div>
 
-                <div class="ct-articulated-gates" id="ctArticulatedGates" aria-hidden="true">
-                  <div class="ct-gate g1"><div class="ct-left-post"><span class="ct-light"></span><span class="ct-hinge"></span><span class="ct-arm"></span></div><div class="ct-right-signal"><span class="ct-ring"></span><span class="ct-legs"></span></div></div>
-                  <div class="ct-gate g2"><div class="ct-left-post"><span class="ct-light"></span><span class="ct-hinge"></span><span class="ct-arm"></span></div><div class="ct-right-signal"><span class="ct-ring"></span><span class="ct-legs"></span></div></div>
-                  <div class="ct-gate g3"><div class="ct-left-post"><span class="ct-light"></span><span class="ct-hinge"></span><span class="ct-arm"></span></div><div class="ct-right-signal"><span class="ct-ring"></span><span class="ct-legs"></span></div></div>
-                  <div class="ct-gate g4"><div class="ct-left-post"><span class="ct-light"></span><span class="ct-hinge"></span><span class="ct-arm"></span></div><div class="ct-right-signal"><span class="ct-ring"></span><span class="ct-legs"></span></div></div>
-                </div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
@@ -4573,29 +4573,25 @@ function showChickenEgg(eggNumber){
 </script>
 
 
-<style id="chicken-portiers-articules-v103">
+<style id="ct-original-portier-v104">
 #chickenScreen .ct-complete-gates,#chickenScreen .ct-complete-gate{display:none!important}
-#chickenScreen .ct-articulated-gates{position:absolute;inset:0;z-index:24;pointer-events:none}
-#chickenScreen .ct-gate{position:absolute;top:35%;width:16.2%;height:13.2%;transform:translate(-50%,-50%)}
-#chickenScreen .ct-gate.g1{left:40.1%} #chickenScreen .ct-gate.g2{left:56.3%}
-#chickenScreen .ct-gate.g3{left:72.5%} #chickenScreen .ct-gate.g4{left:88.7%}
-#chickenScreen .ct-left-post{position:absolute;left:7%;bottom:7%;width:24%;height:48%;border:2px solid #34444b;border-radius:4px 4px 2px 2px;background:linear-gradient(90deg,#59666a 0 18%,#929b98 19% 72%,#4b585d 73% 100%);box-shadow:0 2px 2px rgba(0,0,0,.35)}
-#chickenScreen .ct-light{position:absolute;left:50%;bottom:16%;width:48%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#9dff20;border:2px solid #354b35;box-shadow:inset 0 0 3px #fff,0 0 4px rgba(113,255,34,.9)}
-#chickenScreen .ct-hinge{position:absolute;left:50%;top:-8%;width:62%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:3px;background:#4e5d61;border:2px solid #34444b;z-index:4}
-#chickenScreen .ct-arm{position:absolute;left:50%;top:-4%;width:54%;height:185%;transform:translate(-50%,-100%) rotate(0deg);transform-origin:50% 100%;border:2px solid #303b3f;border-radius:3px 3px 1px 1px;background:repeating-linear-gradient(145deg,#ffd92d 0 15%,#ffd92d 15% 28%,#111 28% 43%,#111 43% 56%);box-shadow:0 2px 2px rgba(0,0,0,.30);transition:transform .28s cubic-bezier(.3,.05,.25,1);z-index:3}
-#chickenScreen .ct-right-signal{position:absolute;right:4%;bottom:5%;width:25%;height:56%}
-#chickenScreen .ct-ring{position:absolute;left:50%;top:0;width:78%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#f0d7ad;border:3px solid #3b4b51;box-shadow:inset 0 0 0 3px #ef5545,0 1px 2px rgba(0,0,0,.35)}
-#chickenScreen .ct-ring::after{content:"";position:absolute;inset:27%;border-radius:50%;background:#f5e4c5;border:2px solid #45545a}
-#chickenScreen .ct-legs{position:absolute;left:50%;top:35%;width:62%;height:65%;transform:translateX(-50%);border-left:4px solid #46565b;border-right:4px solid #46565b}
-#chickenScreen .ct-legs::after{content:"";position:absolute;left:50%;top:0;width:2px;height:100%;transform:translateX(-50%);background:#9ba29e}
-#chickenScreen .ct-gate.closed .ct-arm{transform:translate(-50%,-100%) rotate(90deg)}
-#chickenScreen .ct-gate.closed .ct-light{background:#ffd42b;box-shadow:inset 0 0 3px #fff,0 0 5px rgba(255,207,35,.95)}
+#chickenScreen .ct-original-gates{position:absolute;inset:0;z-index:24;pointer-events:none}
+#chickenScreen .ct-original-gate{position:absolute;top:35%;width:15.8%;height:15.8%;transform:translate(-50%,-50%)}
+#chickenScreen .ct-original-gate.g1{left:40.1%}
+#chickenScreen .ct-original-gate.g2{left:56.3%}
+#chickenScreen .ct-original-gate.g3{left:72.5%}
+#chickenScreen .ct-original-gate.g4{left:88.7%}
+/* Les deux PNG originaux sont rapprochés exactement autour du rail. */
+#chickenScreen .ct-gate-left{position:absolute;left:-4%;top:0;width:47%;height:auto;object-fit:contain;transform-origin:72% 78%;transition:transform .30s ease}
+#chickenScreen .ct-gate-right{position:absolute;right:-4%;top:15%;width:40%;height:auto;object-fit:contain}
+/* Fermeture : seule la barrière gauche pivote vers le rail. */
+#chickenScreen .ct-original-gate.closed .ct-gate-left{transform:rotate(90deg) translate(4%,-3%)}
 </style>
-<script id="chicken-portiers-articules-v103-script">
+<script id="ct-original-portier-v104-script">
 (function(){
+ const gates=[...document.querySelectorAll('#chickenScreen .ct-original-gate')];
  const btn=document.getElementById('chickenPredict');
- const gates=[...document.querySelectorAll('#chickenScreen .ct-gate')];
- if(!btn||!gates.length)return;
+ if(!gates.length||!btn)return;
  const openAll=()=>gates.forEach(g=>g.classList.remove('closed'));
  openAll();
  btn.addEventListener('click',function(){
