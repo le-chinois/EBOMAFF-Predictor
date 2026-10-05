@@ -4648,22 +4648,21 @@ function showChickenEgg(eggNumber){
 </style>
 
 
-<style id="ct-portier-bords-rail-v4">
-/* 1 SEUL PORTIER OUVERT — aucune animation */
+<style id="ct-portier-bords-rail-v5">
+/* CHICKEN TRAIN — premier portier calé sur la référence originale */
 #chickenScreen .ct-complete-gates{display:none!important}
 #chickenScreen .ct-one-open-gate{
  left:40.1%!important; top:35%!important;
- width:16.2%!important; height:13.5%!important;
+ width:13.0%!important; height:9.0%!important;
  transform:translate(-50%,-50%)!important;
 }
-/* On garde taille/hauteur. On corrige seulement X :
-   barrière juste hors bord gauche, signal juste hors bord droit. */
+/* Les deux moitiés restent immédiatement de part et d'autre du rail. */
 #chickenScreen .ct-one-open-gate .ct-left{
- left:0%!important; width:43%!important;
+ left:-4%!important; width:43%!important;
 }
 #chickenScreen .ct-one-open-gate .ct-left img{left:-9%!important}
 #chickenScreen .ct-one-open-gate .ct-right{
- right:-40%!important; width:37%!important;
+ right:-4%!important; width:37%!important;
 }
 #chickenScreen .ct-one-open-gate .ct-right img{right:-4%!important}
 #chickenScreen .ct-one-open-gate,
