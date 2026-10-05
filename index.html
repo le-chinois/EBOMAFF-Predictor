@@ -1884,28 +1884,19 @@ html{
 #chickenScreen .ct-complete-gate.g4{left:88.7%}
 </style>
 
-<style id="ct-portier-rapproche-final">
-/* Correction 70% -> rapprochement horizontal uniquement */
-#chickenScreen .ct-complete-gate{
-  transform:translate(-50%,-50%) scaleX(.82);
-  transform-origin:center center;
-}
-</style>
 
-
-
-<style id="ct-portiers-alignes-reference">
+<style id="ct-portier-asset-resserre">
 #chickenScreen .ct-complete-gate{
   top:35%;
   width:15.5%;
   height:auto;
-  transform:translate(-50%,-50%) scaleX(.82);
+  transform:translate(-50%,-50%);
   transform-origin:center center;
 }
-#chickenScreen .ct-complete-gate.g1{left:42.15%}
-#chickenScreen .ct-complete-gate.g2{left:58.35%}
-#chickenScreen .ct-complete-gate.g3{left:74.55%}
-#chickenScreen .ct-complete-gate.g4{left:90.75%}
+#chickenScreen .ct-complete-gate.g1{left:40.1%}
+#chickenScreen .ct-complete-gate.g2{left:56.3%}
+#chickenScreen .ct-complete-gate.g3{left:72.5%}
+#chickenScreen .ct-complete-gate.g4{left:88.7%}
 </style>
 
 </head>
@@ -4570,21 +4561,6 @@ function showChickenEgg(eggNumber){
       "aria-pressed",
       button.classList.contains("active") ? "true" : "false"
     );
-  });
-})();
-</script>
-
-
-<script id="ct-passage-counts">
-(() => {
-  const counts = { bas:19, moyen:14, grand:18 };
-  window.CHICKEN_TRAIN_PASSAGES = Object.assign(
-    {}, window.CHICKEN_TRAIN_PASSAGES || {}, counts
-  );
-
-  document.querySelectorAll('#chickenScreen .chicken-level-btn').forEach(btn => {
-    const level = btn.dataset.level;
-    if (counts[level] != null) btn.dataset.passages = String(counts[level]);
   });
 })();
 </script>
