@@ -1876,34 +1876,25 @@ html{
 </style>
 
 <style id="ct-complete-gate-css">
-#chickenScreen .ct-complete-gates{position:absolute;inset:0;z-index:24;pointer-events:none}
-#chickenScreen .ct-complete-gate{position:absolute;top:35%;width:15.5%;height:auto;transform:translate(-50%,-50%);pointer-events:none}
-#chickenScreen .ct-complete-gate.g1{left:40.1%}
-#chickenScreen .ct-complete-gate.g2{left:56.3%}
-#chickenScreen .ct-complete-gate.g3{left:72.5%}
-#chickenScreen .ct-complete-gate.g4{left:88.7%}
-</style>
-
-
-
-
-<!-- TEST VISUEL : 1 seul portier ouvert, aucune animation -->
-<style id="ct-test-un-portier-ouvert">
-#chickenScreen .ct-complete-gate.g2,
-#chickenScreen .ct-complete-gate.g3,
-#chickenScreen .ct-complete-gate.g4{
-  display:none !important;
+/* CHICKEN TRAIN — TEST PROPRE : un seul portique complet sur le premier rail */
+#chickenScreen .ct-complete-gates{
+  position:absolute;
+  inset:0;
+  z-index:35;
+  pointer-events:none;
+}
+#chickenScreen .ct-complete-gate{
+  position:absolute;
+  height:auto;
+  pointer-events:none;
+  display:none;
 }
 #chickenScreen .ct-complete-gate.g1{
-  display:block !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  left:40.1% !important;
-  top:35% !important;
-  width:24% !important;
-  height:auto !important;
-  transform:translate(-50%,-50%) !important;
-  z-index:35 !important;
+  display:block;
+  left:40.1%;
+  top:35%;
+  width:15.5%;
+  transform:translate(-50%,-50%);
 }
 </style>
 
@@ -2473,13 +2464,6 @@ html{
                     class="game-image"
                     alt="Chicken Train"
                 >
-
-<div class="ct-rail-gates" aria-hidden="true">
-  <div class="ct-rail-anchor rail-1"><span class="ct-side ct-left"><img src="/chickentrain-portier-complet-original.png" alt=""></span><span class="ct-side ct-right"><img src="/chickentrain-portier-complet-original.png" alt=""></span></div>
-  <div class="ct-rail-anchor rail-2"><span class="ct-side ct-left"><img src="/chickentrain-portier-complet-original.png" alt=""></span><span class="ct-side ct-right"><img src="/chickentrain-portier-complet-original.png" alt=""></span></div>
-  <div class="ct-rail-anchor rail-3"><span class="ct-side ct-left"><img src="/chickentrain-portier-complet-original.png" alt=""></span><span class="ct-side ct-right"><img src="/chickentrain-portier-complet-original.png" alt=""></span></div>
-  <div class="ct-rail-anchor rail-4"><span class="ct-side ct-left"><img src="/chickentrain-portier-complet-original.png" alt=""></span><span class="ct-side ct-right"><img src="/chickentrain-portier-complet-original.png" alt=""></span></div>
-</div>
 
 
                 <div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
