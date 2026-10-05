@@ -2474,6 +2474,16 @@ html{
                     alt="Chicken Train"
                 >
 
+<div class="ct-one-open-gate" aria-hidden="true">
+  <span class="ct-side ct-left">
+    <img src="/chickentrain-portier-complet-original.png" alt="">
+  </span>
+  <span class="ct-side ct-right">
+    <img src="/chickentrain-portier-complet-original.png" alt="">
+  </span>
+</div>
+
+
                 <div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
@@ -4584,6 +4594,57 @@ function showChickenEgg(eggNumber){
 #chickenScreen .ct-complete-gate.g2{left:56.3%!important}
 #chickenScreen .ct-complete-gate.g3{left:72.5%!important}
 #chickenScreen .ct-complete-gate.g4{left:88.7%!important}
+</style>
+
+
+<!-- TEST 1 PORTIER OUVERT : rapproché du rail, sans animation -->
+<style id="ct-portier-ouvert-rapproche-v1">
+#chickenScreen .ct-complete-gates{display:none!important}
+
+#chickenScreen .ct-one-open-gate{
+  position:absolute;
+  left:40.1%;
+  top:35%;
+  width:16.2%;
+  height:13.5%;
+  transform:translate(-50%,-50%);
+  z-index:35;
+  pointer-events:none;
+}
+
+/* Même PNG complet, mais découpé visuellement en 2 côtés.
+   Cela permet de supprimer le grand vide transparent du PNG. */
+#chickenScreen .ct-one-open-gate .ct-side{
+  position:absolute;
+  top:0;
+  height:100%;
+  overflow:hidden;
+}
+#chickenScreen .ct-one-open-gate .ct-side img{
+  position:absolute;
+  top:0;
+  height:100%;
+  width:auto;
+  max-width:none;
+}
+
+/* Barrière : collée juste à gauche du rail */
+#chickenScreen .ct-one-open-gate .ct-left{
+  left:-15%;
+  width:43%;
+}
+#chickenScreen .ct-one-open-gate .ct-left img{
+  left:-9%;
+}
+
+/* Signal : collé juste à droite du rail */
+#chickenScreen .ct-one-open-gate .ct-right{
+  right:-15%;
+  width:37%;
+}
+#chickenScreen .ct-one-open-gate .ct-right img{
+  right:-4%;
+}
 </style>
 
 </body>
