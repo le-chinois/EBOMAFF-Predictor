@@ -1886,6 +1886,28 @@ html{
 
 
 
+
+<style id="ct-portier-example-reference-v1">
+#chickenScreen .ct-complete-gates.ct-example-one{
+  position:absolute;
+  inset:0;
+  z-index:24;
+  pointer-events:none;
+}
+#chickenScreen .ct-complete-gates.ct-example-one .ct-complete-gate.g1{
+  display:block !important;
+  position:absolute !important;
+  left:40.1% !important;
+  top:35% !important;
+  width:10.4% !important;
+  height:13.8% !important;
+  object-fit:fill !important;
+  transform:translate(-50%,-50%) !important;
+  transform-origin:center center !important;
+  pointer-events:none !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -2453,7 +2475,9 @@ html{
                     alt="Chicken Train"
                 >
 
-                <div class="ct-complete-gates" aria-hidden="true"><img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g2" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g3" src="/chickentrain-portier-complet-original.png" alt=""><img class="ct-complete-gate g4" src="/chickentrain-portier-complet-original.png" alt=""></div>
+                <div class="ct-complete-gates ct-example-one" aria-hidden="true">
+<img class="ct-complete-gate g1" src="/chickentrain-portier-complet-original.png" alt="">
+</div>
 
                 <!-- CHICKEN TRAIN — éléments transparents dynamiques -->
                 <img id="chickenTrainOriginal" class="chicken-train-original" src="/chickentrain-train.png" alt="" aria-hidden="true">
@@ -4554,17 +4578,6 @@ function showChickenEgg(eggNumber){
 })();
 </script>
 
-<!-- EBOMAFF: correction visibilité portiers Chicken Train -->
-<style id="ct-portiers-visibles-fix">
-#chickenScreen .game-image-box.chicken-live-box{position:relative!important;overflow:hidden}
-#chickenScreen .ct-complete-gates{display:block!important;position:absolute!important;inset:0!important;z-index:28!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate{display:block!important;visibility:visible!important;opacity:1!important;position:absolute!important;top:35%!important;width:15.5%!important;height:auto!important;transform:translate(-50%,-50%)!important;z-index:29!important;pointer-events:none!important}
-#chickenScreen .ct-complete-gate.g1{left:40.1%!important}
-#chickenScreen .ct-complete-gate.g2{left:56.3%!important}
-#chickenScreen .ct-complete-gate.g3{left:72.5%!important}
-#chickenScreen .ct-complete-gate.g4{left:88.7%!important}
-</style>
-
 </body>
 </html>
 
@@ -4899,4 +4912,3 @@ function showChickenEgg(eggNumber){
 #chickenScreen .chicken-scan-ring:after{content:"";position:absolute;inset:-2px;border-radius:50%;border-top:2px solid #b8f5ff;border-right:2px solid transparent;border-bottom:2px solid transparent;border-left:2px solid transparent}
 @keyframes chickenScanSpin{to{transform:rotate(360deg)}}
 </style>
-
