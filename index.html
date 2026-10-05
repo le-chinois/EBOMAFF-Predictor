@@ -4648,21 +4648,22 @@ function showChickenEgg(eggNumber){
 </style>
 
 
-<style id="ct-portier-bords-rail-v5">
-/* CHICKEN TRAIN — premier portier calé sur la référence originale */
+<style id="ct-portier-bords-rail-v4">
+/* 1 SEUL PORTIER OUVERT — aucune animation */
 #chickenScreen .ct-complete-gates{display:none!important}
 #chickenScreen .ct-one-open-gate{
  left:40.1%!important; top:35%!important;
- width:13.0%!important; height:9.0%!important;
+ width:16.2%!important; height:13.5%!important;
  transform:translate(-50%,-50%)!important;
 }
-/* Les deux moitiés restent immédiatement de part et d'autre du rail. */
+/* On garde taille/hauteur. On corrige seulement X :
+   barrière juste hors bord gauche, signal juste hors bord droit. */
 #chickenScreen .ct-one-open-gate .ct-left{
- left:-4%!important; width:43%!important;
+ left:3%!important; width:43%!important;
 }
 #chickenScreen .ct-one-open-gate .ct-left img{left:-9%!important}
 #chickenScreen .ct-one-open-gate .ct-right{
- right:-4%!important; width:37%!important;
+ right:1%!important; width:37%!important;
 }
 #chickenScreen .ct-one-open-gate .ct-right img{right:-4%!important}
 #chickenScreen .ct-one-open-gate,
@@ -5006,3 +5007,4 @@ function showChickenEgg(eggNumber){
 @keyframes chickenScanSpin{to{transform:rotate(360deg)}}
 </style>
 
+\n\n<!-- CHICKEN TRAIN — placement du premier portier par JavaScript -->\n<script id="ct-portier-js-placement-v1">\n(function(){\n  function placeChickenGate(){\n    const screen=document.querySelector('#chickenScreen .chicken-live-box');\n    const gate=document.querySelector('#chickenScreen .ct-one-open-gate');\n    if(!screen||!gate) return;\n\n    const box=screen.getBoundingClientRect();\n    if(!box.width||!box.height) return;\n\n    /* Premier rail : centre mesuré sur le fond Chicken Train. */\n    const railCenter=box.width*0.401;\n    const railWidth=box.width*0.086;\n    const gateHeight=box.height*0.135;\n    const sideWidth=box.width*0.048;\n    const gap=box.width*0.004;\n\n    gate.style.setProperty('left', railCenter+'px','important');\n    gate.style.setProperty('top',(box.height*0.35)+'px','important');\n    gate.style.setProperty('width',railWidth+'px','important');\n    gate.style.setProperty('height',gateHeight+'px','important');\n    gate.style.setProperty('transform','translate(-50%,-50%)','important');\n\n    const left=gate.querySelector('.ct-left');\n    const right=gate.querySelector('.ct-right');\n    if(left){\n      left.style.setProperty('left',(-sideWidth-gap)+'px','important');\n      left.style.setProperty('width',sideWidth+'px','important');\n      const img=left.querySelector('img');\n      if(img){img.style.setProperty('left','0px','important');img.style.setProperty('height','100%','important');}\n    }\n    if(right){\n      right.style.setProperty('right',(-sideWidth-gap)+'px','important');\n      right.style.setProperty('width',sideWidth+'px','important');\n      const img=right.querySelector('img');\n      if(img){img.style.setProperty('right','0px','important');img.style.setProperty('height','100%','important');}\n    }\n  }\n  let raf;\n  function schedule(){cancelAnimationFrame(raf);raf=requestAnimationFrame(placeChickenGate);}\n  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',schedule); else schedule();\n  window.addEventListener('load',schedule);\n  window.addEventListener('resize',schedule);\n  if(window.ResizeObserver){\n    const target=document.querySelector('#chickenScreen .chicken-live-box');\n    if(target) new ResizeObserver(schedule).observe(target);\n  }\n})();\n</script>\n
