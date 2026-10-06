@@ -4944,6 +4944,50 @@ function showChickenEgg(eggNumber){
 
 
 
+
+
+<style id="rocketx-v96-restored">
+/* =========================================
+   ROCKET X V96 — PNG TRANSPARENT + CASE DU FOND
+========================================= */
+#rocketXScreen .rocketx-stage{
+  position:relative; overflow:hidden;
+}
+#rocketXScreen .rocketx-bg{
+  display:block; width:100%; height:100%; object-fit:cover;
+}
+#rocketXScreen .rocketx-personnage{
+  position:absolute; z-index:4; left:50%; top:56%;
+  width:58%; height:auto; transform:translate(-50%,-50%);
+  transform-origin:50% 62%; pointer-events:none;
+}
+#rocketXScreen .rocketx-personnage.rocketx-animating{
+  animation:rocketXHoverV96 .32s ease-in-out infinite alternate;
+}
+@keyframes rocketXHoverV96{
+  from{transform:translate(-50%,-50%) translateY(2px) rotate(-.25deg) scale(1)}
+  to{transform:translate(-50%,-50%) translateY(-5px) rotate(.25deg) scale(1.01)}
+}
+/* Aucun cadre HTML : le cadre orange est déjà dessiné dans rocketx-bg.png. */
+#rocketXScreen .rocketx-multiplier-box{display:contents !important;}
+#rocketXScreen .rocketx-value{
+  position:absolute !important; z-index:6 !important;
+  left:7.0% !important; top:10.2% !important;
+  width:34.0% !important; height:10.8% !important;
+  min-width:0 !important;
+  display:flex !important; align-items:center !important; justify-content:center !important;
+  border:0 !important; outline:0 !important; box-shadow:none !important;
+  background:transparent !important;
+  color:#ff9a36 !important; font-size:clamp(26px,6vw,40px) !important; font-weight:900 !important;
+  line-height:1 !important; letter-spacing:.01em !important; text-shadow:0 2px 6px rgba(0,0,0,.25) !important;
+  opacity:0; transform:none !important; transition:opacity .14s ease;
+}
+#rocketXScreen .rocketx-value.visible{opacity:1 !important; transform:none !important;}
+@media (prefers-reduced-motion:reduce){
+ #rocketXScreen .rocketx-personnage.rocketx-animating{animation:none}
+}
+</style>
+
 <!-- LIMBO V64 — contrôleur démo indépendant -->
 <script id="limbo-v64-demo-controller">
 (function(){
