@@ -1975,6 +1975,42 @@ html{
 }
 @keyframes mines1winSpin{to{transform:rotate(360deg)}}
 </style>
+
+<style id="luckyjet-multiplier-white-horizontal">
+/* Lucky Jet — multiplicateur final blanc, droit et horizontal */
+#luckyjetScreen .multiplier,
+#luckyjetScreen .luckyjet-multiplier,
+#luckyjetScreen #luckyjetMultiplier,
+#luckyjetScreen #luckyMultiplier,
+#luckyjetScreen [class*="multiplier"] {
+    color: #fff !important;
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    rotate: 0deg !important;
+    font-style: normal !important;
+    text-decoration: none !important;
+    text-shadow:
+        0 0 5px rgba(255,255,255,.95),
+        0 0 12px rgba(203,184,255,.72) !important;
+}
+#luckyjetScreen .multiplier::before,
+#luckyjetScreen .multiplier::after,
+#luckyjetScreen .luckyjet-multiplier::before,
+#luckyjetScreen .luckyjet-multiplier::after,
+#luckyjetScreen #luckyjetMultiplier::before,
+#luckyjetScreen #luckyjetMultiplier::after,
+#luckyjetScreen #luckyMultiplier::before,
+#luckyjetScreen #luckyMultiplier::after {
+    content: none !important;
+    display: none !important;
+}
+</style>
+
 </head>
 
 <body>
