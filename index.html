@@ -1881,24 +1881,24 @@ html{
 <!-- TEST VISUEL : 1 seul portier ouvert, aucune animation -->
 
 
-<style id="ct-gate-two-parts-v3">
-/* CHICKEN TRAIN — TEST PREMIER RAIL
-   Les deux images appartiennent au même conteneur centré sur le rail. */
+<style id="ct-gate-original-reference-v4">
+/* CHICKEN TRAIN — CALAGE D'APRÈS LA CAPTURE ORIGINALE
+   Un seul portique test autour du premier rail. */
 #chickenScreen .ct-gate-test-v3{
     position:absolute !important;
-    left:40.1% !important;     /* centre du premier rail */
+    left:40.1% !important;       /* axe du premier rail */
     top:34.0% !important;
-    width:15.0% !important;    /* zone invisible autour du rail */
-    height:16.0% !important;
+    width:10.4% !important;      /* zone resserrée autour du rail */
+    height:15.2% !important;
     transform:translate(-50%,-50%) !important;
     z-index:36 !important;
     pointer-events:none !important;
 }
 
-/* Partie jaune/noire + feu vert : côté gauche du rail */
+/* Original : panneau jaune/vert collé juste à gauche du rail */
 #chickenScreen .ct-gate-left-v3{
     position:absolute !important;
-    right:55% !important;
+    right:52% !important;
     bottom:0 !important;
     height:100% !important;
     width:auto !important;
@@ -1906,10 +1906,10 @@ html{
     object-fit:contain !important;
 }
 
-/* Partie rouge/grise : côté droit du rail */
+/* Original : cercle rouge/mécanisme juste à droite du rail */
 #chickenScreen .ct-gate-right-v3{
     position:absolute !important;
-    left:55% !important;
+    left:52% !important;
     bottom:0 !important;
     height:72% !important;
     width:auto !important;
