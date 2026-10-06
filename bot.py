@@ -86,6 +86,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 
+def open_game_keyboard(label, game_key):
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(
+                f"🎮 OUVRIR {label}",
+                url=f"{WEB_APP_URL}/?game={game_key}"
+            )
+        ]
+    ])
+
+
 # ==========================================
 # TELEGRAM - CLIC SUR UN JEU
 # ==========================================
@@ -107,7 +118,27 @@ async def button_click(
             "🎮 Nouveau jeu disponible dans EBOMAFF Predictor.\n"
             "Bombes disponibles : 2 / 3 / 5 / 7.\n\n"
             "⚠️ Les positions affichées sont une simulation visuelle "
-            "et ne garantissent pas le résultat réel du jeu."
+            "et ne garantissent pas le résultat réel du jeu.",
+            reply_markup=open_game_keyboard("1WIN × MINES", "mines1win")
+        )
+        return
+
+    direct_games = {
+        "aviator": ("✈️ AVIATOR", "AVIATOR", "aviator"),
+        "crash": ("💥 CRASH", "CRASH", "crash"),
+        "rocketqueen": ("👑 ROCKET QUEEN", "ROCKET QUEEN", "rocketQueen"),
+        "mines": ("💣 MINES CLASSIC", "MINES CLASSIC", "mines"),
+        "limbo": ("📈 LIMBO", "LIMBO", "limbo"),
+        "penalty": ("⚽ PENALTY", "PENALTY", "penalty"),
+        "rocketx": ("🚀 ROCKET X", "ROCKET X", "rocketX"),
+        "speedcash": ("⚡ SPEED & CASH", "SPEED & CASH", "speed"),
+    }
+
+    if jeu in direct_games:
+        heading, label, game_key = direct_games[jeu]
+        await query.message.reply_text(
+            heading + "\n\n🎮 Ouvre directement ce jeu dans EBOMAFF Predictor.",
+            reply_markup=open_game_keyboard(label, game_key)
         )
         return
 
@@ -120,14 +151,7 @@ async def button_click(
             "📊 Envoie maintenant au moins "
             "5 coefficients récents.\n"
             "Exemple : 1.24 2.15 1.08 3.42 1.67",
-            reply_markup=InlineKeyboardMarkup([
-                [
-                    InlineKeyboardButton(
-                        "🚀 OUVRIR LUCKY JET",
-                        url=f"{WEB_APP_URL}/?game=lucky"
-                    )
-                ]
-            ])
+            reply_markup=open_game_keyboard("LUCKY JET", "lucky")
         )
 
         context.user_data["waiting_luckyjet"] = True
