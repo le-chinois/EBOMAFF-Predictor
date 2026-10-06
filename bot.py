@@ -13,6 +13,7 @@ from telegram.ext import (
 )
 
 TOKEN = os.getenv("BOT_TOKEN")
+WEB_APP_URL = os.getenv("WEB_APP_URL", "https://ebomaff-predictor.onrender.com")
 
 
 # ==========================================
@@ -118,7 +119,15 @@ async def button_click(
             "⏳ Préparation du signal...\n\n"
             "📊 Envoie maintenant au moins "
             "5 coefficients récents.\n"
-            "Exemple : 1.24 2.15 1.08 3.42 1.67"
+            "Exemple : 1.24 2.15 1.08 3.42 1.67",
+            reply_markup=InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton(
+                        "🚀 OUVRIR LUCKY JET",
+                        url=f"{WEB_APP_URL}/?game=lucky"
+                    )
+                ]
+            ])
         )
 
         context.user_data["waiting_luckyjet"] = True

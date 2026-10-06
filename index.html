@@ -2821,6 +2821,32 @@ document
 });
 
 
+
+/* =========================================
+   OUVERTURE DIRECTE DEPUIS TELEGRAM
+   Exemple : /?game=lucky
+========================================= */
+(function(){
+    const requestedGame =
+        new URLSearchParams(window.location.search).get("game");
+
+    if(!requestedGame){
+        return;
+    }
+
+    const targetButton =
+        document.querySelector(
+            '.game-select[data-game="' +
+            CSS.escape(requestedGame) +
+            '"]'
+        );
+
+    if(targetButton){
+        targetButton.click();
+    }
+})();
+
+
 /* =========================================
    MINES : SÉLECTION DU NOMBRE DE PIÈGES
 ========================================= */
