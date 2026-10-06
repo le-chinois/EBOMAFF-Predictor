@@ -68,8 +68,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 callback_data="speedcash"
             ),
             InlineKeyboardButton(
-                "🐔 Chicken Train",
-                callback_data="chickentrain"
+                "💣 1WIN × MINES",
+                callback_data="mines1win"
             ),
         ],
     ]
@@ -99,6 +99,16 @@ async def button_click(
     await query.answer()
 
     jeu = query.data
+
+    if jeu == "mines1win":
+        await query.message.reply_text(
+            "💣 1WIN × MINES\n\n"
+            "🎮 Nouveau jeu disponible dans EBOMAFF Predictor.\n"
+            "Bombes disponibles : 2 / 3 / 5 / 7.\n\n"
+            "⚠️ Les positions affichées sont une simulation visuelle "
+            "et ne garantissent pas le résultat réel du jeu."
+        )
+        return
 
     if jeu == "luckyjet":
 
@@ -292,6 +302,9 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/rocketqueen-personnage.png": "rocketqueen-personnage.png",
             "/rocketqueen-flamme.png": "rocketqueen-flamme.png",
             "/mines.png": "mines.png",
+            "/1win-mines-bg.png": "1win-mines-bg.png",
+            "/1win-mines-star.png": "1win-mines-star.png",
+            "/1win-mines-bomb.png": "1win-mines-bomb.png",
             "/limbo.png": "limbo.png",
             "/penalty.png": "penalty.png",
             "/penalty-bg.png": "penalty-bg.png",
