@@ -303,6 +303,7 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/rocketqueen-flamme.png": "rocketqueen-flamme.png",
             "/mines.png": "mines.png",
             "/1win-mines-bg.png": "1win-mines-bg.png",
+            "/1win-mines-bg-vide.png": "1win-mines-bg-vide.png",
             "/1win-mines-star.png": "1win-mines-star.png",
             "/1win-mines-bomb.png": "1win-mines-bomb.png",
             "/limbo.png": "limbo.png",
