@@ -410,11 +410,13 @@ body{
 
 /* ===== STATUT MOTEUR ===== */
 
+/* Masquer les messages sous les 10 jeux, tout en conservant l'espace vide. */
 .engine-status{
     margin:18px 7px 16px;
     color:#a8aaba;
     font-size:14px;
     line-height:1.5;
+    visibility:hidden;
 }
 
 /* ===== BOUTONS PRÉDIRE ===== */
@@ -2011,6 +2013,27 @@ html{
 }
 </style>
 
+
+<style>
+/* Bandeau code promo identique sur les dix jeux. Les statuts internes restent accessibles au JS. */
+.engine-status{display:none!important;}
+.ebomaff-promo-banner{display:flex;align-items:center;justify-content:center;gap:12px;min-height:54px;margin:16px 0 12px;padding:7px 10px;border:1px solid #29324e;border-radius:17px;background:#101728;color:#fff;font-weight:800;}
+.ebomaff-promo-gift{font-size:29px;line-height:1;}
+.ebomaff-promo-label{font-size:clamp(12px,3.6vw,16px);white-space:nowrap;}
+.ebomaff-promo-code{font-size:clamp(14px,4vw,19px);font-weight:900;color:var(--ebomaff-promo-color,#d747ff);border:2px solid var(--ebomaff-promo-color,#9235ff);border-radius:999px;padding:6px 15px;white-space:nowrap;}
+/* Couleur du code promo adaptée au thème de chaque jeu, sans modifier les animations. */
+#luckyScreen{--ebomaff-promo-color:#b83cff;}
+#aviatorScreen{--ebomaff-promo-color:#f44355;}
+#crashScreen{--ebomaff-promo-color:#ff614e;}
+#rocketQueenScreen{--ebomaff-promo-color:#e46aff;}
+#minesScreen{--ebomaff-promo-color:#f2bd36;}
+#limboScreen{--ebomaff-promo-color:#42d5f5;}
+#penaltyScreen{--ebomaff-promo-color:#35dba1;}
+#rocketXScreen{--ebomaff-promo-color:#ff9947;}
+#speedScreen{--ebomaff-promo-color:#54b9ff;}
+#mines1winScreen{--ebomaff-promo-color:#55aaff;}
+@media(max-width:350px){.ebomaff-promo-banner{gap:6px}.ebomaff-promo-code{padding:6px 9px}}
+</style>
 </head>
 
 <body>
@@ -2124,6 +2147,11 @@ html{
             >
                 🎮 Démo Lucky Jet prête.
             </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
+            </div>
 
             <button
                 id="luckyPredict"
@@ -2173,6 +2201,11 @@ html{
             >
                 ⌛ Moteur Aviator non connecté.
             </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
+            </div>
 
             <button
                 id="aviatorPredict"
@@ -2208,6 +2241,11 @@ html{
             </div>
 
             <div id="crashStatus" class="engine-status">⌛ Moteur Crash non connecté.</div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
+            </div>
             <button id="crashPredict" class="predict-btn blue-btn">💥 PRÉDIRE</button>
         </div>
 
@@ -2246,6 +2284,11 @@ html{
                 class="engine-status"
             >
                 ⌛ Moteur Rocket Queen non connecté.
+            </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
             </div>
 
             <button
@@ -2353,6 +2396,11 @@ html{
             >
                 ⌛ Moteur Mines non connecté.
             </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
+            </div>
 
             <button
                 id="minesPredict"
@@ -2393,6 +2441,11 @@ html{
                 class="engine-status"
             >
                 ⌛ Moteur Limbo non connecté.
+            </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
             </div>
 
             <button
@@ -2460,6 +2513,11 @@ html{
             >
                 ⌛ Moteur Penalty non connecté.
             </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
+            </div>
 
             <button
                 id="penaltyPredict"
@@ -2501,6 +2559,11 @@ html{
                 class="engine-status"
             >
                 ⌛ Moteur Rocket X non connecté.
+            </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
             </div>
 
             <button
@@ -2544,6 +2607,11 @@ html{
                 class="engine-status"
             >
                 ⌛ Moteur Speed &amp; Cash non connecté.
+            </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
             </div>
 
             <button
@@ -2607,6 +2675,11 @@ html{
 
             <div id="mines1winStatus" class="engine-status">
                 ⌛ Moteur 1WIN × MINES non connecté.
+            </div>
+            <div class="ebomaff-promo-banner" aria-label="Code promo EBOMAFF">
+                <span class="ebomaff-promo-gift">🎁</span>
+                <span class="ebomaff-promo-label">Code promo :</span>
+                <span class="ebomaff-promo-code">EBOMAFF</span>
             </div>
 
             <button id="mines1winPredict" class="predict-btn blue-btn">
