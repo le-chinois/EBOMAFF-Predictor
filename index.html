@@ -3410,7 +3410,7 @@ function showChickenEgg(eggNumber){
     if(status)status.textContent='🎮 Démo Lucky Jet en cours...';
 
     /* Démo uniquement : coefficient généré localement, sans données 1win. */
-    luckyDemoResult = (1.10 + Math.random()*5.90).toFixed(2);
+    luckyDemoResult = (1 + 99 * Math.pow(Math.random(), 3)).toFixed(2);
     const luckyDemoDuration = 500; /* trajet COMPLET en ~0,5 seconde */
     if(luckyDemoTimer) clearTimeout(luckyDemoTimer);
 
