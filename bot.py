@@ -335,6 +335,7 @@ class HealthHandler(BaseHTTPRequestHandler):
             "/rocketqueen-personnage.png": "rocketqueen-personnage.png",
             "/rocketqueen-flamme.png": "rocketqueen-flamme.png",
             "/mines.png": "mines.png",
+            "/mines-classic-nouveau.png": "mines-classic-nouveau.png",
             "/1win-mines-bg.png": "1win-mines-bg.png",
             "/1win-mines-bg-vide.png": "1win-mines-bg-vide.png",
             "/1win-mines-star.png": "1win-mines-star.png",
